@@ -1,0 +1,19 @@
+{
+	"name": "Pet",
+	"require": {
+		"phpmailer/phpmailer":"5.2.22",
+    	"slim/slim":"2.0",
+    	"rain/raintpl":"3.0.0"
+	},
+	"authors": [
+		{
+			"name": "Igor Santos",
+			"email": "igor_rogi_16032000@hotmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"App\\": "App/"
+		}
+	}
+}
