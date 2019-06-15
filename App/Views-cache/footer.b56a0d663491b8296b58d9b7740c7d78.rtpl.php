@@ -16,6 +16,8 @@
 
 <!-- REQUIRED JS SCRIPTS -->
 
+<!--Ajax para input file-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- jQuery 2.2.3 -->
 <script src="/res/site/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -46,17 +48,11 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/res/site/dist/js/demo.js"></script>
 <!--Mascaras de imput-->
+<!--Tem que vir antes do local-mascaras-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
-
-<script>
-  /*$(function () {
-    
-  });*/
-
-  $('#cpf').mask('000.000.000-00', {reverse: true});
-  $('#data-nasc').mask('00/00/0000', {reverse: true});
-
-</script>
+<!--JS local-->
+<script src="/res/site/js/local-js.js"></script>
+<script src="/res/site/js/local-mascaras.js"></script>
 
 </body>
 </html>
