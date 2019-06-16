@@ -1,3 +1,11 @@
+/**********************************************************/
+/**********************************************************/
+/**				Criar Ocorrencia					     **/
+/**********************************************************/
+/**********************************************************/
+
+/*Upload Vitima
+----------------------------------------------*/
 /*Upload CPF
 -------------------------*/
 $('#id-btn-up-cpf-vitima').on('click', function() {
@@ -22,11 +30,35 @@ $('#id-up-rg-vitima').on('change', function() {
 
 /*Upload Certidão de Nascimento
 ------------------------*/
-$('#id-btn-cnasc-rg-vitima').on('click', function() {
+$('#id-btn-up-cnasc-vitima').on('click', function() {
   $('#id-up-cnasc-vitima').trigger('click');
 });
 
 $('#id-up-cnasc-vitima').on('change', function() {
   var fileName = $(this)[0].files[0].name;
   $('#id-up-cnasc-file-vitima').val(fileName);
+});
+
+
+/**********************************************/
+/*Upload Agressor
+----------------------------------------------*/
+$('#id-btn-up-cpf-agressor').on('click', function() {
+  $('#id-up-cpf-agressor').trigger('click');
+});
+
+$('#id-up-cpf-agressor').on('change', function() {
+  var fileName = $(this)[0].files[0].name;
+  $('#id-up-cpf-file-agressor').val(fileName);
+});
+
+/*Upload RG
+------------------------*/
+$('#id-btn-up-rg-agressor').on('click', function() {
+  $('#id-up-rg-agressor').trigger('click');
+});
+
+$('#id-up-rg-agressor').on('change', function() {
+  var fileName = $(this)[0].files[0].name;
+  $('#id-up-rg-file-agressor').val(fileName);
 });
