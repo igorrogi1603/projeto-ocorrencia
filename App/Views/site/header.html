@@ -299,17 +299,7 @@ desired effect
         <li><a href="/backup"><i class="fa fa-save"></i> <span>Backup</span></a></li>
 
         <!--Inicio Documentacao-->
-        <li class="treeview">
-          <a href="#"><i class="fa fa-book"></i> <span>Documentação</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Criar Ocorrência</a></li>
-            <li><a href="#">Cadastrar Usuário</a></li>
-          </ul>
-        </li>
+        <li><a href="/biblioteca"><i class="fa fa-book"></i> <span>Biblioteca</span></a></li>        
         <!--Fim Documentacao-->
 
       </ul>
