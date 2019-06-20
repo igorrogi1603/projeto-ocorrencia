@@ -1,0 +1,113 @@
+html, body {
+  height: 100%;
+}
+
+.bg-branco {
+  background-color: #fff;
+}
+
+.fundo-img {
+  width:120px;
+  height:120px;
+  border-radius:100px;
+}
+
+.arredondamento {
+  border-radius: 100px;
+}
+
+.esqueci a {
+  font-size: 15px;
+  margin-right: 5px;
+  text-decoration: none;
+  color: #666;
+}
+
+.esqueci a:hover {
+  color: #0878D8;
+  font-weight: bold;
+}
+
+.btn-cor {
+  background-color: #0894D8;
+  color: #fff;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.btn-cor:hover {
+  background-color: #0878D8;
+  color: #fff;
+}
+
+h1 {
+  color: #0894D8;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+@media (max-width: 575.98px) {
+  .bg-image {
+    display: none;
+  }
+  .img-visibilidade {
+    visibility:hidden;
+  }
+  .esticado {
+    
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .bg-image {
+    display: none;
+  }
+  .img-visibilidade {
+    visibility:hidden;
+  }
+  .esticado {
+    
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .bg-image {
+    background: url('/res/site/dist/img/bg-login.jpg') center no-repeat; 
+    background-size: cover;
+  }
+  .img-visibilidade {
+    visibility:visible;
+  }
+  .esticado {
+    height: 100%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .bg-image {
+    background: url('/res/site/dist/img/bg-login.jpg') center no-repeat; 
+    background-size: cover;
+  }
+
+  .img-visibilidade {
+    visibility:visible;
+  }
+  .esticado {
+    height: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bg-image {
+    background: url('/res/site/dist/img/bg-login.jpg') center no-repeat; 
+    background-size: cover;
+  }
+  .esticado {
+    height: 100%;
+  }
+
+  .img-visibilidade {
+    visibility:visible;
+  }
+}

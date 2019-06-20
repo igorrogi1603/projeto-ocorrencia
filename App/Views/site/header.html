@@ -13,7 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="/res/site/bootstrap/css/bootstrap.min.css">
   <!--Css Local-->
-  <link rel="stylesheet" type="text/css" href="/res/site/css/local-css.css">
+  <link rel="stylesheet" type="text/css" href="/res/site/dist/css/local-css.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->

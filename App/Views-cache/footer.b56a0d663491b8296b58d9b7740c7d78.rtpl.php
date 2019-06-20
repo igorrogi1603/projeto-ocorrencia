@@ -51,8 +51,8 @@
 <!--Tem que vir antes do local-mascaras-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 <!--JS local-->
-<script src="/res/site/js/local-js.js"></script>
-<script src="/res/site/js/local-mascaras.js"></script>
+<script src="/res/site/dist/js/js-local/local-js.js"></script>
+<script src="/res/site/dist/js/js-local/local-mascaras.js"></script>
 
 </body>
 </html>
