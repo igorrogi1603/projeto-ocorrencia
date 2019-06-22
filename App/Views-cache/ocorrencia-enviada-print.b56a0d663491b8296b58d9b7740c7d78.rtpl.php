@@ -8,6 +8,8 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="/res/site/bootstrap/css/bootstrap.min.css">
+  <!--Local css-->
+  <link rel="stylesheet" type="text/css" href="/res/site/dist/css/local-css.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -30,134 +32,122 @@
     <div class="row">
       <div class="col-xs-12">
         <h2 class="page-header">
-          <i class="fa fa-globe"></i> AdminLTE, Inc.
+          <i class="fa fa-globe"></i> Sistema de Ocorrência Municipal
           <small class="pull-right">Date: 2/10/2014</small>
         </h2>
       </div>
       <!-- /.col -->
     </div>
     <!-- info row -->
-    <div class="row invoice-info">
-      <div class="col-sm-4 invoice-col">
-        From
-        <address>
-          <strong>Admin, Inc.</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (804) 123-5432<br>
-          Email: info@almasaeedstudio.com
-        </address>
-      </div>
-      <!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        To
-        <address>
-          <strong>John Doe</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (555) 539-1037<br>
-          Email: john.doe@example.com
-        </address>
-      </div>
-      <!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <b>Invoice #007612</b><br>
-        <br>
-        <b>Order ID:</b> 4F3S8J<br>
-        <b>Payment Due:</b> 2/22/2014<br>
-        <b>Account:</b> 968-34567
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
 
-    <!-- Table row -->
+    <!--Corpo do relatorio
+    -------------------------------->
+
+    <!--Dados da Vitima-->
+    <h3><strong>Dados da Vítima</strong></h3>
+    <!--Inicio Row-->
     <div class="row">
-      <div class="col-xs-12 table-responsive">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th>Qty</th>
-            <th>Product</th>
-            <th>Serial #</th>
-            <th>Description</th>
-            <th>Subtotal</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>1</td>
-            <td>Call of Duty</td>
-            <td>455-981-221</td>
-            <td>El snort testosterone trophy driving gloves handsome</td>
-            <td>$64.50</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Need for Speed IV</td>
-            <td>247-925-726</td>
-            <td>Wes Anderson umami biodiesel</td>
-            <td>$50.00</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Monsters DVD</td>
-            <td>735-845-642</td>
-            <td>Terry Richardson helvetica tousled street art master</td>
-            <td>$10.70</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Grown Ups Blue Ray</td>
-            <td>422-568-642</td>
-            <td>Tousled lomo letterpress</td>
-            <td>$25.99</td>
-          </tr>
-          </tbody>
-        </table>
+      <!--Dados-->
+      <div class="col-sm-4 invoice-col">
+        <p class="sem-espacamento"><strong>Nome: </strong>Nome completo da vitima</p>
+        <p class="sem-espacamento"><strong>Nascimento: </strong>00/00/0000</p>
+        <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
+        <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
+        <p class="sem-espacamento"><strong>RG: </strong>00.000.000-0</p>
+        <p class="sem-espacamento"><strong>Telefone Fixo: </strong>0000-0000</p>
+        <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
       </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
+      <!--Fim Dados-->
 
+      <!--Dados dos pais e responsaveis-->
+      <div class="col-sm-4 invoice-col">
+        <p class="sem-espacamento"><strong>Pai: </strong>Nome do pai completo</p>
+        <p class="sem-espacamento"><strong>Mãe: </strong>Nome da mãe completo</p>
+        <p class="sem-espacamento"><strong>Os pais são os responsaveis: </strong>Não</p>
+        <!--Caso os pais nao forem responsaveis mostrar essa linha caso eles for responsaveis ocultar essa linha-->
+        <p class="sem-espacamento"><strong>Responsavel: </strong>Nome completo responsavel</p>
+        <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
+        <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
+      </div>
+      <!--Fim Dados dos pais e responsaveis-->
+
+      <!--Endereco da vitima-->
+      <div class="col-sm-4 invoice-col">
+        <p class="sem-espacamento"><strong>Rua: </strong>Nome da rua da vitima</p>
+        <p class="sem-espacamento"><strong>Bairro: </strong>Nome do bairro da vitima</p>
+        <p class="sem-espacamento"><strong>Numero: </strong>0000</p>
+        <p class="sem-espacamento"><strong>Estado: </strong>Estado da vitima</p>
+        <p class="sem-espacamento"><strong>Cidade: </strong>Cidade da vitima</p>
+        <p class="sem-espacamento"><strong>Complemento: </strong>Completo da vitima</p>
+      </div>
+      <!--Fim Endereco da vitima-->
+    </div>
+    <!--Fim Row-->
+    <!--Fim Dados da Vitima-->
+
+    <hr>
+
+    <!--Dados da Agressor-->
+    <h3><strong>Dados do Agressor</strong></h3>
+    <!--Inicio Row-->
     <div class="row">
-      <!-- accepted payments column -->
-      <div class="col-xs-6">
-        <p class="lead">Payment Methods:</p>
-
-        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-          Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr
-          jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-        </p>
+      <!--Dados-->
+      <div class="col-sm-4 invoice-col">
+        <p class="sem-espacamento"><strong>Nome: </strong>Nome completo do Agressor</p>
+        <p class="sem-espacamento"><strong>Nascimento: </strong>00/00/0000</p>
+        <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
+        <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
+        <p class="sem-espacamento"><strong>RG: </strong>00.000.000-0</p>
+        <p class="sem-espacamento"><strong>Telefone Fixo: </strong>0000-0000</p>
+        <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
       </div>
-      <!-- /.col -->
-      <div class="col-xs-6">
-        <p class="lead">Amount Due 2/22/2014</p>
+      <!--Dados-->
 
-        <div class="table-responsive">
-          <table class="table">
-            <tr>
-              <th style="width:50%">Subtotal:</th>
-              <td>$250.30</td>
-            </tr>
-            <tr>
-              <th>Tax (9.3%)</th>
-              <td>$10.34</td>
-            </tr>
-            <tr>
-              <th>Shipping:</th>
-              <td>$5.80</td>
-            </tr>
-            <tr>
-              <th>Total:</th>
-              <td>$265.24</td>
-            </tr>
-          </table>
-        </div>
+      <!--Quem e o agressor-->
+      <div class="col-sm-4 invoice-col">
+        <!--Caso Não souber quem é o agressor, Mostrar essa coluna-->
+        <!--Caso souber quem é o agressor, NÃO mostrar essa coluna-->
+        <p class="sem-espacamento"><strong>Sabe quem é o agressor?: </strong>Não</p>
+        <p class="sem-espacamento"><strong>Descrição: </strong>Aqui é onde ficará a descrição que a vitima irá fazer sobre o agressor caso ela não saiba o nome dele nem onde mora, saiba nada a respeito do agressor, então com essa descrição poderá servir para reconhecer o agressor futuramente.</p>
       </div>
-      <!-- /.col -->
+      <!--Quem e o agressor-->
+
+      <!--Endereco da agressor-->
+      <div class="col-sm-4 invoice-col">
+        <p class="sem-espacamento"><strong>Rua: </strong>Nome da rua da agressor</p>
+        <p class="sem-espacamento"><strong>Bairro: </strong>Nome do bairro da agressor</p>
+        <p class="sem-espacamento"><strong>Numero: </strong>0000</p>
+        <p class="sem-espacamento"><strong>Estado: </strong>Estado da agressor</p>
+        <p class="sem-espacamento"><strong>Cidade: </strong>Cidade da agressor</p>
+        <p class="sem-espacamento"><strong>Complemento: </strong>Completo da agressor</p>
+      </div>
+      <!--Fim Endereco da agressor-->
     </div>
-    <!-- /.row -->
+    <!--Fim Row-->
+    <!--Fim Dados da Agressor-->
+
+    <hr>
+
+    <!--Dados da Ocorrencia-->
+    <h3><strong>Dados da Ocorrência</strong></h3>
+    <!--Tipo da ocorrencia-->
+    <div class="row">
+      <div class="col-md-12">
+        <p class=""><strong>Tipo da Ocorrência: </strong>Violência doméstica</p>
+      </div>
+    </div>
+    <!--Fim Tipo da ocorrencia-->
+
+    <!--Descricao da ocorrencia-->
+    <div class="row">
+      <div class="col-md-12">
+        <p class="sem-espacamento"><strong>Descrição da Ocorrência: </strong>É simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
+      </div>
+    </div>
+    <!--Fim Descricao da ocorrencia-->
+    <!--Dados da Ocorrencia-->
+
+    <!--Fim Corpo do relatorio-->
   </section>
   <!-- /.content -->
 </div>
