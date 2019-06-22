@@ -5,7 +5,7 @@
     <h1>Criar Ocorrência</h1>
 
     <ol class="breadcrumb">
-      <li><a href="inicio.html"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
       <li class="active">Criar Ocorrência</li>
     </ol>
   </section>
@@ -14,7 +14,7 @@
   <section class="content">
 
     <!--Inicio Formulario-->
-    <form action="" method="post">
+    <form action="/ocorrencia-enviada" method="POST">
       <!-------------------------------------------------------------->
       <!-------------------------------------------------------------->
       <!--              Box Dadados da Vitima                       -->
@@ -330,7 +330,7 @@
             <!--Fim Nome Completo da Agressor-->
 
             <!--Data de Nascimento da Agressor-->
-            <div class="col-md-3">
+            <div class="col-md-2">
               <div class="form-group">
                 <label>Data de Nascimento</label>
                 <div class="input-group">
@@ -344,7 +344,7 @@
             <!--Data de Nascimento da Agressor-->
 
             <!--Sexo Agressor-->
-            <div class="col-md-3">
+            <div class="col-md-2">
               <div class="form-group">
                 <label for="id-sexo-agressor">Sexo</label>
                 <select class="form-control select2" name="sexo-agressor" id="id-sexo-agressor">
@@ -354,8 +354,38 @@
               </div>
             </div>
             <!--Fim Sexo Agressor-->
+
+            <!--Nao sabe quem e o agressor-->
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Sabe quem é o agressor?</label><br>
+                <label class="container-radio">Sim
+                  <input type="radio" name="conhece-agressor" id="conhece-agressor-sim" class="minimal" value="1" checked>
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container-radio">Não
+                  <input type="radio" name="conhece-agressor" id="conhece-agressor-nao" class="minimal" value="0">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+            <!--Fim Nao sabe quem e o agressor-->
           </div>
           <!-- /.row -->
+
+          <!--Inicio Row-->
+          <div id="div-conhece-agressor-sim"></div>
+          <div class="row" id="div-conhece-agressor-nao">
+            <!--Conhece-Agressor-->
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="id-descricao-agressor">Descrição do agressor</label>
+                <input type="text" name="descricao-agressor" id="id-descricao-agressor" class="form-control" placeholder="Digite a descrição do agressor" maxlength="200">
+              </div>
+            </div>
+            <!--Fim Conhece-Agressor-->
+          </div>
+          <!--Fim Row-->
 
           <!--Inicio row-->
           <div class="row">
@@ -634,15 +664,26 @@
     divAgressorMaior = document.getElementById("div-responsavel-agressor-maior");
     divAgressorMenor = document.getElementById("div-responsavel-agressor-menor");
 
+    divConheceAgressorSim = document.getElementById("div-conhece-agressor-sim");
+    divConheceAgressorNao = document.getElementById("div-conhece-agressor-nao");
+
     var divsim = document.getElementById("isresponsavel-vitima-sim");
     divsim.onclick = mostrarDiv1;
 
     var divnao = document.getElementById("isresponsavel-vitima-nao");
     divnao.onclick = mostrarDiv2;
 
+    var conheceAgressorSim = document.getElementById("conhece-agressor-sim");
+    conheceAgressorSim.onclick = mostrarDivConheceAgressor1;
+
+    var conheceAgressorNao = document.getElementById("conhece-agressor-nao");
+    conheceAgressorNao.onclick = mostrarDivConheceAgressor2;
+
     div2.classList.add("escondido");
 
     divAgressorMenor.classList.add("escondido");
+
+    divConheceAgressorNao.classList.add("escondido");
   }
 
   function mostrarDiv1(){
@@ -653,6 +694,16 @@
   function mostrarDiv2(){
     div2.classList.remove("escondido");
     div1.classList.add("escondido");
+  }
+
+  function mostrarDivConheceAgressor1(){
+    divConheceAgressorSim.classList.remove("escondido");
+    divConheceAgressorNao.classList.add("escondido");
+  }
+
+  function mostrarDivConheceAgressor2(){
+    divConheceAgressorSim.classList.add("escondido");
+    divConheceAgressorNao.classList.remove("escondido");  
   }
 
   /*Responsavel do Agressor
