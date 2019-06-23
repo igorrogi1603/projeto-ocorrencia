@@ -31,6 +31,9 @@
 <!-- date-range-picker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 <script src="/res/site/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- DataTables -->
+<script src="/res/site/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/res/site/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <!-- bootstrap datepicker -->
 <script src="/res/site/plugins/datepicker/bootstrap-datepicker.js"></script>
 <!-- bootstrap color picker -->
@@ -53,6 +56,22 @@
 <!--JS local-->
 <script src="/res/site/dist/js/js-local/local-js.js"></script>
 <script src="/res/site/dist/js/js-local/local-mascaras.js"></script>
+
+<!--Pagina Novas Ocorrencias-->
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
+<!--Fim Pagina Novas Ocorrencias-->
 
 </body>
 </html>

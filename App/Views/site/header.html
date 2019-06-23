@@ -20,6 +20,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/res/site/dist/css/AdminLTE.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/res/site/plugins/datatables/dataTables.bootstrap.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/res/site/dist/css/skins/_all-skins.min.css">
@@ -266,7 +268,6 @@ desired effect
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/ocorrencias-novas">Novas</a></li>
             <li><a href="/ocorrencias-abertas">Abertas</a></li>
             <li><a href="/ocorrencias-reabertas">Reabertas</a></li>
             <li><a href="/ocorrencias-arquivadas">Arquivadas</a></li>

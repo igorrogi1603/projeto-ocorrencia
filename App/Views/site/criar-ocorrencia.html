@@ -623,7 +623,7 @@
       <!--                    Box Submit                            -->
       <!-------------------------------------------------------------->
       <!-------------------------------------------------------------->
-      <div class="box box-primary">
+      <div class="box box-default">
         <!-- /.box-header -->
         <div class="box-body">
           <!--Inicio Row-->

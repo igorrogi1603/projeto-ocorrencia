@@ -40,6 +40,12 @@
     </div>
     <!-- info row -->
 
+    <div class="row">
+      <div class="col-xs-12">
+        <small class="pull-right">N° da Ocorrência: 125</small>
+      </div>
+    </div>
+
     <!--Corpo do relatorio
     -------------------------------->
 

@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -37,24 +37,7 @@
               <td>425.653.987.56</td>
               <td>Olivio da Conseição de Oliveira</td>
               <td>15/05/2013</td>
-              <td>
-                <a href="/ocorrencia-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-success"><i class="fa fa-unlock"></i></a>
-                <!--<a href="#" class="btn btn-danger"><i class="fa fa-lock"></i></a>-->
-              </td>
-            </tr>
-
-            <tr>
-              <td>252</td>
-              <td>Isabel Silva Ramos</td>
-              <td>555.673.123.76</td>
-              <td>Otavio da Costa de Oliveira</td>
-              <td>04/10/2016</td>
-              <td>
-                <a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-success"><i class="fa fa-unlock"></i></a>
-                <!--<a href="#" class="btn btn-danger"><i class="fa fa-lock"></i></a>-->
-              </td>
+              <td></td>
             </tr>
           </tbody>
 

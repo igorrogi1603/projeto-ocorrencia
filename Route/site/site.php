@@ -30,7 +30,7 @@ $app->get("/ocorrencia-enviada", function(){
 
 	$page = new Page();
 
-	$page->setTpl("ocorrencia-enviada");	
+	$page->setTpl("ocorrencia-enviada");
 });
 
 $app->post("/ocorrencia-enviada", function(){
@@ -49,4 +49,17 @@ $app->get("/ocorrencia-enviada-print", function(){
 	$page->setTpl("/ocorrencia-enviada-print");	
 });
 
+$app->get("/ocorrencias-abertas", function(){
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencias-abertas");
+});
+
+$app->get("/ocorrencia-detalhe", function(){
+
+	$page = new Page();
+
+	$page->setTpl("/ocorrencia-detalhe");
+});
 ?>
