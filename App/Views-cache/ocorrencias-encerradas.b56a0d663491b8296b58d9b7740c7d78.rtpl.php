@@ -1,11 +1,11 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Ocorrências Reabertas</h1>
+    <h1>Ocorrências Encerradas</h1>
     <ol class="breadcrumb">
       <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Ocorrências Reabertas</li>
+      <li class="active">Ocorrências Encerradas</li>
     </ol>
   </section>
 
@@ -36,8 +36,6 @@
               <td>15/05/2013</td>
               <td>
                 <a href="/ocorrencia-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-success"><i class="fa fa-unlock"></i></a>
-                <!--<a href="#" class="btn btn-danger"><i class="fa fa-lock"></i></a>-->
               </td>
             </tr>
 
@@ -49,8 +47,6 @@
               <td>04/10/2016</td>
               <td>
                 <a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-success"><i class="fa fa-unlock"></i></a>
-                <!--<a href="#" class="btn btn-danger"><i class="fa fa-lock"></i></a>-->
               </td>
             </tr>
           </tbody>

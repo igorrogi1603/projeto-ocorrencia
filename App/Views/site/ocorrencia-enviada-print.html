@@ -91,6 +91,7 @@
     <!--Fim Row-->
     <!--Fim Dados da Vitima-->
 
+    <br>
     <hr>
 
     <!--Dados da Agressor-->
@@ -132,6 +133,7 @@
     <!--Fim Row-->
     <!--Fim Dados da Agressor-->
 
+    <br>
     <hr>
 
     <!--Dados da Ocorrencia-->

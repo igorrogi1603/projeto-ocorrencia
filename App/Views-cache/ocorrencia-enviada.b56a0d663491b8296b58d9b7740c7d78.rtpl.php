@@ -144,8 +144,10 @@
 
     <!--Fim Corpo do relatorio-->
 
+    <br>
     <hr>
-
+    <br>
+    
     <!-- this row will not appear when printing -->
     <div class="row no-print">
       <div class="col-xs-12">

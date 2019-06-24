@@ -2,10 +2,10 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Novas Ocorrências</h1>
+    <h1>Ocorrências Abertas</h1>
     <ol class="breadcrumb">
       <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Novas Ocorrências</li>
+      <li class="active">Ocorrências Abertas</li>
     </ol>
   </section>
 
@@ -13,9 +13,6 @@
   <section class="content">
 
     <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Ultimas ocorrências criadas</h3>
-      </div>
       <!-- /.box-header -->
       <div class="box-body">
         <table id="example1" class="table table-bordered table-striped">
@@ -57,17 +54,6 @@
               </td>
             </tr>
           </tbody>
-
-          <tfoot>
-            <tr>
-              <th>ID</th>
-              <th>Vítima</th>
-              <th>CPF da Vítima</th>
-              <th>Agressor</th>
-              <th>Data de Criação</th>
-              <th>Opções</th>
-            </tr>
-          </tfoot>
         </table>
       </div>
       <!-- /.box-body -->

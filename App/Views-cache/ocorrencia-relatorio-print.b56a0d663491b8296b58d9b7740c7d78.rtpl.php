@@ -1,21 +1,31 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>Ocorrência Enviada</h1>
-    <ol class="breadcrumb">
-      <li><a href="/"><i class="fa fa-dashboard"></i>Inicio</a></li>
-      <li class="active">Ocorrência Enviada</li>
-    </ol>
-  </section>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Invoice</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="/res/site/bootstrap/css/bootstrap.min.css">
+  <!--Local css-->
+  <link rel="stylesheet" type="text/css" href="/res/site/dist/css/local-css.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/res/site/dist/css/AdminLTE.min.css">
 
-  <div class="pad margin no-print">
-    <div class="callout callout-success" style="margin-bottom: 0!important;">
-      <h4>Aviso:</h4>
-      A ocorrência foi salva com sucesso, para mais informações acessar a área de ocorrências abertas.
-    </div>
-  </div>
-
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body onload="window.print();">
+<div class="wrapper">
   <!-- Main content -->
   <section class="invoice">
     <!-- title row -->
@@ -29,6 +39,7 @@
       <!-- /.col -->
     </div>
     <!-- info row -->
+
     <div class="row">
       <div class="col-xs-12">
         <small class="pull-right">N° da Ocorrência: 125</small>
@@ -43,7 +54,7 @@
     <!--Inicio Row-->
     <div class="row">
       <!--Dados-->
-      <div class="col-md-4">
+      <div class="col-sm-4 invoice-col">
         <p class="sem-espacamento"><strong>Nome: </strong>Nome completo da vitima</p>
         <p class="sem-espacamento"><strong>Nascimento: </strong>00/00/0000</p>
         <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
@@ -55,7 +66,7 @@
       <!--Fim Dados-->
 
       <!--Dados dos pais e responsaveis-->
-      <div class="col-md-4">
+      <div class="col-sm-4 invoice-col">
         <p class="sem-espacamento"><strong>Pai: </strong>Nome do pai completo</p>
         <p class="sem-espacamento"><strong>Mãe: </strong>Nome da mãe completo</p>
         <p class="sem-espacamento"><strong>Os pais são os responsaveis: </strong>Não</p>
@@ -67,7 +78,7 @@
       <!--Fim Dados dos pais e responsaveis-->
 
       <!--Endereco da vitima-->
-      <div class="col-md-4">
+      <div class="col-sm-4 invoice-col">
         <p class="sem-espacamento"><strong>Rua: </strong>Nome da rua da vitima</p>
         <p class="sem-espacamento"><strong>Bairro: </strong>Nome do bairro da vitima</p>
         <p class="sem-espacamento"><strong>Numero: </strong>0000</p>
@@ -80,6 +91,7 @@
     <!--Fim Row-->
     <!--Fim Dados da Vitima-->
 
+    <br>
     <hr>
 
     <!--Dados da Agressor-->
@@ -87,7 +99,7 @@
     <!--Inicio Row-->
     <div class="row">
       <!--Dados-->
-      <div class="col-md-4">
+      <div class="col-sm-4 invoice-col">
         <p class="sem-espacamento"><strong>Nome: </strong>Nome completo do Agressor</p>
         <p class="sem-espacamento"><strong>Nascimento: </strong>00/00/0000</p>
         <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
@@ -99,7 +111,7 @@
       <!--Dados-->
 
       <!--Quem e o agressor-->
-      <div class="col-md-4">
+      <div class="col-sm-4 invoice-col">
         <!--Caso Não souber quem é o agressor, Mostrar essa coluna-->
         <!--Caso souber quem é o agressor, NÃO mostrar essa coluna-->
         <p class="sem-espacamento"><strong>Sabe quem é o agressor?: </strong>Não</p>
@@ -108,7 +120,7 @@
       <!--Quem e o agressor-->
 
       <!--Endereco da agressor-->
-      <div class="col-md-4">
+      <div class="col-sm-4 invoice-col">
         <p class="sem-espacamento"><strong>Rua: </strong>Nome da rua da agressor</p>
         <p class="sem-espacamento"><strong>Bairro: </strong>Nome do bairro da agressor</p>
         <p class="sem-espacamento"><strong>Numero: </strong>0000</p>
@@ -121,6 +133,7 @@
     <!--Fim Row-->
     <!--Fim Dados da Agressor-->
 
+    <br>
     <hr>
 
     <!--Dados da Ocorrencia-->
@@ -141,21 +154,11 @@
     </div>
     <!--Fim Descricao da ocorrencia-->
     <!--Dados da Ocorrencia-->
-
-    <!--Fim Corpo do relatorio-->
-
-    <br>
-    <hr>
-    <br>
     
-    <!-- this row will not appear when printing -->
-    <div class="row no-print">
-      <div class="col-xs-12">
-        <a href="/ocorrencia-enviada-print" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</a>
-      </div>
-    </div>
+    <!--Fim Corpo do relatorio-->
   </section>
   <!-- /.content -->
-  <div class="clearfix"></div>
 </div>
-<!-- /.content-wrapper -->
+<!-- ./wrapper -->
+</body>
+</html>

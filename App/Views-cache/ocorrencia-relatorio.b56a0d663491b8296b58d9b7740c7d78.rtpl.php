@@ -1,20 +1,13 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Ocorrência Enviada</h1>
+    <h1>Ocorrência Relatório</h1>
     <ol class="breadcrumb">
       <li><a href="/"><i class="fa fa-dashboard"></i>Inicio</a></li>
-      <li class="active">Ocorrência Enviada</li>
+      <li class="active">Ocorrência Relátorio</li>
     </ol>
   </section>
-
-  <div class="pad margin no-print">
-    <div class="callout callout-success" style="margin-bottom: 0!important;">
-      <h4>Aviso:</h4>
-      A ocorrência foi salva com sucesso, para mais informações acessar a área de ocorrências abertas.
-    </div>
-  </div>
 
   <!-- Main content -->
   <section class="invoice">
@@ -80,6 +73,7 @@
     <!--Fim Row-->
     <!--Fim Dados da Vitima-->
 
+    <br>
     <hr>
 
     <!--Dados da Agressor-->
@@ -121,6 +115,7 @@
     <!--Fim Row-->
     <!--Fim Dados da Agressor-->
 
+    <br>
     <hr>
 
     <!--Dados da Ocorrencia-->
@@ -143,15 +138,13 @@
     <!--Dados da Ocorrencia-->
 
     <!--Fim Corpo do relatorio-->
-
     <br>
     <hr>
     <br>
-    
     <!-- this row will not appear when printing -->
     <div class="row no-print">
       <div class="col-xs-12">
-        <a href="/ocorrencia-enviada-print" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</a>
+        <a href="/ocorrencia-relatorio-print" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</a>
       </div>
     </div>
   </section>

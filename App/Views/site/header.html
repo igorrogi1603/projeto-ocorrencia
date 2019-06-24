@@ -277,7 +277,7 @@ desired effect
         <!--Fim Ocorrencia-->
         
         <!--Solicitacoes-->
-        <li><a href="/solicitacoes"><i class="fa fa-send"></i> <span>Solicitações</span></a></li>
+        <li><a href="/solicitacoes"><i class="fa fa-envelope"></i> <span>Solicitações</span></a></li>
 
         <!--Inicio Usuario-->
         <li class="treeview">
