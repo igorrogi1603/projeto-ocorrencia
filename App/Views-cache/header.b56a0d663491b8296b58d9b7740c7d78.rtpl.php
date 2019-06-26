@@ -256,8 +256,11 @@ desired effect
         <li class="header">MENU</li>
         <!--Inicio-->
         <li><a href="/"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
-        
-        <!--Criar Ocorrencia-->
+
+        <!--Criar Apuracao-->
+        <li><a href="/criar-apuracao-etapa1"><i class="fa fa-file-o"></i> <span>Criar Apuração</span></a></li>
+
+        <!--Criar Ocorrencia TIRAR FORA-->
         <li><a href="/criar-ocorrencia"><i class="fa fa-file-o"></i> <span>Criar Ocorrência</span></a></li>
         
         <!--Inicio Ocorrencia-->

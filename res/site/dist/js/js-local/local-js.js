@@ -1,3 +1,9 @@
+$(document).ready(function() {
+  $("#id-qtd-vitima").keyup(function() {
+      $("#id-qtd-vitima").val(this.value.match(/[0-9]*/));
+  });
+});
+
 /**********************************************************/
 /**********************************************************/
 /**				Criar Ocorrencia					     **/

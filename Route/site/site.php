@@ -21,4 +21,5 @@ $app->get("/login", function(){
 
 //Rotas externas
 require_once("route-ocorrencias.php");
+require_once("route-apuracao.php");
 ?>
