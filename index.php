@@ -12,7 +12,7 @@ $app->config("debug", true);
 
 //Chamando as rotas
 //Exemplo: require_once("functions.php");
-
+ 
 require_once("Route/site/site.php");
 
 $app->run();
