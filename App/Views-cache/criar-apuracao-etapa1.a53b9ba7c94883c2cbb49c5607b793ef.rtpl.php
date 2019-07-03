@@ -46,17 +46,17 @@
             <!--QTD Vitimas-->
             <div class="col-md-3">
               <div class="form-group">
-                <label for="id-qtd-vitima">Quantas Vítimas são? *</label>
-                <input type="text" name="qtd-vitima" id="id-qtd-vitima" class="form-control" maxlength="2" pattern="([0-9]{2})" required>
+                <label for="id-qtd-vitima">Quantas Vítimas são?</label>
+                <input type="text" name="qtd-vitima" id="id-qtd-vitima" class="form-control" maxlength="2" pattern="([0-9]{2})" placeholder="Ex: 01, 02, 10" required>
               </div>
             </div>
             <!--Fim QTD Vitimas-->
 
             <!--Mostrar se a quantidade de vitimas for maior que 1-->
             <!--Inicio Endereco-->
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <div class="form-group">
-                  <label>As Vítimas moram no mesmo endereço? *</label><br>
+                  <label>As Vítimas moram no mesmo endereço?</label><br>
                   <label class="container-radio">Sim
                     <input type="radio" name="mesmo-endereco-vitima" id="mesmo-endereco-vitima-sim" class="minimal" value="1" checked>
                     <span class="checkmark"></span>
@@ -72,7 +72,7 @@
               <!--Inicio responsaveis-->
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>Todas as Vítimas tem o mesmo responsavel? *</label><br>
+                  <label>Todas as Vítimas tem o mesmo responsavel?</label><br>
                   <label class="container-radio">Sim
                     <input type="radio" name="mesmo-responsavel-vitima" id="mesmo-responsavel-vitima-sim" class="minimal" value="1" checked>
                     <span class="checkmark"></span>
@@ -86,6 +86,8 @@
               <!--Fim responsaveis-->
           </div>
           <!--Fim Row-->
+
+          <br>
 
           <!--Inicio Row-->
           <div class="row">
