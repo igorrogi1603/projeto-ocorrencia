@@ -22,4 +22,34 @@ $app->post("/criar-apuracao-etapa2", function(){
 	exit;	
 });
 
+$app->get("/criar-apuracao-etapa3", function(){
+	
+	$page = new Page();
+
+	$page->setTpl("criar-apuracao-etapa3");
+});
+
+$app->post("/criar-apuracao-etapa3", function(){
+	
+	header("Location: /criar-apuracao-etapa3");
+	exit;	
+});
+
+$app->get("/apuracao-enviada-print", function(){
+	
+	$page = new Page([
+		"header"=>false,
+		"footer"=>false
+	]);
+
+	$page->setTpl("/apuracao-enviada-print");
+});
+
+$app->get("/lista-apuracoes", function(){
+	
+	$page = new Page();
+
+	$page->setTpl("/lista-apuracoes");
+});
+
 ?>

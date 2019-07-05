@@ -258,11 +258,11 @@ desired effect
         <li><a href="/"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
 
         <!--Criar Apuracao-->
-        <li><a href="/criar-apuracao-etapa1"><i class="fa fa-file-o"></i> <span>Criar Apuração</span></a></li>
+        <li><a href="/criar-apuracao-etapa1"><i class="fa fa-file"></i> <span>Criar Apuração</span></a></li>
 
-        <!--Criar Ocorrencia TIRAR FORA-->
-        <li><a href="/criar-ocorrencia"><i class="fa fa-file-o"></i> <span>Criar Ocorrência</span></a></li>
-        
+        <!--Criar Apuracao-->
+        <li><a href="/lista-apuracoes"><i class="fa fa-file-text"></i> <span>Apurações</span></a></li>
+
         <!--Inicio Ocorrencia-->
         <li class="treeview">
           <a href="#"><i class="fa fa-th-large"></i> <span>Ocorrências</span>

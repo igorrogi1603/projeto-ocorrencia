@@ -2,13 +2,6 @@
 
 use \App\Config\Page;
 
-$app->get("/criar-ocorrencia", function(){
-
-	$page = new Page();
-
-	$page->setTpl("criar-ocorrencia");
-});
-
 $app->get("/ocorrencia-enviada", function(){
 
 	$page = new Page();

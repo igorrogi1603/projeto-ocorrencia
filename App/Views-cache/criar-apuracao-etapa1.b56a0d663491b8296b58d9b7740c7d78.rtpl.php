@@ -12,7 +12,7 @@
   <!-- Main content -->
   <section class="content">
 
-    <!--Box apuracao-->
+    <!--Box apuracao--> 
     <div class="box">
       <!-- /.box-header -->
       <div class="box-body">
@@ -27,7 +27,11 @@
         </div>
         <!--Fim Progresso-->
 
-        <br><br>
+        <br>
+
+        <div class="alert" style="background-color: #FFF3CD; color: #A18532;" role="alert">
+          A simple warning alert—check it out!
+        </div>
 
         <!--Inicio Form-->
         <form action="/criar-apuracao-etapa2" method="post">

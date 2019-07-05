@@ -50,30 +50,20 @@
             <div class="box-body">
               <div class="row">
                 <!--Nome Completo da Vitima-->
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-group">
                     <label for="id-nome-vitima">Nome Completo da Vítima *</label>
                     <input type="text" name="nome-vitima" id="id-nome-vitima" class="form-control" placeholder="Digite o nome aqui" maxlength="70" required>
                   </div>
                 </div>
                 <!--Fim Nome Completo da Vitima-->
+              </div>
+              <!-- /.row -->
 
-                <!--Data de Nascimento da Vitima-->
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label>Data de Nascimento *</label>
-                    <div class="input-group">
-                      <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                      </div>
-                      <input type="text" id="id-data-nasc-vitima" class="form-control" placeholder="__/__/____" required>
-                    </div>
-                  </div>
-                </div>
-                <!--Data de Nascimento da Vitima-->
-
+              <!--Inicio row-->
+              <div class="row">
                 <!--Sexo-->
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label for="id-sexo-vitima">Sexo</label>
                     <select class="form-control select2" name="sexo-vitima" id="id-sexo-vitima">
@@ -83,13 +73,9 @@
                   </div>
                 </div>
                 <!--Fim Sexo-->
-              </div>
-              <!-- /.row -->
 
-              <!--Inicio row-->
-              <div class="row">
                 <!--CPF-->
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label for="id-cpf-vitima">CPF</label>
                     <input type="text" name="cpf-vitima" id="id-cpf-vitima" class="form-control" placeholder="___.___.___-__">
@@ -97,26 +83,8 @@
                 </div>
                 <!--Fim CPF-->
 
-                <!--RG-->
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="id-rg-vitima">RG</label>
-                    <input type="text" name="rg-vitima" id="id-rg-vitima" class="form-control" placeholder="__.___.___">
-                  </div>
-                </div>
-                <!--Fim RG-->
-
-                <!--Telefone Fixo Vitima-->
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="id-telfixo-vitima">Telefone Fixo</label>
-                    <input type="text" name="telfixo-vitima" id="id-telfixo-vitima" class="form-control" placeholder="____-____">
-                  </div>
-                </div>
-                <!--Telefone Fixo Vitima-->
-
                 <!--Celular Vitima-->
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label for="id-celular-vitima">Celular</label>
                     <input type="text" name="celular-vitima" id="id-celular-vitima" class="form-control" placeholder="_____-____">
@@ -270,6 +238,48 @@
             
           </div>
           <!--Fim Box Dados da Vitima-->
+
+          <!-------------------------------------------------------------->
+          <!-------------------------------------------------------------->
+          <!--              Box Dadados da Ocorrencia                   -->
+          <!-------------------------------------------------------------->
+          <!-------------------------------------------------------------->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Dados da Ocorrência</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+              </div>
+            </div>
+
+            <!-- /.box-header -->
+            <div class="box-body">
+              <!--Inicio Row-->
+              <div class="row">
+                <!--Tipo da Ocorrencia-->
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="id-tipo-da-ocorrencia">Tipo da Ocorrência</label>
+                    <input type="text" name="tipo-da-ocorrencia" id="id-tipo-da-ocorrencia" class="form-control" maxlength="100">
+                  </div>
+                </div>
+                <!--Fim Tipo da Ocorrencia-->
+
+                <!--Descricao da Ocorrencia-->
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="id-descricao-da-ocorrencia">Descrição da Ocorrência</label>
+                    <textarea name="descricao-da-ocorrencia" id="id-descricao-da-ocorrencia" class="form-control" rows="10"></textarea>
+                  </div>
+                </div>
+                <!--Fim Descricao da Ocorrencia-->            
+              </div>
+              <!--Fim Row-->
+            </div>
+            <!--Fim box-body -->
+          </div>
+          <!--Fim Box Dados da Ocorrencia-->
          
           <br>
 
