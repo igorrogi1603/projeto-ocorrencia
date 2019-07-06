@@ -258,7 +258,7 @@ desired effect
         <li><a href="/"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
 
         <!--Criar Apuracao-->
-        <li><a href="/criar-apuracao-etapa1"><i class="fa fa-file"></i> <span>Criar Apuração</span></a></li>
+        <li><a href="/criar-apuracao"><i class="fa fa-file"></i> <span>Criar Apuração</span></a></li>
 
         <!--Criar Apuracao-->
         <li><a href="/lista-apuracoes"><i class="fa fa-file-text"></i> <span>Apurações</span></a></li>

@@ -2,36 +2,23 @@
 
 use \App\Config\Page;
 
-$app->get("/criar-apuracao-etapa1", function(){
+$app->get("/criar-apuracao", function(){
 	
 	$page = new Page();
 
-	$page->setTpl("criar-apuracao-etapa1");
+	$page->setTpl("criar-apuracao");
 });
 
-$app->get("/criar-apuracao-etapa2", function(){
+$app->get("/apuracao-enviada", function(){
 	
 	$page = new Page();
 
-	$page->setTpl("criar-apuracao-etapa2");
+	$page->setTpl("apuracao-enviada");
 });
 
-$app->post("/criar-apuracao-etapa2", function(){
+$app->post("/apuracao-enviada", function(){
 	
-	header("Location: /criar-apuracao-etapa2");
-	exit;	
-});
-
-$app->get("/criar-apuracao-etapa3", function(){
-	
-	$page = new Page();
-
-	$page->setTpl("criar-apuracao-etapa3");
-});
-
-$app->post("/criar-apuracao-etapa3", function(){
-	
-	header("Location: /criar-apuracao-etapa3");
+	header("Location: /apuracao-enviada");
 	exit;	
 });
 
@@ -50,13 +37,6 @@ $app->get("/lista-apuracoes", function(){
 	$page = new Page();
 
 	$page->setTpl("lista-apuracoes");
-});
-
-$app->get("/apuracao-teste", function(){
-	
-	$page = new Page();
-
-	$page->setTpl("apuracao-teste");
 });
 
 ?>

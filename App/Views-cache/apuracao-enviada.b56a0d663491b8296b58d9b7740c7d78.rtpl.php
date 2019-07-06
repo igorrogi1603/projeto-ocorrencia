@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -53,10 +53,6 @@
 
       <!--Dados dos pais e responsaveis-->
       <div class="col-md-4">
-        <p class="sem-espacamento"><strong>Pai: </strong>Nome do pai completo</p>
-        <p class="sem-espacamento"><strong>Mãe: </strong>Nome da mãe completo</p>
-        <p class="sem-espacamento"><strong>Os pais são os responsaveis: </strong>Não</p>
-        <!--Caso os pais nao forem responsaveis mostrar essa linha caso eles for responsaveis ocultar essa linha-->
         <p class="sem-espacamento"><strong>Responsavel: </strong>Nome completo responsavel</p>
         <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
         <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>

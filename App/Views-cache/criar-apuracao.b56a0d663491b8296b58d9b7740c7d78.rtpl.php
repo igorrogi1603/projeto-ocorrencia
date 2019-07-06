@@ -12,23 +12,11 @@
   <!-- Main content -->
   <section class="content">
 
-    <!--Box apuracao-->
+    <!--Box apuracao--> 
     <div class="box">
       <!-- /.box-header -->
       <div class="box-body">
-        <!--Inicio Progresso-->
-        <div class="row">
-          <div class="col-md-12">
-            <h3 class="titulo-h3">Etapa 1</h3>
-            <div class="progress" style="border: 1px solid #ddd;">
-              <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-        </div>
-        <!--Fim Progresso-->
-
-        <br><br>
-
+        
         <div class="row">
           <div class="col-md-12">
             <h3 class="titulo-h3">Dados da Apuração</h3>
@@ -38,34 +26,77 @@
         <hr>
         <br>
 
-        <!--Inicio Row-->
-        <div class="row">
-          <!--QTD Vitimas-->
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="id-qtd-vitima">Quantas Vítimas são? *</label>
-              <input type="text" name="qtd-vitima" id="id-qtd-vitima" class="form-control" maxlength="2" pattern="([0-9]{2})" required>
-            </div>
-          </div>
-          <!--Fim QTD Vitimas-->
+        <div class="alert" style="background-color: #FFF3CD; color: #A18532;" role="alert">
+          Deve marcar quantas vítimas estão envolvidas e se pertencem a mesma família.<br>
+          Caso forem da mesma família na próxima etapa o endereço deve ser preenchido iguais para as duas vítimas.
+        </div>
 
-          <!--Inicio Endereco-->
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>As Vítimas moram no mesmo endereço? *</label><br>
-                <label class="container-radio">Sim
-                  <input type="radio" name="mesmo-endereco-vitima" id="mesmo-endereco-vitima-sim" class="minimal" value="1" checked>
-                  <span class="checkmark"></span>
-                </label>
-                <label class="container-radio">Não
-                  <input type="radio" name="mesmo-endereco-vitima" id="mesmo-endereco-vitima-nao" class="minimal" value="0">
-                  <span class="checkmark"></span>
-                </label>
+        <!--Inicio Form-->
+        <form action="/apuracao-enviada" method="post">
+
+          <div id="dynamicDiv"></div>
+
+          <a class="btn btn-default btn-block" href="javascript:void(0)" id="addInput">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Adicionar Vítima
+          </a>
+
+          <br>
+
+          <!-------------------------------------------------------------->
+          <!-------------------------------------------------------------->
+          <!--              Box Dadados da Ocorrencia                   -->
+          <!-------------------------------------------------------------->
+          <!-------------------------------------------------------------->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Dados da Ocorrência</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
               </div>
             </div>
-            <!--Fim Endereco-->
-        </div>
-        <!--Fim Row-->
+
+            <!-- /.box-header -->
+            <div class="box-body">
+              <!--Inicio Row-->
+              <div class="row">
+                <!--Tipo da Ocorrencia-->
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="id-tipo-da-ocorrencia">Tipo da Ocorrência</label>
+                    <input type="text" name="tipo-da-ocorrencia" id="id-tipo-da-ocorrencia" class="form-control" maxlength="100">
+                  </div>
+                </div>
+                <!--Fim Tipo da Ocorrencia-->
+
+                <!--Descricao da Ocorrencia-->
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="id-descricao-da-ocorrencia">Descrição da Ocorrência</label>
+                    <textarea name="descricao-da-ocorrencia" id="id-descricao-da-ocorrencia" class="form-control" rows="10"></textarea>
+                  </div>
+                </div>
+                <!--Fim Descricao da Ocorrencia-->            
+              </div>
+              <!--Fim Row-->
+            </div>
+            <!--Fim box-body -->
+          </div>
+          <!--Fim Box Dados da Ocorrencia-->
+
+          <br>
+
+          <!--Inicio Row-->
+          <div class="row">
+            <div class="col-md-12">
+              <input type="submit" class="btn btn-primary pull-right margin" value="Enviar">
+            </div>            
+          </div>
+          <!--Fim Row-->
+        </form>
+        <!--Fim Form-->
+
       </div>
       <!--Fim box body-->
     </div>

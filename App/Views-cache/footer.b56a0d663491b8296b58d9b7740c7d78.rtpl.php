@@ -56,6 +56,7 @@
 <!--JS local-->
 <script src="/res/site/dist/js/js-local/local-js.js"></script>
 <script src="/res/site/dist/js/js-local/local-mascaras.js"></script>
+<script src="/res/site/dist/js/js-local/add-vitima.js"></script>
 
 <!--Pagina Novas Ocorrencias-->
 <script>
