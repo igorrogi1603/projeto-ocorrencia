@@ -23,7 +23,6 @@
               <th>ID</th>
               <th>Vítima</th>
               <th>CPF da Vítima</th>
-              <th>Agressor</th>
               <th>Data de Criação</th>
               <th>Opções</th>
             </tr>
@@ -34,12 +33,10 @@
               <td>251</td>
               <td>Elisa de Oliveira Ramos</td>
               <td>425.653.987.56</td>
-              <td>Olivio da Conseição de Oliveira</td>
               <td>15/05/2013</td>
               <td>
                 <a href="/ocorrencia-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-success"><i class="fa fa-unlock"></i></a>
-                <!--<a href="#" class="btn btn-danger"><i class="fa fa-lock"></i></a>-->
+                <a href="#" class="btn btn-primary"><i class="fa fa-file-text"></i></a>
               </td>
             </tr>
 
@@ -47,12 +44,10 @@
               <td>252</td>
               <td>Isabel Silva Ramos</td>
               <td>555.673.123.76</td>
-              <td>Otavio da Costa de Oliveira</td>
               <td>04/10/2016</td>
               <td>
                 <a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-success"><i class="fa fa-unlock"></i></a>
-                <!--<a href="#" class="btn btn-danger"><i class="fa fa-lock"></i></a>-->
+                <a href="#" class="btn btn-primary"><i class="fa fa-file-text"></i></a>
               </td>
             </tr>
           </tbody>

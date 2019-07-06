@@ -42,14 +42,21 @@ $app->get("/apuracao-enviada-print", function(){
 		"footer"=>false
 	]);
 
-	$page->setTpl("/apuracao-enviada-print");
+	$page->setTpl("apuracao-enviada-print");
 });
 
 $app->get("/lista-apuracoes", function(){
 	
 	$page = new Page();
 
-	$page->setTpl("/lista-apuracoes");
+	$page->setTpl("lista-apuracoes");
+});
+
+$app->get("/apuracao-teste", function(){
+	
+	$page = new Page();
+
+	$page->setTpl("apuracao-teste");
 });
 
 ?>

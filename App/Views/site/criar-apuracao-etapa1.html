@@ -30,7 +30,8 @@
         <br>
 
         <div class="alert" style="background-color: #FFF3CD; color: #A18532;" role="alert">
-          A simple warning alert—check it out!
+          Deve marcar quantas vítimas estão envolvidas e se pertencem a mesma família.<br>
+          Caso forem da mesma família na próxima etapa o endereço deve ser preenchido iguais para as duas vítimas.
         </div>
 
         <!--Inicio Form-->
