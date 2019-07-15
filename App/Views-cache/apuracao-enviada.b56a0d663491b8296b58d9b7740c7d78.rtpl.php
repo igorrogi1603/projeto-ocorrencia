@@ -45,6 +45,7 @@
       <!--Dados-->
       <div class="col-md-4">
         <p class="sem-espacamento"><strong>Nome: </strong>Nome completo da vitima</p>
+        <p class="sem-espacamento"><strong>Da mesma família: </strong>Sim</p>
         <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
         <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
         <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>

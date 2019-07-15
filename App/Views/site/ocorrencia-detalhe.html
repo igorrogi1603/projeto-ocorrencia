@@ -31,7 +31,6 @@
             <p class="sem-espacamento"><strong>Data: </strong>15/05/2013</p>
             <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong>Violência doméstica</p>
             <p class="sem-espacamento"><strong>Status: </strong>Aberta</p>
-            <p class="sem-espacamento"><strong>Segurança: </strong>Sem Senha</p>
           </div>
           <!--Fim Detalhes-->
 

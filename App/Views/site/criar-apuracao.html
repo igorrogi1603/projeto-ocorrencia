@@ -27,8 +27,9 @@
         <br>
 
         <div class="alert" style="background-color: #FFF3CD; color: #A18532;" role="alert">
-          Deve marcar quantas vítimas estão envolvidas e se pertencem a mesma família.<br>
-          Caso forem da mesma família na próxima etapa o endereço deve ser preenchido iguais para as duas vítimas.
+          Adicione quantas vítimas forem necessárias. <br>
+          Marque como <strong>SIM</strong> se as vítimas forem da mesma família. <br>
+          Se tiver mais que duas famílias na mesma apuração, crie em apurações diferentes.
         </div>
 
         <!--Inicio Form-->

@@ -2,10 +2,10 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Apurações Abertas</h1>
+    <h1>Confirmar Apuração</h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Apuraçôes Abertas</li>
+      <li class="active">Confirmar Apuração</li>
     </ol>
   </section>
 
@@ -22,7 +22,7 @@
             <tr>
               <th>ID</th>
               <th>Vítima</th>
-              <th>CPF da Vítima</th>
+              <th>Quem abriu</th>
               <th>Data de Criação</th>
               <th>Opções</th>
             </tr>
@@ -32,20 +32,20 @@
             <tr>
               <td>251</td>
               <td>Elisa de Oliveira Ramos</td>
-              <td>425.653.987.56</td>
+              <td>Nome do conselheiro</td>
               <td>15/05/2013</td>
               <td>
-                <a href="/apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                <a href="/confirmar-apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
               </td>
             </tr>
 
             <tr>
               <td>252</td>
               <td>Isabel Silva Ramos</td>
-              <td>555.673.123.76</td>
+              <td>Nome do conselheiro</td>
               <td>04/10/2016</td>
               <td>
-                <a href="/apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                <a href="/confirmar-apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
               </td>
             </tr>
           </tbody>

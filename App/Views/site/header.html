@@ -261,7 +261,18 @@ desired effect
         <li><a href="/criar-apuracao"><i class="fa fa-file"></i> <span>Criar Apuração</span></a></li>
 
         <!--Criar Apuracao-->
-        <li><a href="/lista-apuracoes"><i class="fa fa-file-text"></i> <span>Apurações</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-file-text"></i> <span>Apurações</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/lista-apuracoes">Abertas</a></li>
+            <li><a href="/confirmar-apuracao">Confirmações</a></li>
+          </ul>
+        </li>
+        <!--Fim Criar Apuracao-->
 
         <!--Inicio Ocorrencia-->
         <li class="treeview">

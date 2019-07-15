@@ -32,12 +32,25 @@ $(function () {
             '</div>'+
             '<div class="box-body">'+
               '<div class="row">'+
-                '<div class="col-md-12">'+
+                '<div class="col-md-8">'+
                   '<div class="form-group">'+
                     '<label for="id-nome-vitima">Nome Completo da Vítima *</label>'+
                     '<input type="text" name="nome-vitima-'+proximoNum+'" id="id-nome-vitima" class="form-control" placeholder="Digite o nome aqui" maxlength="70" required>'+
                   '</div>'+
                 '</div>'+
+                '<div class="col-md-4">'+
+	              '<div class="form-group">'+
+	                '<label>Da mesma família?</label><br>'+
+	                '<label class="container-radio">Sim'+
+	                  '<input type="radio" name="mesma-familia-vitima-'+proximoNum+'" id="mesma-familia-vitima-sim" class="minimal" value="1" checked>'+
+	                  '<span class="checkmark"></span>'+
+	                '</label>'+
+	                '<label class="container-radio">Não'+
+	                  '<input type="radio" name="mesma-familia-vitima-'+proximoNum+'" id="mesma-familia-vitima-nao" class="minimal" value="0">'+
+	                  '<span class="checkmark"></span>'+
+	                '</label>'+
+	              '</div>'+
+	            '</div>'+
               '</div>'+
               '<div class="row">'+
                 '<div class="col-md-4">'+

@@ -39,4 +39,25 @@ $app->get("/lista-apuracoes", function(){
 	$page->setTpl("lista-apuracoes");
 });
 
+$app->get("/apuracao-detalhe", function(){
+
+	$page = new Page();
+
+	$page->setTpl("apuracao-detalhe");
+});
+
+$app->get("/confirmar-apuracao", function(){
+
+	$page = new Page();
+
+	$page->setTpl("confirmar-apuracao");
+});
+
+$app->get("/confirmar-apuracao-detalhe", function(){
+
+	$page = new Page();
+
+	$page->setTpl("confirmar-apuracao-detalhe");
+});
+
 ?>
