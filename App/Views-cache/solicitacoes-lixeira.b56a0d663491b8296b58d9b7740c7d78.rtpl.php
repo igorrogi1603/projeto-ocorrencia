@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -28,10 +28,10 @@
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="/solicitacoes"><i class="fa fa-inbox"></i> Caixa de Entrada
+                <li><a href="/solicitacoes"><i class="fa fa-inbox"></i> Caixa de Entrada
                   <span class="label label-primary pull-right">12</span></a></li>
                 <li><a href="/solicitacoes-enviadas"><i class="fa fa-envelope-o"></i> Enviados</a></li>
-                <li><a href="/solicitacoes-lixeira"><i class="fa fa-trash-o"></i> Lixeira</a></li>
+                <li class="active"><a href="/solicitacoes-lixeira"><i class="fa fa-trash-o"></i> Lixeira</a></li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -42,7 +42,7 @@
         <div class="col-md-9">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Caixa de Entrada</h3>
+              <h3 class="box-title">Lixeira</h3>
 
               <div class="box-tools pull-right">
                 <div class="has-feedback">
@@ -78,7 +78,7 @@
                   <tbody>
                   <tr>
                     <td><input type="checkbox"></td>
-                    <td><a href="/ler-solicitacao"><i class="fa fa-inbox"></i></a></td>
+                    <td><a href="/ler-solicitacao"><i class="fa fa-trash-o"></i></a></td>
                     <td class="mailbox-name"><a href="/ler-solicitacao">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
                     </td>

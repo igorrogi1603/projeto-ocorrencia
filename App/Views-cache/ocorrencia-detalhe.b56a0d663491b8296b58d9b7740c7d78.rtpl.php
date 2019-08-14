@@ -61,6 +61,8 @@
         <!--Fim Row-->
         
         <br>
+        <hr>
+        <br>
 
         <!--Inicio Row-->
         <div class="row">

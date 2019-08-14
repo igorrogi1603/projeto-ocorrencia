@@ -74,7 +74,7 @@
             <h4>Confirmar</h4>
             <p class="sem-espacamento"><strong>Quem abriu: </strong>Nome do conselheiro</p>
             <p class="sem-espacamento"><strong>Confirmações: </strong>01/02</p>
-            <p class="sem-espacamento"><strong>Confirmações Negadas: </strong>00/00</p>
+            <p class="sem-espacamento"><strong>Confirmações Negadas: </strong>00/02</p>
           </div>
         </div>
         <!--Fim Row-->

@@ -58,6 +58,7 @@
       <!--Dados-->
       <div class="col-sm-4 invoice-col">
         <p class="sem-espacamento"><strong>Nome: </strong>Nome completo da vitima</p>
+        <p class="sem-espacamento"><strong>Da mesma família: </strong>Sim</p>
         <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
         <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
         <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
@@ -66,10 +67,6 @@
 
       <!--Dados dos pais e responsaveis-->
       <div class="col-sm-4 invoice-col">
-        <p class="sem-espacamento"><strong>Pai: </strong>Nome do pai completo</p>
-        <p class="sem-espacamento"><strong>Mãe: </strong>Nome da mãe completo</p>
-        <p class="sem-espacamento"><strong>Os pais são os responsaveis: </strong>Não</p>
-        <!--Caso os pais nao forem responsaveis mostrar essa linha caso eles for responsaveis ocultar essa linha-->
         <p class="sem-espacamento"><strong>Responsavel: </strong>Nome completo responsavel</p>
         <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
         <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>

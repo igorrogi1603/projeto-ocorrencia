@@ -22,4 +22,6 @@ $app->get("/login", function(){
 //Rotas externas
 require_once("route-ocorrencias.php");
 require_once("route-apuracao.php");
+require_once("route-solicitacoes.php");
+require_once("route-usuarios.php");
 ?>
