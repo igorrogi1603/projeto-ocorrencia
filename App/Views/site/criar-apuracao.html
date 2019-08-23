@@ -65,7 +65,7 @@
                 <!--Tipo da Ocorrencia-->
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="id-tipo-da-ocorrencia">Tipo da Ocorrência</label>
+                    <label for="id-tipo-da-ocorrencia">Tipo da Apuração</label>
                     <input type="text" name="tipo-da-ocorrencia" id="id-tipo-da-ocorrencia" class="form-control" maxlength="100">
                   </div>
                 </div>
@@ -74,7 +74,7 @@
                 <!--Descricao da Ocorrencia-->
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="id-descricao-da-ocorrencia">Descrição da Ocorrência</label>
+                    <label for="id-descricao-da-ocorrencia">Descrição da Apuração</label>
                     <textarea name="descricao-da-ocorrencia" id="id-descricao-da-ocorrencia" class="form-control" rows="10"></textarea>
                   </div>
                 </div>

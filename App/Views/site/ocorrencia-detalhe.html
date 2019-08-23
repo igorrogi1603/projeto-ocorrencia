@@ -86,10 +86,6 @@
 
             <!--Aparecer se o status for aberta, reaberta e arquivada-->
             <a href="#" class="btn btn-app"><i class="fa fa-archive"></i>Encerrar</a>
-
-            <!--Aparecer se o status for aberta, reaberta-->
-            <!--Quando for arquivada ou encerrada irá tirar a senha-->
-            <a href="#" class="btn btn-app"><i class="fa fa-lock"></i>Senha</a>
           </div>
         </div>
         <!--Fim Row-->

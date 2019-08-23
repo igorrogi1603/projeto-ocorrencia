@@ -36,8 +36,6 @@
               <td>15/05/2013</td>
               <td>
                 <a href="/ocorrencia-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-success"><i class="fa fa-unlock"></i></a>
-                <!--<a href="#" class="btn btn-danger"><i class="fa fa-lock"></i></a>-->
               </td>
             </tr>
 
@@ -49,8 +47,6 @@
               <td>04/10/2016</td>
               <td>
                 <a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-success"><i class="fa fa-unlock"></i></a>
-                <!--<a href="#" class="btn btn-danger"><i class="fa fa-lock"></i></a>-->
               </td>
             </tr>
           </tbody>
