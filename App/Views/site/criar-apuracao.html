@@ -35,9 +35,25 @@
         <!--Inicio Form-->
         <form action="/apuracao-enviada" method="post">
 
+          <!--Quantidade de Familia-->
+          <div class="box box-primary">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="id-qtd-familias">Quantas famílias são:</label>
+                  <input type="number" name="qtd-familias" id="id-qtd-familias" class="form-control" step="1" min="0" onBlur="qtdFamilia()">
+                </div>
+              </div>
+            </div>
+            <!--Fim box-body -->
+          </div>
+          <!--Fim Box Dados da Ocorrencia-->
+
+          <!--Adicionar vitimas-->
           <div id="dynamicDiv"></div>
 
-          <a class="btn btn-default btn-block" href="javascript:void(0)" id="addInput">
+          <a class="btn btn-default btn-block" href="javascript:void(0)" id="addInput" onBlur="qtdFamilia()">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             Adicionar Vítima
           </a>
@@ -106,3 +122,29 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+
+function qtdFamilia(){
+  
+  let qtdFamilias = document.getElementById('id-qtd-familias').value;
+
+  let selectFamilia;
+
+  let option;
+
+  for (let aux = 1; aux <= 100; aux++) {
+    selectFamilia = document.getElementById('id-qual-familia-vitima-'+aux+'');
+
+    option = "";
+
+    if (selectFamilia != null) {
+      for (let i = 1; i <= qtdFamilias; i++) {
+        option += "<option value='familia"+i+"'>Familia "+i+"</option>";
+      }
+      selectFamilia.innerHTML = option;
+    }
+  }
+
+}
+</script>

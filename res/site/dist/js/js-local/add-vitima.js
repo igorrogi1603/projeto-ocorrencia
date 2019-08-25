@@ -25,9 +25,9 @@ $(function () {
               '<h3 class="box-title">Dados da Vítima</h3>'+
               '<div class="box-tools pull-right">'+
                 '<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>'+
-                '<a class="btn btn-box-tool" href="javascript:void(0)" id="remInput">'+
-					'<i class="fa fa-close"></i>'+
-				'</a>'+
+                '<a class="btn btn-box-tool" href="javascript:void(0)" id="remInput" onBlur="qtdFamilia()">'+
+        					'<i class="fa fa-close"></i>'+
+        				'</a>'+
               '</div>'+
             '</div>'+
             '<div class="box-body">'+
@@ -40,15 +40,9 @@ $(function () {
                 '</div>'+
                 '<div class="col-md-4">'+
 	              '<div class="form-group">'+
-	                '<label>Da mesma família?</label><br>'+
-	                '<label class="container-radio">Sim'+
-	                  '<input type="radio" name="mesma-familia-vitima-'+proximoNum+'" id="mesma-familia-vitima-sim" class="minimal" value="1" checked>'+
-	                  '<span class="checkmark"></span>'+
-	                '</label>'+
-	                '<label class="container-radio">Não'+
-	                  '<input type="radio" name="mesma-familia-vitima-'+proximoNum+'" id="mesma-familia-vitima-nao" class="minimal" value="0">'+
-	                  '<span class="checkmark"></span>'+
-	                '</label>'+
+	                '<label for="id-qual-familia-vitima">Qual família?</label>'+
+	                '<select class="form-control select2" name="qual-familia-vitima-'+proximoNum+'" id="id-qual-familia-vitima-'+proximoNum+'">'+
+                  '</select>'+
 	              '</div>'+
 	            '</div>'+
               '</div>'+
