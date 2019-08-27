@@ -312,6 +312,9 @@ desired effect
         <!--Fim Usuario-->
 
         <!--Status Servidor-->
+        <li><a href="/pesquisar-pessoa"><i class="fa fa-search"></i> <span>Pesquisar Pessoa</span></a></li>
+
+        <!--Status Servidor-->
         <li><a href="/status-servidor"><i class="fa fa-tv"></i> <span>Status Servidor</span></a></li>
 
         <!--Backup-->
