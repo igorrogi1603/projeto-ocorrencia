@@ -17,7 +17,8 @@
 <!-- REQUIRED JS SCRIPTS -->
 
 <!--Ajax para input file-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- jQuery 2.2.3 -->
 <script src="/res/site/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -74,6 +75,11 @@
       "info": true,
       "autoWidth": false
     });
+  });
+
+  //popover - mensagem quando passa o mouse no esclamação para informação
+  $(function() {
+    $('[data-toggle="popover"]').popover({html: true})
   });
 
   //Nova Solicitacao

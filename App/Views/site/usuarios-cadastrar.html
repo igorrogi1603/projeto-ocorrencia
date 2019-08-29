@@ -34,7 +34,7 @@
           <!--Data de Nascimento da usuario-->
             <div class="col-md-3">
               <div class="form-group">
-                <label>Data de Nascimento *</label>
+                <label>Data de Nascimento</label>
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
@@ -253,30 +253,16 @@
           <div class="alert" style="background-color: #FFF3CD; color: #A18532;" role="alert">
             <strong>Nivel de Acesso</strong><br>
             <strong>Nivel 1: </strong>Acesso apenas para criar uma apuração, mas não poderá ver-las depois, apenas criar.<br>
-            <strong>Nivel 2: </strong><br>
-            <strong>Nivel 3: </strong><br>
-            <strong>Nivel 4: </strong><br>
-            <strong>Nivel 5: </strong>
+            <strong>Nivel 2: </strong>Acesso apenas para criar apuração e fazer solicitações.<br>
+            <strong>Nivel 3: </strong>Acesso apenas para cadastrar e gerenciar usuários do seu departamento.<br>
+            <strong>Nivel 4: </strong>Acesso apenas para concelheiros, para poder gerenciar as ocorrências.<br>
+            <strong>Nivel 5: </strong>Acesso apenas para monitorar os servidores, para administrador de rede.
           </div>
 
           <!--Inicio Row-->
           <div class="row">
-            <!--Usuario-->
-            <div class="col-md-4">
-              <label for="id-username-usuario">Usuário</label>
-              <input type="text" name="username-usuario" id="id-username-usuario" class="form-control" placeholder="Usuário" maxlength="45">
-            </div>
-            <!--Fim Usuario-->
-
-            <!--Senha-->
-            <div class="col-md-4">
-              <label for="id-senha-usuario">Senha</label>
-              <input type="password" name="senha-usuario" id="id-senha-usuario" class="form-control" placeholder="Senha">
-            </div>
-            <!--Fim Senha-->
-
-            <!--setor do usuario-->
-            <div class="col-md-4">
+            <!--nivel de acesso do usuario-->
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="id-nivel-usuario">Nivel de Acesso</label>
                 <select class="form-control select2" name="nivel-usuario" id="id-nivel-usuario">
@@ -289,7 +275,40 @@
                 </select>
               </div>
             </div>
-            <!--Fim Setor do usuario-->
+            <!--Fim nivel de acesso do usuario-->
+
+            <!--Usuario-->
+            <div class="col-md-6">
+              <label for="id-username-usuario">Usuário</label>
+              <input type="text" name="username-usuario" id="id-username-usuario" class="form-control" placeholder="Usuário" maxlength="45">
+            </div>
+            <!--Fim Usuario-->
+          </div>
+          <!--Fim Row-->
+
+          <!--Inicio Row-->
+          <div class="row">
+            <!--Senha-->
+            <div class="col-md-6">
+              <label for="id-senha-usuario">Senha</label>
+              <a data-teste="popover" data-toggle="popover" data-placement="right" data-trigger="hover" title="<strong>Informação</strong>" 
+                data-content="<strong>Senha deve conter:</strong><br>
+                              - Letras Maiúsculas<br>
+                              - Letras Minúsculas<br>
+                              - Um Simbúlo<br>
+                              - Um Número">
+                <i class="fa fa-question-circle"></i>
+              </a>
+              <input type="password" name="senha-usuario" id="id-senha-usuario" class="form-control" placeholder="Senha">
+            </div>
+            <!--Fim Senha-->
+            
+            <!--Confirmacao Senha-->
+            <div class="col-md-6">
+              <label for="id-confirmacao-senha-usuario">Confirmar Senha</label>
+              <input type="password" name="confirmacao-senha-usuario" id="id-confirmacao-senha-usuario" class="form-control" placeholder="Confirmação da Senha">
+            </div>
+            <!--Fim Confirmacao Senha-->
           </div>
           <!--Fim Row-->
 
