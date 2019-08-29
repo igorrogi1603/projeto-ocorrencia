@@ -17,3 +17,11 @@ $('#id-rg-agressor').mask('00.000.000', {reverse: true});
 $('#id-celular-agressor').mask('00000-0000', {reverse: true});
 $('#id-celular-responsavel-agressor').mask('00000-0000', {reverse: true});
 $('#id-telfixo-agressor').mask('0000-0000', {reverse: true});
+
+/*Pagina: Cadastrar Usuario - Mascara
+--------------------------------------------------------------*/
+$('#id-data-nasc-usuario').mask('00/00/0000', {reverse: true});
+$('#id-cpf-usuario').mask('000.000.000-00', {reverse: true});
+$('#id-rg-usuario').mask('00.000.000', {reverse: true});
+$('#id-celular-usuario').mask('00000-0000', {reverse: true});
+$('#id-telfixo-usuario').mask('0000-0000', {reverse: true});
