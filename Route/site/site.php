@@ -1,6 +1,6 @@
 <?php
 
-use \App\Config\Page;
+use App\Config\Page;
 
 $app->get("/", function(){
 
