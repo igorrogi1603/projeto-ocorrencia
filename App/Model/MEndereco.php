@@ -20,12 +20,12 @@ class MEndereco {
 			INSERT INTO tb_endereco (rua, numero, bairro, cidade, estado, complemento) 
 			VALUES(:rua, :numero, :bairro, :cidade, :estado, :complemento)
 		", [
-			":rua" => $post[],
-			":numero" => $post[],
-			":bairro" => $post[],
-			":cidade" => $post[],
-			":estado" => $post[],
-			":complemento" => $post[]
+			":rua" => $endereco->getruaUsuario(),
+			":numero" => $endereco->getnumeroUsuario(),
+			":bairro" => $endereco->getbairroUsuario(),
+			":cidade" => $endereco->getcidadeUsuario(),
+			":estado" => $endereco->getestadoUsuario(),
+			":complemento" => $endereco->getcomplementoUsuario()
 		]);
 
 	}
@@ -37,7 +37,7 @@ class MEndereco {
 
 		$qtd = $sql->select("SELECT MAX(idEndereco) FROM tb_endereco");
 
-		if ($qtd->rowCount() > 0) {
+		if ($qtd != null) {
 
 			return $qtd;
 

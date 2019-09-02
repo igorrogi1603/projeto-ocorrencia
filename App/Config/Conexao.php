@@ -15,9 +15,9 @@ class Conexao {
 	{
 
 		$this->conn = new \PDO(
-			"mysql:dbname=".Sql::DBNAME.";host=".Sql::HOSTNAME, 
-			Sql::USERNAME,
-			Sql::PASSWORD
+			"mysql:dbname=".Conexao::DBNAME.";host=".Conexao::HOSTNAME, 
+			Conexao::USERNAME,
+			Conexao::PASSWORD
 		);
 
 	}
@@ -36,7 +36,9 @@ class Conexao {
 	private function bindParam($statement, $key, $value)
 	{
 
-		$statement->bindParam($key, $value);
+		$statement->bindParam(
+			$key, 
+			$value);
 
 	}
 

@@ -15,6 +15,9 @@ $app->post('/usuarios-cadastrar', function(){
 
 	CCadastrarUsuario::postCadastrarUsuario($_POST);
 
+	header('Location: /usuarios-lista');
+	exit;
+
 });
 
 $app->get('/usuarios-lista', function(){

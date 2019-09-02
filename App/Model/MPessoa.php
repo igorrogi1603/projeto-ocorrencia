@@ -7,7 +7,7 @@ use \App\Classe\Pessoa;
 
 class MPessoa {
 
-	public function cadastrar($post)
+	public function cadastrar($post, $idContato, $idEndereco)
 	{
 
 		$sql = new Conexao;
@@ -20,13 +20,13 @@ class MPessoa {
 			INSERT INTO tb_pessoa (idEndereco, idContato, nome, dataNasc, cpf, rg, sexo) 
 			VALUES(:idEndereco, :idContato, :nome, :dataNasc, :cpf, :rg, :sexo)
 		", [
-			":idEndereco" => $post[],
-			":idContato" => $post[],
-			":nome" => $post[],
-			":dataNasc" => $post[],
-			":cpf" => $post[],
-			":rg" => $post[],
-			":sexo" => $post[]
+			":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
+			":idContato" => (int)$idContato[0]["MAX(idContato)"],
+			":nome" => $pessoa->getnomeUsuario(),
+			":dataNasc" => $pessoa->replaceDataBd($pessoa->getdataNascUsuario()),
+			":cpf" => $pessoa->replaceCpfBd($pessoa->getcpfUsuario()),
+			":rg" => $pessoa->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
+			":sexo" => $pessoa->getsexoUsuario()
 		]);
 
 	}
@@ -38,7 +38,7 @@ class MPessoa {
 
 		$qtd = $sql->select("SELECT MAX(idPessoa) FROM tb_pessoa");
 
-		if ($qtd->rowCount() > 0) {
+		if ($qtd != null) {
 
 			return $qtd;
 

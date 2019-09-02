@@ -10,28 +10,20 @@ class MContato {
 	public function cadastrar($post)
 	{
 
-		//$sql = new Conexao;
+		$sql = new Conexao;
 
 		$contato = new Contato;
 
 		$contato->setData($post);
 
-		var_dump($contato->getValues());
-
-		var_dump($contato->getcelularUsuario());
-
-		//MUDAR TODOS OS NAME DOS IMPUT NO HTML
-
-		exit;
-
-		/*$sql->query("
+		$sql->query("
 			INSERT INTO tb_contato (celular, fixo, email) 
 			VALUES(:celular, :fixo, :email)
 		", [
-			":celular" => $post[],
-			":fixo" => $post[],
-			":email" => $post[]
-		]);*/
+			":celular" => $contato->replaceCelularBd($contato->getcelularUsuario()),
+			":fixo" => $contato->replaceTelefoneFixoBd($contato->gettelFixoUsuario()),
+			":email" => $contato->getemailUsuario()
+		]);
 
 	}
 
@@ -42,7 +34,7 @@ class MContato {
 
 		$qtd = $sql->select("SELECT MAX(idContato) FROM tb_contato");
 
-		if ($qtd->rowCount() > 0) {
+		if ($qtd != null) {
 
 			return $qtd;
 

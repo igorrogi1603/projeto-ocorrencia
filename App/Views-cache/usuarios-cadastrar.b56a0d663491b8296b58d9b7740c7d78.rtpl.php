@@ -29,7 +29,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="id-nome-usuario">Nome Completo do Usuario *</label>
-                <input type="text" name="nome-usuario" id="id-nome-usuario" class="form-control" placeholder="Digite o nome aqui" maxlength="70" required>
+                <input type="text" name="nomeUsuario" id="id-nome-usuario" class="form-control" placeholder="Digite o nome aqui" maxlength="70" required>
               </div>
             </div>
             <!--Fim Nome do usuario-->
@@ -42,7 +42,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" id="id-data-nasc-usuario" class="form-control" placeholder="__/__/____">
+                    <input type="text" name="dataNascUsuario" id="id-data-nasc-usuario" class="form-control" placeholder="__/__/____">
                   </div>
                 </div>
               </div>
@@ -52,9 +52,9 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="id-sexo-usuario">Sexo</label>
-                  <select class="form-control select2" name="sexo-usuario" id="id-sexo-usuario">
-                    <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
+                  <select class="form-control select2" name="sexoUsuario" id="id-sexo-usuario">
+                    <option value="m">Masculino</option>
+                    <option value="f">Feminino</option>
                   </select>
                 </div>
               </div>
@@ -68,7 +68,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="id-cpf-usuario">CPF</label>
-                  <input type="text" name="cpf-usuario" id="id-cpf-usuario" class="form-control" placeholder="___.___.___-__">
+                  <input type="text" name="cpfUsuario" id="id-cpf-usuario" class="form-control" placeholder="___.___.___-__">
                 </div>
               </div>
               <!--Fim CPF-->
@@ -77,7 +77,7 @@
               <div class="col-md-2">
                 <div class="form-group">
                   <label for="id-rg-usuario">RG</label>
-                  <input type="text" name="rg-usuario" id="id-rg-usuario" class="form-control" placeholder="__.___.___">
+                  <input type="text" name="rgUsuario" id="id-rg-usuario" class="form-control" placeholder="__.___.___">
                 </div>
               </div>
               <!--Fim RG-->
@@ -86,7 +86,7 @@
               <div class="col-md-1">
                 <div class="form-group">
                   <label for="id-rg-digito-usuario">Digito</label>
-                  <input type="text" name="rg-digito-usuario" id="id-rg-digito-usuario" class="form-control" maxlength="1">
+                  <input type="text" name="rgDigitoUsuario" id="id-rg-digito-usuario" class="form-control" maxlength="1">
                 </div>
               </div>
               <!--Fim RG digito verificador-->
@@ -95,7 +95,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="id-telfixo-usuario">Telefone Fixo</label>
-                  <input type="text" name="telfixo-usuario" id="id-telfixo-usuario" class="form-control" placeholder="____-____">
+                  <input type="text" name="telFixoUsuario" id="id-telfixo-usuario" class="form-control" placeholder="____-____">
                 </div>
               </div>
               <!--Telefone Fixo usuario-->
@@ -117,7 +117,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="id-email-usuario">E-mail</label>
-                  <input type="text" name="email-usuario" id="id-email-usuario" class="form-control" placeholder="Digite o e-mail aqui" maxlength="100">
+                  <input type="email" name="emailUsuario" id="id-email-usuario" class="form-control" placeholder="Digite o e-mail aqui" maxlength="100">
                 </div>
               </div>
               <!--Fim Email do usuario-->
@@ -126,7 +126,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="id-setor-usuario">Setor</label>
-                  <select class="form-control select2" name="setor-usuario" id="id-setor-usuario">
+                  <select class="form-control select2" name="setorUsuario" id="id-setor-usuario">
                     <option value="secretaria-saude">Secretaria da Saude</option>
                     <option value="administracao">Administração</option>
                   </select>
@@ -138,7 +138,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="id-funcao-usuario">Função</label>
-                  <input type="text" name="funcao-usuario" id="id-funcao-usuario" class="form-control" placeholder="Função" maxlength="45">
+                  <input type="text" name="funcaoUsuario" id="id-funcao-usuario" class="form-control" placeholder="Função" maxlength="45">
                 </div>
               </div>
               <!--Fim funcao do usuario-->
@@ -160,7 +160,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="id-rua-usuario">Rua</label>
-                  <input type="text" name="rua-usuario" id="id-rua-usuario" class="form-control" placeholder="Digite o nome da rua da usuario" maxlength="100">
+                  <input type="text" name="ruaUsuario" id="id-rua-usuario" class="form-control" placeholder="Digite o nome da rua da usuario" maxlength="100">
                 </div>
               </div>
               <!--Fim Rua usuario-->
@@ -169,7 +169,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="id-bairro-usuario">Bairro</label>
-                  <input type="text" name="bairro-usuario" id="id-bairro-usuario" class="form-control" placeholder="Digite o nome do bairro da usuario" maxlength="100">
+                  <input type="text" name="bairroUsuario" id="id-bairro-usuario" class="form-control" placeholder="Digite o nome do bairro da usuario" maxlength="100">
                 </div>
               </div>
               <!--Fim Bairro usuario-->   
@@ -178,7 +178,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="id-numero-usuario">Numero</label>
-                  <input type="number" name="numero-usuario" id="id-numero-usuario" class="form-control" placeholder="Numero da casa" max="6" min="0">
+                  <input type="number" name="numeroUsuario" id="id-numero-usuario" class="form-control" placeholder="Numero da casa" min="0">
                 </div>
               </div>
               <!--Fim Numero usuario-->         
@@ -191,7 +191,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="id-estado-usuario">Estado</label>
-                  <select class="form-control select2" name="estado-usuario" id="id-estado-usuario">
+                  <select class="form-control select2" name="estadoUsuario" id="id-estado-usuario">
                     <option value="AC">Acre</option>
                     <option value="AL">Alagoas</option>
                     <option value="AP">Amapá</option>
@@ -228,7 +228,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="id-cidade-usuario">Cidade</label>
-                  <input type="text" name="cidade-usuario" id="id-cidade-usuario" class="form-control" placeholder="Cidade">
+                  <input type="text" name="cidadeUsuario" id="id-cidade-usuario" class="form-control" placeholder="Cidade">
                 </div>
               </div>
               <!--Fim Cidade usuario-->
@@ -237,7 +237,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="id-complemento-usuario">Complemento</label>
-                  <input type="text" name="complemento-usuario" id="id-complemento-usuario" class="form-control" placeholder="Complemento" maxlength="100">
+                  <input type="text" name="complementoUsuario" id="id-complemento-usuario" class="form-control" placeholder="Complemento" maxlength="100">
                 </div>
               </div>
               <!--Fim Complemento usuario-->
@@ -268,7 +268,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="id-nivel-usuario">Nivel de Acesso</label>
-                  <select class="form-control select2" name="nivel-usuario" id="id-nivel-usuario">
+                  <select class="form-control select2" name="nivelUsuario" id="id-nivel-usuario">
                     <option value="1">Nível 1</option>
                     <option value="2">Nível 2</option>
                     <option value="3">Nível 3</option>
@@ -283,7 +283,7 @@
               <!--Usuario-->
               <div class="col-md-6">
                 <label for="id-username-usuario">Usuário</label>
-                <input type="text" name="username-usuario" id="id-username-usuario" class="form-control" placeholder="Usuário" maxlength="45">
+                <input type="text" name="usernameUsuario" id="id-username-usuario" class="form-control" placeholder="Usuário" maxlength="45">
               </div>
               <!--Fim Usuario-->
             </div>
@@ -302,14 +302,14 @@
                                 - Um Número">
                   <i class="fa fa-question-circle"></i>
                 </a>
-                <input type="password" name="senha-usuario" id="id-senha-usuario" class="form-control" placeholder="Senha">
+                <input type="password" name="senhaUsuario" id="id-senha-usuario" class="form-control" placeholder="Senha">
               </div>
               <!--Fim Senha-->
               
               <!--Confirmacao Senha-->
               <div class="col-md-6">
                 <label for="id-confirmacao-senha-usuario">Confirmar Senha</label>
-                <input type="password" name="confirmacao-senha-usuario" id="id-confirmacao-senha-usuario" class="form-control" placeholder="Confirmação da Senha">
+                <input type="password" name="confirmacaoSenhaUsuario" id="id-confirmacao-senha-usuario" class="form-control" placeholder="Confirmação da Senha">
               </div>
               <!--Fim Confirmacao Senha-->
             </div>
