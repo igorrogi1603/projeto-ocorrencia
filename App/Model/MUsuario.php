@@ -22,9 +22,9 @@ class MUsuario {
 		", [
 			":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"],
 			":nivelAcesso" => $usuario->getnivelUsuario(),
-			":user" => $usuario->getusernameUsuario(),
+			":user" => tirarAcentos($usuario->getusernameUsuario()),
 			":senha" => Usuario::getPasswordHash($usuario->getsenhaUsuario()),
-			":funcao" => $usuario->getfuncaoUsuario(),
+			":funcao" => utf8_decode($usuario->getfuncaoUsuario()),
 			":setor" => $usuario->getsetorUsuario()
 		]);
 

@@ -22,7 +22,7 @@ class MContato {
 		", [
 			":celular" => $contato->replaceCelularBd($contato->getcelularUsuario()),
 			":fixo" => $contato->replaceTelefoneFixoBd($contato->gettelFixoUsuario()),
-			":email" => $contato->getemailUsuario()
+			":email" => utf8_decode($contato->getemailUsuario())
 		]);
 
 	}

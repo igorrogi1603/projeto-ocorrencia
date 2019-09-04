@@ -20,12 +20,12 @@ class MEndereco {
 			INSERT INTO tb_endereco (rua, numero, bairro, cidade, estado, complemento) 
 			VALUES(:rua, :numero, :bairro, :cidade, :estado, :complemento)
 		", [
-			":rua" => $endereco->getruaUsuario(),
+			":rua" => utf8_decode($endereco->getruaUsuario()),
 			":numero" => $endereco->getnumeroUsuario(),
-			":bairro" => $endereco->getbairroUsuario(),
-			":cidade" => $endereco->getcidadeUsuario(),
+			":bairro" => utf8_decode($endereco->getbairroUsuario()),
+			":cidade" => utf8_decode($endereco->getcidadeUsuario()),
 			":estado" => $endereco->getestadoUsuario(),
-			":complemento" => $endereco->getcomplementoUsuario()
+			":complemento" => utf8_decode($endereco->getcomplementoUsuario())
 		]);
 
 	}

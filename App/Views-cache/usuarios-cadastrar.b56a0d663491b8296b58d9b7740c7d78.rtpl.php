@@ -302,14 +302,15 @@
                                 - Um Número">
                   <i class="fa fa-question-circle"></i>
                 </a>
-                <input type="password" name="senhaUsuario" id="id-senha-usuario" class="form-control" placeholder="Senha">
+                <input type="password" name="senhaUsuario" id="id-senha-usuario" class="form-control" placeholder="Senha" onblur="confirmarSenha()">
               </div>
               <!--Fim Senha-->
               
               <!--Confirmacao Senha-->
-              <div class="col-md-6">
+              <div class="col-md-6 divConfirmarSenha">
                 <label for="id-confirmacao-senha-usuario">Confirmar Senha</label>
-                <input type="password" name="confirmacaoSenhaUsuario" id="id-confirmacao-senha-usuario" class="form-control" placeholder="Confirmação da Senha">
+                <input type="password" name="confirmacaoSenhaUsuario" id="id-confirmacao-senha-usuario" class="form-control" placeholder="Confirmação da Senha" onblur="confirmarSenha()">
+                <span class="senha-incorreta esconder" id="id-senha-incorreta">Senhas não estão iguais</span>
               </div>
               <!--Fim Confirmacao Senha-->
             </div>
@@ -320,7 +321,7 @@
             <!--Inicio Row-->
             <div class="row">
               <div class="col-md-12">
-                <input type="submit" class="btn btn-primary pull-right margin" value="Cadastrar">
+                <input type="submit" class="btn btn-primary pull-right margin" id="botaoEnviar" value="Cadastrar">
               </div>            
             </div>
             <!--Fim Row-->
@@ -333,3 +334,35 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+  
+  function confirmarSenha()
+  {
+    let senha;
+    let confirmarSenha;
+    let botaoEnviar;
+
+    senha = document.getElementById("id-senha-usuario");
+    confirmarSenha = document.getElementById("id-confirmacao-senha-usuario");
+    botaoEnviar = document.getElementById("botaoEnviar");
+    senhaIncorreta = document.getElementById("id-senha-incorreta");
+
+    if (senha.value === confirmarSenha.value) {
+      confirmarSenha.classList.remove("borda-vermelha");
+      confirmarSenha.classList.add("borda-verde");
+
+      senhaIncorreta.classList.add("esconder");
+
+      botaoEnviar.disabled = false;
+    } else {
+      confirmarSenha.classList.remove("borda-verde");
+      confirmarSenha.classList.add("borda-vermelha");
+
+      senhaIncorreta.classList.remove("esconder");
+
+      botaoEnviar.setAttribute("disabled", false);
+    }
+  }
+
+</script>

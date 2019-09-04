@@ -24,6 +24,10 @@ hr {
   padding: 0;
 }
 
+.esconder {
+  display: none;
+}
+
 /********************************************/
 /********************************************/
 /*          Cria Ocorrencia                 */
@@ -133,4 +137,23 @@ hr {
 .sem-espacamento {
   margin: 0;
   padding: 0;
+}
+
+/********************************************/
+/********************************************/
+/*          Cadastrar Usuario               */
+/********************************************/
+/********************************************/
+
+div.divConfirmarSenha input.borda-vermelha {
+  border: 1px solid red;
+}
+
+div.divConfirmarSenha input.borda-verde {
+  border: 1px solid green;
+}
+
+.senha-incorreta {
+  color: red;
+  margin-left: 2px;
 }
