@@ -29,7 +29,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="id-nome-usuario">Nome Completo do Usuario *</label>
-                <input type="text" name="nomeUsuario" id="id-nome-usuario" class="form-control" placeholder="Digite o nome aqui" maxlength="70" required>
+                <input type="text" name="nomeUsuario" id="id-nome-usuario" class="form-control" placeholder="Digite o nome aqui" maxlength="70" onkeyup="validarCaracter(this, 1)" onblur="confirmarSenha()" required>
               </div>
             </div>
             <!--Fim Nome do usuario-->
@@ -67,8 +67,8 @@
               <!--CPF-->
               <div class="col-md-3">
                 <div class="form-group">
-                  <label for="id-cpf-usuario">CPF</label>
-                  <input type="text" name="cpfUsuario" id="id-cpf-usuario" class="form-control" placeholder="___.___.___-__">
+                  <label for="id-cpf-usuario">CPF *</label>
+                  <input type="text" name="cpfUsuario" id="id-cpf-usuario" class="form-control" placeholder="___.___.___-__" onblur="confirmarSenha()" required>
                 </div>
               </div>
               <!--Fim CPF-->
@@ -77,16 +77,16 @@
               <div class="col-md-2">
                 <div class="form-group">
                   <label for="id-rg-usuario">RG</label>
-                  <input type="text" name="rgUsuario" id="id-rg-usuario" class="form-control" placeholder="__.___.___">
+                  <input type="text" name="rgUsuario" id="id-rg-usuario" class="form-control" placeholder="__.___.___" onblur="digitoRg()">
                 </div>
               </div>
               <!--Fim RG-->
 
               <!--RG digito verificador-->
-              <div class="col-md-1">
+              <div class="col-md-1 divBordaVermelhaVerde">
                 <div class="form-group">
                   <label for="id-rg-digito-usuario">Digito</label>
-                  <input type="text" name="rgDigitoUsuario" id="id-rg-digito-usuario" class="form-control" maxlength="1">
+                  <input type="text" name="rgDigitoUsuario" id="id-rg-digito-usuario" class="form-control" maxlength="1" onblur="digitoRg()" onkeyup="validarCaracter(this, 2)">
                 </div>
               </div>
               <!--Fim RG digito verificador-->
@@ -125,8 +125,8 @@
               <!--setor do usuario-->
               <div class="col-md-3">
                 <div class="form-group">
-                  <label for="id-setor-usuario">Setor</label>
-                  <select class="form-control select2" name="setorUsuario" id="id-setor-usuario">
+                  <label for="id-setor-usuario">Setor *</label>
+                  <select class="form-control select2" name="setorUsuario" id="id-setor-usuario" onblur="confirmarSenha()" required>
                     <option value="secretaria-saude">Secretaria da Saude</option>
                     <option value="administracao">Administração</option>
                   </select>
@@ -137,8 +137,8 @@
               <!--Funcao do usuario-->
               <div class="col-md-3">
                 <div class="form-group">
-                  <label for="id-funcao-usuario">Função</label>
-                  <input type="text" name="funcaoUsuario" id="id-funcao-usuario" class="form-control" placeholder="Função" maxlength="45">
+                  <label for="id-funcao-usuario">Função *</label>
+                  <input type="text" name="funcaoUsuario" id="id-funcao-usuario" class="form-control" placeholder="Função" maxlength="45" required onkeyup="validarCaracter(this, 1)" onblur="confirmarSenha()">
                 </div>
               </div>
               <!--Fim funcao do usuario-->
@@ -160,7 +160,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="id-rua-usuario">Rua</label>
-                  <input type="text" name="ruaUsuario" id="id-rua-usuario" class="form-control" placeholder="Digite o nome da rua da usuario" maxlength="100">
+                  <input type="text" name="ruaUsuario" id="id-rua-usuario" class="form-control" placeholder="Digite o nome da rua da usuario" maxlength="100" onkeyup="validarCaracter(this, 3)">
                 </div>
               </div>
               <!--Fim Rua usuario-->
@@ -169,7 +169,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="id-bairro-usuario">Bairro</label>
-                  <input type="text" name="bairroUsuario" id="id-bairro-usuario" class="form-control" placeholder="Digite o nome do bairro da usuario" maxlength="100">
+                  <input type="text" name="bairroUsuario" id="id-bairro-usuario" class="form-control" placeholder="Digite o nome do bairro da usuario" maxlength="100" onkeyup="validarCaracter(this, 3)">
                 </div>
               </div>
               <!--Fim Bairro usuario-->   
@@ -192,33 +192,33 @@
                 <div class="form-group">
                   <label for="id-estado-usuario">Estado</label>
                   <select class="form-control select2" name="estadoUsuario" id="id-estado-usuario">
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espirito Santos</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP" selected>São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
+                    <option value="ac">Acre</option>
+                    <option value="al">Alagoas</option>
+                    <option value="ap">Amapá</option>
+                    <option value="am">Amazonas</option>
+                    <option value="ba">Bahia</option>
+                    <option value="ce">Ceará</option>
+                    <option value="df">Distrito Federal</option>
+                    <option value="es">Espirito Santos</option>
+                    <option value="go">Goiás</option>
+                    <option value="ma">Maranhão</option>
+                    <option value="mt">Mato Grosso</option>
+                    <option value="ms">Mato Grosso do Sul</option>
+                    <option value="mg">Minas Gerais</option>
+                    <option value="pa">Pará</option>
+                    <option value="pb">Paraíba</option>
+                    <option value="pr">Paraná</option>
+                    <option value="pe">Pernambuco</option>
+                    <option value="pi">Piauí</option>
+                    <option value="rj">Rio de Janeiro</option>
+                    <option value="rn">Rio Grande do Norte</option>
+                    <option value="rs">Rio Grande do Sul</option>
+                    <option value="ro">Rondônia</option>
+                    <option value="rr">Roraima</option>
+                    <option value="sc">Santa Catarina</option>
+                    <option value="sp" selected>São Paulo</option>
+                    <option value="se">Sergipe</option>
+                    <option value="to">Tocantins</option>
                   </select>
                 </div>
               </div>
@@ -228,7 +228,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="id-cidade-usuario">Cidade</label>
-                  <input type="text" name="cidadeUsuario" id="id-cidade-usuario" class="form-control" placeholder="Cidade">
+                  <input type="text" name="cidadeUsuario" id="id-cidade-usuario" class="form-control" placeholder="Cidade" onkeyup="validarCaracter(this, 1)">
                 </div>
               </div>
               <!--Fim Cidade usuario-->
@@ -237,7 +237,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="id-complemento-usuario">Complemento</label>
-                  <input type="text" name="complementoUsuario" id="id-complemento-usuario" class="form-control" placeholder="Complemento" maxlength="100">
+                  <input type="text" name="complementoUsuario" id="id-complemento-usuario" class="form-control" placeholder="Complemento" maxlength="100" onkeyup="validarCaracter(this, 3)">
                 </div>
               </div>
               <!--Fim Complemento usuario-->
@@ -267,8 +267,8 @@
               <!--nivel de acesso do usuario-->
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="id-nivel-usuario">Nivel de Acesso</label>
-                  <select class="form-control select2" name="nivelUsuario" id="id-nivel-usuario">
+                  <label for="id-nivel-usuario">Nivel de Acesso *</label>
+                  <select class="form-control select2" name="nivelUsuario" id="id-nivel-usuario" onblur="confirmarSenha()" required>
                     <option value="1">Nível 1</option>
                     <option value="2">Nível 2</option>
                     <option value="3">Nível 3</option>
@@ -282,8 +282,8 @@
 
               <!--Usuario-->
               <div class="col-md-6">
-                <label for="id-username-usuario">Usuário</label>
-                <input type="text" name="usernameUsuario" id="id-username-usuario" class="form-control" placeholder="Usuário" maxlength="45">
+                <label for="id-username-usuario">Usuário *</label>
+                <input type="text" name="usernameUsuario" id="id-username-usuario" class="form-control" placeholder="Usuário" maxlength="45" onblur="confirmarSenha()" onkeyup="validarCaracter(this, 2)" required>
               </div>
               <!--Fim Usuario-->
             </div>
@@ -293,7 +293,7 @@
             <div class="row">
               <!--Senha-->
               <div class="col-md-6">
-                <label for="id-senha-usuario">Senha</label>
+                <label for="id-senha-usuario">Senha * </label>
                 <a data-teste="popover" data-toggle="popover" data-placement="right" data-trigger="hover" title="<strong>Informação</strong>" 
                   data-content="<strong>Senha deve conter:</strong><br>
                                 - Letras Maiúsculas<br>
@@ -302,14 +302,14 @@
                                 - Um Número">
                   <i class="fa fa-question-circle"></i>
                 </a>
-                <input type="password" name="senhaUsuario" id="id-senha-usuario" class="form-control" placeholder="Senha" onblur="confirmarSenha()">
+                <input type="password" name="senhaUsuario" id="id-senha-usuario" class="form-control" placeholder="Senha" onblur="confirmarSenha()" required>
               </div>
               <!--Fim Senha-->
               
               <!--Confirmacao Senha-->
-              <div class="col-md-6 divConfirmarSenha">
-                <label for="id-confirmacao-senha-usuario">Confirmar Senha</label>
-                <input type="password" name="confirmacaoSenhaUsuario" id="id-confirmacao-senha-usuario" class="form-control" placeholder="Confirmação da Senha" onblur="confirmarSenha()">
+              <div class="col-md-6 divBordaVermelhaVerde">
+                <label for="id-confirmacao-senha-usuario">Confirmar Senha *</label>
+                <input type="password" name="confirmacaoSenhaUsuario" id="id-confirmacao-senha-usuario" class="form-control" placeholder="Confirmação da Senha" onblur="confirmarSenha()" required>
                 <span class="senha-incorreta esconder" id="id-senha-incorreta">Senhas não estão iguais</span>
               </div>
               <!--Fim Confirmacao Senha-->
@@ -336,32 +336,134 @@
 <!-- /.content-wrapper -->
 
 <script>
-  
+
+  window.onload = function()
+  {
+    let botaoEnviar = document.getElementById("botaoEnviar");
+
+    botaoEnviar.setAttribute("disabled", false);
+  }
+ 
   function confirmarSenha()
   {
-    let senha;
-    let confirmarSenha;
-    let botaoEnviar;
+    let nome = document.getElementById("id-nome-usuario");
+    let cpf = document.getElementById("id-cpf-usuario");
+    let setor = document.getElementById("id-setor-usuario");
+    let funcao = document.getElementById("id-funcao-usuario");
+    let senha = document.getElementById("id-senha-usuario");
+    let confirmarSenha = document.getElementById("id-confirmacao-senha-usuario");
+    let usuario = document.getElementById("id-username-usuario");
+    let nivelAcesso = document.getElementById("id-nivel-usuario");
+    let botaoEnviar = document.getElementById("botaoEnviar");
+    let senhaIncorreta = document.getElementById("id-senha-incorreta");
 
-    senha = document.getElementById("id-senha-usuario");
-    confirmarSenha = document.getElementById("id-confirmacao-senha-usuario");
-    botaoEnviar = document.getElementById("botaoEnviar");
-    senhaIncorreta = document.getElementById("id-senha-incorreta");
-
-    if (senha.value === confirmarSenha.value) {
+    if (senha.value === confirmarSenha.value && senha.value != "" && confirmarSenha != "") {
       confirmarSenha.classList.remove("borda-vermelha");
       confirmarSenha.classList.add("borda-verde");
 
       senhaIncorreta.classList.add("esconder");
 
-      botaoEnviar.disabled = false;
-    } else {
+      if (
+          nome.value != "" && 
+          cpf.value != "" && 
+          setor.value != "" && 
+          funcao.value != "" && 
+          senha.value != "" && 
+          confirmarSenha.value != "" && 
+          usuario.value != "" && 
+          nivelAcesso.value != ""
+        ) 
+      {
+        botaoEnviar.disabled = false;
+      }
+
+    } else if (senha.value == "") {
+      confirmarSenha.classList.remove("borda-verde");
+      confirmarSenha.classList.remove("borda-vermelha");
+      senhaIncorreta.classList.add("esconder");
+    }else {
       confirmarSenha.classList.remove("borda-verde");
       confirmarSenha.classList.add("borda-vermelha");
 
       senhaIncorreta.classList.remove("esconder");
 
       botaoEnviar.setAttribute("disabled", false);
+    }
+  }
+
+  function digitoRg()
+  {
+    let nome = document.getElementById("id-nome-usuario");
+    let cpf = document.getElementById("id-cpf-usuario");
+    let setor = document.getElementById("id-setor-usuario");
+    let funcao = document.getElementById("id-funcao-usuario");
+    let senha = document.getElementById("id-senha-usuario");
+    let confirmarSenha = document.getElementById("id-confirmacao-senha-usuario");
+    let usuario = document.getElementById("id-username-usuario");
+    let nivelAcesso = document.getElementById("id-nivel-usuario");
+    let rg = document.getElementById("id-rg-usuario");
+    let digito = document.getElementById("id-rg-digito-usuario");
+    let botaoEnviar = document.getElementById("botaoEnviar");
+
+    if (rg.value != "") {
+      if (digito.value == null || digito.value == "") {
+        digito.classList.remove("borda-verde");
+        digito.classList.add("borda-vermelha");
+        
+        botaoEnviar.setAttribute("disabled", false);
+      } else {
+        digito.classList.add("borda-verde");
+        digito.classList.remove("borda-vermelha");
+
+        if (
+          nome.value != "" && 
+          cpf.value != "" && 
+          setor.value != "" && 
+          funcao.value != "" && 
+          senha.value != "" && 
+          confirmarSenha.value != "" && 
+          usuario.value != "" && 
+          nivelAcesso.value != ""
+        ) 
+        {
+          botaoEnviar.disabled = false;
+        }
+      }
+    } else {
+      digito.classList.remove("borda-verde");
+      digito.classList.remove("borda-vermelha");
+
+      if (
+          nome.value != "" && 
+          cpf.value != "" && 
+          setor.value != "" && 
+          funcao.value != "" && 
+          senha.value != "" && 
+          confirmarSenha.value != "" && 
+          usuario.value != "" && 
+          nivelAcesso.value != ""
+        ) 
+        {
+          botaoEnviar.disabled = false;
+        }
+    }
+  }
+
+  function validarCaracter(valor, tipo)
+  {
+    switch (tipo) {
+      case 1:
+        string = valor.value.replace(/[^a-zA-Zà-úÀ-Ú ]/g,'');
+        valor.value = string;
+        break;
+      case 2:
+        string = valor.value.replace(/[^a-zA-Z0-9 ]/g,'');
+        valor.value = string;
+        break;
+      case 3:
+        string = valor.value.replace(/[^a-zA-Z0-9à-úÀ-Ú ]/g,'');
+        valor.value = string;
+        break;
     }
   }
 

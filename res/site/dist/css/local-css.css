@@ -145,11 +145,11 @@ hr {
 /********************************************/
 /********************************************/
 
-div.divConfirmarSenha input.borda-vermelha {
+div.divBordaVermelhaVerde input.borda-vermelha {
   border: 1px solid red;
 }
 
-div.divConfirmarSenha input.borda-verde {
+div.divBordaVermelhaVerde input.borda-verde {
   border: 1px solid green;
 }
 

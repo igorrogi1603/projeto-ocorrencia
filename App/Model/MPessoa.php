@@ -22,7 +22,7 @@ class MPessoa {
 		", [
 			":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 			":idContato" => (int)$idContato[0]["MAX(idContato)"],
-			":nome" => utf8_decode($pessoa->getnomeUsuario()),
+			":nome" => utf8_decode(strtolower($pessoa->validarNome($pessoa->getnomeUsuario()))),
 			":dataNasc" => $pessoa->replaceDataBd($pessoa->getdataNascUsuario()),
 			":cpf" => $pessoa->replaceCpfBd($pessoa->getcpfUsuario()),
 			":rg" => $pessoa->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
