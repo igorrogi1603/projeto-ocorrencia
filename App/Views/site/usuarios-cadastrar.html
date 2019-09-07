@@ -22,6 +22,15 @@
       <div class="box-body">
 
         <form action="/usuarios-cadastrar" method="post">
+          <div class="row">
+            <div class="col-md-12">
+              {if="$error != ''"}
+              <div class="alert alert-danger">
+                {$error}
+              </div>
+              {/if}
+            </div>
+          </div>
 
           <!--Row-->
           <div class="row">

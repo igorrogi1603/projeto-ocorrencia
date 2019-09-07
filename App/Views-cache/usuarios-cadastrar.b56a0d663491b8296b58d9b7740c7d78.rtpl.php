@@ -22,6 +22,18 @@
       <div class="box-body">
 
         <form action="/usuarios-cadastrar" method="post">
+          <div class="row">
+            <div class="col-md-12">
+              <?php if( $error != '' ){ ?>
+
+              <div class="alert alert-danger">
+                <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+              </div>
+              <?php } ?>
+
+            </div>
+          </div>
 
           <!--Row-->
           <div class="row">

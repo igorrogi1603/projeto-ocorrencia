@@ -6,6 +6,10 @@ use \App\Config\GetSet;
 
 class Pessoa extends GetSet {
 
+	const SESSION_ERROR = "PessoaErro";
+
+	//VALIDACOES 
+	//****************************************************
 	public function validaCPF($cpf = null) {
 
 		// Verifica se um número foi informado
@@ -102,6 +106,27 @@ class Pessoa extends GetSet {
 	public function validarLetraAcento($variavel)
 	{
 		return preg_replace("/[^a-zA-Zà-úÀ-Ú\s]/", "", $variavel);
+	}
+
+	//MENSAGEM DE ERRO
+	//****************************************************
+	public static function setMsgError($msg)
+	{
+		$_SESSION[Pessoa::SESSION_ERROR] = $msg;
+	}
+
+	public static function getMsgError()
+	{
+		$msg = (isset($_SESSION[Pessoa::SESSION_ERROR])) ? $_SESSION[Pessoa::SESSION_ERROR] : "";
+
+		Pessoa::clearMsgError();
+
+		return $msg;
+	}
+
+	public static function clearMsgError()
+	{
+		$_SESSION[Pessoa::SESSION_ERROR] = NULL;
 	}
 
 }

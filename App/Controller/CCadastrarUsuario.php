@@ -26,13 +26,9 @@ class CCadastrarUsuario {
 		$musuario = new MUsuario;
 
 		//Validacao de campos
+		//----------------------------------------------------------------------------------------
 		$post['nomeUsuario'] = $pessoa->validarLetraAcento($post['nomeUsuario']);
 		$validaCPF = $pessoa->validaCPF($post['cpfUsuario']);
-		
-		if ($validaCPF === false) {
-			//mensagem de erro retornando para a pagina anterior
-		}
-
 		$post['funcaoUsuario'] = $pessoa->validarLetraAcento($post['funcaoUsuario']);
 		$post['ruaUsuario'] = $endereco->validarLetraAcentoNumero($post['ruaUsuario']);
 		$post['bairroUsuario'] = $endereco->validarLetraAcentoNumero($post['bairroUsuario']);
@@ -40,6 +36,30 @@ class CCadastrarUsuario {
 		$post['cidadeUsuario'] = $endereco->validarLetraAcento($post['cidadeUsuario']);
 		$post['complementoUsuario'] = $endereco->validarLetraAcentoNumero($post['complementoUsuario']);
 		$post['usernameUsuario'] = $usuario->validarLetraNumero($post['usernameUsuario']);
+
+		if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
+			Pessoa::setMsgError("CPF Inválido.");
+	        header('Location: /usuarios-cadastrar');
+	        exit;
+		}
+
+		if (!isset($post['funcaoUsuario']) || $post['funcaoUsuario'] === '') {
+			Pessoa::setMsgError("Informe a Função.");
+	        header('Location: /usuarios-cadastrar');
+	        exit;
+		}
+
+		if (!isset($post['usernameUsuario']) || $post['usernameUsuario'] === '') {
+			Pessoa::setMsgError("Informe o usuário.");
+	        header('Location: /usuarios-cadastrar');
+	        exit;
+		}
+
+		if (!isset($post['senhaUsuario']) || $post['senhaUsuario'] === '') {
+			Pessoa::setMsgError("Informe a senha.");
+	        header('Location: /usuarios-cadastrar');
+	        exit;
+		}
 
 		//----------------------------------------------------------------------------------------
 		//passando os campos para cadastrar
