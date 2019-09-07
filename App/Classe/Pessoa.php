@@ -99,9 +99,9 @@ class Pessoa extends GetSet {
 
 	}
 
-	public function validarNome($nome)
+	public function validarLetraAcento($variavel)
 	{
-		return preg_replace("/[^a-zA-Z\s]/", "", $nome);
+		return preg_replace("/[^a-zA-Zà-úÀ-Ú\s]/", "", $variavel);
 	}
 
 }
