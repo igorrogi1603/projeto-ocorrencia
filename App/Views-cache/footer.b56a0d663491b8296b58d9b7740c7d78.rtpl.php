@@ -132,6 +132,35 @@
       }
     });
   });
+
+  //----------------------------------------------
+  //CADASTRAR USUARIO - CALCULAR CEP
+  $(document).ready(function(){
+    $("#id-cep-usuario").focusout(function(){
+      var cep = $("#id-cep-usuario").val();
+      cep = cep.replace("-", "");
+
+      var urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+   
+      $.ajax({
+          url : urlStr,
+          type : "get",
+          dataType : "json",
+          success : function(data){
+              console.log(data);
+               
+              $("#id-cidade-usuario").val(data.localidade);
+              $("#id-estado-usuario").val(data.uf.toLowerCase());
+              $("#id-bairro-usuario").val(data.bairro);
+              $("#id-rua-usuario").val(data.logradouro);
+          },
+          error : function(erro){
+              console.log(erro);
+          }
+      });
+    });
+  });
+
 </script>
 <!--Fim Pagina Novas Ocorrencias-->
 

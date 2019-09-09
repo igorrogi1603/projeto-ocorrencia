@@ -2,14 +2,14 @@
 
 use \App\Config\Page;
 use \App\Controller\CCadastrarUsuario;
-use \App\Classe\Pessoa;
+use \App\Classe\Validacao;
 
 $app->get('/usuarios-cadastrar', function(){
 
 	$page = new Page();
 
 	$page->setTpl("usuarios-cadastrar", [
-		'error'=>Pessoa::getMsgError()
+		'error'=>Validacao::getMsgError()
 	]);
 
 });

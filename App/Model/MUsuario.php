@@ -4,6 +4,7 @@ namespace App\Model;
 
 use \App\Config\Conexao;
 use \App\Classe\Usuario;
+use \App\Classe\Validacao;
 
 class MUsuario {
 
@@ -13,6 +14,7 @@ class MUsuario {
 		$sql = new Conexao;
 
 		$usuario = new Usuario;
+		$validacao = new Validacao;
 
 		$usuario->setData($post);
 
@@ -22,7 +24,7 @@ class MUsuario {
 		", [
 			":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"],
 			":nivelAcesso" => $usuario->getnivelUsuario(),
-			":user" => Usuario::tirarAcentos($usuario->getusernameUsuario()),
+			":user" => Validacao::tirarAcentos($usuario->getusernameUsuario()),
 			":senha" => Usuario::getPasswordHash($usuario->getsenhaUsuario()),
 			":funcao" => utf8_decode($usuario->getfuncaoUsuario()),
 			":setor" => $usuario->getsetorUsuario()

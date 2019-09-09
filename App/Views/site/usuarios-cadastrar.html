@@ -165,8 +165,17 @@
 
             <!--Inicio Row-->
             <div class="row">
+              <!--Numero cep-->
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="id-cep-usuario">CEP</label>
+                  <input type="text" name="cepUsuario" id="id-cep-usuario" class="form-control" placeholder="_____-___">
+                </div>
+              </div>
+              <!--Fim Numero cep-->
+
               <!--Rua usuario-->
-              <div class="col-md-4">
+              <div class="col-md-5">
                 <div class="form-group">
                   <label for="id-rua-usuario">Rua</label>
                   <input type="text" name="ruaUsuario" id="id-rua-usuario" class="form-control" placeholder="Digite o nome da rua da usuario" maxlength="100" onkeyup="validarCaracter(this, 3)">
@@ -175,29 +184,29 @@
               <!--Fim Rua usuario-->
 
               <!--Bairro usuario-->
-              <div class="col-md-4">
+              <div class="col-md-5">
                 <div class="form-group">
                   <label for="id-bairro-usuario">Bairro</label>
                   <input type="text" name="bairroUsuario" id="id-bairro-usuario" class="form-control" placeholder="Digite o nome do bairro da usuario" maxlength="100" onkeyup="validarCaracter(this, 3)">
                 </div>
               </div>
-              <!--Fim Bairro usuario-->   
-
-              <!--Numero usuario-->
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="id-numero-usuario">Numero</label>
-                  <input type="number" name="numeroUsuario" id="id-numero-usuario" class="form-control" placeholder="Numero da casa" min="0">
-                </div>
-              </div>
-              <!--Fim Numero usuario-->         
+              <!--Fim Bairro usuario-->
             </div>
             <!--Fim Row-->
 
             <!--Inicio Row-->
             <div class="row">
+               <!--Numero usuario-->
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="id-numero-usuario">Numero</label>
+                  <input type="number" name="numeroUsuario" id="id-numero-usuario" class="form-control" placeholder="Numero da casa" min="0">
+                </div>
+              </div>
+              <!--Fim Numero usuario--> 
+
               <!--Estado usuario-->
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="form-group">
                   <label for="id-estado-usuario">Estado</label>
                   <select class="form-control select2" name="estadoUsuario" id="id-estado-usuario">
@@ -243,7 +252,7 @@
               <!--Fim Cidade usuario-->
 
               <!--Complemento usuario-->
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="form-group">
                   <label for="id-complemento-usuario">Complemento</label>
                   <input type="text" name="complementoUsuario" id="id-complemento-usuario" class="form-control" placeholder="Complemento" maxlength="100" onkeyup="validarCaracter(this, 3)">

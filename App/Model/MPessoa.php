@@ -4,6 +4,7 @@ namespace App\Model;
 
 use \App\Config\Conexao;
 use \App\Classe\Pessoa;
+use \App\Classe\Validacao;
 
 class MPessoa {
 
@@ -13,6 +14,7 @@ class MPessoa {
 		$sql = new Conexao;
 
 		$pessoa = new Pessoa;
+		$validacao = new Validacao;
 
 		$pessoa->setData($post);
 
@@ -22,7 +24,7 @@ class MPessoa {
 		", [
 			":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 			":idContato" => (int)$idContato[0]["MAX(idContato)"],
-			":nome" => utf8_decode(strtolower($pessoa->validarLetraAcento($pessoa->getnomeUsuario()))),
+			":nome" => utf8_decode(strtolower($validacao->validarString($pessoa->getnomeUsuario(), 1))),
 			":dataNasc" => $pessoa->replaceDataBd($pessoa->getdataNascUsuario()),
 			":cpf" => $pessoa->replaceCpfBd($pessoa->getcpfUsuario()),
 			":rg" => $pessoa->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),

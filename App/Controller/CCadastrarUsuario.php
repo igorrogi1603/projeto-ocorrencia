@@ -9,6 +9,7 @@ use \App\Model\MUsuario;
 use \App\Classe\Pessoa;
 use \App\Classe\Endereco;
 use \App\Classe\Usuario;
+use \App\Classe\Validacao;
 
 class CCadastrarUsuario {
 
@@ -18,6 +19,7 @@ class CCadastrarUsuario {
 		$pessoa = new Pessoa;
 		$endereco = new Endereco;
 		$usuario = new Usuario;
+		$validacao = new Validacao;
 
 		//instancia do objeto model
 		$mcontato = new MContato;
@@ -27,36 +29,37 @@ class CCadastrarUsuario {
 
 		//Validacao de campos
 		//----------------------------------------------------------------------------------------
-		$post['nomeUsuario'] = $pessoa->validarLetraAcento($post['nomeUsuario']);
+		$post['nomeUsuario'] = $validacao->validarString($post['nomeUsuario'], 1);
 		$validaCPF = $pessoa->validaCPF($post['cpfUsuario']);
-		$post['funcaoUsuario'] = $pessoa->validarLetraAcento($post['funcaoUsuario']);
-		$post['ruaUsuario'] = $endereco->validarLetraAcentoNumero($post['ruaUsuario']);
-		$post['bairroUsuario'] = $endereco->validarLetraAcentoNumero($post['bairroUsuario']);
-		$post['numeroUsuario'] = $endereco->validarNumero($post['numeroUsuario']);
-		$post['cidadeUsuario'] = $endereco->validarLetraAcento($post['cidadeUsuario']);
-		$post['complementoUsuario'] = $endereco->validarLetraAcentoNumero($post['complementoUsuario']);
-		$post['usernameUsuario'] = $usuario->validarLetraNumero($post['usernameUsuario']);
+		$post['funcaoUsuario'] = $validacao->validarString($post['funcaoUsuario'], 1);
+		$post['cepUsuario'] = $validacao->validarString($post['cepUsuario'], 3);
+		$post['ruaUsuario'] = $validacao->validarString($post['ruaUsuario'], 2);
+		$post['bairroUsuario'] = $validacao->validarString($post['bairroUsuario'], 2);
+		$post['numeroUsuario'] = $validacao->validarString($post['numeroUsuario'], 3);
+		$post['cidadeUsuario'] = $validacao->validarString($post['cidadeUsuario'], 1);
+		$post['complementoUsuario'] = $validacao->validarString($post['complementoUsuario'], 2);
+		$post['usernameUsuario'] = $validacao->validarString($post['usernameUsuario'], 4);
 
 		if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
-			Pessoa::setMsgError("CPF Inválido.");
+			Validacao::setMsgError("CPF Inválido.");
 	        header('Location: /usuarios-cadastrar');
 	        exit;
 		}
 
 		if (!isset($post['funcaoUsuario']) || $post['funcaoUsuario'] === '') {
-			Pessoa::setMsgError("Informe a Função.");
+			Validacao::setMsgError("Informe a Função.");
 	        header('Location: /usuarios-cadastrar');
 	        exit;
 		}
 
 		if (!isset($post['usernameUsuario']) || $post['usernameUsuario'] === '') {
-			Pessoa::setMsgError("Informe o usuário.");
+			Validacao::setMsgError("Informe o usuário.");
 	        header('Location: /usuarios-cadastrar');
 	        exit;
 		}
 
 		if (!isset($post['senhaUsuario']) || $post['senhaUsuario'] === '') {
-			Pessoa::setMsgError("Informe a senha.");
+			Validacao::setMsgError("Informe a senha.");
 	        header('Location: /usuarios-cadastrar');
 	        exit;
 		}

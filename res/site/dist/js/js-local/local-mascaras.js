@@ -25,3 +25,4 @@ $('#id-cpf-usuario').mask('000.000.000-00', {reverse: true});
 $('#id-rg-usuario').mask('00.000.000', {reverse: true});
 $('#id-celular-usuario').mask('00 - 00000-0000', {reverse: true});
 $('#id-telfixo-usuario').mask('00 - 0000-0000', {reverse: true});
+$('#id-cep-usuario').mask('00000-000', {reverse: true});

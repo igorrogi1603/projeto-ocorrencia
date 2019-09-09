@@ -17,9 +17,10 @@ class MEndereco {
 		$endereco->setData($post);
 
 		$sql->query("
-			INSERT INTO tb_endereco (rua, numero, bairro, cidade, estado, complemento) 
-			VALUES(:rua, :numero, :bairro, :cidade, :estado, :complemento)
+			INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
+			VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 		", [
+			":cep" => $endereco->getcepUsuario(),
 			":rua" => utf8_decode($endereco->getruaUsuario()),
 			":numero" => $endereco->getnumeroUsuario(),
 			":bairro" => utf8_decode($endereco->getbairroUsuario()),
