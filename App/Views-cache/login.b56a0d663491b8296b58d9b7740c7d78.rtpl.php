@@ -25,15 +25,26 @@
         <div class="col-md-4 esticado bg-branco p-5">
           <h1 class="mb-5 text-cor">Entrar</h1>
 
-          <form action="#" method="post">
+          <form action="/login" method="post">
             <div class="form-group">
                 <label class="text-normal text-dark">Usuário</label>
-                <input type="text" class="form-control" placeholder="Usuário">
+                <input type="text" name="usernameUsuario" class="form-control" placeholder="Usuário">
             </div>
             <div class="form-group">
                 <label class="text-normal text-dark">Senha</label>
-                <input type="password" class="form-control" placeholder="Senha">
+                <input type="password" name="senhaUsuario" class="form-control" placeholder="Senha">
             </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <?php if( $error != '' ){ ?>
+                <div class="alert alert-danger">
+                  <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
+              </div>
+            </div>
+
             <p class="text-right esqueci"><a href="#">Esqueci a senha</a></p>
             <button class="btn btn-block btn-cor arredondamento">Logar</button>
           </form>

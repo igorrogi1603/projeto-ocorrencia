@@ -1,8 +1,13 @@
 <?php
 
-use App\Config\Page;
+use \App\Classe\Usuario;
+use \App\Classe\Validacao;
+use \App\Controller\CLogin;
+use \App\Config\Page;
 
 $app->get("/", function(){
+
+	Usuario::verifyLogin();
 
 	$page = new Page();
 
@@ -16,7 +21,26 @@ $app->get("/login", function(){
 		"footer"=>false
 	]);
 
-	$page->setTpl("login");
+	$page->setTpl("login", [
+		'error'=>Validacao::getMsgError()
+	]);
+});
+
+$app->post("/login", function(){
+
+	CLogin::postLogar($_POST);
+
+});
+
+$app->get("/logout", function(){
+
+	Usuario::verifyLogin();
+	
+	Usuario::logout();
+
+	header("Location: /login");
+	exit;
+
 });
 
 //Rotas externas

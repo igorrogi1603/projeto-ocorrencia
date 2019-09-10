@@ -1,15 +1,20 @@
 <?php 
 
+use \App\Classe\Usuario;
 use \App\Config\Page;
 
 $app->get("/criar-apuracao", function(){
 	
+	Usuario::verifyLogin();
+
 	$page = new Page();
 
 	$page->setTpl("criar-apuracao");
 });
 
 $app->get("/apuracao-enviada", function(){
+
+	Usuario::verifyLogin();
 	
 	$page = new Page();
 
@@ -17,12 +22,16 @@ $app->get("/apuracao-enviada", function(){
 });
 
 $app->post("/apuracao-enviada", function(){
+
+	Usuario::verifyLogin();
 	
 	header("Location: /apuracao-enviada");
 	exit;	
 });
 
 $app->get("/apuracao-enviada-print", function(){
+
+	Usuario::verifyLogin();
 	
 	$page = new Page([
 		"header"=>false,
@@ -33,6 +42,8 @@ $app->get("/apuracao-enviada-print", function(){
 });
 
 $app->get("/lista-apuracoes", function(){
+
+	Usuario::verifyLogin();
 	
 	$page = new Page();
 
@@ -41,6 +52,8 @@ $app->get("/lista-apuracoes", function(){
 
 $app->get("/apuracao-detalhe", function(){
 
+	Usuario::verifyLogin();
+
 	$page = new Page();
 
 	$page->setTpl("apuracao-detalhe");
@@ -48,12 +61,16 @@ $app->get("/apuracao-detalhe", function(){
 
 $app->get("/confirmar-apuracao", function(){
 
+	Usuario::verifyLogin();
+
 	$page = new Page();
 
 	$page->setTpl("confirmar-apuracao");
 });
 
 $app->get("/confirmar-apuracao-detalhe", function(){
+
+	Usuario::verifyLogin();
 
 	$page = new Page();
 

@@ -8,6 +8,8 @@ use \App\Classe\Validacao;
 
 class MUsuario {
 
+	const SESSION = "User";
+
 	public function cadastrar($post, $idPessoa)
 	{
 
@@ -52,6 +54,39 @@ class MUsuario {
 		$sql = new Conexao;
 
 		return $sql->select("SELECT user FROM tb_usuario");		
+	}
+
+	//Logar no sistema
+	public static function login($login, $password)
+	{
+
+		$sql = new Conexao;
+
+		$results = $sql->select("SELECT * FROM tb_usuario WHERE user = :user", array(
+			":user"=>$login
+		));
+
+		if (count($results) === 0)
+		{
+			return false;
+		}
+
+		$data = $results[0];
+
+		if (password_verify($password, $data["senha"]) === true)
+		{
+			$usuario = new Usuario();
+
+			$usuario->setData($data);
+
+			$_SESSION[Usuario::SESSION] = $usuario->getValues();
+
+			return $usuario;
+
+		} else {
+			return false;
+		}
+
 	}
 
 }

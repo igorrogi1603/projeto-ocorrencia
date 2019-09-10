@@ -1,8 +1,11 @@
 <?php 
 
+use \App\Classe\Usuario;
 use \App\Config\Page;
 
 $app->get('/solicitacoes', function(){
+
+	Usuario::verifyLogin();
 
 	$page = new Page();
 
@@ -12,6 +15,8 @@ $app->get('/solicitacoes', function(){
 
 $app->get('/ler-solicitacao', function(){
 
+	Usuario::verifyLogin();
+
 	$page = new Page();
 
 	$page->setTpl("ler-solicitacao");
@@ -19,6 +24,8 @@ $app->get('/ler-solicitacao', function(){
 });
 
 $app->get('/nova-solicitacao', function(){
+
+	Usuario::verifyLogin();
 
 	$page = new Page();
 
@@ -28,6 +35,8 @@ $app->get('/nova-solicitacao', function(){
 
 $app->get('/solicitacoes-enviadas', function(){
 
+	Usuario::verifyLogin();
+
 	$page = new Page();
 
 	$page->setTpl("solicitacoes-enviadas");
@@ -35,6 +44,8 @@ $app->get('/solicitacoes-enviadas', function(){
 });
 
 $app->get('/solicitacoes-lixeira', function(){
+
+	Usuario::verifyLogin();
 
 	$page = new Page();
 
