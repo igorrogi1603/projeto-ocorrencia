@@ -39,6 +39,112 @@ class Validacao {
 		}
 	}
 
+	public function validaCPF($cpf = null) {
+		// Verifica se um número foi informado
+		if(empty($cpf)) {
+			return false;
+		}
+
+		// Elimina possivel mascara
+		$cpf = preg_replace("/[^0-9]/", "", $cpf);
+		$cpf = str_pad($cpf, 11, '0', STR_PAD_LEFT);
+		
+		// Verifica se o numero de digitos informados é igual a 11 
+		if (strlen($cpf) != 11) {
+			return false;
+		}
+		// Verifica se nenhuma das sequências invalidas abaixo 
+		// foi digitada. Caso afirmativo, retorna falso
+		else if ($cpf == '00000000000' || 
+			$cpf == '11111111111' || 
+			$cpf == '22222222222' || 
+			$cpf == '33333333333' || 
+			$cpf == '44444444444' || 
+			$cpf == '55555555555' || 
+			$cpf == '66666666666' || 
+			$cpf == '77777777777' || 
+			$cpf == '88888888888' || 
+			$cpf == '99999999999') {
+			return false;
+		 // Calcula os digitos verificadores para verificar se o
+		 // CPF é válido
+		 } else {   
+			
+			for ($t = 9; $t < 11; $t++) {
+				
+				for ($d = 0, $c = 0; $c < $t; $c++) {
+					$d += $cpf{$c} * (($t + 1) - $c);
+				}
+				$d = ((10 * $d) % 11) % 10;
+				if ($cpf{$c} != $d) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+	}
+
+	public function replaceCpfBd($cpf)
+	{
+		//tira os pontos e ifem 
+		//para cadastrar no banco de dados sem erro
+		$cpfProvisorio = str_replace(".", "", $cpf);
+		$cpfProvisorio = str_replace("-", "", $cpfProvisorio);
+
+		return $cpfProvisorio;
+	}
+
+	public function replaceRgBd($rg, $digito)
+	{
+		//tirar os pontos para cadastrar no banco de dados
+		$rgProvisorio = str_replace(".", "", $rg);
+
+		//juntar com o digito verificador
+		$rgCompleto = $rgProvisorio."".$digito;
+
+		return $rgCompleto;
+	}
+
+	//tirando as barras e trocando por ifens
+	public function replaceDataBd($data)
+	{
+		$dataProvisoria = str_replace("/", "-", $data);
+
+		$dataCompleta = date("Y-m-d", strtotime($dataProvisoria));
+
+		return $dataCompleta;
+	}
+
+	//tirando as barras e trocando por ifens
+	public function replaceDataView($data)
+	{
+		$dataProvisoria = str_replace("-", "/", $data);
+
+		$dataCompleta = date("d/m/Y", strtotime($dataProvisoria));
+
+		return $dataCompleta;
+	}
+
+	public function replaceCelularBd($celular)
+	{
+		//tirar os ifens para cadastrar no banco de dados
+		$celularProvisorio = str_replace("-", "", $celular);
+		$celularProvisorio = str_replace(" ", "", $celularProvisorio);
+
+		return $celularProvisorio;
+	}	
+
+	public function replaceTelefoneFixoBd($fixo)
+	{
+		//tirar os ifens e espaços em brancos 
+		//para cadastrar no banco de dados
+		$fixoProvisorio = str_replace("-", "", $fixo);
+		$fixoProvisorio = str_replace(" ", "", $fixoProvisorio);
+
+		return $fixoProvisorio;
+	}
+	
 	//MENSAGEM DE ERRO
 	public static function setMsgError($msg)
 	{

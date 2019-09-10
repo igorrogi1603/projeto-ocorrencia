@@ -30,7 +30,7 @@ class CCadastrarUsuario {
 		//Validacao de campos
 		//----------------------------------------------------------------------------------------
 		$post['nomeUsuario'] = $validacao->validarString($post['nomeUsuario'], 1);
-		$validaCPF = $pessoa->validaCPF($post['cpfUsuario']);
+		$validaCPF = $validacao->validaCPF($post['cpfUsuario']);
 		$post['funcaoUsuario'] = $validacao->validarString($post['funcaoUsuario'], 1);
 		$post['cepUsuario'] = $validacao->validarString($post['cepUsuario'], 3);
 		$post['ruaUsuario'] = $validacao->validarString($post['ruaUsuario'], 2);
@@ -62,6 +62,29 @@ class CCadastrarUsuario {
 			Validacao::setMsgError("Informe a senha.");
 	        header('Location: /usuarios-cadastrar');
 	        exit;
+		}
+
+		//Nao pode cadastrar usuarios com cpf iguais
+		//Pelo cpf da para saber se tem duas pessoas com mais de uma conta
+		$cpfIgual = $mpessoa->cpfIgual();
+
+		foreach ($cpfIgual as $cpf) {
+			if ($validacao->replaceCpfBd($post['cpfUsuario']) == $cpf['cpf']) {
+				Validacao::setMsgError("Esta pessoa já está cadastrada.");
+		        header('Location: /usuarios-cadastrar');
+		        exit;
+			}
+		}
+
+		//Nao pode cadastrar usuarios com usernames iguais
+		$userIgual = $musuario->userIgual();
+
+		foreach ($userIgual as $user) {
+			if ($post['usernameUsuario'] == $user['user']) {
+				Validacao::setMsgError("Este username de login já está cadastrado.");
+		        header('Location: /usuarios-cadastrar');
+		        exit;
+			}
 		}
 
 		//----------------------------------------------------------------------------------------

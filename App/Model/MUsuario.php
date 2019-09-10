@@ -34,7 +34,6 @@ class MUsuario {
 
 	public function ultimoRegistro()
 	{
-
 		$sql = new Conexao;
 
 		$qtd = $sql->select("SELECT MAX(idUsuario) FROM tb_usuario");
@@ -46,9 +45,14 @@ class MUsuario {
 		} else {
 			return false;
 		}
-
 	}
 
+	public function userIgual()
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT user FROM tb_usuario");		
+	}
 
 }
 

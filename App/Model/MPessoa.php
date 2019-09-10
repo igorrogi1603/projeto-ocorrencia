@@ -10,7 +10,6 @@ class MPessoa {
 
 	public function cadastrar($post, $idContato, $idEndereco)
 	{
-
 		$sql = new Conexao;
 
 		$pessoa = new Pessoa;
@@ -25,17 +24,15 @@ class MPessoa {
 			":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 			":idContato" => (int)$idContato[0]["MAX(idContato)"],
 			":nome" => utf8_decode(strtolower($validacao->validarString($pessoa->getnomeUsuario(), 1))),
-			":dataNasc" => $pessoa->replaceDataBd($pessoa->getdataNascUsuario()),
-			":cpf" => $pessoa->replaceCpfBd($pessoa->getcpfUsuario()),
-			":rg" => $pessoa->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
+			":dataNasc" => $validacao->replaceDataBd($pessoa->getdataNascUsuario()),
+			":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
+			":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
 			":sexo" => $pessoa->getsexoUsuario()
 		]);
-
 	}
 
 	public function ultimoRegistro()
 	{
-
 		$sql = new Conexao;
 
 		$qtd = $sql->select("SELECT MAX(idPessoa) FROM tb_pessoa");
@@ -47,7 +44,13 @@ class MPessoa {
 		} else {
 			return false;
 		}
+	}
 
+	public function cpfIgual()
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT cpf FROM tb_pessoa");		
 	}
 
 }
