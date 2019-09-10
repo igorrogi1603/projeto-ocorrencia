@@ -28,11 +28,11 @@
           <form action="/login" method="post">
             <div class="form-group">
                 <label class="text-normal text-dark">Usuário</label>
-                <input type="text" name="usernameUsuario" class="form-control" placeholder="Usuário">
+                <input type="text" name="usernameUsuario" class="form-control" placeholder="Usuário" onkeyup="validarCaracter(this, 2)" required>
             </div>
             <div class="form-group">
                 <label class="text-normal text-dark">Senha</label>
-                <input type="password" name="senhaUsuario" class="form-control" placeholder="Senha">
+                <input type="password" name="senhaUsuario" class="form-control" placeholder="Senha" required>
             </div>
 
             <div class="row">
@@ -52,11 +52,31 @@
       </div>
     </div>
 
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/res/site/dist/js/bootstrap4/jquery-3.3.1.slim.min.js"></script>
     <script src="/res/site/dist/js/bootstrap4/popper.min.js"></script>
     <script src="/res/site/dist/js/bootstrap4/bootstrap.min.js"></script>
+
+    <script>
+      function validarCaracter(valor, tipo)
+      {
+        switch (tipo) {
+          case 1:
+            string = valor.value.replace(/[^a-zA-Zà-úÀ-Ú ]/g,'');
+            valor.value = string;
+            break;
+          case 2:
+            string = valor.value.replace(/[^a-zA-Z0-9 ]/g,'');
+            valor.value = string;
+            break;
+          case 3:
+            string = valor.value.replace(/[^a-zA-Z0-9à-úÀ-Ú ]/g,'');
+            valor.value = string;
+            break;
+        }
+      }
+    </script>
+
   </body>
 </html>
