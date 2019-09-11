@@ -139,8 +139,8 @@
                 <div class="form-group">
                   <label for="id-setor-usuario">Setor *</label>
                   <select class="form-control select2" name="setorUsuario" id="id-setor-usuario" onblur="confirmarSenha()" required>
-                    <option value="secretaria-saude">Secretaria da Saude</option>
-                    <option value="administracao">Administração</option>
+                    <option value="Secretaria da Saude">Secretaria da Saúde</option>
+                    <option value="Administração">Administração</option>
                   </select>
                 </div>
               </div>

@@ -31,6 +31,14 @@ class MEndereco {
 
 	}
 
+	//Lista tudo da tabela
+	public function listAll()
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT * FROM tb_endereco");
+	}
+
 	public function ultimoRegistro()
 	{
 

@@ -1,0 +1,115 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>Usuário Detalhe</h1>
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li class="active">Usuário Detalhe</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!--Box Detalhes-->
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Detalhes</h3>
+
+        <!--<div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>-->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <!--Inicio Row-->
+        <div class="row">
+          <!--Detalhes-->
+          <div class="col-md-4">
+            <p class="sem-espacamento"><strong>Nome: </strong>{$detalheUsuario.nome}</p>
+            <p class="sem-espacamento"><strong>Data de Nascimento: </strong>{$detalheUsuario.dataNasc}</p>
+            <p class="sem-espacamento"><strong>Idade: </strong>{$detalheUsuario.qtdAnos}</p>
+            <p class="sem-espacamento"><strong>CPF: </strong>{$detalheUsuario.cpf}</p>
+            <p class="sem-espacamento"><strong>RG: </strong>{$detalheUsuario.rg}</p>
+            <p class="sem-espacamento"><strong>Sexo: </strong>{$detalheUsuario.sexo}</p>
+          </div>
+          <!--Fim Detalhes-->
+
+          <!--Vitima-->
+          <div class="col-md-4">
+            <p class="sem-espacamento"><strong>Usuario: </strong>{$detalheUsuario.user}</p>
+            <p class="sem-espacamento"><strong>Nivel de Acesso: </strong>{$detalheUsuario.nivelAcesso}</p>
+            <p class="sem-espacamento"><strong>Função: </strong>{$detalheUsuario.funcao}</p>
+            <p class="sem-espacamento"><strong>Setor: </strong>{$detalheUsuario.setor}</p>
+            <p class="sem-espacamento"><strong>Celular: </strong>{$detalheUsuario.celular}</p>
+            <p class="sem-espacamento"><strong>Telefone Fixo: </strong>{$detalheUsuario.fixo}</p>
+            <p class="sem-espacamento"><strong>E-mail: </strong>{$detalheUsuario.email}</p>
+          </div>
+          <!--Fim Vitima-->
+
+          <!--Endereco da vitima-->
+          <div class="col-md-4">
+            <p class="sem-espacamento"><strong>CEP: </strong>{$detalheUsuario.cep}</p>
+            <p class="sem-espacamento"><strong>Rua: </strong>{$detalheUsuario.rua}</p>
+            <p class="sem-espacamento"><strong>Número: </strong>{$detalheUsuario.numero}</p>
+            <p class="sem-espacamento"><strong>Bairro: </strong>{$detalheUsuario.bairro}</p>
+            <p class="sem-espacamento"><strong>Cidade: </strong>{$detalheUsuario.cidade}</p>
+            <p class="sem-espacamento"><strong>Estado: </strong>{$detalheUsuario.estado}</p>
+            <p class="sem-espacamento"><strong>Complemento: </strong>{$detalheUsuario.complemento}</p>
+          </div>
+          <!--Fim Endereco da vitima-->
+        </div>
+        <!--Fim Row-->
+          
+        <br>
+        <hr>
+        <br>
+
+        <div class="alert" style="background-color: #FFF3CD; color: #A18532;" role="alert">
+          Um usuário bloqueado <strong>não</strong> poderá acessar o sistema até que seja desbloqueado.
+        </div>
+
+        <!--Inicio Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Status</h4>
+            {if="$detalheUsuario.isBloqueado == 0"}
+            <p class="sem-espacamento"><strong>Desbloqueado</strong></p>
+            {else}
+            <p class="sem-espacamento"><strong>Bloqueado</strong></p>
+            {/if}
+          </div>
+        </div>
+        <!--Fim Row-->
+
+        <br>
+        <hr>
+        <br>
+
+        <!--Inicio Row-->
+        <div class="row">
+          <div class="col-md-12">
+            
+            <a href="#" class="btn btn-app"><i class="fa fa-edit"></i>Editar</a>
+
+            {if="$detalheUsuario.isBloqueado == 0"}
+            <a href="#" class="btn btn-app"><i class="fa fa-ban"></i>Bloquear</a>
+            {else}
+            <a href="#" class="btn btn-app"><i class="fa fa-check"></i>Desbloquear</a>
+            {/if}      
+            
+            <a href="#" class="btn btn-app"><i class="fa fa-trash-o"></i>Excluir</a>            
+
+          </div>
+        </div>
+        <!--Fim Row-->
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!--Fim Box Detalhes-->
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

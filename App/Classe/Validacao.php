@@ -95,6 +95,22 @@ class Validacao {
 		return $cpfProvisorio;
 	}
 
+	public function replaceCpfView($cpf)
+	{
+		if ($cpf != null || $cpf != "") {
+			$campo1 = substr($cpf, 0, 3);
+			$campo2 = substr($cpf, 3, 3);
+			$campo3 = substr($cpf, 6, 3);
+			$campo4 = substr($cpf, 9, 2);
+
+			$cpfCompleto = $campo1.".".$campo2.".".$campo3."-".$campo4;
+
+			return $cpfCompleto;
+		} else {
+			return "";
+		}
+	}
+
 	public function replaceRgBd($rg, $digito)
 	{
 		//tirar os pontos para cadastrar no banco de dados
@@ -104,6 +120,22 @@ class Validacao {
 		$rgCompleto = $rgProvisorio."".$digito;
 
 		return $rgCompleto;
+	}
+
+	public function replaceRgView($rg)
+	{
+		if ($rg != null || $rg != "") {
+			$campo1 = substr($rg, 0, 2);
+			$campo2 = substr($rg, 2, 3);
+			$campo3 = substr($rg, 5, 3);
+			$campo4 = substr($rg, 8, 1);
+
+			$rgCompleto = $campo1.".".$campo2.".".$campo3."-".$campo4;
+
+			return $rgCompleto;
+		} else {
+			return "";
+		}
 	}
 
 	//tirando as barras e trocando por ifens
@@ -133,7 +165,22 @@ class Validacao {
 		$celularProvisorio = str_replace(" ", "", $celularProvisorio);
 
 		return $celularProvisorio;
-	}	
+	}
+
+	public function replaceCelularView($celular)
+	{
+		if ($celular != null || $celular != "") {
+			$campo1 = substr($celular, 0, 2);
+			$campo2 = substr($celular, 2, 5);
+			$campo3 = substr($celular, 7, 4);
+
+			$celularCompleto = "(".$campo1.") ".$campo2."-".$campo3;
+
+			return $celularCompleto;
+		} else {
+			return "";
+		}
+	}
 
 	public function replaceTelefoneFixoBd($fixo)
 	{
@@ -143,6 +190,35 @@ class Validacao {
 		$fixoProvisorio = str_replace(" ", "", $fixoProvisorio);
 
 		return $fixoProvisorio;
+	}
+
+	public function replaceTelefoneFixoView($fixo)
+	{	
+		if ($fixo != null || $fixo != "") {
+			$campo1 = substr($fixo, 0, 2);
+			$campo2 = substr($fixo, 2, 4);
+			$campo3 = substr($fixo, 6, 4);
+
+			$fixoCompleto = "(".$campo1.") ".$campo2."-".$campo3;
+
+			return $fixoCompleto;
+		} else {
+			return "";
+		}
+	}
+
+	public function replaceCepView($cep)
+	{
+		if ($cep != null || $cep != "") {
+			$campo1 = substr($cep, 0, 5);
+			$campo2 = substr($cep, 5, 3);
+
+			$cepCompleto = $campo1."-".$campo2;
+
+			return $cepCompleto;
+		} else {
+			return "";
+		}
 	}
 	
 	//MENSAGEM DE ERRO

@@ -23,12 +23,20 @@ class MPessoa {
 		", [
 			":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 			":idContato" => (int)$idContato[0]["MAX(idContato)"],
-			":nome" => utf8_decode(strtolower($validacao->validarString($pessoa->getnomeUsuario(), 1))),
+			":nome" => utf8_decode($validacao->validarString($pessoa->getnomeUsuario(), 1)),
 			":dataNasc" => $validacao->replaceDataBd($pessoa->getdataNascUsuario()),
 			":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
 			":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
 			":sexo" => $pessoa->getsexoUsuario()
 		]);
+	}
+
+	//Lista tudo da tabela
+	public function listAll()
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT * FROM tb_pessoa");	
 	}
 
 	public function ultimoRegistro()

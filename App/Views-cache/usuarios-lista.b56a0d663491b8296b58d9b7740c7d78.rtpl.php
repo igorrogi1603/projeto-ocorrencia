@@ -2,10 +2,10 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Cadastrar Usuário</h1>
+    <h1>Lista Usuário</h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Cadastrar Usuário</li>
+      <li class="active">Lista Usuário</li>
     </ol>
   </section>
 
@@ -25,23 +25,33 @@
               <th>CPF</th>
               <th>Cargo</th>
               <th>Setor</th>
-              <th>Data de Criação</th>
               <th>Opções</th>
             </tr>
           </thead>
 
           <tbody>
+            <?php $counter1=-1;  if( isset($listaUsuario) && ( is_array($listaUsuario) || $listaUsuario instanceof Traversable ) && sizeof($listaUsuario) ) foreach( $listaUsuario as $key1 => $value1 ){ $counter1++; ?>
+
             <tr>
-              <td>251</td>
-              <td>Elisa de Oliveira Ramos</td>
-              <td>425.653.987.56</td>
-              <td>Diretor</td>
-              <td>Educação</td>
-              <td>15/05/2013</td>
+              <td><?php echo htmlspecialchars( $value1["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["cpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["funcao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["setor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td>
-                <a href="/apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                <a href="/usuarios-detalhe/<?php echo htmlspecialchars( $value1["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                <?php if( $value1["isBloqueado"] == 0 ){ ?>
+
+                <a href="#" class="btn btn-success"><i class="fa fa-check"></i></a>
+                <?php }else{ ?>
+
+                <a href="#" class="btn btn-danger"><i class="fa fa-ban"></i></a>
+                <?php } ?>
+
               </td>
             </tr>
+            <?php } ?>
+
           </tbody>
         </table>
         
