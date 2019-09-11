@@ -58,6 +58,16 @@ class MUsuario {
 		}
 	}
 
+	//Serve para localizar um usuario especifico para excluir por exemplo
+	public function usuarioEspecifico($idUsuario)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT * FROM tb_usuario WHERE idUsuario = :idUsuario", [
+			":idUsuario" => $idUsuario
+		]);
+	}
+
 	//Evitar de duplicar usuarios no banco de dados
 	public function userIgual()
 	{
@@ -118,9 +128,9 @@ class MUsuario {
 		return $sql->select("
 			SELECT 
 			a.idUsuario, a.nivelAcesso, a.user, a.funcao, a.setor, a.isBloqueado, a.dataRegistro, 
-			b.nome, b.dataNasc, b.cpf, b.rg, b.sexo,
-			c.celular, c.fixo, c.email, 
-			d.cep, d.rua, d.numero, d.bairro, d.cidade, d.estado, d.complemento
+			b.idPessoa, b.nome, b.dataNasc, b.cpf, b.rg, b.sexo,
+			c.idContato, c.celular, c.fixo, c.email, 
+			d.idEndereco, d.cep, d.rua, d.numero, d.bairro, d.cidade, d.estado, d.complemento
 			FROM tb_usuario a
 			INNER JOIN tb_pessoa b ON a.idPessoa = b.idPessoa
 			INNER JOIN tb_contato c ON b.idContato = c.idContato
@@ -128,6 +138,33 @@ class MUsuario {
 			WHERE a.idUsuario = :idUsuario;
 		", [
 			":idUsuario" => $idUsuario
+		]);
+	}
+
+	public function bloquearUsuario($idUsuario)
+	{
+		$sql = new Conexao;
+
+		$sql->select("UPDATE tb_usuario SET isBloqueado = 1 WHERE idUsuario = :idUsuario", [
+			"idUsuario" => $idUsuario
+		]);
+	}
+
+	public function desbloquearUsuario($idUsuario)
+	{
+		$sql = new Conexao;
+
+		$sql->query("UPDATE tb_usuario SET isBloqueado = 0 WHERE idUsuario = :idUsuario", [
+			"idUsuario" => $idUsuario
+		]);
+	}
+
+	public function excluirUsuario($idUsuario)
+	{
+		$sql = new Conexao;
+
+		$sql->query("DELETE FROM tb_usuario WHERE idUsuario = :idUsuario", [
+			"idUsuario" => $idUsuario
 		]);
 	}
 

@@ -51,7 +51,15 @@ class MContato {
 		} else {
 			return false;
 		}
+	}
 
+	public function excluirContato($idContato)
+	{
+		$sql = new Conexao;
+
+		$sql->query("DELETE FROM tb_contato WHERE idContato = :idContato", [
+			"idContato" => $idContato
+		]);
 	}
 
 }

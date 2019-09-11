@@ -53,7 +53,15 @@ class MEndereco {
 		} else {
 			return false;
 		}
+	}
 
+	public function excluirEndereco($idEndereco)
+	{
+		$sql = new Conexao;
+
+		$sql->query("DELETE FROM tb_endereco WHERE idEndereco = :idEndereco", [
+			"idEndereco" => $idEndereco
+		]);
 	}
 
 }

@@ -54,11 +54,30 @@ class MPessoa {
 		}
 	}
 
+	//Serve para localizar um usuario especifico para excluir por exemplo
+	public function pessoaEspecifica($idPessoa)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT * FROM tb_pessoa WHERE idPessoa = :idPessoa", [
+			":idPessoa" => $idPessoa
+		]);
+	}
+
 	public function cpfIgual()
 	{
 		$sql = new Conexao;
 
 		return $sql->select("SELECT cpf FROM tb_pessoa");		
+	}
+
+	public function excluirPessoa($idPessoa)
+	{
+		$sql = new Conexao;
+
+		$sql->query("DELETE FROM tb_pessoa WHERE idPessoa = :idPessoa", [
+			"idPessoa" => $idPessoa
+		]);
 	}
 
 }

@@ -111,6 +111,18 @@ class Validacao {
 		}
 	}
 
+	public function replaceDigitoRg($rg)
+	{
+		//pegar apenas o digito do rg
+		return substr($rg, 8, 1);
+	}
+
+	public function replaceSemDigitoRg($rg)
+	{
+		//pegar apenas o digito do rg
+		return substr($rg, 0, 8);
+	}
+
 	public function replaceRgBd($rg, $digito)
 	{
 		//tirar os pontos para cadastrar no banco de dados

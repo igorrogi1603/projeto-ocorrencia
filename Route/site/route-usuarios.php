@@ -58,4 +58,54 @@ $app->get('/usuarios-detalhe/:idUsuario', function($idUsuario){
 
 });
 
+$app->get('/usuarios-detalhe/editar/:idUsuario', function($idUsuario){
+
+	Usuario::verifyLogin();
+
+	$dadosUsuario = CDetalheUsuario::getEditar($idUsuario);
+
+	$page = new Page();
+
+	$page->setTpl("usuarios-detalhe-editar", [
+		"dadosUsuario" => $dadosUsuario
+	]);
+
+});
+
+$app->post('/usuarios-detalhe/editar/:idUsuario', function($idUsuario){
+
+	Usuario::verifyLogin();
+
+});
+
+$app->get('/usuarios-detalhe/bloquear/:idUsuario', function($idUsuario){
+
+	Usuario::verifyLogin();
+
+	CDetalheUsuario::getBloquear($idUsuario);
+
+	header('Location: /usuarios-detalhe/'.$idUsuario);
+	exit;
+});
+
+$app->get('/usuarios-detalhe/desbloquear/:idUsuario', function($idUsuario){
+
+	Usuario::verifyLogin();
+
+	CDetalheUsuario::getDesbloquear($idUsuario);
+
+	header('Location: /usuarios-detalhe/'.$idUsuario);
+	exit;
+});
+
+$app->get('/usuarios-detalhe/excluir/:idUsuario', function($idUsuario){
+
+	Usuario::verifyLogin();
+
+	CDetalheUsuario::getExcluir($idUsuario);
+
+	header('Location: /usuarios-lista');
+	exit;
+});
+
 ?>

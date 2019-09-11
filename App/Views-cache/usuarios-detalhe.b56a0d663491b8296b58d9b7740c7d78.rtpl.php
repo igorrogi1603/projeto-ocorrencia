@@ -68,6 +68,9 @@
 
         <div class="alert" style="background-color: #FFF3CD; color: #A18532;" role="alert">
           Um usuário bloqueado <strong>não</strong> poderá acessar o sistema até que seja desbloqueado.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
 
         <!--Inicio Row-->
@@ -91,15 +94,17 @@
         <div class="row">
           <div class="col-md-12">
             
-            <a href="#" class="btn btn-app"><i class="fa fa-edit"></i>Editar</a>
+            <a href="/usuarios-detalhe/editar/<?php echo htmlspecialchars( $detalheUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-edit"></i>Editar</a>
 
             <?php if( $detalheUsuario["isBloqueado"] == 0 ){ ?>
-            <a href="#" class="btn btn-app"><i class="fa fa-ban"></i>Bloquear</a>
+            <a class="btn btn-app" onclick="confirmarBloquear()"><i class="fa fa-ban"></i>Bloquear</a>
             <?php }else{ ?>
-            <a href="#" class="btn btn-app"><i class="fa fa-check"></i>Desbloquear</a>
+            <a class="btn btn-app" onclick="confirmarDesbloquear()"><i class="fa fa-check"></i>Desbloquear</a>
             <?php } ?>      
             
-            <a href="#" class="btn btn-app"><i class="fa fa-trash-o"></i>Excluir</a>            
+            <a class="btn btn-app" onclick="confirmarExluir()"><i class="fa fa-trash-o"></i>Excluir</a>
+
+            <a href="/usuarios-detalhe/senha/<?php echo htmlspecialchars( $detalheUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-lock"></i>Alterar Senha</a>
 
           </div>
         </div>
@@ -113,3 +118,28 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+
+function confirmarExluir()
+{
+  if(confirm("Voce realmente deseja EXCLUIR esse usuário ")){
+    location.href="/usuarios-detalhe/excluir/<?php echo htmlspecialchars( $detalheUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>";
+  }
+}
+
+function confirmarBloquear()
+{
+  if(confirm("Voce realmente deseja BLOQUEAR esse usuário ")){
+    location.href="/usuarios-detalhe/bloquear/<?php echo htmlspecialchars( $detalheUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>";
+  }
+}
+
+function confirmarDesbloquear()
+{
+  if(confirm("Voce realmente deseja DESBLOQUEAR esse usuário ")){
+    location.href="/usuarios-detalhe/desbloquear/<?php echo htmlspecialchars( $detalheUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>";
+  }
+}
+
+</script>
