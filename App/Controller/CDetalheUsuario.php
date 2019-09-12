@@ -101,7 +101,14 @@ class CDetalheUsuario {
 		return $dados[0];
 	}
 
-	public function postEditar($post, $idUsuario)
+	public static function postAlterarSenha($post, $idUsuario)
+	{
+		$musuario = new MUsuario;
+
+		$musuario->alterarSenha($post, $idUsuario);
+	}
+
+	public static function postEditar($post, $idUsuario)
 	{
 		//instancia objeto classe
 		$validacao = new Validacao;

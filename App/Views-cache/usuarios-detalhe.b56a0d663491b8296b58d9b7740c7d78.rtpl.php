@@ -104,7 +104,7 @@
             
             <a class="btn btn-app" onclick="confirmarExluir()"><i class="fa fa-trash-o"></i>Excluir</a>
 
-            <a href="/usuarios-detalhe/senha/<?php echo htmlspecialchars( $detalheUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-lock"></i>Alterar Senha</a>
+            <a href="/usuarios-alterar-senha/senha/<?php echo htmlspecialchars( $detalheUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-lock"></i>Alterar Senha</a>
 
           </div>
         </div>

@@ -56,6 +56,25 @@ class MUsuario {
 		]);
 	}
 
+	//Alterar Senha
+	public function alterarSenha($post, $idUsuario)
+	{
+		$sql = new Conexao;
+
+		$usuario = new Usuario;	
+
+		$usuario->setData($post);
+
+		$sql->query("
+			UPDATE tb_usuario 
+			SET senha = :senha
+			WHERE idUsuario = :idUsuario
+		", [
+			":senha" => Usuario::getPasswordHash($usuario->getsenhaUsuario()),
+			":idUsuario" => $idUsuario
+		]);
+	}
+
 	//Lista tudo da tabela
 	public function listAll()
 	{

@@ -113,4 +113,25 @@ $app->get('/usuarios-detalhe/excluir/:idUsuario', function($idUsuario){
 	exit;
 });
 
+$app->get('/usuarios-alterar-senha/senha/:idUsuario', function($idUsuario){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("usuarios-alterar-senha", [
+		"idUsuario" => $idUsuario
+	]);
+});
+
+$app->post('/usuarios-alterar-senha/senha/:idUsuario', function($idUsuario){
+
+	Usuario::verifyLogin();
+
+	CDetalheUsuario::postAlterarSenha($_POST, $idUsuario);
+
+	header('Location: /usuarios-detalhe/'.$idUsuario);
+	exit;
+});
+
 ?>
