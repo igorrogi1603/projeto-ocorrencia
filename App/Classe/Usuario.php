@@ -40,7 +40,6 @@ class Usuario extends GetSet {
 
 	public static function verifyLogin($inadmin = true)
 	{
-
 		if (!Usuario::checkLogin($inadmin))
 		{	
 			if ($inadmin) {
@@ -49,7 +48,15 @@ class Usuario extends GetSet {
 				return false;
 			}
 			exit;
-			
+		} 
+
+		if ($_SESSION[Usuario::SESSION]["isBloqueado"] != 0) {
+			if ($inadmin) {
+				header("Location: /login");	
+			} else {
+				return false;
+			}
+			exit;	
 		}
 
 	}

@@ -21,7 +21,17 @@
       <!-- /.box-header -->
       <div class="box-body">
 
-        <form action="/usuarios-cadastrar" method="post">
+        <form action="/usuarios-detalhe/editar/<?php echo htmlspecialchars( $dadosUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
+
+          <div class="row">
+            <div class="col-md-12">
+              <?php if( $error != '' ){ ?>
+              <div class="alert alert-danger">
+                <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+              </div>
+              <?php } ?>
+            </div>
+          </div>
 
           <!--Row-->
           <div class="row">
@@ -51,6 +61,7 @@
               <!--Sexo-->
               <div class="col-md-3">
                 <div class="form-group">
+                  <input type="hidden" id="id-sexo-hidden" value="<?php echo htmlspecialchars( $dadosUsuario["sexo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                   <label for="id-sexo-usuario">Sexo</label>
                   <select class="form-control select2" name="sexoUsuario" id="id-sexo-usuario">
                     <option value="m">Masculino</option>
@@ -126,6 +137,7 @@
               <!--setor do usuario-->
               <div class="col-md-3">
                 <div class="form-group">
+                  <input type="hidden" id="id-setor-hidden" value="<?php echo htmlspecialchars( $dadosUsuario["setor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                   <label for="id-setor-usuario">Setor *</label>
                   <select class="form-control select2" name="setorUsuario" id="id-setor-usuario" required>
                     <option value="Secretaria da Saude">Secretaria da Saúde</option>
@@ -200,6 +212,7 @@
               <!--Estado usuario-->
               <div class="col-md-3">
                 <div class="form-group">
+                  <input type="hidden" id="id-estado-hidden" value="<?php echo htmlspecialchars( $dadosUsuario["estado"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                   <label for="id-estado-usuario">Estado</label>
                   <select class="form-control select2" name="estadoUsuario" id="id-estado-usuario">
                     <option value="ac">Acre</option>
@@ -277,6 +290,7 @@
               <!--nivel de acesso do usuario-->
               <div class="col-md-6">
                 <div class="form-group">
+                  <input type="hidden" id="id-nivel-hidden" value="<?php echo htmlspecialchars( $dadosUsuario["nivelAcesso"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                   <label for="id-nivel-usuario">Nivel de Acesso *</label>
                   <select class="form-control select2" name="nivelUsuario" id="id-nivel-usuario" required>
                     <option value="1">Nível 1</option>
@@ -304,7 +318,7 @@
             <!--Inicio Row-->
             <div class="row">
               <div class="col-md-12">
-                <input type="submit" class="btn btn-primary pull-right margin" id="botaoEnviar" value="Cadastrar">
+                <input type="submit" class="btn btn-primary pull-right margin" id="botaoEnviar" value="Editar">
               </div>            
             </div>
             <!--Fim Row-->
@@ -322,10 +336,15 @@
 
   window.onload = function()
   {
-    let botaoEnviar = document.getElementById("botaoEnviar");
+    let sexoHidden = document.getElementById("id-sexo-hidden").value;
+    let setorHidden = document.getElementById("id-setor-hidden").value;
+    let estadoHidden = document.getElementById("id-estado-hidden").value;
+    let nivelHidden = document.getElementById("id-nivel-hidden").value;
 
-    botaoEnviar.setAttribute("disabled", false);
-
+    let sexo = document.getElementById("id-sexo-usuario").value = sexoHidden;
+    let setor = document.getElementById("id-setor-usuario").value = setorHidden;
+    let estado = document.getElementById("id-estado-usuario").value = estadoHidden;
+    let nivelAcesso = document.getElementById("id-nivel-usuario").value = nivelHidden;  
   }
 
   function digitoRg()

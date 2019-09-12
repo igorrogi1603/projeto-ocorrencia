@@ -101,6 +101,87 @@ class CDetalheUsuario {
 		return $dados[0];
 	}
 
+	public function postEditar($post, $idUsuario)
+	{
+		//instancia objeto classe
+		$validacao = new Validacao;
+
+		//instancia do objeto model
+		$mcontato = new MContato;
+		$mendereco = new MEndereco;
+		$mpessoa = new MPessoa;
+		$musuario = new MUsuario;
+
+		//Recuperando os IDs
+		$usuarioEspecifico = $musuario->usuarioEspecifico($idUsuario);
+		$pessoaEspecifica = $mpessoa->pessoaEspecifica($usuarioEspecifico[0]['idPessoa']);
+
+		$idPessoa = $usuarioEspecifico[0]['idPessoa'];		
+		$idEndereco = $pessoaEspecifica[0]['idEndereco'];
+		$idContato = $pessoaEspecifica[0]['idContato'];
+
+		//Validacoes de Campo
+		//--------------------------------------------------------------------------------------
+		$post['nomeUsuario'] = $validacao->validarString($post['nomeUsuario'], 1);
+		$validaCPF = $validacao->validaCPF($post['cpfUsuario']);
+		$post['funcaoUsuario'] = $validacao->validarString($post['funcaoUsuario'], 1);
+		$post['cepUsuario'] = $validacao->validarString($post['cepUsuario'], 3);
+		$post['ruaUsuario'] = $validacao->validarString($post['ruaUsuario'], 2);
+		$post['bairroUsuario'] = $validacao->validarString($post['bairroUsuario'], 2);
+		$post['numeroUsuario'] = $validacao->validarString($post['numeroUsuario'], 3);
+		$post['cidadeUsuario'] = $validacao->validarString($post['cidadeUsuario'], 1);
+		$post['complementoUsuario'] = $validacao->validarString($post['complementoUsuario'], 2);
+		$post['usernameUsuario'] = $validacao->validarString($post['usernameUsuario'], 4);
+
+		if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
+			Validacao::setMsgError("CPF Inválido.");
+	        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+	        exit;
+		}
+
+		if (!isset($post['funcaoUsuario']) || $post['funcaoUsuario'] === '') {
+			Validacao::setMsgError("Informe a Função.");
+	        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+	        exit;
+		}
+
+		if (!isset($post['usernameUsuario']) || $post['usernameUsuario'] === '') {
+			Validacao::setMsgError("Informe o usuário.");
+	        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+	        exit;
+		}
+
+		//Nao pode cadastrar usuarios com cpf iguais
+		//Pelo cpf da para saber se tem duas pessoas com mais de uma conta
+		$cpfIgual = $mpessoa->cpfIgualUpdate($idPessoa);
+
+		foreach ($cpfIgual as $cpf) {
+			if ($validacao->replaceCpfBd($post['cpfUsuario']) == $cpf['cpf']) {
+				Validacao::setMsgError("Este cpf já está cadastrado.");
+		        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+		        exit;
+			}
+		}
+
+		//Nao pode cadastrar usuarios com usernames iguais
+		$userIgual = $musuario->userIgualUpdate($idUsuario);
+
+		foreach ($userIgual as $user) {
+			if ($post['usernameUsuario'] == $user['user']) {
+				Validacao::setMsgError("Este username de login já está cadastrado.");
+		        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+		        exit;
+			}
+		}
+
+		//----------------------------------------------------------------------------------------
+		//atualizar
+		$musuario->update($post, $idUsuario);
+		$mpessoa->update($post, $idPessoa);
+		$mendereco->update($post, $idEndereco);
+		$mcontato->update($post, $idContato);
+	}
+
 }
 
 ?>

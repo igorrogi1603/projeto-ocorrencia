@@ -16,9 +16,6 @@ class CCadastrarUsuario {
 	public static function postCadastrarUsuario($post)
 	{	
 		//instancia objeto classe
-		$pessoa = new Pessoa;
-		$endereco = new Endereco;
-		$usuario = new Usuario;
 		$validacao = new Validacao;
 
 		//instancia do objeto model
@@ -70,7 +67,7 @@ class CCadastrarUsuario {
 
 		foreach ($cpfIgual as $cpf) {
 			if ($validacao->replaceCpfBd($post['cpfUsuario']) == $cpf['cpf']) {
-				Validacao::setMsgError("Esta pessoa já está cadastrada.");
+				Validacao::setMsgError("Este cpf já está cadastrado.");
 		        header('Location: /usuarios-cadastrar');
 		        exit;
 			}

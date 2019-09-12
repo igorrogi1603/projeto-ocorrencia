@@ -31,6 +31,30 @@ class MEndereco {
 
 	}
 
+	public function update($post, $idEndereco)
+	{
+		$sql = new Conexao;
+
+		$endereco = new Endereco;
+
+		$endereco->setData($post);
+
+		$sql->query("
+			UPDATE tb_endereco 
+			SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
+			WHERE idEndereco = :idEndereco
+		", [
+			":cep" => $endereco->getcepUsuario(),
+			":rua" => utf8_decode($endereco->getruaUsuario()),
+			":numero" => $endereco->getnumeroUsuario(),
+			":bairro" => utf8_decode($endereco->getbairroUsuario()),
+			":cidade" => utf8_decode($endereco->getcidadeUsuario()),
+			":estado" => $endereco->getestadoUsuario(),
+			":complemento" => utf8_decode($endereco->getcomplementoUsuario()),
+			":idEndereco" => $idEndereco
+		]);
+	}
+
 	//Lista tudo da tabela
 	public function listAll()
 	{

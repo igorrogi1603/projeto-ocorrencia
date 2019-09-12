@@ -31,6 +31,29 @@ class MPessoa {
 		]);
 	}
 
+	public function update($post, $idPessoa)
+	{
+		$sql = new Conexao;
+
+		$pessoa = new Pessoa;
+		$validacao = new Validacao;		
+
+		$pessoa->setData($post);
+
+		$sql->query("
+			UPDATE tb_pessoa 
+			SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
+			WHERE idPessoa = :idPessoa
+		", [
+			":nome" => utf8_decode($validacao->validarString($pessoa->getnomeUsuario(), 1)),
+			":dataNasc" => $validacao->replaceDataBd($pessoa->getdataNascUsuario()),
+			":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
+			":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
+			":sexo" => $pessoa->getsexoUsuario(),
+			"idPessoa" => $idPessoa
+		]);
+	}
+
 	//Lista tudo da tabela
 	public function listAll()
 	{
@@ -64,11 +87,22 @@ class MPessoa {
 		]);
 	}
 
+	//Evitar de duplicar cpf no banco quando for cadastrar uma pessoa
 	public function cpfIgual()
 	{
 		$sql = new Conexao;
 
 		return $sql->select("SELECT cpf FROM tb_pessoa");		
+	}
+
+	//Evitar de duplicar cpf no banco quando for atualizar uma pessoa
+	public function cpfIgualUpdate($idPessoa)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT cpf FROM tb_pessoa WHERE idPessoa != :idPessoa", [
+			":idPessoa" => $idPessoa
+		]);
 	}
 
 	public function excluirPessoa($idPessoa)

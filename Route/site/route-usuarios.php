@@ -67,7 +67,8 @@ $app->get('/usuarios-detalhe/editar/:idUsuario', function($idUsuario){
 	$page = new Page();
 
 	$page->setTpl("usuarios-detalhe-editar", [
-		"dadosUsuario" => $dadosUsuario
+		'dadosUsuario' => $dadosUsuario,
+		'error'=>Validacao::getMsgError()
 	]);
 
 });
@@ -76,6 +77,10 @@ $app->post('/usuarios-detalhe/editar/:idUsuario', function($idUsuario){
 
 	Usuario::verifyLogin();
 
+	CDetalheUsuario::postEditar($_POST, $idUsuario);
+
+	header('Location: /usuarios-detalhe/'.$idUsuario);
+	exit;
 });
 
 $app->get('/usuarios-detalhe/bloquear/:idUsuario', function($idUsuario){

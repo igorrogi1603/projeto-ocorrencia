@@ -34,6 +34,28 @@ class MUsuario {
 		]);
 	}
 
+	public function update($post, $idUsuario)
+	{
+		$sql = new Conexao;
+
+		$usuario = new Usuario;
+		$validacao = new Validacao;		
+
+		$usuario->setData($post);
+
+		$sql->query("
+			UPDATE tb_usuario 
+			SET nivelAcesso = :nivelAcesso, user = :user, funcao = :funcao, setor = :setor
+			WHERE idUsuario = :idUsuario
+		", [
+			":nivelAcesso" => $usuario->getnivelUsuario(),
+			":user" => Validacao::tirarAcentos($usuario->getusernameUsuario()),
+			":funcao" => utf8_decode($usuario->getfuncaoUsuario()),
+			":setor" => utf8_decode($usuario->getsetorUsuario()),
+			":idUsuario" => $idUsuario
+		]);
+	}
+
 	//Lista tudo da tabela
 	public function listAll()
 	{
@@ -74,6 +96,16 @@ class MUsuario {
 		$sql = new Conexao;
 
 		return $sql->select("SELECT user FROM tb_usuario");		
+	}
+
+	//Evitar de duplicar usuarios no banco quando for atualizar um usuario
+	public function userIgualUpdate($idUsuario)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT user FROM tb_usuario WHERE idUsuario != :idUsuario", [
+			":idUsuario" => $idUsuario
+		]);
 	}
 
 	//Logar no sistema
