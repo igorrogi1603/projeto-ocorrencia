@@ -62,6 +62,8 @@
 <script src="/res/site/dist/js/js-local/local-js.js"></script>
 <script src="/res/site/dist/js/js-local/local-mascaras.js"></script>
 <script src="/res/site/dist/js/js-local/add-vitima.js"></script>
+<script src="/res/site/dist/js/js-local/validacao.js"></script>
+<script src="/res/site/dist/js/js-local/calcular-cep.js"></script>
 
 <!--Pagina Novas Ocorrencias-->
 <script>
@@ -130,34 +132,6 @@
         $this.toggleClass("fa-star");
         $this.toggleClass("fa-star-o");
       }
-    });
-  });
-
-  //----------------------------------------------
-  //CADASTRAR USUARIO - CALCULAR CEP
-  $(document).ready(function(){
-    $("#id-cep-usuario").focusout(function(){
-      var cep = $("#id-cep-usuario").val();
-      cep = cep.replace("-", "");
-
-      var urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
-   
-      $.ajax({
-          url : urlStr,
-          type : "get",
-          dataType : "json",
-          success : function(data){
-              console.log(data);
-               
-              $("#id-cidade-usuario").val(data.localidade);
-              $("#id-estado-usuario").val(data.uf.toLowerCase());
-              $("#id-bairro-usuario").val(data.bairro);
-              $("#id-rua-usuario").val(data.logradouro);
-          },
-          error : function(erro){
-              console.log(erro);
-          }
-      });
     });
   });
 

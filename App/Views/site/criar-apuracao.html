@@ -42,7 +42,7 @@
               <div class="row">
                 <div class="col-md-4">
                   <label for="id-qtd-familias">Quantas famílias são:</label>
-                  <input type="number" name="qtd-familias" id="id-qtd-familias" class="form-control" step="1" min="0" onBlur="qtdFamilia()">
+                  <input type="number" name="qtd-familias" id="id-qtd-familias" class="form-control" step="1" min="0" onBlur="qtdFamilia(), validarEnivar()" required>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="id-tipo-da-ocorrencia">Tipo da Apuração</label>
-                    <input type="text" name="tipo-da-ocorrencia" id="id-tipo-da-ocorrencia" class="form-control" maxlength="100">
+                    <input type="text" name="tipo-da-ocorrencia" id="id-tipo-apuracao" class="form-control" maxlength="100" onkeyup="validarCaracter(this, 3)" onblur="validarEnivar()" required>
                   </div>
                 </div>
                 <!--Fim Tipo da Ocorrencia-->
@@ -91,7 +91,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="id-descricao-da-ocorrencia">Descrição da Apuração</label>
-                    <textarea name="descricao-da-ocorrencia" id="id-descricao-da-ocorrencia" class="form-control" rows="10"></textarea>
+                    <textarea name="descricao-da-ocorrencia" id="id-descricao-apuracao" class="form-control" rows="10" onblur="validarEnivar()" required></textarea>
                   </div>
                 </div>
                 <!--Fim Descricao da Ocorrencia-->            
@@ -107,7 +107,7 @@
           <!--Inicio Row-->
           <div class="row">
             <div class="col-md-12">
-              <input type="submit" class="btn btn-primary pull-right margin" value="Enviar">
+              <input type="submit" class="btn btn-primary pull-right margin" id="botaoEnviar" value="Enviar">
             </div>            
           </div>
           <!--Fim Row-->
@@ -125,7 +125,34 @@
 
 <script>
 
-function qtdFamilia(){
+window.onload = function()
+{
+  let botaoEnviar = document.getElementById("botaoEnviar");
+
+  botaoEnviar.setAttribute("disabled", false);
+}
+
+function validarEnivar()
+{
+  let botaoEnviar = document.getElementById("botaoEnviar");
+  let qtdFamilia = document.getElementById("id-qtd-familias");
+  let tipoApuracao = document.getElementById("id-tipo-apuracao");
+  let descricaoApuracao = document.getElementById("id-descricao-apuracao");
+  
+  if
+  (
+    qtdFamilia.value != "" &&
+    tipoApuracao.value != "" &&
+    descricaoApuracao.value != ""
+  ){
+    botaoEnviar.disabled = false;
+  } else {
+    botaoEnviar.setAttribute("disabled", false);
+  }
+}
+
+function qtdFamilia()
+{
   
   let qtdFamilias = document.getElementById('id-qtd-familias').value;
 
