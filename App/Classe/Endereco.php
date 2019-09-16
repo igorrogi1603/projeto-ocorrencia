@@ -2,7 +2,7 @@
 
 namespace App\Classe;
 
-use \App\Config\GetSet;
+use \App\Classe\GetSet;
 
 class Endereco extends GetSet {
 

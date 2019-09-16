@@ -33,7 +33,7 @@
         </div>
 
         <!--Inicio Form-->
-        <form action="/apuracao-enviada" method="post">
+        <form action="/criar-apuracao" method="post">
 
           <!--Quantidade de Familia-->
           <div class="box box-primary">
@@ -42,7 +42,7 @@
               <div class="row">
                 <div class="col-md-4">
                   <label for="id-qtd-familias">Quantas famílias são:</label>
-                  <input type="number" name="qtd-familias" id="id-qtd-familias" class="form-control" step="1" min="0" onBlur="qtdFamilia(), validarEnivar()" required>
+                  <input type="number" name="qtdFamilias" id="id-qtd-familias" class="form-control" step="1" min="0" onBlur="qtdFamilia(), validarEnivar()" required>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="id-tipo-da-ocorrencia">Tipo da Apuração</label>
-                    <input type="text" name="tipo-da-ocorrencia" id="id-tipo-apuracao" class="form-control" maxlength="100" onkeyup="validarCaracter(this, 3)" onblur="validarEnivar()" required>
+                    <input type="text" name="tipoApuracao" id="id-tipo-apuracao" class="form-control" maxlength="100" onkeyup="validarCaracter(this, 3)" onblur="validarEnivar()" required>
                   </div>
                 </div>
                 <!--Fim Tipo da Ocorrencia-->
@@ -91,7 +91,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="id-descricao-da-ocorrencia">Descrição da Apuração</label>
-                    <textarea name="descricao-da-ocorrencia" id="id-descricao-apuracao" class="form-control" rows="10" onblur="validarEnivar()" required></textarea>
+                    <textarea name="descricaoApuracao" id="id-descricao-apuracao" class="form-control" rows="10" onblur="validarEnivar()" required></textarea>
                   </div>
                 </div>
                 <!--Fim Descricao da Ocorrencia-->            

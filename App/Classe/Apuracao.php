@@ -4,7 +4,7 @@ namespace App\Classe;
 
 use \App\Classe\GetSet;
 
-class Contato extends GetSet {
+class Apuracao extends GetSet {
 
 	
 

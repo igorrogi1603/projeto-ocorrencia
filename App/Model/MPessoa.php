@@ -8,7 +8,7 @@ use \App\Classe\Validacao;
 
 class MPessoa {
 
-	public function cadastrar($post, $idContato, $idEndereco)
+	public function cadastrar($post, $idContato, $idEndereco, $complemento)
 	{
 		$sql = new Conexao;
 
@@ -17,19 +17,56 @@ class MPessoa {
 
 		$pessoa->setData($post);
 
-		$sql->query("
-			INSERT INTO tb_pessoa (idEndereco, idContato, nome, dataNasc, cpf, rg, sexo) 
-			VALUES(:idEndereco, :idContato, :nome, :dataNasc, :cpf, :rg, :sexo)
-		", [
-			":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
-			":idContato" => (int)$idContato[0]["MAX(idContato)"],
-			":nome" => utf8_decode($validacao->validarString($pessoa->getnomeUsuario(), 1)),
-			":dataNasc" => $validacao->replaceDataBd($pessoa->getdataNascUsuario()),
-			":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
-			":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
-			":sexo" => $pessoa->getsexoUsuario()
-		]);
+		switch ($complemento) {
+			case 'usuario':
+				$sql->query("
+					INSERT INTO tb_pessoa (idEndereco, idContato, nome, dataNasc, cpf, rg, sexo) 
+					VALUES(:idEndereco, :idContato, :nome, :dataNasc, :cpf, :rg, :sexo)
+				", [
+					":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
+					":idContato" => (int)$idContato[0]["MAX(idContato)"],
+					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeUsuario(), 1)),
+					":dataNasc" => $validacao->replaceDataBd($pessoa->getdataNascUsuario()),
+					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
+					":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
+					":sexo" => $pessoa->getsexoUsuario()
+				]);
+				break;
+
+			case 'vitima':
+				$sql->query("
+					INSERT INTO tb_pessoa (idEndereco, idContato, nome, cpf, sexo) 
+					VALUES(:idEndereco, :idContato, :nome, :cpf, :sexo)
+				", [
+					":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
+					":idContato" => (int)$idContato[0]["MAX(idContato)"],
+					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeVitima(), 1)),
+					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfVitima()),
+					":sexo" => $pessoa->getsexoVitima()
+				]);
+				break;
+			
+			case 'responsavelVitima':
+				$sql->query("
+					INSERT INTO tb_pessoa (idEndereco, idContato, nome, cpf) 
+					VALUES(:idEndereco, :idContato, :nome, :cpf)
+				", [
+					":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
+					":idContato" => (int)$idContato[0]["MAX(idContato)"],
+					":nome" => utf8_decode($validacao->validarString($pessoa->getresponsavelVitima(), 1)),
+					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfResponsavelVitima()),
+				]);
+				break;
+
+			default:
+				var_dump("Não foi possivel cadastrar");
+				exit;
+				break;
+		}
 	}
+
+	//-------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
 
 	public function update($post, $idPessoa)
 	{

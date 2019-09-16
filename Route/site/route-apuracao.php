@@ -2,6 +2,7 @@
 
 use \App\Classe\Usuario;
 use \App\Config\Page;
+use \App\Controller\CCriarApuracao;
 
 $app->get("/criar-apuracao", function(){
 	
@@ -12,6 +13,16 @@ $app->get("/criar-apuracao", function(){
 	$page->setTpl("criar-apuracao");
 });
 
+$app->post("/criar-apuracao", function(){
+	
+	Usuario::verifyLogin();
+
+	CCriarApuracao::postCriarApuracao($_POST);
+
+	header("Location: /apuracao-enviada");
+	exit;
+});
+
 $app->get("/apuracao-enviada", function(){
 
 	Usuario::verifyLogin();
@@ -19,14 +30,6 @@ $app->get("/apuracao-enviada", function(){
 	$page = new Page();
 
 	$page->setTpl("apuracao-enviada");
-});
-
-$app->post("/apuracao-enviada", function(){
-
-	Usuario::verifyLogin();
-	
-	header("Location: /apuracao-enviada");
-	exit;	
 });
 
 $app->get("/apuracao-enviada-print", function(){

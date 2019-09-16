@@ -8,7 +8,7 @@ use \App\Classe\Validacao;
 
 class MContato {
 
-	public function cadastrar($post)
+	public function cadastrar($post, $complemento)
 	{
 
 		$sql = new Conexao;
@@ -18,14 +18,41 @@ class MContato {
 
 		$contato->setData($post);
 
-		$sql->query("
-			INSERT INTO tb_contato (celular, fixo, email) 
-			VALUES(:celular, :fixo, :email)
-		", [
-			":celular" => $validacao->replaceCelularBd($contato->getcelularUsuario()),
-			":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoUsuario()),
-			":email" => utf8_decode($contato->getemailUsuario())
-		]);
+		switch ($complemento) {
+			case 'usuario':
+				$sql->query("
+					INSERT INTO tb_contato (celular, fixo, email) 
+					VALUES(:celular, :fixo, :email)
+				", [
+					":celular" => $validacao->replaceCelularBd($contato->getcelularUsuario()),
+					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoUsuario()),
+					":email" => utf8_decode($contato->getemailUsuario())
+				]);				
+				break;
+			
+			case 'vitima':
+				$sql->query("
+					INSERT INTO tb_contato (celular) 
+					VALUES(:celular)
+				", [
+					":celular" => $validacao->replaceCelularBd($contato->getcelularVitima())
+				]);				
+				break;
+
+			case 'responsavelVitima':
+				$sql->query("
+					INSERT INTO tb_contato (celular) 
+					VALUES(:celular)
+				", [
+					":celular" => $validacao->replaceCelularBd($contato->getcelularResponsavelVitima())
+				]);				
+				break;
+
+			default:
+				var_dump("Não foi possivel cadastrar");
+				exit;
+				break;
+		}
 	}
 
 	public function update($post, $idContato)

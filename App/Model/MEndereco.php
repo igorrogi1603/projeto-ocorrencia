@@ -7,7 +7,7 @@ use \App\Classe\Endereco;
 
 class MEndereco {
 
-	public function cadastrar($post)
+	public function cadastrar($post, $complemento)
 	{
 
 		$sql = new Conexao;
@@ -16,19 +16,42 @@ class MEndereco {
 
 		$endereco->setData($post);
 
-		$sql->query("
-			INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
-			VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
-		", [
-			":cep" => $endereco->getcepUsuario(),
-			":rua" => utf8_decode($endereco->getruaUsuario()),
-			":numero" => $endereco->getnumeroUsuario(),
-			":bairro" => utf8_decode($endereco->getbairroUsuario()),
-			":cidade" => utf8_decode($endereco->getcidadeUsuario()),
-			":estado" => $endereco->getestadoUsuario(),
-			":complemento" => utf8_decode($endereco->getcomplementoUsuario())
-		]);
+		switch ($complemento) {
+			case 'usuario':
+				$sql->query("
+					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
+					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
+				", [
+					":cep" => $endereco->getcepUsuario(),
+					":rua" => utf8_decode($endereco->getruaUsuario()),
+					":numero" => $endereco->getnumeroUsuario(),
+					":bairro" => utf8_decode($endereco->getbairroUsuario()),
+					":cidade" => utf8_decode($endereco->getcidadeUsuario()),
+					":estado" => $endereco->getestadoUsuario(),
+					":complemento" => utf8_decode($endereco->getcomplementoUsuario())
+				]);		
+				break;
 
+			case 'vitima':
+				$sql->query("
+					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
+					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
+				", [
+					":cep" => $endereco->getcepVitima(),
+					":rua" => utf8_decode($endereco->getruaVitima()),
+					":numero" => $endereco->getnumeroVitima(),
+					":bairro" => utf8_decode($endereco->getbairroVitima()),
+					":cidade" => utf8_decode($endereco->getcidadeVitima()),
+					":estado" => $endereco->getestadoVitima(),
+					":complemento" => utf8_decode($endereco->getcomplementoVitima())
+				]);		
+				break;
+
+			default:
+				var_dump("Não foi possivel cadastrar");
+				exit;
+				break;
+		}
 	}
 
 	public function update($post, $idEndereco)

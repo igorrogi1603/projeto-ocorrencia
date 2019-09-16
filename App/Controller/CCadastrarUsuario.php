@@ -86,15 +86,15 @@ class CCadastrarUsuario {
 
 		//----------------------------------------------------------------------------------------
 		//passando os campos para cadastrar
-		$mcontato->cadastrar($post);
-		$mendereco->cadastrar($post);
+		$mcontato->cadastrar($post, "usuario");
+		$mendereco->cadastrar($post, "usuario");
 
 		//recuperando o ultimo id de contato e endereco
 		$idContato = $mcontato->ultimoRegistro();
 		$idEndereco = $mendereco->ultimoRegistro();
 
 		//cadastrando um usuario
-		$mpessoa->cadastrar($post, $idContato, $idEndereco);
+		$mpessoa->cadastrar($post, $idContato, $idEndereco, "usuario");
 
 		//recuperando o ultimo id de pessoa para o usuario
 		$idPessoa = $mpessoa->ultimoRegistro();

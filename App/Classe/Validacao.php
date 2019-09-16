@@ -2,8 +2,6 @@
 
 namespace App\Classe;
 
-use \App\Config\GetSet;
-
 class Validacao {
 
 	const SESSION_ERROR = "ValidacaoErro";
