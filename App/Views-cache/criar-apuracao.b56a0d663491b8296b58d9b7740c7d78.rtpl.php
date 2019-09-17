@@ -32,6 +32,16 @@
           Se tiver mais que duas famílias na mesma apuração, crie em apurações diferentes.
         </div>
 
+        <div class="row">
+          <div class="col-md-12">
+            <?php if( $error != '' ){ ?>
+            <div class="alert alert-danger">
+              <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+            </div>
+            <?php } ?>
+          </div>
+        </div>
+
         <!--Inicio Form-->
         <form action="/criar-apuracao" method="post">
 
@@ -41,7 +51,7 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-md-4">
-                  <label for="id-qtd-familias">Quantas famílias são:</label>
+                  <label for="id-qtd-familias">Quantas famílias são: *</label>
                   <input type="number" name="qtdFamilias" id="id-qtd-familias" class="form-control" step="1" min="0" onBlur="qtdFamilia(), validarEnivar()" required>
                 </div>
               </div>
@@ -81,7 +91,7 @@
                 <!--Tipo da Ocorrencia-->
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="id-tipo-da-ocorrencia">Tipo da Apuração</label>
+                    <label for="id-tipo-da-ocorrencia">Tipo da Apuração *</label>
                     <input type="text" name="tipoApuracao" id="id-tipo-apuracao" class="form-control" maxlength="100" onkeyup="validarCaracter(this, 3)" onblur="validarEnivar()" required>
                   </div>
                 </div>
@@ -90,7 +100,7 @@
                 <!--Descricao da Ocorrencia-->
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="id-descricao-da-ocorrencia">Descrição da Apuração</label>
+                    <label for="id-descricao-da-ocorrencia">Descrição da Apuração *</label>
                     <textarea name="descricaoApuracao" id="id-descricao-apuracao" class="form-control" rows="10" onblur="validarEnivar()" required></textarea>
                   </div>
                 </div>

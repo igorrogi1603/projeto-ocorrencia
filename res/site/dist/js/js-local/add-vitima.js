@@ -58,8 +58,8 @@ $(function () {
                 '</div>'+
                 '<div class="col-md-4">'+
                   '<div class="form-group">'+
-                    '<label for="id-cpf-vitima">CPF</label>'+
-                    '<input type="text" name="cpfVitima'+proximoNum+'" id="id-cpf-vitima-'+proximoNum+'" class="form-control" placeholder="___.___.___-__">'+
+                    '<label for="id-cpf-vitima">CPF *</label>'+
+                    '<input type="text" name="cpfVitima'+proximoNum+'" id="id-cpf-vitima-'+proximoNum+'" class="form-control" placeholder="___.___.___-__" required>'+
                   '</div>'+
                 '</div>'+
                 '<div class="col-md-4">'+
@@ -73,14 +73,14 @@ $(function () {
               '<div class="row" id="div-responsavel-vitima-nao">'+
                 '<div class="col-md-6">'+
                   '<div class="form-group">'+
-                    '<label for="id-responsavel-vitima">Nome Completo do Responsavel da Vítima</label>'+
+                    '<label for="id-responsavel-vitima">Nome Completo do Responsavel da Vítima *</label>'+
                     '<input type="text" name="responsavelVitima'+proximoNum+'" id="id-responsavel-vitima" class="form-control" placeholder="Digite o nome do responsavel da vitima" maxlength="70" onkeyup="validarCaracter(this, 1)">'+
                   '</div>'+
                 '</div>'+
                 '<div class="col-md-3">'+
                   '<div class="form-group">'+
-                    '<label for="id-cpf-responsavel-vitima">CPF</label>'+
-                    '<input type="text" name="cpfResponsavelVitima'+proximoNum+'" id="id-cpf-responsavel-vitima-'+proximoNum+'" class="form-control" placeholder="___.___.___-__">'+
+                    '<label for="id-cpf-responsavel-vitima">CPF *</label>'+
+                    '<input type="text" name="cpfResponsavelVitima'+proximoNum+'" id="id-cpf-responsavel-vitima-'+proximoNum+'" class="form-control" placeholder="___.___.___-__" required>'+
                   '</div>'+
                 '</div>'+
                 '<div class="col-md-3">'+

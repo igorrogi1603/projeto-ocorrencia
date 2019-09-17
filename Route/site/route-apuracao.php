@@ -1,6 +1,7 @@
 <?php 
 
 use \App\Classe\Usuario;
+use \App\Classe\Validacao;
 use \App\Config\Page;
 use \App\Controller\CCriarApuracao;
 
@@ -10,7 +11,9 @@ $app->get("/criar-apuracao", function(){
 
 	$page = new Page();
 
-	$page->setTpl("criar-apuracao");
+	$page->setTpl("criar-apuracao", [
+		'error'=>Validacao::getMsgError()
+	]);
 });
 
 $app->post("/criar-apuracao", function(){
