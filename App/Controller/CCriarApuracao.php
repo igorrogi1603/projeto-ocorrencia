@@ -73,8 +73,8 @@ class CCriarApuracao {
 				$validaCPF = $validacao->validaCPF($post['cpfVitima'.$i]);
 
 				if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
-					Validacao::setMsgError("CPF da Vitima Inválido.");
-			        header('Location: /usuarios-cadastrar');
+					Validacao::setMsgError("CPF da Vitima ".$i." Inválido.");
+			        header('Location: /criar-apuracao');
 			        exit;
 				}
 
@@ -101,8 +101,8 @@ class CCriarApuracao {
 				$validaCPF = $validacao->validaCPF($post['cpfResponsavelVitima'.$i]);
 
 				if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
-					Validacao::setMsgError("CPF do Responsavel da Vitima Inválido.");
-			        header('Location: /usuarios-cadastrar');
+					Validacao::setMsgError("CPF do Responsavel da Vitima ".$i." Inválido.");
+			        header('Location: /criar-apuracao');
 			        exit;
 				}
 
