@@ -96,6 +96,42 @@ class MApuracao {
 		]);	
 	}
 
+	//Listar todos os dados da apuracao como pessoas envolvidas, endereco, contato, dados da apuracao
+	public function listApuracao($idApuracao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT 
+			a.idCriarApuracao, a.idUsuario, a.tipoApuracao, a.descricao, a.status, a.dataRegistro,
+			b.idVitimasCriarApuracao, b.idVitimasApuracao,
+			c.idPessoa, c.idResponsavelApuracao,
+			d.qualFamilia, e.idPessoa idPessoaResponsavel,
+			f.nome nomeVitima, f.sexo sexoVitima, f.cpf cpfVitima,
+			g.nome nomeResponsavel, g.cpf cpfResponsavel,
+			h.celular celularVitima,
+			i.celular celularResponsavel,
+			j.cep cepVitima, j.rua ruaVitima, j.numero numeroVitima, j.bairro bairroVitima, 
+			j.cidade cidadeVitima, j.estado estadoVitima, j.complemento complementoVitima,
+			k.cep cepResponsavel, k.rua ruaResponsavel, k.numero numeroResponsavel, k.bairro bairroResponsavel, 
+			k.cidade cidadeResponsavel, k.estado estadoResponsavel, k.complemento complementoResponsavel
+			FROM tb_criarapuracao a
+			INNER JOIN tb_vitimascriarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
+			INNER JOIN tb_vitimasapuracao c ON b.idVitimasApuracao = c.idVitimasApuracao
+			INNER JOIN tb_familiaapuracao d ON c.idVitimasApuracao = d.idVitimasApuracao
+			INNER JOIN tb_responsavelapuracao e ON c.idResponsavelApuracao = e.idResponsavelApuracao
+			INNER JOIN tb_pessoa f ON c.idPessoa = f.idPessoa
+			INNER JOIN tb_pessoa g ON e.idPessoa = g.idPessoa
+			INNER JOIN tb_contato h ON f.idContato = h.idContato
+			INNER JOIN tb_contato i ON g.idContato = i.idContato
+			INNER JOIN tb_endereco j ON f.idEndereco = j.idEndereco
+			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
+			WHERE a.idCriarApuracao = :idCriarApuracao;
+		", [
+			":idCriarApuracao" => $idApuracao
+		]);
+	}
+
 }
 
 ?>

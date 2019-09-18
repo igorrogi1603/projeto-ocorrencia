@@ -20,31 +20,39 @@ $app->post("/criar-apuracao", function(){
 	
 	Usuario::verifyLogin();
 
-	CCriarApuracao::postCriarApuracao($_POST);
+	$idApuracao = CCriarApuracao::postCriarApuracao($_POST);
 
-	header("Location: /apuracao-enviada");
+	header("Location: /apuracao-enviada/".$idApuracao[0]["MAX(idCriarApuracao)"]);
 	exit;
 });
 
-$app->get("/apuracao-enviada", function(){
+$app->get("/apuracao-enviada/:idApuracao", function($idApuracao){
+
+	Usuario::verifyLogin();
+
+	$apuracaoCompleta = CCriarApuracao::getApuracaoEnviada($idApuracao);
+
+	$page = new Page();
+
+	$page->setTpl("apuracao-enviada", [
+		"apuracaoCompleta" => $apuracaoCompleta
+	]);
+});
+
+$app->get("/apuracao-enviada-print/:idApuracao", function($idApuracao){
 
 	Usuario::verifyLogin();
 	
-	$page = new Page();
-
-	$page->setTpl("apuracao-enviada");
-});
-
-$app->get("/apuracao-enviada-print", function(){
-
-	Usuario::verifyLogin();
+	$apuracaoCompleta = CCriarApuracao::getApuracaoEnviada($idApuracao);
 	
 	$page = new Page([
 		"header"=>false,
 		"footer"=>false
 	]);
 
-	$page->setTpl("apuracao-enviada-print");
+	$page->setTpl("apuracao-enviada-print", [
+		"apuracaoCompleta" => $apuracaoCompleta
+	]);
 });
 
 $app->get("/lista-apuracoes", function(){

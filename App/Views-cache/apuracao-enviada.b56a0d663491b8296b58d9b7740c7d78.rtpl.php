@@ -23,7 +23,7 @@
       <div class="col-xs-12">
         <h2 class="page-header">
           <i class="fa fa-globe"></i> Sistema de Ocorrência Municipal
-          <small class="pull-right">Date: 2/10/2014</small>
+          <small class="pull-right">Date: <?php echo htmlspecialchars( $apuracaoCompleta["0"]["dataRegistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></small>
         </h2>
       </div>
       <!-- /.col -->
@@ -31,12 +31,14 @@
     <!-- info row -->
     <div class="row">
       <div class="col-xs-12">
-        <small class="pull-right">N° da Ocorrência: 125</small>
+        <small class="pull-right">N° da Apuracao: <?php echo htmlspecialchars( $apuracaoCompleta["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></small>
       </div>
     </div>
 
     <!--Corpo do relatorio
     -------------------------------->
+
+    <?php $counter1=-1;  if( isset($apuracaoCompleta) && ( is_array($apuracaoCompleta) || $apuracaoCompleta instanceof Traversable ) && sizeof($apuracaoCompleta) ) foreach( $apuracaoCompleta as $key1 => $value1 ){ $counter1++; ?>
 
     <!--Dados da Vitima-->
     <h3><strong>Dados da Vítima</strong></h3>
@@ -44,45 +46,52 @@
     <div class="row">
       <!--Dados-->
       <div class="col-md-4">
-        <p class="sem-espacamento"><strong>Nome: </strong>Nome completo da vitima</p>
-        <p class="sem-espacamento"><strong>Da mesma família: </strong>Sim</p>
+        <p class="sem-espacamento"><strong>Nome: </strong><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>Qual Família: </strong><?php echo htmlspecialchars( $value1["qualFamilia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <?php if( $value1["sexoVitima"] == 'm' ){ ?>
         <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
-        <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
-        <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
+        <?php } ?>
+        <?php if( $value1["sexoVitima"] == 'f' ){ ?>
+        <p class="sem-espacamento"><strong>Sexo: </strong>Feminino</p>
+        <?php } ?>
+        <p class="sem-espacamento"><strong>CPF: </strong><?php echo htmlspecialchars( $value1["cpfVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>Celular: </strong><?php echo htmlspecialchars( $value1["celularVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
       </div>
       <!--Fim Dados-->
 
       <!--Dados dos pais e responsaveis-->
       <div class="col-md-4">
-        <p class="sem-espacamento"><strong>Responsavel: </strong>Nome completo responsavel</p>
-        <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
-        <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
+        <p class="sem-espacamento"><strong>Responsavel: </strong><?php echo htmlspecialchars( $value1["nomeResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>CPF: </strong><?php echo htmlspecialchars( $value1["cpfResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>Celular: </strong><?php echo htmlspecialchars( $value1["celularResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
       </div>
       <!--Fim Dados dos pais e responsaveis-->
 
       <!--Endereco da vitima-->
       <div class="col-md-4">
-        <p class="sem-espacamento"><strong>Rua: </strong>Nome da rua da vitima</p>
-        <p class="sem-espacamento"><strong>Bairro: </strong>Nome do bairro da vitima</p>
-        <p class="sem-espacamento"><strong>Numero: </strong>0000</p>
-        <p class="sem-espacamento"><strong>Estado: </strong>Estado da vitima</p>
-        <p class="sem-espacamento"><strong>Cidade: </strong>Cidade da vitima</p>
-        <p class="sem-espacamento"><strong>Complemento: </strong>Completo da vitima</p>
+        <p class="sem-espacamento"><strong>Cep: </strong><?php echo htmlspecialchars( $value1["cepVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>Rua: </strong><?php echo htmlspecialchars( $value1["ruaVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>Bairro: </strong><?php echo htmlspecialchars( $value1["bairroVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>Numero: </strong><?php echo htmlspecialchars( $value1["numeroVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>Estado: </strong><?php echo htmlspecialchars( $value1["estadoVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>Cidade: </strong><?php echo htmlspecialchars( $value1["cidadeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>Complemento: </strong><?php echo htmlspecialchars( $value1["complementoVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
       </div>
       <!--Fim Endereco da vitima-->
     </div>
     <!--Fim Row-->
     <!--Fim Dados da Vitima-->
-    
     <br>
-    <hr>
+    <hr> 
+
+    <?php } ?>
 
     <!--Dados da Ocorrencia-->
     <h3><strong>Dados da Ocorrência</strong></h3>
     <!--Tipo da ocorrencia-->
     <div class="row">
       <div class="col-md-12">
-        <p class=""><strong>Tipo da Ocorrência: </strong>Violência doméstica</p>
+        <p class=""><strong>Tipo da Ocorrência: </strong><?php echo htmlspecialchars( $apuracaoCompleta["0"]["tipoApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
       </div>
     </div>
     <!--Fim Tipo da ocorrencia-->
@@ -90,7 +99,7 @@
     <!--Descricao da ocorrencia-->
     <div class="row">
       <div class="col-md-12">
-        <p class="sem-espacamento"><strong>Descrição da Ocorrência: </strong>É simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
+        <p class="sem-espacamento"><strong>Descrição da Ocorrência: </strong><?php echo htmlspecialchars( $apuracaoCompleta["0"]["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
       </div>
     </div>
     <!--Fim Descricao da ocorrencia-->
@@ -105,7 +114,8 @@
     <!-- this row will not appear when printing -->
     <div class="row no-print">
       <div class="col-xs-12">
-        <a href="/apuracao-enviada-print" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</a>
+        <a href="/apuracao-enviada-print/<?php echo htmlspecialchars( $apuracaoCompleta["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</a>
+        <a href="/" class="btn btn-primary pull-right">Finalizar</a>
       </div>
     </div>
   </section>

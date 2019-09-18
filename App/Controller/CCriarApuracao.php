@@ -14,6 +14,45 @@ use \App\Model\MUsuario;
 
 class CCriarApuracao {
 
+	public static function getApuracaoEnviada($idApuracao)
+	{
+		$mapuracao = new MApuracao;
+		$validacao = new Validacao;
+
+		$apuracaoCompleta = $mapuracao->listApuracao($idApuracao);
+
+		//Pegando o tamanho do array para usar no for como item de termino do loop
+		$tamanhoArray = count($apuracaoCompleta);
+
+		//Validacao dos campos com acentos do banco de dados
+		for ($i = 0; $i < $tamanhoArray; $i++) {
+			$apuracaoCompleta[$i]['descricao'] = utf8_encode($apuracaoCompleta[$i]['descricao']);
+			$apuracaoCompleta[$i]['tipoApuracao'] = utf8_encode($apuracaoCompleta[$i]['tipoApuracao']);
+			$apuracaoCompleta[$i]['qualFamilia'] = utf8_encode($apuracaoCompleta[$i]['qualFamilia']);
+			$apuracaoCompleta[$i]['nomeVitima'] = utf8_encode($apuracaoCompleta[$i]['nomeVitima']);
+			$apuracaoCompleta[$i]['nomeResponsavel'] = utf8_encode($apuracaoCompleta[$i]['nomeResponsavel']);
+			$apuracaoCompleta[$i]['ruaVitima'] = utf8_encode($apuracaoCompleta[$i]['ruaVitima']);
+			$apuracaoCompleta[$i]['bairroVitima'] = utf8_encode($apuracaoCompleta[$i]['bairroVitima']);
+			$apuracaoCompleta[$i]['cidadeVitima'] = utf8_encode($apuracaoCompleta[$i]['cidadeVitima']);
+			$apuracaoCompleta[$i]['estadoVitima'] = strtoupper(utf8_encode($apuracaoCompleta[$i]['estadoVitima']));
+			$apuracaoCompleta[$i]['complementoVitima'] = utf8_encode($apuracaoCompleta[$i]['complementoVitima']);
+			$apuracaoCompleta[$i]['ruaResponsavel'] = utf8_encode($apuracaoCompleta[$i]['ruaResponsavel']);
+			$apuracaoCompleta[$i]['bairroResponsavel'] = utf8_encode($apuracaoCompleta[$i]['bairroResponsavel']);
+			$apuracaoCompleta[$i]['cidadeResponsavel'] = utf8_encode($apuracaoCompleta[$i]['cidadeResponsavel']);
+			$apuracaoCompleta[$i]['estadoResponsavel'] = strtoupper(utf8_encode($apuracaoCompleta[$i]['estadoResponsavel']));
+			$apuracaoCompleta[$i]['complementoResponsavel'] = utf8_encode($apuracaoCompleta[$i]['complementoResponsavel']);
+			$apuracaoCompleta[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($apuracaoCompleta[$i]['cpfVitima']));
+			$apuracaoCompleta[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($apuracaoCompleta[$i]['celularVitima']));
+			$apuracaoCompleta[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($apuracaoCompleta[$i]['cpfResponsavel']));
+			$apuracaoCompleta[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($apuracaoCompleta[$i]['celularResponsavel']));
+			$apuracaoCompleta[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($apuracaoCompleta[$i]['cepVitima']));
+			$apuracaoCompleta[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($apuracaoCompleta[$i]['cepResponsavel']));
+			$apuracaoCompleta[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($apuracaoCompleta[$i]['dataRegistro']));
+		}
+
+		return $apuracaoCompleta;
+	}
+
 	public static function postCriarApuracao($post)
 	{	
 		//Instanciar as Classes
@@ -296,6 +335,9 @@ class CCriarApuracao {
 
 			}//Fim do else
 		}//Fim do for
+
+		return $idApuracao;
+
 	}//Fim postCriarApuracao
 
 }

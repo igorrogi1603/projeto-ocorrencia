@@ -36,6 +36,16 @@ class MResponsavel {
 		return $sql->select("SELECT * FROM tb_responsavelapuracao");
 	}
 
+	//Listar responsavel expecifico
+	public function listResponsavel($idResponsavel)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT a.idResponsavelApuracao, a.idPessoa FROM tb_responsavelapuracao a WHERE idResponsavelApuracao = :idResponsavel", [
+			":idResponsavel" => $idResponsavel
+		]);	
+	}
+
 	public function ultimoRegistro()
 	{
 

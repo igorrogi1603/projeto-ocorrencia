@@ -4,6 +4,7 @@ namespace App\Model;
 
 use \App\Config\Conexao;
 use \App\Classe\Endereco;
+use \App\Classe\Validacao;
 
 class MEndereco {
 
@@ -13,6 +14,7 @@ class MEndereco {
 		$sql = new Conexao;
 
 		$endereco = new Endereco;
+		$validacao = new Validacao;
 
 		$endereco->setData($post);
 
@@ -22,7 +24,7 @@ class MEndereco {
 					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
 					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 				", [
-					":cep" => $endereco->getcepUsuario(),
+					":cep" => $validacao->replaceCepBd($endereco->getcepUsuario()),
 					":rua" => utf8_decode($endereco->getruaUsuario()),
 					":numero" => $endereco->getnumeroUsuario(),
 					":bairro" => utf8_decode($endereco->getbairroUsuario()),

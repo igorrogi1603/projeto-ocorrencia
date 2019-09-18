@@ -217,6 +217,13 @@ class Validacao {
 		}
 	}
 
+	public function replaceCepBd($cep)
+	{
+		$cepProvisorio = str_replace("-", "", $cep);
+
+		return $cepProvisorio;
+	}
+
 	public function replaceCepView($cep)
 	{
 		if ($cep != null || $cep != "") {
