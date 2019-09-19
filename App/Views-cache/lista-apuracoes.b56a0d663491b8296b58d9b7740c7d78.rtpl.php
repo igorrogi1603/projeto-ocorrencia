@@ -29,25 +29,17 @@
           </thead>
 
           <tbody>
+            <?php $counter1=-1;  if( isset($listaApuracao) && ( is_array($listaApuracao) || $listaApuracao instanceof Traversable ) && sizeof($listaApuracao) ) foreach( $listaApuracao as $key1 => $value1 ){ $counter1++; ?>
             <tr>
-              <td>251</td>
-              <td>Elisa de Oliveira Ramos</td>
-              <td>425.653.987.56</td>
-              <td>15/05/2013</td>
+              <td><?php echo htmlspecialchars( $value1["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["cpfVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["dataRegistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td>
-                <a href="/apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                <a href="/apuracao-detalhe/<?php echo htmlspecialchars( $value1["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-edit"></i></a>
               </td>
             </tr>
-
-            <tr>
-              <td>252</td>
-              <td>Isabel Silva Ramos</td>
-              <td>555.673.123.76</td>
-              <td>04/10/2016</td>
-              <td>
-                <a href="/apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
-              </td>
-            </tr>
+            <?php } ?>
           </tbody>
         </table>
         

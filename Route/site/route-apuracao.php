@@ -4,6 +4,7 @@ use \App\Classe\Usuario;
 use \App\Classe\Validacao;
 use \App\Config\Page;
 use \App\Controller\CCriarApuracao;
+use \App\Controller\CListaApuracao;
 
 $app->get("/criar-apuracao", function(){
 	
@@ -59,18 +60,26 @@ $app->get("/lista-apuracoes", function(){
 
 	Usuario::verifyLogin();
 	
+	$listaApuracao = CListaApuracao::getListaApuracao();
+
 	$page = new Page();
 
-	$page->setTpl("lista-apuracoes");
+	$page->setTpl("lista-apuracoes", [
+		"listaApuracao" => $listaApuracao
+	]);
 });
 
-$app->get("/apuracao-detalhe", function(){
+$app->get("/apuracao-detalhe/:idApuracao", function($idApuracao){
 
 	Usuario::verifyLogin();
 
+	$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
+
 	$page = new Page();
 
-	$page->setTpl("apuracao-detalhe");
+	$page->setTpl("apuracao-detalhe", [
+		"detalheApuracao" => $detalheApuracao
+	]);
 });
 
 $app->get("/confirmar-apuracao", function(){

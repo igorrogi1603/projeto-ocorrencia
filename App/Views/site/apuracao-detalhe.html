@@ -27,42 +27,61 @@
         <div class="row">
           <!--Detalhes-->
           <div class="col-md-4">
-            <p class="sem-espacamento"><strong>N° da Ocorrência: </strong>251</p>
-            <p class="sem-espacamento"><strong>Data: </strong>15/05/2013</p>
-            <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong>Violência doméstica</p>
-            <p class="sem-espacamento"><strong>Status: </strong>Aberta</p>
+            <p class="sem-espacamento"><strong>N° da Ocorrência: </strong>{$detalheApuracao.0.idCriarApuracao}</p>
+            <p class="sem-espacamento"><strong>Data: </strong>{$detalheApuracao.0.dataRegistro}</p>
+            <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong>{$detalheApuracao.0.tipoApuracao}</p>
+            <p class="sem-espacamento"><strong>Descrição: </strong>{$detalheApuracao.0.descricao}</p>
           </div>
           <!--Fim Detalhes-->
+        </div>
+        <!--Fim Row-->
 
+        <br><hr>
+
+        {loop="$detalheApuracao"}
+        <!--Inicio Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <h3><strong>Dados Vítima</strong></h3>
+          </div>
+        </div>
+        <!--Fim Row-->
+
+        <div class="row">
           <!--Vitima-->
           <div class="col-md-4">
-            <p class="sem-espacamento"><strong>Nome da Vítima: </strong>Nome completo da vitima</p>
-            <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
-            <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
-            <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
-            <p class="sem-espacamento"><strong>Responsavel: </strong>Nome completo responsavel</p>
-            <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
-            <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
+            <p class="sem-espacamento"><strong>Nome da Vítima: </strong>{$value.nomeVitima}</p>
+            <p class="sem-espacamento"><strong>Sexo: </strong>{$value.sexoVitima}</p>
+            <p class="sem-espacamento"><strong>CPF: </strong>{$value.cpfVitima}</p>
+            <p class="sem-espacamento"><strong>Celular: </strong>{$value.celularVitima}</p>
           </div>
           <!--Fim Vitima-->
 
+          <!--Inicio responsavel-->
+          <div class="col-md-4">
+            <p class="sem-espacamento"><strong>Responsavel: </strong>{$value.nomeResponsavel}</p>
+            <p class="sem-espacamento"><strong>CPF: </strong>{$value.cpfResponsavel}</p>
+            <p class="sem-espacamento"><strong>Celular: </strong>{$value.celularResponsavel}</p>
+          </div>
+          <!--Fim responsavel-->
+
           <!--Endereco da vitima-->
           <div class="col-md-4">
-            <p class="sem-espacamento"><strong>Rua: </strong>Nome da rua da vitima</p>
-            <p class="sem-espacamento"><strong>Bairro: </strong>Nome do bairro da vitima</p>
-            <p class="sem-espacamento"><strong>Numero: </strong>0000</p>
-            <p class="sem-espacamento"><strong>Estado: </strong>Estado da vitima</p>
-            <p class="sem-espacamento"><strong>Cidade: </strong>Cidade da vitima</p>
-            <p class="sem-espacamento"><strong>Complemento: </strong>Completo da vitima</p>
+            <p class="sem-espacamento"><strong>Cep: </strong>{$value.cepVitima}</p>
+            <p class="sem-espacamento"><strong>Rua: </strong>{$value.ruaVitima}</p>
+            <p class="sem-espacamento"><strong>Numero: </strong>{$value.numeroVitima}</p>
+            <p class="sem-espacamento"><strong>Bairro: </strong>{$value.bairroVitima}</p>
+            <p class="sem-espacamento"><strong>Cidade: </strong>{$value.cidadeVitima}</p>
+            <p class="sem-espacamento"><strong>Estado: </strong>{$value.estadoVitima}</p>
+            <p class="sem-espacamento"><strong>Complemento: </strong>{$value.complementoVitima}</p>
           </div>
           <!--Fim Endereco da vitima-->
         </div>
         <!--Fim Row-->
+        <br><hr>
+        {/loop}
         
         <br>
-        <hr>
-        <br>
-
         <!--Inicio Row-->
         <div class="row">
           <div class="col-md-12">

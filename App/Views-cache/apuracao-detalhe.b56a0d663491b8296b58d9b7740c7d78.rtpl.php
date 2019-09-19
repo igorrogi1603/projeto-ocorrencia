@@ -27,42 +27,61 @@
         <div class="row">
           <!--Detalhes-->
           <div class="col-md-4">
-            <p class="sem-espacamento"><strong>N° da Ocorrência: </strong>251</p>
-            <p class="sem-espacamento"><strong>Data: </strong>15/05/2013</p>
-            <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong>Violência doméstica</p>
-            <p class="sem-espacamento"><strong>Status: </strong>Aberta</p>
+            <p class="sem-espacamento"><strong>N° da Ocorrência: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Data: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["dataRegistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["tipoApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Descrição: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
           </div>
           <!--Fim Detalhes-->
+        </div>
+        <!--Fim Row-->
 
+        <br><hr>
+
+        <?php $counter1=-1;  if( isset($detalheApuracao) && ( is_array($detalheApuracao) || $detalheApuracao instanceof Traversable ) && sizeof($detalheApuracao) ) foreach( $detalheApuracao as $key1 => $value1 ){ $counter1++; ?>
+        <!--Inicio Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <h3><strong>Dados Vítima</strong></h3>
+          </div>
+        </div>
+        <!--Fim Row-->
+
+        <div class="row">
           <!--Vitima-->
           <div class="col-md-4">
-            <p class="sem-espacamento"><strong>Nome da Vítima: </strong>Nome completo da vitima</p>
-            <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
-            <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
-            <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
-            <p class="sem-espacamento"><strong>Responsavel: </strong>Nome completo responsavel</p>
-            <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
-            <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
+            <p class="sem-espacamento"><strong>Nome da Vítima: </strong><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Sexo: </strong><?php echo htmlspecialchars( $value1["sexoVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>CPF: </strong><?php echo htmlspecialchars( $value1["cpfVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Celular: </strong><?php echo htmlspecialchars( $value1["celularVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
           </div>
           <!--Fim Vitima-->
 
+          <!--Inicio responsavel-->
+          <div class="col-md-4">
+            <p class="sem-espacamento"><strong>Responsavel: </strong><?php echo htmlspecialchars( $value1["nomeResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>CPF: </strong><?php echo htmlspecialchars( $value1["cpfResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Celular: </strong><?php echo htmlspecialchars( $value1["celularResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+          </div>
+          <!--Fim responsavel-->
+
           <!--Endereco da vitima-->
           <div class="col-md-4">
-            <p class="sem-espacamento"><strong>Rua: </strong>Nome da rua da vitima</p>
-            <p class="sem-espacamento"><strong>Bairro: </strong>Nome do bairro da vitima</p>
-            <p class="sem-espacamento"><strong>Numero: </strong>0000</p>
-            <p class="sem-espacamento"><strong>Estado: </strong>Estado da vitima</p>
-            <p class="sem-espacamento"><strong>Cidade: </strong>Cidade da vitima</p>
-            <p class="sem-espacamento"><strong>Complemento: </strong>Completo da vitima</p>
+            <p class="sem-espacamento"><strong>Cep: </strong><?php echo htmlspecialchars( $value1["cepVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Rua: </strong><?php echo htmlspecialchars( $value1["ruaVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Numero: </strong><?php echo htmlspecialchars( $value1["numeroVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Bairro: </strong><?php echo htmlspecialchars( $value1["bairroVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Cidade: </strong><?php echo htmlspecialchars( $value1["cidadeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Estado: </strong><?php echo htmlspecialchars( $value1["estadoVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Complemento: </strong><?php echo htmlspecialchars( $value1["complementoVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
           </div>
           <!--Fim Endereco da vitima-->
         </div>
         <!--Fim Row-->
+        <br><hr>
+        <?php } ?>
         
         <br>
-        <hr>
-        <br>
-
         <!--Inicio Row-->
         <div class="row">
           <div class="col-md-12">
