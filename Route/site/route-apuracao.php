@@ -82,6 +82,27 @@ $app->get("/apuracao-detalhe/:idApuracao", function($idApuracao){
 	]);
 });
 
+$app->get("/apuracao-detalhe/descartar/:idApuracao", function($idApuracao){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("apuracao-descartar", [
+		"idApuracao" => $idApuracao
+	]);
+});
+
+$app->post("/apuracao-detalhe/descartar/:idApuracao", function($idApuracao){
+
+	Usuario::verifyLogin();
+
+	CListaApuracao::postDescartarApuracao($_POST, $idApuracao);
+
+	header("Location: /lista-apuracoes");
+	exit;
+});
+
 $app->get("/confirmar-apuracao", function(){
 
 	Usuario::verifyLogin();

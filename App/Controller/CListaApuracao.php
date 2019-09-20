@@ -3,9 +3,20 @@
 namespace App\Controller;
 
 use \App\Classe\Validacao;
+use \App\Classe\Usuario;
 use \App\Model\MApuracao;
 
 class CListaApuracao {
+
+	public static function postDescartarApuracao($post, $idApuracao)
+	{
+		$mapuracao = new MApuracao;
+		$validacao = new Validacao;
+
+		$mapuracao->apuracaoExcluida($post, $idApuracao, $_SESSION[Usuario::SESSION]['idUsuario']);
+
+		$mapuracao->updateStatus(4, $idApuracao);
+	}
 
 	public static function getApuracaoDetalhe($idApuracao)
 	{

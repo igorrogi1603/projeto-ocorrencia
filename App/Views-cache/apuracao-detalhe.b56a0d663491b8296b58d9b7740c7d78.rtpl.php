@@ -26,11 +26,9 @@
         <!--Inicio Row-->
         <div class="row">
           <!--Detalhes-->
-          <div class="col-md-4">
+          <div class="col-md-12">
             <p class="sem-espacamento"><strong>N° da Ocorrência: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Data: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["dataRegistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-            <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["tipoApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-            <p class="sem-espacamento"><strong>Descrição: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
           </div>
           <!--Fim Detalhes-->
         </div>
@@ -51,7 +49,12 @@
           <!--Vitima-->
           <div class="col-md-4">
             <p class="sem-espacamento"><strong>Nome da Vítima: </strong><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-            <p class="sem-espacamento"><strong>Sexo: </strong><?php echo htmlspecialchars( $value1["sexoVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <?php if( $value1["sexoVitima"] == 'm' ){ ?>
+            <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
+            <?php } ?>
+            <?php if( $value1["sexoVitima"] == 'f' ){ ?>
+            <p class="sem-espacamento"><strong>Sexo: </strong>Feminino</p>
+            <?php } ?>
             <p class="sem-espacamento"><strong>CPF: </strong><?php echo htmlspecialchars( $value1["cpfVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Celular: </strong><?php echo htmlspecialchars( $value1["celularVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
           </div>
@@ -80,7 +83,21 @@
         <!--Fim Row-->
         <br><hr>
         <?php } ?>
-        
+
+        <br>
+
+        <!--Inicio Row-->
+        <div class="row">
+          <!--Detalhes-->
+          <div class="col-md-12">
+            <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["tipoApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Descrição: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+          </div>
+          <!--Fim Detalhes-->
+        </div>
+        <!--Fim Row-->
+        <br>
+        <hr>
         <br>
         <!--Inicio Row-->
         <div class="row">
@@ -88,7 +105,7 @@
             
             <a href="#" class="btn btn-app"><i class="fa fa-th-large"></i>Gerar Ocorrência</a>
 
-            <a href="#" class="btn btn-app"><i class="fa fa-trash-o"></i>Descartar</a>            
+            <a href="/apuracao-detalhe/descartar/<?php echo htmlspecialchars( $detalheApuracao["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-trash-o"></i>Descartar</a>            
 
           </div>
         </div>

@@ -58,6 +58,46 @@ class MApuracao {
 		}
 	}
 
+	//Mudar o status da apuracao
+	public function updateStatus($status, $idApuracao)
+	{
+		$sql = new Conexao;
+
+		//Status
+		//1 = criada esperando para continuar
+		//2 = gerada ocorrencia, foi para confirmacao
+		//3 = virou ocorrencia
+		//4 = excluida
+
+		$sql->query("
+			UPDATE tb_criarapuracao 
+			SET status = :status
+			WHERE idCriarApuracao = :idCriarApuracao
+		", [
+			":status" => $status,
+			":idCriarApuracao" => $idApuracao
+		]);
+	}
+
+	//Inserir na tabela excluir apuracao
+	public function apuracaoExcluida($post, $idApuracao, $idUsuario)
+	{
+		$sql = new Conexao;
+
+		$apuracao = new Apuracao;
+
+		$apuracao->setData($post);
+
+		$sql->query("
+			INSERT INTO tb_apuracaoexcluida (idCriarApuracao, idUsuario, motivo) 
+			VALUES(:idCriarApuracao, :idUsuario, :motivo)
+		", [
+			":idCriarApuracao" => $idApuracao,
+			":idUsuario" => $idUsuario,
+			":motivo" => utf8_decode($apuracao->getdescricaoApuracao())
+		]);
+	}
+
 	//----------------------------------------------------------------
 	//CADASTRAR NA TABELA VitimasCriarApuracao 
 	//----------------------------------------------------------------

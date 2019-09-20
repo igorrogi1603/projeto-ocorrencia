@@ -30,6 +30,7 @@
 
           <tbody>
             {loop="$listaApuracao"}
+            {if="$value.status == 1"}
             <tr>
               <td>{$value.idCriarApuracao}</td>
               <td>{$value.nomeVitima}</td>
@@ -39,6 +40,7 @@
                 <a href="/apuracao-detalhe/{$value.idCriarApuracao}" class="btn btn-default"><i class="fa fa-edit"></i></a>
               </td>
             </tr>
+            {/if}
             {/loop}
           </tbody>
         </table>

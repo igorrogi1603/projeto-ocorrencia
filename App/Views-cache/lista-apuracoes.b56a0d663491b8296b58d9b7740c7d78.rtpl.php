@@ -30,6 +30,7 @@
 
           <tbody>
             <?php $counter1=-1;  if( isset($listaApuracao) && ( is_array($listaApuracao) || $listaApuracao instanceof Traversable ) && sizeof($listaApuracao) ) foreach( $listaApuracao as $key1 => $value1 ){ $counter1++; ?>
+            <?php if( $value1["status"] == 1 ){ ?>
             <tr>
               <td><?php echo htmlspecialchars( $value1["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
@@ -39,6 +40,7 @@
                 <a href="/apuracao-detalhe/<?php echo htmlspecialchars( $value1["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-edit"></i></a>
               </td>
             </tr>
+            <?php } ?>
             <?php } ?>
           </tbody>
         </table>
