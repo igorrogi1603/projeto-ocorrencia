@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -15,13 +15,13 @@
     <!--Box apuracao--> 
     <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title">Relatótio de Exclusão da Apuração com <strong>id: {$idApuracao}</strong></h3>
+        <h3 class="box-title">Relatótio de Exclusão da Apuração com <strong>id: <?php echo htmlspecialchars( $idApuracao, ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></h3>
       </div>
 
       <!-- /.box-header -->
       <div class="box-body">
 
-        <form action="/apuracao-detalhe/descartar/{$idApuracao}" method="post">
+        <form action="/confirmacao-detalhe/descartar/<?php echo htmlspecialchars( $idApuracao, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idConfirmacao, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
           
           <!--Inicio row-->
           <div class="row">
@@ -69,7 +69,7 @@
           <!--Inicio Row-->
           <div class="row">
             <div class="col-md-12">
-              <a href="/apuracao-detalhe/{$idApuracao}" class="btn btn-primary pull-left margin" id="botaoCancelar">Cancelar</a>
+              <a href="/confirmacao-detalhe/cancelar/<?php echo htmlspecialchars( $idApuracao, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idConfirmacao, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary pull-left margin" id="botaoCancelar">Cancelar</a>
               <input type="submit" class="btn btn-primary pull-right margin" id="botaoEnviar" value="Enviar">
             </div>            
           </div>

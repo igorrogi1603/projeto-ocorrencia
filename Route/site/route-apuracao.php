@@ -5,6 +5,7 @@ use \App\Classe\Validacao;
 use \App\Config\Page;
 use \App\Controller\CCriarApuracao;
 use \App\Controller\CListaApuracao;
+use \App\Controller\CListaConfirmacao;
 
 $app->get("/criar-apuracao", function(){
 	
@@ -103,22 +104,84 @@ $app->post("/apuracao-detalhe/descartar/:idApuracao", function($idApuracao){
 	exit;
 });
 
+$app->get("/apuracao-detalhe/gerar-ocorrencia/:idApuracao", function($idApuracao){
+
+	Usuario::verifyLogin();
+
+	CListaApuracao::getGerarOcorrencia($idApuracao);
+
+	header("Location: /confirmar-apuracao");
+	exit;
+});
+
 $app->get("/confirmar-apuracao", function(){
 
 	Usuario::verifyLogin();
 
+	$confirmarApuracao = CListaConfirmacao::getListaConfirmacao();
+
 	$page = new Page();
 
-	$page->setTpl("confirmar-apuracao");
+	$page->setTpl("confirmar-apuracao", [
+		"confirmarApuracao" => $confirmarApuracao
+	]);
 });
 
-$app->get("/confirmar-apuracao-detalhe", function(){
+$app->get("/confirmar-apuracao-detalhe/:idApuracao", function($idApuracao){
+
+	Usuario::verifyLogin();
+
+	$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
+
+	$page = new Page();
+
+	$page->setTpl("confirmar-apuracao-detalhe", [
+		"confirmacaoDetalhe" => $confirmacaoDetalhe,
+		"error" => Validacao::getMsgError()
+	]);
+});
+
+$app->get("/confirmacao-negativo/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
+
+	Usuario::verifyLogin();
+
+	$confirmacaoNegativo = CListaConfirmacao::getConfirmacaoNegativo($idApuracao, $idConfirmacao);
+
+	header('Location: /confirmar-apuracao-detalhe/'.$idApuracao);
+	exit;
+});
+
+$app->get("/confirmacao-detalhe/descartar/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
 
 	Usuario::verifyLogin();
 
 	$page = new Page();
 
-	$page->setTpl("confirmar-apuracao-detalhe");
+	$page->setTpl("confirmacao-descartar", [
+		"idApuracao" => $idApuracao,
+		"idConfirmacao" => $idConfirmacao
+	]);
 });
+
+$app->get("/confirmacao-detalhe/cancelar/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
+
+	Usuario::verifyLogin();
+
+	CListaConfirmacao::confirmacaoDetalheCancelar($idConfirmacao);
+
+	header("Location: /confirmar-apuracao");
+	exit;
+});
+
+$app->post("/confirmacao-detalhe/descartar/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
+
+	Usuario::verifyLogin();
+
+	CListaApuracao::postDescartarApuracao($_POST, $idApuracao);
+
+	header("Location: /confirmar-apuracao");
+	exit;
+});
+
 
 ?>

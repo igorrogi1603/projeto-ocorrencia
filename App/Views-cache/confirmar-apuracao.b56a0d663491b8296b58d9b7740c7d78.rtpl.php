@@ -22,32 +22,26 @@
             <tr>
               <th>ID</th>
               <th>Vítima</th>
-              <th>Quem abriu</th>
+              <th>Quem Gerou a Ocorrência</th>
               <th>Data de Criação</th>
               <th>Opções</th>
             </tr>
           </thead>
 
           <tbody>
+            <?php $counter1=-1;  if( isset($confirmarApuracao) && ( is_array($confirmarApuracao) || $confirmarApuracao instanceof Traversable ) && sizeof($confirmarApuracao) ) foreach( $confirmarApuracao as $key1 => $value1 ){ $counter1++; ?>
+            <?php if( $value1["status"] == 2 ){ ?>
             <tr>
-              <td>251</td>
-              <td>Elisa de Oliveira Ramos</td>
-              <td>Nome do conselheiro</td>
-              <td>15/05/2013</td>
+              <td><?php echo htmlspecialchars( $value1["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["nomeGerouOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["registroConfirmacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td>
-                <a href="/confirmar-apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                <a href="/confirmar-apuracao-detalhe/<?php echo htmlspecialchars( $value1["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-edit"></i></a>
               </td>
             </tr>
-
-            <tr>
-              <td>252</td>
-              <td>Isabel Silva Ramos</td>
-              <td>Nome do conselheiro</td>
-              <td>04/10/2016</td>
-              <td>
-                <a href="/confirmar-apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
-              </td>
-            </tr>
+            <?php } ?>
+            <?php } ?>
           </tbody>
         </table>
         

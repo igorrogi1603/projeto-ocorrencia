@@ -16,51 +16,79 @@
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">Detalhes</h3>
-
-        <!--<div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-        </div>-->
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          {if="$error != ''"}
+          <div class="alert alert-danger">
+            {$error}
+          </div>
+          {/if}
+        </div>
+      </div>
+
       <!-- /.box-header -->
       <div class="box-body">
         <!--Inicio Row-->
         <div class="row">
           <!--Detalhes-->
-          <div class="col-md-4">
-            <p class="sem-espacamento"><strong>N° da Ocorrência: </strong>251</p>
-            <p class="sem-espacamento"><strong>Data: </strong>15/05/2013</p>
-            <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong>Violência doméstica</p>
-            <p class="sem-espacamento"><strong>Status: </strong>Aberta</p>
+          <div class="col-md-12">
+            <p class="sem-espacamento"><strong>N° da Ocorrência: </strong>{$confirmacaoDetalhe.0.idCriarApuracao}</p>
+            <p class="sem-espacamento"><strong>Data: </strong>{$confirmacaoDetalhe.0.dataRegistro}</p>
           </div>
           <!--Fim Detalhes-->
+        </div>
+        <!--Fim Row-->
 
+        {loop="$confirmacaoDetalhe"}
+        <!--Inicio Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <h3><strong>Dados Vítima</strong></h3>
+          </div>
+        </div>
+        <!--Fim Row-->
+        <!--Inicio Row-->
+        <div class="row">
           <!--Vitima-->
           <div class="col-md-4">
-            <p class="sem-espacamento"><strong>Nome da Vítima: </strong>Nome completo da vitima</p>
+            <p class="sem-espacamento"><strong>Nome da Vítima: </strong>{$value.nomeVitima}</p>
+            {if="$value.sexoVitima == 'm'"}
             <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
-            <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
-            <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
-            <p class="sem-espacamento"><strong>Responsavel: </strong>Nome completo responsavel</p>
-            <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
-            <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
+            {/if}
+            {if="$value.sexoVitima == 'f'"}
+            <p class="sem-espacamento"><strong>Sexo: </strong>Feminino</p>
+            {/if}
+            <p class="sem-espacamento"><strong>CPF: </strong>{$value.cpfVitima}</p>
+            <p class="sem-espacamento"><strong>Celular: </strong>{$value.celularVitima}</p>
           </div>
           <!--Fim Vitima-->
 
+          <!--Inicio responsavel-->
+          <div class="col-md-4">
+            <p class="sem-espacamento"><strong>Responsavel: </strong>{$value.nomeResponsavel}</p>
+            <p class="sem-espacamento"><strong>CPF: </strong>{$value.cpfResponsavel}</p>
+            <p class="sem-espacamento"><strong>Celular: </strong>{$value.celularResponsavel}</p>
+          </div>
+          <!--Fim responsavel-->
+
           <!--Endereco da vitima-->
           <div class="col-md-4">
-            <p class="sem-espacamento"><strong>Rua: </strong>Nome da rua da vitima</p>
-            <p class="sem-espacamento"><strong>Bairro: </strong>Nome do bairro da vitima</p>
-            <p class="sem-espacamento"><strong>Numero: </strong>0000</p>
-            <p class="sem-espacamento"><strong>Estado: </strong>Estado da vitima</p>
-            <p class="sem-espacamento"><strong>Cidade: </strong>Cidade da vitima</p>
-            <p class="sem-espacamento"><strong>Complemento: </strong>Completo da vitima</p>
+            <p class="sem-espacamento"><strong>Cep: </strong>{$value.cepVitima}</p>
+            <p class="sem-espacamento"><strong>Rua: </strong>{$value.ruaVitima}</p>
+            <p class="sem-espacamento"><strong>Numero: </strong>{$value.numeroVitima}</p>
+            <p class="sem-espacamento"><strong>Bairro: </strong>{$value.bairroVitima}</p>
+            <p class="sem-espacamento"><strong>Cidade: </strong>{$value.cidadeVitima}</p>
+            <p class="sem-espacamento"><strong>Estado: </strong>{$value.estadoVitima}</p>
+            <p class="sem-espacamento"><strong>Complemento: </strong>{$value.complementoVitima}</p>
           </div>
           <!--Fim Endereco da vitima-->
         </div>
         <!--Fim Row-->
-        
-        <br>
-        <hr>
+        <br><hr>
+        {/loop}
+
         <br>
 
         <div class="alert" style="background-color: #FFF3CD; color: #A18532;" role="alert">
@@ -72,9 +100,25 @@
         <div class="row">
           <div class="col-md-12">
             <h4>Confirmar</h4>
-            <p class="sem-espacamento"><strong>Quem abriu: </strong>Nome do conselheiro</p>
+            <p class="sem-espacamento"><strong>Quem abriu: </strong>{$confirmacaoDetalhe.0.nomeGerouOcorrencia}</p>
+            {if="$confirmacaoDetalhe.0.isPositivo == 0"}
+            <p class="sem-espacamento"><strong>Confirmações: </strong>00/02</p>
+            {/if}
+            {if="$confirmacaoDetalhe.0.isPositivo == 1"}
             <p class="sem-espacamento"><strong>Confirmações: </strong>01/02</p>
+            {/if}
+            {if="$confirmacaoDetalhe.0.isPositivo == 2"}
+            <p class="sem-espacamento"><strong>Confirmações: </strong>02/02</p>
+            {/if}
+            {if="$confirmacaoDetalhe.0.isNegativo == 0"}
             <p class="sem-espacamento"><strong>Confirmações Negadas: </strong>00/02</p>
+            {/if}
+            {if="$confirmacaoDetalhe.0.isNegativo == 1"}
+            <p class="sem-espacamento"><strong>Confirmações Negadas: </strong>01/02</p>
+            {/if}
+            {if="$confirmacaoDetalhe.0.isNegativo == 2"}
+            <p class="sem-espacamento"><strong>Confirmações Negadas: </strong>02/02</p>
+            {/if}
           </div>
         </div>
         <!--Fim Row-->
@@ -87,9 +131,9 @@
         <div class="row">
           <div class="col-md-12">
             
-            <a href="#" class="btn btn-app"><i class="fa fa-check"></i>Confirmar</a>
+            <a onclick="confirmar()" class="btn btn-app"><i class="fa fa-check"></i>Confirmar</a>
 
-            <a href="#" class="btn btn-app"><i class="fa fa-remove"></i>Não Confirmar</a>            
+            <a onclick="naoConfirmar()" class="btn btn-app"><i class="fa fa-remove"></i>Não Confirmar</a>            
 
           </div>
         </div>
@@ -103,3 +147,21 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+
+function confirmar()
+{
+  if(confirm("Voce realmente deseja CONFIRMAR essa apuração")){
+    location.href="/confirmacao-positivo/{$confirmacaoDetalhe.0.idCriarApuracao}/{$confirmacaoDetalhe.0.idConfirmacaoApuracao}";
+  }
+}
+
+function naoConfirmar()
+{
+  if(confirm("Voce realmente deseja NÃO CONFIRMAR essa apuração")){
+    location.href="/confirmacao-negativo/{$confirmacaoDetalhe.0.idCriarApuracao}/{$confirmacaoDetalhe.0.idConfirmacaoApuracao}";
+  }
+}
+
+</script>

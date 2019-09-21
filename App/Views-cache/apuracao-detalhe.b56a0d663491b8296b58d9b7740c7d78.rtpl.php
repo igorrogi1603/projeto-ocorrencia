@@ -103,7 +103,7 @@
         <div class="row">
           <div class="col-md-12">
             
-            <a href="#" class="btn btn-app"><i class="fa fa-th-large"></i>Gerar Ocorrência</a>
+            <a href="/apuracao-detalhe/gerar-ocorrencia/<?php echo htmlspecialchars( $detalheApuracao["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-th-large"></i>Gerar Ocorrência</a>
 
             <a href="/apuracao-detalhe/descartar/<?php echo htmlspecialchars( $detalheApuracao["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-trash-o"></i>Descartar</a>            
 

@@ -21,7 +21,7 @@
       <!-- /.box-header -->
       <div class="box-body">
 
-        <form action="/apuracao-detalhe/descartar/{$idApuracao}" method="post">
+        <form action="/confirmacao-detalhe/descartar/{$idApuracao}/{$idConfirmacao}" method="post">
           
           <!--Inicio row-->
           <div class="row">
@@ -69,7 +69,7 @@
           <!--Inicio Row-->
           <div class="row">
             <div class="col-md-12">
-              <a href="/apuracao-detalhe/{$idApuracao}" class="btn btn-primary pull-left margin" id="botaoCancelar">Cancelar</a>
+              <a href="/confirmacao-detalhe/cancelar/{$idApuracao}/{$idConfirmacao}" class="btn btn-primary pull-left margin" id="botaoCancelar">Cancelar</a>
               <input type="submit" class="btn btn-primary pull-right margin" id="botaoEnviar" value="Enviar">
             </div>            
           </div>

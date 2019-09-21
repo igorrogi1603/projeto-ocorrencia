@@ -22,32 +22,26 @@
             <tr>
               <th>ID</th>
               <th>Vítima</th>
-              <th>Quem abriu</th>
+              <th>Quem Gerou a Ocorrência</th>
               <th>Data de Criação</th>
               <th>Opções</th>
             </tr>
           </thead>
 
           <tbody>
+            {loop="$confirmarApuracao"}
+            {if="$value.status == 2"}
             <tr>
-              <td>251</td>
-              <td>Elisa de Oliveira Ramos</td>
-              <td>Nome do conselheiro</td>
-              <td>15/05/2013</td>
+              <td>{$value.idCriarApuracao}</td>
+              <td>{$value.nomeVitima}</td>
+              <td>{$value.nomeGerouOcorrencia}</td>
+              <td>{$value.registroConfirmacao}</td>
               <td>
-                <a href="/confirmar-apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                <a href="/confirmar-apuracao-detalhe/{$value.idCriarApuracao}" class="btn btn-default"><i class="fa fa-edit"></i></a>
               </td>
             </tr>
-
-            <tr>
-              <td>252</td>
-              <td>Isabel Silva Ramos</td>
-              <td>Nome do conselheiro</td>
-              <td>04/10/2016</td>
-              <td>
-                <a href="/confirmar-apuracao-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
-              </td>
-            </tr>
+            {/if}
+            {/loop}
           </tbody>
         </table>
         

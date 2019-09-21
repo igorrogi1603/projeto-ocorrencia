@@ -98,6 +98,26 @@ class MApuracao {
 		]);
 	}
 
+
+
+	//----------------------------------------------------------------
+	//CADASTRAR NA TABELA ConfirmacaoApuracao 
+	//----------------------------------------------------------------
+	public function confirmacaoApuracao($idApuracao, $idUsuario, $isPositivo, $isNegativo)
+	{
+		$sql = new Conexao;
+
+		$sql->query("
+			INSERT INTO tb_confirmacaoapuracao (idCriarApuracao, idUsuario, isPositivo, isNegativo) 
+			VALUES(:idCriarApuracao, :idUsuario, :isPositivo, :isNegativo)
+		", [
+			":idCriarApuracao" => $idApuracao,
+			":idUsuario" => $idUsuario,
+			":isPositivo" => $isPositivo,
+			":isNegativo" => $isNegativo,
+		]);
+	}
+
 	//----------------------------------------------------------------
 	//CADASTRAR NA TABELA VitimasCriarApuracao 
 	//----------------------------------------------------------------
@@ -135,6 +155,98 @@ class MApuracao {
 			":qualFamilia" => utf8_decode($apuracao->getqualFamiliaVitima())
 		]);	
 	}
+
+	//----------------------------------------------------------------
+	//CADASTRAR NA TABELA gerenciarConfirmacao
+	//----------------------------------------------------------------
+	public function gerenciarConfirmacao($idApuracao, $idUsuario)
+	{
+		$sql = new Conexao;
+
+		$sql->query("
+			INSERT INTO tb_gerenciarconfirmacao (idCriarApuracao, idUsuario) 
+			VALUES(:idCriarApuracao, :idUsuario)
+		", [
+			":idCriarApuracao" => $idApuracao,
+			":idUsuario" => $idUsuario
+		]);
+	}
+
+	public function recuperarGerenciarConfirmacao($idApuracao, $idUsuario)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT * FROM tb_gerenciarconfirmacao WHERE idCriarApuracao = :idCriarApuracao AND idUsuario = :idUsuario", [
+			":idCriarApuracao" => $idApuracao,
+			":idUsuario" => $idUsuario
+		]);
+	}
+
+	public function deletarGerenciarConfirmacao($idUsuario)
+	{
+		$sql = new Conexao;
+
+		$sql->query("DELETE FROM tb_gerenciarconfirmacao WHERE idUsuario = :idUsuario", [
+			"idUsuario" => $idUsuario
+		]);
+	}
+	
+	//Recuperar o id do confirmacaoApuracao
+	public function recuperarConfirmacaoApuracao($idApuracao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT * FROM tb_confirmacaoapuracao WHERE idCriarApuracao = :idCriarApuracao", [
+			":idCriarApuracao" => $idApuracao
+		]);
+	}
+
+	public function recuperarConfirmacaoNegativo($idConfirmacao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT isNegativo FROM tb_confirmacaoapuracao WHERE idConfirmacaoApuracao = :idConfirmacaoApuracao", [
+			":idConfirmacaoApuracao" => $idConfirmacao
+		]);
+	}
+
+	public function updateConfirmacaoNegativo($idConfirmacao, $isNegativo)
+	{	
+		$sql = new Conexao;
+
+		$proximoDigito = (int)$isNegativo + 1;
+
+		$sql->query("
+			UPDATE tb_confirmacaoapuracao 
+			SET isNegativo = :isNegativo
+			WHERE idConfirmacaoApuracao = :idConfirmacaoApuracao
+		", [
+			":isNegativo" => $proximoDigito,
+			":idConfirmacaoApuracao" => $idConfirmacao
+		]);
+	}
+
+	public function updateConfirmacaoNegativoCancelar($idConfirmacao, $isNegativo)
+	{	
+		$sql = new Conexao;
+
+		$proximoDigito = (int)$isNegativo - 1;
+
+		$sql->query("
+			UPDATE tb_confirmacaoapuracao 
+			SET isNegativo = :isNegativo
+			WHERE idConfirmacaoApuracao = :idConfirmacaoApuracao
+		", [
+			":isNegativo" => $proximoDigito,
+			":idConfirmacaoApuracao" => $idConfirmacao
+		]);
+	}	
+
+	//---------------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------------------------
+	//	LISTAS
+	//---------------------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------------------------------
 
 	//Listar todos os dados da apuracao como pessoas envolvidas, endereco, contato, dados da apuracao
 	public function listApuracao($idApuracao)
@@ -203,6 +315,85 @@ class MApuracao {
 			INNER JOIN tb_endereco j ON f.idEndereco = j.idEndereco
 			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
 		");
+	}
+
+	//Listar todos os dados da apuracao mais as confirmacoes
+	public function listConfirmacaoCompleta()
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT 
+			a.idConfirmacaoApuracao, a.idUsuario idgerouOcorrencia, a.isPositivo, a.isNegativo, a.dataRegistro registroConfirmacao,
+			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status, b.dataRegistro,
+			c.idVitimasCriarApuracao, c.idVitimasApuracao,
+			d.idPessoa, d.idResponsavelApuracao,
+			e.qualFamilia, f.idPessoa idPessoaResponsavel,
+			g.nome nomeVitima, g.sexo sexoVitima, g.cpf cpfVitima,
+			h.nome nomeResponsavel, h.cpf cpfResponsavel,
+			i.celular celularVitima,
+			j.celular celularResponsavel,
+			k.cep cepVitima, k.rua ruaVitima, k.numero numeroVitima, k.bairro bairroVitima, 
+			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
+			l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, l.bairro bairroResponsavel, 
+			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel,
+			n.nome nomeGerouOcorrencia
+			FROM tb_confirmacaoapuracao a
+			INNER JOIN tb_criarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
+			INNER JOIN tb_vitimascriarapuracao c ON b.idCriarApuracao = c.idCriarApuracao
+			INNER JOIN tb_vitimasapuracao d ON c.idVitimasApuracao = d.idVitimasApuracao
+			INNER JOIN tb_familiaapuracao e ON d.idVitimasApuracao = e.idVitimasApuracao
+			INNER JOIN tb_responsavelapuracao f ON d.idResponsavelApuracao = f.idResponsavelApuracao
+			INNER JOIN tb_pessoa g ON d.idPessoa = g.idPessoa
+			INNER JOIN tb_pessoa h ON f.idPessoa = h.idPessoa
+			INNER JOIN tb_contato i ON g.idContato = i.idContato
+			INNER JOIN tb_contato j ON h.idContato = j.idContato
+			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
+			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
+			INNER JOIN tb_usuario m ON m.idUsuario = a.idUsuario
+			INNER JOIN tb_pessoa n ON n.idPessoa = m.idPessoa
+		");
+	}
+
+	//Listar todos os dados da apuracao especifica para confirmacao
+	public function listConfirmacao($idApuracao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT 
+			a.idConfirmacaoApuracao, a.idUsuario idgerouOcorrencia, a.isPositivo, a.isNegativo, a.dataRegistro registroConfirmacao,
+			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status, b.dataRegistro,
+			c.idVitimasCriarApuracao, c.idVitimasApuracao,
+			d.idPessoa, d.idResponsavelApuracao,
+			e.qualFamilia, f.idPessoa idPessoaResponsavel,
+			g.nome nomeVitima, g.sexo sexoVitima, g.cpf cpfVitima,
+			h.nome nomeResponsavel, h.cpf cpfResponsavel,
+			i.celular celularVitima,
+			j.celular celularResponsavel,
+			k.cep cepVitima, k.rua ruaVitima, k.numero numeroVitima, k.bairro bairroVitima, 
+			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
+			l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, l.bairro bairroResponsavel, 
+			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel,
+			n.nome nomeGerouOcorrencia
+			FROM tb_confirmacaoapuracao a
+			INNER JOIN tb_criarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
+			INNER JOIN tb_vitimascriarapuracao c ON b.idCriarApuracao = c.idCriarApuracao
+			INNER JOIN tb_vitimasapuracao d ON c.idVitimasApuracao = d.idVitimasApuracao
+			INNER JOIN tb_familiaapuracao e ON d.idVitimasApuracao = e.idVitimasApuracao
+			INNER JOIN tb_responsavelapuracao f ON d.idResponsavelApuracao = f.idResponsavelApuracao
+			INNER JOIN tb_pessoa g ON d.idPessoa = g.idPessoa
+			INNER JOIN tb_pessoa h ON f.idPessoa = h.idPessoa
+			INNER JOIN tb_contato i ON g.idContato = i.idContato
+			INNER JOIN tb_contato j ON h.idContato = j.idContato
+			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
+			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
+			INNER JOIN tb_usuario m ON m.idUsuario = a.idUsuario
+			INNER JOIN tb_pessoa n ON n.idPessoa = m.idPessoa
+			WHERE b.idCriarApuracao = :idCriarApuracao
+		", [
+			":idCriarApuracao" => $idApuracao
+		]);
 	}
 
 }
