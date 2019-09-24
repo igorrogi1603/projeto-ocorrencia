@@ -5,12 +5,15 @@ namespace App\Controller;
 use \App\Classe\Validacao;
 use \App\Classe\Usuario;
 use \App\Model\MApuracao;
+use \App\Model\MOcorrencia;
 
 class CListaConfirmacao {
-
-	public static function getConfirmacaoNegativo($idApuracao, $idConfirmacao)
+	
+	//Botao de "CONFIMRAR" a apuracao
+	public static function getConfirmacaoPositivo($idApuracao, $idConfirmacao)
 	{
 		$mapuracao = new MApuracao;
+		$mocorrencia = new MOcorrencia;
 
 		//Recupero na tabela para ver se tem alguma informacao do usuario logado
 		//Caso nessa tabela tenha uma informacao desse usuario quer dizer que ele ja votou
@@ -20,24 +23,74 @@ class CListaConfirmacao {
 		$confirmarApuracao = $mapuracao->recuperarConfirmacaoApuracao($idApuracao);
 
 		//Caso os votos negativos forem menores que dois entra aqui
-		if ($confirmarApuracao[0]['isNegativo'] < 2) {
+		if ($confirmarApuracao[0]['isPositivo'] < 2) {
 			if ($voto === 0){
-				//Recuperando o isNegativo atual do banco de dados
-				$isNegativo = $mapuracao->recuperarConfirmacaoNegativo($idConfirmacao);
-
-				//Atualizando o isNegativo para mais um a partir do atual
-				$mapuracao->updateConfirmacaoNegativo($idConfirmacao, $isNegativo[0]['isNegativo']);
+				//Atualizando o isPositivo para mais um a partir do atual
+				$mapuracao->updateConfirmacaoPositivo($idConfirmacao, $confirmarApuracao[0]['isPositivo']);
 
 				//Cadastrando na tabela o usuario que ja votou pois nao pode votar duas vezes
 				$mapuracao->gerenciarConfirmacao($idApuracao, $_SESSION[Usuario::SESSION]['idUsuario']);
-
-				$confirmarApuracaoPronta = $mapuracao->recuperarConfirmacaoApuracao($idApuracao);
 			} else {
 				Validacao::setMsgError("Você já votou nessa apuracão.");
 		        header('Location: /confirmar-apuracao-detalhe/'.$idApuracao);
 		        exit;
 			}
 		}
+
+		$confirmarApuracaoPronta = $mapuracao->recuperarConfirmacaoApuracao($idApuracao);
+
+		//Caso os votos forem dois entra aqui
+		if ($confirmarApuracaoPronta[0]['isPositivo'] == 2) {
+			//Mudar o status da apuracao para 3 (virou ocorrencia)
+			$mapuracao->updateStatus(3, $idApuracao);
+
+			//Cadastrar na tabela ocorrencia
+			$mocorrencia->cadastrar($idApuracao);
+
+			//Buscar a ocorrencia que foi cadastrada agora
+			$idOcorrencia = $mocorrencia->ultimoRegistro();
+
+			//Gerar nome da pasta
+			$nomePasta = "ocorrencia".$idOcorrencia[0]["MAX(idOcorrencia)"];
+
+			//Criar a pasta da ocorrencia
+			mkdir('./ocorrencias/'.$nomePasta);
+
+			//Gerar o PDF
+			
+
+			//Colocar o PDF dentro da pasta da ocorrencia criada
+		}
+	}
+
+	//Botao de "NAO CONFIMRAR" a apuracao 
+	public static function getConfirmacaoNegativo($idApuracao, $idConfirmacao)
+	{
+		$mapuracao = new MApuracao;
+
+		//Recupero na tabela para ver se tem alguma informacao do usuario logado
+		//Caso nessa tabela tenha uma informacao desse usuario quer dizer que ele ja votou
+		$voto = count($mapuracao->recuperarGerenciarConfirmacao($idApuracao, $_SESSION[Usuario::SESSION]['idUsuario']));
+
+		//Recupero as informacao da confirmacao para alterar os votos
+		$confirmarApuracao = $mapuracao->recuperarConfirmacaoApuracao($idApuracao);		
+
+		//Caso os votos negativos forem menores que dois entra aqui
+		if ($confirmarApuracao[0]['isNegativo'] < 2) {
+			if ($voto === 0){
+				//Atualizando o isNegativo para mais um a partir do atual
+				$mapuracao->updateConfirmacaoNegativo($idConfirmacao, $confirmarApuracao[0]['isNegativo']);
+
+				//Cadastrando na tabela o usuario que ja votou pois nao pode votar duas vezes
+				$mapuracao->gerenciarConfirmacao($idApuracao, $_SESSION[Usuario::SESSION]['idUsuario']);
+			} else {
+				Validacao::setMsgError("Você já votou nessa apuracão.");
+		        header('Location: /confirmar-apuracao-detalhe/'.$idApuracao);
+		        exit;
+			}
+		}
+
+		$confirmarApuracaoPronta = $mapuracao->recuperarConfirmacaoApuracao($idApuracao);
 
 		//Caso os votos forem dois entra aqui
 		if ($confirmarApuracaoPronta[0]['isNegativo'] == 2) {

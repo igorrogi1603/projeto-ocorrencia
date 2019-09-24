@@ -99,25 +99,6 @@ class MApuracao {
 	}
 
 
-
-	//----------------------------------------------------------------
-	//CADASTRAR NA TABELA ConfirmacaoApuracao 
-	//----------------------------------------------------------------
-	public function confirmacaoApuracao($idApuracao, $idUsuario, $isPositivo, $isNegativo)
-	{
-		$sql = new Conexao;
-
-		$sql->query("
-			INSERT INTO tb_confirmacaoapuracao (idCriarApuracao, idUsuario, isPositivo, isNegativo) 
-			VALUES(:idCriarApuracao, :idUsuario, :isPositivo, :isNegativo)
-		", [
-			":idCriarApuracao" => $idApuracao,
-			":idUsuario" => $idUsuario,
-			":isPositivo" => $isPositivo,
-			":isNegativo" => $isNegativo,
-		]);
-	}
-
 	//----------------------------------------------------------------
 	//CADASTRAR NA TABELA VitimasCriarApuracao 
 	//----------------------------------------------------------------
@@ -154,6 +135,24 @@ class MApuracao {
 			":idResponsavelApuracao" => (int)$idResponsavel[0]["MAX(idResponsavelApuracao)"],
 			":qualFamilia" => utf8_decode($apuracao->getqualFamiliaVitima())
 		]);	
+	}
+
+	//----------------------------------------------------------------
+	//CADASTRAR NA TABELA ConfirmacaoApuracao 
+	//----------------------------------------------------------------
+	public function confirmacaoApuracao($idApuracao, $idUsuario, $isPositivo, $isNegativo)
+	{
+		$sql = new Conexao;
+
+		$sql->query("
+			INSERT INTO tb_confirmacaoapuracao (idCriarApuracao, idUsuario, isPositivo, isNegativo) 
+			VALUES(:idCriarApuracao, :idUsuario, :isPositivo, :isNegativo)
+		", [
+			":idCriarApuracao" => $idApuracao,
+			":idUsuario" => $idUsuario,
+			":isPositivo" => $isPositivo,
+			":isNegativo" => $isNegativo,
+		]);
 	}
 
 	//----------------------------------------------------------------
@@ -201,15 +200,6 @@ class MApuracao {
 		]);
 	}
 
-	public function recuperarConfirmacaoNegativo($idConfirmacao)
-	{
-		$sql = new Conexao;
-
-		return $sql->select("SELECT isNegativo FROM tb_confirmacaoapuracao WHERE idConfirmacaoApuracao = :idConfirmacaoApuracao", [
-			":idConfirmacaoApuracao" => $idConfirmacao
-		]);
-	}
-
 	public function updateConfirmacaoNegativo($idConfirmacao, $isNegativo)
 	{	
 		$sql = new Conexao;
@@ -222,6 +212,22 @@ class MApuracao {
 			WHERE idConfirmacaoApuracao = :idConfirmacaoApuracao
 		", [
 			":isNegativo" => $proximoDigito,
+			":idConfirmacaoApuracao" => $idConfirmacao
+		]);
+	}
+
+	public function updateConfirmacaoPositivo($idConfirmacao, $isPositivo)
+	{	
+		$sql = new Conexao;
+
+		$proximoDigito = (int)$isPositivo + 1;
+
+		$sql->query("
+			UPDATE tb_confirmacaoapuracao 
+			SET isPositivo = :isPositivo
+			WHERE idConfirmacaoApuracao = :idConfirmacaoApuracao
+		", [
+			":isPositivo" => $proximoDigito,
 			":idConfirmacaoApuracao" => $idConfirmacao
 		]);
 	}

@@ -141,11 +141,21 @@ $app->get("/confirmar-apuracao-detalhe/:idApuracao", function($idApuracao){
 	]);
 });
 
+$app->get("/confirmacao-positivo/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
+
+	Usuario::verifyLogin();
+
+	CListaConfirmacao::getConfirmacaoPositivo($idApuracao, $idConfirmacao);
+
+	header('Location: /ocorrencias-abertas');
+	exit;
+});
+
 $app->get("/confirmacao-negativo/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
 
 	Usuario::verifyLogin();
 
-	$confirmacaoNegativo = CListaConfirmacao::getConfirmacaoNegativo($idApuracao, $idConfirmacao);
+	CListaConfirmacao::getConfirmacaoNegativo($idApuracao, $idConfirmacao);
 
 	header('Location: /confirmar-apuracao-detalhe/'.$idApuracao);
 	exit;
