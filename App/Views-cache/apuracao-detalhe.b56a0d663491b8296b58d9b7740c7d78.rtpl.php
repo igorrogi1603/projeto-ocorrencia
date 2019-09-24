@@ -29,6 +29,7 @@
           <div class="col-md-12">
             <p class="sem-espacamento"><strong>N° da Ocorrência: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Data: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["dataRegistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Usuário que abriu: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["quemCriouApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
           </div>
           <!--Fim Detalhes-->
         </div>

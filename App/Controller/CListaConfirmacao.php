@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use \Mpdf\Mpdf;	
+
 use \App\Classe\Validacao;
 use \App\Classe\Usuario;
 use \App\Model\MApuracao;
@@ -54,15 +56,30 @@ class CListaConfirmacao {
 			$nomePasta = "ocorrencia".$idOcorrencia[0]["MAX(idOcorrencia)"];
 
 			//Criar a pasta da ocorrencia
-			mkdir('./ocorrencias/'.$nomePasta);
+			mkdir('.'.DIRECTORY_SEPARATOR.'ocorrencias'.DIRECTORY_SEPARATOR.$nomePasta);
 
 			//Gerar o PDF
-			
+			//Buscando o conteudo do pdf
+			require_once('./App/Views-pdf/PdfCriarApuracao.php');
+
+			//Nome do arquivo final
+			$arquivo = "Apuracao".$idApuracao.".pdf";
+
+			//Para onde vai o pdf
+			$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+
+			//Instancia o mpdf
+			$mpdf = new Mpdf();
+
+			//Coloca o html criado dentro da variavel para gerar o pdf
+			$mpdf->WriteHTML($pagina);
 
 			//Colocar o PDF dentro da pasta da ocorrencia criada
+			$mpdf->Output($destino."".$arquivo, 'F');
 		}
-	}
+	}//Fim getConfirmacaoPositivo
 
+	//-------------------------------------------------------------------------------------------------------------
 	//Botao de "NAO CONFIMRAR" a apuracao 
 	public static function getConfirmacaoNegativo($idApuracao, $idConfirmacao)
 	{
@@ -98,8 +115,9 @@ class CListaConfirmacao {
 			header('Location: /confirmacao-detalhe/descartar/'.$idApuracao.'/'.$idConfirmacao);
 			exit;
 		}
-	}
+	}//Fim getConfirmacaoNegativo
 
+	//-------------------------------------------------------------------------------------------------------------
 	public static function confirmacaoDetalheCancelar($idConfirmacao)
 	{
 		$mapuracao = new MApuracao;
@@ -111,6 +129,7 @@ class CListaConfirmacao {
 		$mapuracao->deletarGerenciarConfirmacao($_SESSION[Usuario::SESSION]['idUsuario']);
 	}
 
+	//-------------------------------------------------------------------------------------------------------------
 	public static function getConfirmacaoDetalhe($idApuracao)
 	{
 		//instaciando
@@ -147,11 +166,13 @@ class CListaConfirmacao {
 			$detalheConfirmacao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($detalheConfirmacao[$i]['cepVitima']));
 			$detalheConfirmacao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($detalheConfirmacao[$i]['cepResponsavel']));
 			$detalheConfirmacao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheConfirmacao[$i]['dataRegistro']));
+			$detalheConfirmacao[$i]['quemCriouApuracao'] = utf8_encode($detalheConfirmacao[$i]['quemCriouApuracao']);
 		}
 		
 		return $detalheConfirmacao;
-	}
+	}//Fim getConfirmacaoDetalhe
 
+	//-------------------------------------------------------------------------------------------------------------
 	//LISTA CONFIRMACAO
 	public static function getListaConfirmacao()
 	{	
@@ -215,8 +236,8 @@ class CListaConfirmacao {
 		}
 
 		return $listaConfirmacao;
-	}
+	}//Fim getListaConfirmacao
 
-}
+}//Fim class
 
 ?>

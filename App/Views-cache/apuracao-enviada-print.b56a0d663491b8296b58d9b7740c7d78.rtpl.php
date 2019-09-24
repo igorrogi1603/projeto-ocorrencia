@@ -101,10 +101,19 @@
 
     <!--Dados da Ocorrencia-->
     <h3><strong>Dados da Ocorrência</strong></h3>
+
+    <!--Quem abriu Apuracao-->
+    <div class="row">
+      <div class="col-md-12">
+        <p class=""><strong>Usuário que criou apuração: </strong><?php echo htmlspecialchars( $apuracaoCompleta["0"]["quemCriouApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+      </div>
+    </div>
+    <!--Fim Quem abriu Apuracao-->
+
     <!--Tipo da ocorrencia-->
     <div class="row">
       <div class="col-md-12">
-        <p class=""><strong>Tipo da Ocorrência: </strong><?php echo htmlspecialchars( $apuracaoCompleta["0"]["tipoApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class=""><strong>Tipo da Apuração: </strong><?php echo htmlspecialchars( $apuracaoCompleta["0"]["tipoApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
       </div>
     </div>
     <!--Fim Tipo da ocorrencia-->
@@ -112,7 +121,7 @@
     <!--Descricao da ocorrencia-->
     <div class="row">
       <div class="col-md-12">
-        <p class="sem-espacamento"><strong>Descrição da Ocorrência: </strong><?php echo htmlspecialchars( $apuracaoCompleta["0"]["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+        <p class="sem-espacamento"><strong>Descrição da Apuração: </strong><?php echo htmlspecialchars( $apuracaoCompleta["0"]["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
       </div>
     </div>
     <!--Fim Descricao da ocorrencia-->

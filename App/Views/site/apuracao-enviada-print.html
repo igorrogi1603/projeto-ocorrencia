@@ -101,10 +101,19 @@
 
     <!--Dados da Ocorrencia-->
     <h3><strong>Dados da Ocorrência</strong></h3>
+
+    <!--Quem abriu Apuracao-->
+    <div class="row">
+      <div class="col-md-12">
+        <p class=""><strong>Usuário que criou apuração: </strong>{$apuracaoCompleta.0.quemCriouApuracao}</p>
+      </div>
+    </div>
+    <!--Fim Quem abriu Apuracao-->
+
     <!--Tipo da ocorrencia-->
     <div class="row">
       <div class="col-md-12">
-        <p class=""><strong>Tipo da Ocorrência: </strong>{$apuracaoCompleta.0.tipoApuracao}</p>
+        <p class=""><strong>Tipo da Apuração: </strong>{$apuracaoCompleta.0.tipoApuracao}</p>
       </div>
     </div>
     <!--Fim Tipo da ocorrencia-->
@@ -112,7 +121,7 @@
     <!--Descricao da ocorrencia-->
     <div class="row">
       <div class="col-md-12">
-        <p class="sem-espacamento"><strong>Descrição da Ocorrência: </strong>{$apuracaoCompleta.0.descricao}</p>
+        <p class="sem-espacamento"><strong>Descrição da Apuração: </strong>{$apuracaoCompleta.0.descricao}</p>
       </div>
     </div>
     <!--Fim Descricao da ocorrencia-->

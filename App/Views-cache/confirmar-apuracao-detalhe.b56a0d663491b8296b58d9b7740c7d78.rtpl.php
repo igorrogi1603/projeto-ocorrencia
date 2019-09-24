@@ -36,6 +36,7 @@
           <div class="col-md-12">
             <p class="sem-espacamento"><strong>N° da Ocorrência: </strong><?php echo htmlspecialchars( $confirmacaoDetalhe["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Data: </strong><?php echo htmlspecialchars( $confirmacaoDetalhe["0"]["dataRegistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Usuário que criou apuração: </strong><?php echo htmlspecialchars( $confirmacaoDetalhe["0"]["quemCriouApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
           </div>
           <!--Fim Detalhes-->
         </div>
@@ -100,7 +101,7 @@
         <div class="row">
           <div class="col-md-12">
             <h4>Confirmar</h4>
-            <p class="sem-espacamento"><strong>Quem abriu: </strong><?php echo htmlspecialchars( $confirmacaoDetalhe["0"]["nomeGerouOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Quem abriu confirmação: </strong><?php echo htmlspecialchars( $confirmacaoDetalhe["0"]["nomeGerouOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <?php if( $confirmacaoDetalhe["0"]["isPositivo"] == 0 ){ ?>
             <p class="sem-espacamento"><strong>Confirmações: </strong>00/02</p>
             <?php } ?>

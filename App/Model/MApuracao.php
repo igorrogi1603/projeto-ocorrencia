@@ -272,7 +272,8 @@ class MApuracao {
 			j.cep cepVitima, j.rua ruaVitima, j.numero numeroVitima, j.bairro bairroVitima, 
 			j.cidade cidadeVitima, j.estado estadoVitima, j.complemento complementoVitima,
 			k.cep cepResponsavel, k.rua ruaResponsavel, k.numero numeroResponsavel, k.bairro bairroResponsavel, 
-			k.cidade cidadeResponsavel, k.estado estadoResponsavel, k.complemento complementoResponsavel
+			k.cidade cidadeResponsavel, k.estado estadoResponsavel, k.complemento complementoResponsavel,
+			m.nome quemCriouApuracao
 			FROM tb_criarapuracao a
 			INNER JOIN tb_vitimascriarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
 			INNER JOIN tb_vitimasapuracao c ON b.idVitimasApuracao = c.idVitimasApuracao
@@ -284,6 +285,8 @@ class MApuracao {
 			INNER JOIN tb_contato i ON g.idContato = i.idContato
 			INNER JOIN tb_endereco j ON f.idEndereco = j.idEndereco
 			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
+			INNER JOIN tb_usuario l ON a.idUsuario = l.idUsuario
+			INNER JOIN tb_pessoa m ON l.idPessoa = m.idPessoa
 			WHERE a.idCriarApuracao = :idCriarApuracao;
 		", [
 			":idCriarApuracao" => $idApuracao
@@ -381,7 +384,8 @@ class MApuracao {
 			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
 			l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, l.bairro bairroResponsavel, 
 			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel,
-			n.nome nomeGerouOcorrencia
+			n.nome nomeGerouOcorrencia,
+			p.nome quemCriouApuracao
 			FROM tb_confirmacaoapuracao a
 			INNER JOIN tb_criarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
 			INNER JOIN tb_vitimascriarapuracao c ON b.idCriarApuracao = c.idCriarApuracao
@@ -396,6 +400,8 @@ class MApuracao {
 			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
 			INNER JOIN tb_usuario m ON m.idUsuario = a.idUsuario
 			INNER JOIN tb_pessoa n ON n.idPessoa = m.idPessoa
+			INNER JOIN tb_usuario o ON b.idUsuario = o.idUsuario
+			INNER JOIN tb_pessoa p ON o.idPessoa = p.idPessoa
 			WHERE b.idCriarApuracao = :idCriarApuracao
 		", [
 			":idCriarApuracao" => $idApuracao
