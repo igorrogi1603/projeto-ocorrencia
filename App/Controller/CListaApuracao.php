@@ -65,6 +65,7 @@ class CListaApuracao {
 			$detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepVitima']));
 			$detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepResponsavel']));
 			$detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataRegistro']));
+			$detalheApuracao[$i]['dataCriacao'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataCriacao']));
 			$detalheApuracao[$i]['quemCriouApuracao'] = utf8_encode($detalheApuracao[$i]['quemCriouApuracao']);
 		}
 		
@@ -128,6 +129,7 @@ class CListaApuracao {
 				$listaApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($listaApuracao[$i]['cepVitima']));
 				$listaApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($listaApuracao[$i]['cepResponsavel']));
 				$listaApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($listaApuracao[$i]['dataRegistro']));
+				$listaApuracao[$i]['dataCriacao'] = $validacao->replaceDataView(utf8_encode($listaApuracao[$i]['dataCriacao']));
 			}
 		}
 
@@ -176,6 +178,7 @@ class CListaApuracao {
 			$detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepVitima']));
 			$detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepResponsavel']));
 			$detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataRegistro']));
+			$detalheApuracao[$i]['dataCriacao'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataCriacao']));
 		}
 		
 		return $detalheApuracao;
@@ -240,6 +243,7 @@ class CListaApuracao {
 				$listaConfirmacao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($listaConfirmacao[$i]['cepResponsavel']));
 				$listaConfirmacao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($listaConfirmacao[$i]['dataRegistro']));
 				$listaConfirmacao[$i]['registroConfirmacao'] = $validacao->replaceDataView(utf8_encode($listaConfirmacao[$i]['registroConfirmacao']));
+				$listaConfirmacao[$i]['dataCriacao'] = $validacao->replaceDataView(utf8_encode($listaConfirmacao[$i]['dataCriacao']));
 			}
 		}
 

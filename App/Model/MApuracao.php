@@ -24,13 +24,14 @@ class MApuracao {
 		//4 = excluida
 
 		$sql->query("
-			INSERT INTO tb_criarapuracao (idUsuario, tipoApuracao, descricao, status) 
-			VALUES(:idUsuario, :tipoApuracao, :descricao, :status)
+			INSERT INTO tb_criarapuracao (idUsuario, tipoApuracao, descricao, status, dataCriacao) 
+			VALUES(:idUsuario, :tipoApuracao, :descricao, :status, :dataCriacao)
 		", [
 			":idUsuario" => $idUsuario,
 			":tipoApuracao" => utf8_decode($apuracao->gettipoApuracao()),
 			":descricao" => utf8_decode($apuracao->getdescricaoApuracao()),
-			":status" => 1
+			":status" => 1,
+			":dataCriacao" => date('Y-m-d H:i:s')
 		]);
 	}
 
@@ -261,7 +262,7 @@ class MApuracao {
 
 		return $sql->select("
 			SELECT 
-			a.idCriarApuracao, a.idUsuario, a.tipoApuracao, a.descricao, a.status, a.dataRegistro,
+			a.idCriarApuracao, a.idUsuario, a.tipoApuracao, a.descricao, a.status, a.dataCriacao, a.dataRegistro,
 			b.idVitimasCriarApuracao, b.idVitimasApuracao,
 			c.idPessoa, c.idResponsavelApuracao,
 			d.qualFamilia, e.idPessoa idPessoaResponsavel,
@@ -300,7 +301,7 @@ class MApuracao {
 
 		return $sql->select("
 			SELECT 
-			a.idCriarApuracao, a.idUsuario, a.tipoApuracao, a.descricao, a.status, a.dataRegistro,
+			a.idCriarApuracao, a.idUsuario, a.tipoApuracao, a.descricao, a.status, a.dataCriacao, a.dataRegistro,
 			b.idVitimasCriarApuracao, b.idVitimasApuracao,
 			c.idPessoa, c.idResponsavelApuracao,
 			d.qualFamilia, e.idPessoa idPessoaResponsavel,
@@ -334,7 +335,7 @@ class MApuracao {
 		return $sql->select("
 			SELECT 
 			a.idConfirmacaoApuracao, a.idUsuario idgerouOcorrencia, a.isPositivo, a.isNegativo, a.dataRegistro registroConfirmacao,
-			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status, b.dataRegistro,
+			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status, b.dataCriacao, b.dataRegistro,
 			c.idVitimasCriarApuracao, c.idVitimasApuracao,
 			d.idPessoa, d.idResponsavelApuracao,
 			e.qualFamilia, f.idPessoa idPessoaResponsavel,
@@ -372,7 +373,7 @@ class MApuracao {
 		return $sql->select("
 			SELECT 
 			a.idConfirmacaoApuracao, a.idUsuario idgerouOcorrencia, a.isPositivo, a.isNegativo, a.dataRegistro registroConfirmacao,
-			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status, b.dataRegistro,
+			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status, b.dataCriacao, b.dataRegistro,
 			c.idVitimasCriarApuracao, c.idVitimasApuracao,
 			d.idPessoa, d.idResponsavelApuracao,
 			e.qualFamilia, f.idPessoa idPessoaResponsavel,

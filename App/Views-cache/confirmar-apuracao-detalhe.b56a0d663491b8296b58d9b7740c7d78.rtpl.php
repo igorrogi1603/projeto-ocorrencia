@@ -42,6 +42,8 @@
         </div>
         <!--Fim Row-->
 
+        <br><hr>
+
         <?php $counter1=-1;  if( isset($confirmacaoDetalhe) && ( is_array($confirmacaoDetalhe) || $confirmacaoDetalhe instanceof Traversable ) && sizeof($confirmacaoDetalhe) ) foreach( $confirmacaoDetalhe as $key1 => $value1 ){ $counter1++; ?>
         <!--Inicio Row-->
         <div class="row">

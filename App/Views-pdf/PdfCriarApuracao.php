@@ -1,137 +1,221 @@
 <?php
+use \App\Classe\Validacao;
+use \App\Classe\Usuario;
+use \App\Model\MApuracao;
 
+//instaciando
+$mapuracao = new MApuracao;
+$validacao = new Validacao;
+
+//INFORMACOES
+$detalheApuracao = $mapuracao->listApuracao($idApuracao);
+
+//Pega o tamanho do arry para usar no for
+$tamanhoArray = count($detalheApuracao);
+
+//Validacao dos campos com acentos do banco de dados
+for ($i = 0; $i < $tamanhoArray; $i++) {
+	$detalheApuracao[$i]['descricao'] = utf8_encode($detalheApuracao[$i]['descricao']);
+	$detalheApuracao[$i]['tipoApuracao'] = utf8_encode($detalheApuracao[$i]['tipoApuracao']);
+	$detalheApuracao[$i]['qualFamilia'] = utf8_encode($detalheApuracao[$i]['qualFamilia']);
+	$detalheApuracao[$i]['nomeVitima'] = utf8_encode($detalheApuracao[$i]['nomeVitima']);
+	$detalheApuracao[$i]['nomeResponsavel'] = utf8_encode($detalheApuracao[$i]['nomeResponsavel']);
+	$detalheApuracao[$i]['ruaVitima'] = utf8_encode($detalheApuracao[$i]['ruaVitima']);
+	$detalheApuracao[$i]['bairroVitima'] = utf8_encode($detalheApuracao[$i]['bairroVitima']);
+	$detalheApuracao[$i]['cidadeVitima'] = utf8_encode($detalheApuracao[$i]['cidadeVitima']);
+	$detalheApuracao[$i]['estadoVitima'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoVitima']));
+	$detalheApuracao[$i]['complementoVitima'] = utf8_encode($detalheApuracao[$i]['complementoVitima']);
+	$detalheApuracao[$i]['ruaResponsavel'] = utf8_encode($detalheApuracao[$i]['ruaResponsavel']);
+	$detalheApuracao[$i]['bairroResponsavel'] = utf8_encode($detalheApuracao[$i]['bairroResponsavel']);
+	$detalheApuracao[$i]['cidadeResponsavel'] = utf8_encode($detalheApuracao[$i]['cidadeResponsavel']);
+	$detalheApuracao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoResponsavel']));
+	$detalheApuracao[$i]['complementoResponsavel'] = utf8_encode($detalheApuracao[$i]['complementoResponsavel']);
+	$detalheApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfVitima']));
+	$detalheApuracao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularVitima']));
+	$detalheApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfResponsavel']));
+	$detalheApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularResponsavel']));
+	$detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepVitima']));
+	$detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepResponsavel']));
+	$detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataRegistro']));
+	$detalheApuracao[$i]['quemCriouApuracao'] = utf8_encode($detalheApuracao[$i]['quemCriouApuracao']);
+}
+
+//HTML DO RELATORIO
 $pagina = 
 
 "
 <!DOCTYPE html>
 <html>
-<head>
-  <title>AdminLTE 2 | Invoice</title>
-  <!-- Bootstrap 3.3.6 -->
-  <link rel='stylesheet' href='/res/site/bootstrap/css/bootstrap.min.css'>
-  <!--Local css-->
-  <link rel='stylesheet' type='text/css' href='/res/site/dist/css/local-css.css'>
-  <!-- Font Awesome -->
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
-  <!-- Ionicons -->
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css'>
-  <!-- Theme style -->
-  <link rel='stylesheet' href='/res/site/dist/css/AdminLTE.min.css'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Relatório Apuração</title>
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js'></script>
-  <script src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js'></script>
-  <![endif]-->
-</head>
-<body onload='window.print();'>
-<div class='wrapper'>
-  <!-- Main content -->
-  <section class='invoice'>
-    <!-- title row -->
-    <div class='row'>
-      <div class='col-xs-12'>
-        <h2 class='page-header'>
-          <i class='fa fa-globe'></i> Sistema de Ocorrência Municipal
-          <small class='pull-right'>Date:</small>
-        </h2>
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- info row -->
+        <style>
+            h1 {
+                font-size: 16px;
+                font-weight: bold;
+                margin: 0px;
+                padding: 0px;
+            }
 
-    <div class='row'>
-      <div class='col-xs-12'>
-        <small class='pull-right'>N° da Apuracao: </small>
-      </div>
-    </div>
+            h2 {
+                font-size: 14px;
+                font-weight: bold;
+                margin: 0px;
+                padding: 0px;
+            }
 
-    <!--Corpo do relatorio
-    -------------------------------->
-    <h2><strong>Dados da Apuração</strong></h2>
-    <hr>
+            hr {
+                border-color: #eee;
+            }
 
-    <!--Dados da Vitima-->
-    <h3><strong>Dados da Vítima</strong></h3>
-    <!--Inicio Row-->
-    <div class='row'>
-      <!--Dados-->
-      <div class='col-sm-4 invoice-col'>
-        <p class='sem-espacamento'><strong>Nome: </strong></p>
-        <p class='sem-espacamento'><strong>Qual Família: </strong></p>
-        
-        <p class='sem-espacamento'><strong>Sexo: </strong>Masculino</p>
-        
-        
-        <p class='sem-espacamento'><strong>Sexo: </strong>Feminino</p>
-        
-        <p class='sem-espacamento'><strong>CPF: </strong></p>
-        <p class='sem-espacamento'><strong>Celular: </strong></p>
-      </div>
-      <!--Fim Dados-->
+            .font {
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 0px;
+                margin: 0px;
+            }
 
-      <!--Dados dos pais e responsaveis-->
-      <div class='col-sm-4 invoice-col'>
-        <p class='sem-espacamento'><strong>Responsavel: </strong></p>
-        <p class='sem-espacamento'><strong>CPF: </strong></p>
-        <p class='sem-espacamento'><strong>Celular: </strong></p>
-      </div>
-      <!--Fim Dados dos pais e responsaveis-->
+            .container {
+                margin: 0px;
+            }
 
-      <!--Endereco da vitima-->
-      <div class='col-sm-4 invoice-col'>
-        <p class='sem-espacamento'><strong>Cep: </strong></p>
-        <p class='sem-espacamento'><strong>Rua: </strong></p>
-        <p class='sem-espacamento'><strong>Bairro: </strong></p>
-        <p class='sem-espacamento'><strong>Numero: </strong></p>
-        <p class='sem-espacamento'><strong>Estado: </strong></p>
-        <p class='sem-espacamento'><strong>Cidade: </strong></p>
-        <p class='sem-espacamento'><strong>Complemento: </strong></p>
-      </div>
-      <!--Fim Endereco da vitima-->
-    </div>
-    <!--Fim Row-->
-    <!--Fim Dados da Vitima-->
-    <br>
-    <hr> 
+            .container-header {
+                width: 100%;
+            }
 
-    
+            .cabecalho-esquerda {
+                width: 100%;
+            }
 
-    <!--Dados da Ocorrencia-->
-    <h3><strong>Dados da Ocorrência</strong></h3>
+            .cabecalho-direita {
+                float: right;
+                width: 50%;           
+            }
 
-    <!--Quem abriu Apuracao-->
-    <div class='row'>
-      <div class='col-md-12'>
-        <p class=''><strong>Usuário que criou apuração: </strong></p>
-      </div>
-    </div>
-    <!--Fim Quem abriu Apuracao-->
+            .container-body {
+                width: 100%;
+                clear: both;
+            }
 
-    <!--Tipo da ocorrencia-->
-    <div class='row'>
-      <div class='col-md-12'>
-        <p class=''><strong>Tipo da Apuração: </strong></p>
-      </div>
-    </div>
-    <!--Fim Tipo da ocorrencia-->
+            .container-data {
+                width: 100%;
+            }
 
-    <!--Descricao da ocorrencia-->
-    <div class='row'>
-      <div class='col-md-12'>
-        <p class='sem-espacamento'><strong>Descrição da Apuração: </strong></p>
-      </div>
-    </div>
-    <!--Fim Descricao da ocorrencia-->
-    <!--Dados da Ocorrencia-->
+            .container-detalhe {
+                width: 100%;
+            }
 
-    <!--Fim Corpo do relatorio-->
-  </section>
-  <!-- /.content -->
-</div>
-<!-- ./wrapper -->
-</body>
+            .direita {
+                float: right;
+            }
+
+            .esquerda {
+                float: left;
+            }
+
+            .data {
+                font-size: 12px;
+                font-weight: bold;
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .bot{
+                margin-bottom: 10px;
+            }
+
+            .bot2 {
+                margin-bottom: 20px;
+            }
+
+            .categoria {
+                font-size: 12px;
+            }
+
+            .metade {
+                width: 50%;
+            }
+
+            .footer {
+                position:absolute;
+                bottom:0;
+                width:100%;
+            }
+
+            .assinatura {
+                font-size: 12px;
+                margin: 0px;
+                padding: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='container-header'>
+                <div class='cabecalho-esquerda'>
+                    <h1 class='esquerda font'><img src='/res/site/dist/img/logo-preta.png' width='20' height='20'> SISTEMA DE OCORRÊNCIA MUNICIPAL</h1>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class='container-data'>
+            	<p class='categoria font'><strong>Número Apuração: </strong>".$detalheApuracao[0]['idCriarApuracao']."</p>
+                <p class='categoria font'><strong>Data: </strong>".$detalheApuracao[0]['dataRegistro']."</p>
+            </div>
+            <hr>
+
+            ";
+            
+
+            for ($i = 0; $i < $tamanhoArray; $i++) {
+            $pagina .= "
+            <div class='container-body'>
+                <h2 class='font bot'>Dados Vítima</h2>
+
+                <div class='metade esquerda'>";
+                    $pagina .= "<p class='font categoria'><strong>Nome da Vítima: </strong>".$detalheApuracao[$i]['nomeVitima']."</p>";
+                    if ($detalheApuracao[$i]['sexoVitima'] == 'm') {
+                    	$pagina .= "<p class='font categoria'><strong>Sexo: </strong>Masculino</p>";
+                    }
+                    if ($detalheApuracao[$i]['sexoVitima'] == 'f') {
+                    	$pagina .= "<p class='font categoria'><strong>Sexo: </strong>Feminino</p>";
+                    }
+                    $pagina .= "<p class='font categoria'><strong>CPF: </strong>".$detalheApuracao[$i]['cpfVitima']."</p>";
+                    $pagina .= "<p class='font categoria'><strong>Celular: </strong>".$detalheApuracao[$i]['celularVitima']."</p>";
+                    $pagina .= "<p class='font categoria'><strong>Nome Responsavel: </strong>".$detalheApuracao[$i]['nomeResponsavel']."</p>";
+                    $pagina .= "<p class='font categoria'><strong>CPF Responsavel: </strong>".$detalheApuracao[$i]['cpfResponsavel']."</p>";
+                    $pagina .= "<p class='font categoria'><strong>Celular Responsavel: </strong>".$detalheApuracao[$i]['celularResponsavel']."</p>";
+                $pagina .= "</div>";
+
+                $pagina .= "<div class='metade direita'>";
+                    $pagina .= "<p class='font categoria'><strong>CEP: </strong>".$detalheApuracao[$i]['cepVitima']."</p>";
+                    $pagina .= "<p class='font categoria'><strong>Rua: </strong>".$detalheApuracao[$i]['ruaVitima']."</p>";
+                    $pagina .= "<p class='font categoria'><strong>Número: </strong>".$detalheApuracao[$i]['numeroVitima']."</p>";
+                    $pagina .= "<p class='font categoria'><strong>Bairro: </strong>".$detalheApuracao[$i]['bairroVitima']."</p>";
+                    $pagina .= "<p class='font categoria'><strong>Cidade: </strong>".$detalheApuracao[$i]['cidadeVitima']."</p>";
+                    $pagina .= "<p class='font categoria'><strong>Estado: </strong>".$detalheApuracao[$i]['estadoVitima']."</p>";
+                    $pagina .= "<p class='font categoria'><strong>Complemento: </strong>".$detalheApuracao[$i]['complementoVitima']."</p>";
+                $pagina .= "</div>
+                <hr>
+            </div>
+
+            ";
+        	}
+            $pagina .= "
+
+            <div class='container-detalhe'>
+                <h2 class='font bot'>Detalhe</h2>
+
+                <p class='font categoria'><strong>Tipo da Apuração: </strong>".$detalheApuracao[0]['tipoApuracao']."</p>
+                <p class='font categoria'><strong>Descrição: </strong>".$detalheApuracao[0]['descricao']."</p>
+            </div>
+        </div>
+
+        <div class='footer'>
+            <p class='font assinatura'><strong>".$detalheApuracao[0]['quemCriouApuracao']."</strong> concordou com os termos impostos pelo sistema e se responsabilizo por esse documento.</p>
+        </div>
+    </body>
 </html>
 ";
 

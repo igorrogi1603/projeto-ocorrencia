@@ -76,6 +76,9 @@ class CListaConfirmacao {
 
 			//Colocar o PDF dentro da pasta da ocorrencia criada
 			$mpdf->Output($destino."".$arquivo, 'F');
+
+			//Preencher a tabela de arquivos da ocorrencia
+			
 		}
 	}//Fim getConfirmacaoPositivo
 

@@ -18,11 +18,12 @@ class MOcorrencia {
 		//4 = Encerrada
 
 		$sql->query("
-			INSERT INTO tb_ocorrencia (idCriarApuracao, status) 
-			VALUES(:idCriarApuracao, :status)
+			INSERT INTO tb_ocorrencia (idCriarApuracao, status, dataCriacao) 
+			VALUES(:idCriarApuracao, :status, :dataCriacao)
 		", [
 			":idCriarApuracao" => $idApuracao,
-			":status" => 1
+			":status" => 1,
+			":dataCriacao" => date('Y-m-d H:i:s')
 		]);
 	}
 

@@ -35,12 +35,14 @@
           <!--Detalhes-->
           <div class="col-md-12">
             <p class="sem-espacamento"><strong>N° da Ocorrência: </strong>{$confirmacaoDetalhe.0.idCriarApuracao}</p>
-            <p class="sem-espacamento"><strong>Data: </strong>{$confirmacaoDetalhe.0.dataRegistro}</p>
+            <p class="sem-espacamento"><strong>Data: </strong>{$confirmacaoDetalhe.0.dataCriacao}</p>
             <p class="sem-espacamento"><strong>Usuário que criou apuração: </strong>{$confirmacaoDetalhe.0.quemCriouApuracao}</p>
           </div>
           <!--Fim Detalhes-->
         </div>
         <!--Fim Row-->
+
+        <br><hr>
 
         {loop="$confirmacaoDetalhe"}
         <!--Inicio Row-->

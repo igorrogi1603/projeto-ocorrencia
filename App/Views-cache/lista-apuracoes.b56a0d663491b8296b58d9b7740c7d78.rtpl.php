@@ -35,7 +35,7 @@
               <td><?php echo htmlspecialchars( $value1["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td><?php echo htmlspecialchars( $value1["cpfVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td><?php echo htmlspecialchars( $value1["dataRegistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["dataCriacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td>
                 <a href="/apuracao-detalhe/<?php echo htmlspecialchars( $value1["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-edit"></i></a>
               </td>
