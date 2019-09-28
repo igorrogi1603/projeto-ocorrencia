@@ -3,12 +3,12 @@
   <!---------------------------------------------------------------------------------------------------->
   <!-- Main Footer -->
   <footer class="main-footer">
-    <!-- To the right -->
+    <!-- To the right
     <div class="pull-right hidden-xs">
       Desenvolvido por: Igor Santos
-    </div>
+    </div>-->
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2019 <a href="#">Prefeitura de Nova Campina</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2019 <a href="#">Igor Santos</a>.</strong> All rights reserved.
   </footer>
 
 </div>
