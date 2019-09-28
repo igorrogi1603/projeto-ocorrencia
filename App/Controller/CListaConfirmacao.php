@@ -8,6 +8,7 @@ use \App\Classe\Validacao;
 use \App\Classe\Usuario;
 use \App\Model\MApuracao;
 use \App\Model\MOcorrencia;
+use \App\Model\MArquivo;
 
 class CListaConfirmacao {
 	
@@ -16,6 +17,7 @@ class CListaConfirmacao {
 	{
 		$mapuracao = new MApuracao;
 		$mocorrencia = new MOcorrencia;
+		$marquivo = new MArquivo;
 
 		//Recupero na tabela para ver se tem alguma informacao do usuario logado
 		//Caso nessa tabela tenha uma informacao desse usuario quer dizer que ele ja votou
@@ -58,6 +60,7 @@ class CListaConfirmacao {
 			//Criar a pasta da ocorrencia
 			mkdir('.'.DIRECTORY_SEPARATOR.'ocorrencias'.DIRECTORY_SEPARATOR.$nomePasta);
 
+			//--------------------------------------------------------
 			//Gerar o PDF
 			//Buscando o conteudo do pdf
 			require_once('./App/Views-pdf/PdfCriarApuracao.php');
@@ -77,8 +80,19 @@ class CListaConfirmacao {
 			//Colocar o PDF dentro da pasta da ocorrencia criada
 			$mpdf->Output($destino."".$arquivo, 'F');
 
+			//--------------------------------------------------------
 			//Preencher a tabela de arquivos da ocorrencia
-			
+			//criando a url
+			$url = $destino."".$arquivo;
+
+			//Cadastrando na tabela tb_arquivos
+			$marquivo->cadastrarArquivo('Apuração', $url);
+
+			//Resgata o arquivo criado
+			$idArquivo = $marquivo->ultimoRegistroArquivo();
+
+			//registra na tabela tb_arquivosProcessoOcorrencia
+			$marquivo->cadastrarArquivoOcorrencia($idOcorrencia[0]["MAX(idOcorrencia)"], $idArquivo[0]["MAX(idArquivo)"]);
 		}
 	}//Fim getConfirmacaoPositivo
 
