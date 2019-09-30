@@ -29,34 +29,9 @@
           <div class="col-md-4">
             <p class="sem-espacamento"><strong>N° da Ocorrência: </strong>251</p>
             <p class="sem-espacamento"><strong>Data: </strong>15/05/2013</p>
-            <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong>Violência doméstica</p>
             <p class="sem-espacamento"><strong>Status: </strong>Aberta</p>
           </div>
           <!--Fim Detalhes-->
-
-          <!--Vitima-->
-          <div class="col-md-4">
-            <p class="sem-espacamento"><strong>Nome da Vítima: </strong>Nome completo da vitima</p>
-            <p class="sem-espacamento"><strong>Nascimento: </strong>00/00/0000</p>
-            <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
-            <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
-            <p class="sem-espacamento"><strong>RG: </strong>00.000.000-0</p>
-            <p class="sem-espacamento"><strong>Telefone Fixo: </strong>0000-0000</p>
-            <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
-          </div>
-          <!--Fim Vitima-->
-
-          <!--Agressor-->
-          <div class="col-md-4">
-            <p class="sem-espacamento"><strong>Nome do Agressor: </strong>Nome completo do Agressor</p>
-            <p class="sem-espacamento"><strong>Nascimento: </strong>00/00/0000</p>
-            <p class="sem-espacamento"><strong>Sexo: </strong>Masculino</p>
-            <p class="sem-espacamento"><strong>CPF: </strong>000.000.000-00</p>
-            <p class="sem-espacamento"><strong>RG: </strong>00.000.000-0</p>
-            <p class="sem-espacamento"><strong>Telefone Fixo: </strong>0000-0000</p>
-            <p class="sem-espacamento"><strong>Celular: </strong>00000-0000</p>
-          </div>
-          <!--Fim Agressor-->
         </div>
         <!--Fim Row-->
         
@@ -68,13 +43,19 @@
         <div class="row">
           <div class="col-md-12">
             <!--Aparecer para todos os status-->
+            <a href="#" class="btn btn-app"><i class="fa fa-user"></i>Vítima</a>
+
+            <!--Aparecer para todos os status-->
+            <a href="#" class="btn btn-app"><i class="fa fa-user"></i>Agressor</a>
+
+            <!--Aparecer para todos os status-->
+            <a href="#" class="btn btn-app"><i class="fa fa-list-alt"></i>Detalhes</a>
+
+            <!--Aparecer para todos os status-->
             <a href="/ocorrencia-relatorio" class="btn btn-app"><i class="fa fa-file-text-o"></i>Relatório</a>
 
             <!--Aparecer para todos os status-->
             <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
-
-            <!--Aparecer se o status for aberta, reaberta-->
-            <a href="#" class="btn btn-app"><i class="fa fa-edit"></i>Editar</a>
 
             <!--Aparecer se o status for aberta, reaberta-->
             <a href="/ocorrencia-solicitacao" class="btn btn-app"><i class="fa fa-envelope"></i>Solicitação</a>

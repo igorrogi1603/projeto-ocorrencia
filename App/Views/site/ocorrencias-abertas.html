@@ -21,34 +21,25 @@
               <th>ID</th>
               <th>Vítima</th>
               <th>CPF da Vítima</th>
-              <th>Agressor</th>
               <th>Data de Criação</th>
               <th>Opções</th>
             </tr>
           </thead>
 
           <tbody>
+            {loop="$listaOcorrencia"}
+            {if="$value.statusOcorrencia == 1"}
             <tr>
-              <td>251</td>
-              <td>Elisa de Oliveira Ramos</td>
-              <td>425.653.987.56</td>
-              <td>Olivio da Conseição de Oliveira</td>
-              <td>15/05/2013</td>
+              <td>{$value.idOcorrencia}</td>
+              <td>{$value.nomeVitima}</td>
+              <td>{$value.cpfVitima}</td>
+              <td>{$value.dataCriacaoOcorrencia}</td>
               <td>
-                <a href="/ocorrencia-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                <a href="/ocorrencia-detalhe/{$value.idOcorrencia}" class="btn btn-default"><i class="fa fa-edit"></i></a>
               </td>
             </tr>
-
-            <tr>
-              <td>252</td>
-              <td>Isabel Silva Ramos</td>
-              <td>555.673.123.76</td>
-              <td>Otavio da Costa de Oliveira</td>
-              <td>04/10/2016</td>
-              <td>
-                <a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>
-              </td>
-            </tr>
+            {/if}
+            {/loop}
           </tbody>
         </table>
       </div>

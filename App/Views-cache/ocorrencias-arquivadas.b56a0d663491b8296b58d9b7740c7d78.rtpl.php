@@ -21,34 +21,29 @@
               <th>ID</th>
               <th>Vítima</th>
               <th>CPF da Vítima</th>
-              <th>Agressor</th>
               <th>Data de Criação</th>
               <th>Opções</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr>
-              <td>251</td>
-              <td>Elisa de Oliveira Ramos</td>
-              <td>425.653.987.56</td>
-              <td>Olivio da Conseição de Oliveira</td>
-              <td>15/05/2013</td>
-              <td>
-                <a href="/ocorrencia-detalhe" class="btn btn-default"><i class="fa fa-edit"></i></a>
-              </td>
-            </tr>
+            <?php $counter1=-1;  if( isset($listaOcorrencia) && ( is_array($listaOcorrencia) || $listaOcorrencia instanceof Traversable ) && sizeof($listaOcorrencia) ) foreach( $listaOcorrencia as $key1 => $value1 ){ $counter1++; ?>
+
+            <?php if( $value1["statusOcorrencia"] == 3 ){ ?>
 
             <tr>
-              <td>252</td>
-              <td>Isabel Silva Ramos</td>
-              <td>555.673.123.76</td>
-              <td>Otavio da Costa de Oliveira</td>
-              <td>04/10/2016</td>
+              <td><?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["cpfVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["dataCriacaoOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td>
-                <a href="#" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                <a href="/ocorrencia-detalhe/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-edit"></i></a>
               </td>
             </tr>
+            <?php } ?>
+
+            <?php } ?>
+
           </tbody>
         </table>
       </div>
