@@ -56,7 +56,7 @@ class MEndereco {
 		}
 	}
 
-	public function update($post, $idEndereco)
+	public function update($post, $idEndereco, $complemento)
 	{
 		$sql = new Conexao;
 
@@ -64,20 +64,63 @@ class MEndereco {
 
 		$endereco->setData($post);
 
-		$sql->query("
-			UPDATE tb_endereco 
-			SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
-			WHERE idEndereco = :idEndereco
-		", [
-			":cep" => $endereco->getcepUsuario(),
-			":rua" => utf8_decode($endereco->getruaUsuario()),
-			":numero" => $endereco->getnumeroUsuario(),
-			":bairro" => utf8_decode($endereco->getbairroUsuario()),
-			":cidade" => utf8_decode($endereco->getcidadeUsuario()),
-			":estado" => $endereco->getestadoUsuario(),
-			":complemento" => utf8_decode($endereco->getcomplementoUsuario()),
-			":idEndereco" => $idEndereco
-		]);
+		switch ($complemento) {
+			case 'usuario':
+				$sql->query("
+					UPDATE tb_endereco 
+					SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
+					WHERE idEndereco = :idEndereco
+				", [
+					":cep" => $endereco->getcepUsuario(),
+					":rua" => utf8_decode($endereco->getruaUsuario()),
+					":numero" => $endereco->getnumeroUsuario(),
+					":bairro" => utf8_decode($endereco->getbairroUsuario()),
+					":cidade" => utf8_decode($endereco->getcidadeUsuario()),
+					":estado" => $endereco->getestadoUsuario(),
+					":complemento" => utf8_decode($endereco->getcomplementoUsuario()),
+					":idEndereco" => $idEndereco
+				]);
+				break;
+
+			case 'vitima':
+				$sql->query("
+					UPDATE tb_endereco 
+					SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
+					WHERE idEndereco = :idEndereco
+				", [
+					":cep" => $endereco->getcepVitima(),
+					":rua" => utf8_decode($endereco->getruaVitima()),
+					":numero" => $endereco->getnumeroVitima(),
+					":bairro" => utf8_decode($endereco->getbairroVitima()),
+					":cidade" => utf8_decode($endereco->getcidadeVitima()),
+					":estado" => $endereco->getestadoVitima(),
+					":complemento" => utf8_decode($endereco->getcomplementoVitima()),
+					":idEndereco" => $idEndereco
+				]);		
+				break;
+
+			case 'responsavelVitima':
+				$sql->query("
+					UPDATE tb_endereco 
+					SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
+					WHERE idEndereco = :idEndereco
+				", [
+					":cep" => $endereco->getcepResponsavelVitima(),
+					":rua" => utf8_decode($endereco->getruaResponsavelVitima()),
+					":numero" => $endereco->getnumeroResponsavelVitima(),
+					":bairro" => utf8_decode($endereco->getbairroResponsavelVitima()),
+					":cidade" => utf8_decode($endereco->getcidadeResponsavelVitima()),
+					":estado" => $endereco->getestadoResponsavelVitima(),
+					":complemento" => utf8_decode($endereco->getcomplementoResponsavelVitima()),
+					":idEndereco" => $idEndereco
+				]);		
+				break;
+
+			default:
+				var_dump("Não foi possivel cadastrar");
+				exit;
+				break;
+		}
 	}
 
 	//Lista tudo da tabela

@@ -29,7 +29,7 @@
           <tbody>
             <?php $counter1=-1;  if( isset($listaOcorrencia) && ( is_array($listaOcorrencia) || $listaOcorrencia instanceof Traversable ) && sizeof($listaOcorrencia) ) foreach( $listaOcorrencia as $key1 => $value1 ){ $counter1++; ?>
 
-            <?php if( $value1["statusOcorrencia"] == 1 ){ ?>
+            <?php if( $value1["statusOcorrencia"] == 2 ){ ?>
 
             <tr>
               <td><?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>

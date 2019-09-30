@@ -68,7 +68,7 @@ class MPessoa {
 	//-------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------
 
-	public function update($post, $idPessoa)
+	public function update($post, $idPessoa, $complemento)
 	{
 		$sql = new Conexao;
 
@@ -77,18 +77,63 @@ class MPessoa {
 
 		$pessoa->setData($post);
 
-		$sql->query("
-			UPDATE tb_pessoa 
-			SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
-			WHERE idPessoa = :idPessoa
-		", [
-			":nome" => utf8_decode($validacao->validarString($pessoa->getnomeUsuario(), 1)),
-			":dataNasc" => $validacao->replaceDataBd($pessoa->getdataNascUsuario()),
-			":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
-			":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
-			":sexo" => $pessoa->getsexoUsuario(),
-			"idPessoa" => $idPessoa
-		]);
+		if ($pessoa->getdataNascUsuario() == null) {
+			$dataNasc = null;
+		} else {
+			$dataNasc = $validacao->replaceDataBd($pessoa->getdataNascUsuario());
+		}
+
+		switch ($complemento) {
+			case 'usuario':
+				$sql->query("
+					UPDATE tb_pessoa 
+					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
+					WHERE idPessoa = :idPessoa
+				", [
+					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeUsuario(), 1)),
+					":dataNasc" => $dataNasc,
+					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
+					":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
+					":sexo" => $pessoa->getsexoUsuario(),
+					"idPessoa" => $idPessoa
+				]);
+				break;
+
+			case 'vitima':
+				$sql->query("
+					UPDATE tb_pessoa 
+					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
+					WHERE idPessoa = :idPessoa
+				", [
+					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeVitima(), 1)),
+					":dataNasc" => $dataNasc,
+					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfVitima()),
+					":rg" => $validacao->replaceRgBd($pessoa->getrgVitima(), $pessoa->getrgDigitoVitima()),
+					":sexo" => $pessoa->getsexoVitima(),
+					"idPessoa" => $idPessoa
+				]);
+				break;
+			
+			case 'responsavelVitima':
+				$sql->query("
+					UPDATE tb_pessoa 
+					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
+					WHERE idPessoa = :idPessoa
+				", [
+					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeUsuario(), 1)),
+					":dataNasc" => $dataNasc,
+					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
+					":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
+					":sexo" => $pessoa->getsexoUsuario(),
+					"idPessoa" => $idPessoa
+				]);
+				break;
+
+			default:
+				var_dump("Não foi possivel cadastrar");
+				exit;
+				break;
+		}
 	}
 
 	//Lista tudo da tabela

@@ -16,10 +16,6 @@
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">Detalhes</h3>
-
-        <!--<div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-        </div>-->
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -27,11 +23,30 @@
         <div class="row">
           <!--Detalhes-->
           <div class="col-md-4">
-            <p class="sem-espacamento"><strong>N° da Ocorrência: </strong>251</p>
-            <p class="sem-espacamento"><strong>Data: </strong>15/05/2013</p>
+            <p class="sem-espacamento"><strong>N° da Ocorrência: </strong><?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Data: </strong><?php echo htmlspecialchars( $detalheOcorrencia["0"]["dataCriacaoOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 1 ){ ?>
             <p class="sem-espacamento"><strong>Status: </strong>Aberta</p>
+            <?php } ?>
+            <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 2 ){ ?>
+            <p class="sem-espacamento"><strong>Status: </strong>Reaberta</p>
+            <?php } ?>
+            <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 3 ){ ?>
+            <p class="sem-espacamento"><strong>Status: </strong>Arquivada</p>
+            <?php } ?>
+            <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 4 ){ ?>
+            <p class="sem-espacamento"><strong>Status: </strong>Encerrada</p>
+            <?php } ?>
           </div>
           <!--Fim Detalhes-->
+
+          <!--Vitimas-->
+          <div class="col-md-4">
+            <?php $counter1=-1;  if( isset($detalheOcorrencia) && ( is_array($detalheOcorrencia) || $detalheOcorrencia instanceof Traversable ) && sizeof($detalheOcorrencia) ) foreach( $detalheOcorrencia as $key1 => $value1 ){ $counter1++; ?>
+            <p class="sem-espacamento"><strong>Nome da Vítima: </strong><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <?php } ?>
+          </div>
+          <!--Fim Vitimas-->
         </div>
         <!--Fim Row-->
         
@@ -43,7 +58,7 @@
         <div class="row">
           <div class="col-md-12">
             <!--Aparecer para todos os status-->
-            <a href="#" class="btn btn-app"><i class="fa fa-user"></i>Vítima</a>
+            <a href="/ocorrencia-vitimas-lista/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Vítimas</a>
 
             <!--Aparecer para todos os status-->
             <a href="#" class="btn btn-app"><i class="fa fa-user"></i>Agressor</a>
@@ -67,6 +82,9 @@
 
             <!--Aparecer se o status for aberta, reaberta e arquivada-->
             <a href="#" class="btn btn-app"><i class="fa fa-archive"></i>Encerrar</a>
+
+            <!--Aparecer se o status for aberta, reaberta e arquivada-->
+            <a href="#" class="btn btn-app"><i class="fa fa-file-pdf-o"></i>Gerar Documento</a>
           </div>
         </div>
         <!--Fim Row-->

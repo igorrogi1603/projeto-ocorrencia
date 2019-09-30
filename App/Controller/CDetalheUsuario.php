@@ -184,9 +184,9 @@ class CDetalheUsuario {
 		//----------------------------------------------------------------------------------------
 		//atualizar
 		$musuario->update($post, $idUsuario);
-		$mpessoa->update($post, $idPessoa);
-		$mendereco->update($post, $idEndereco);
-		$mcontato->update($post, $idContato);
+		$mpessoa->update($post, $idPessoa, 'usuario');
+		$mendereco->update($post, $idEndereco, 'usuario');
+		$mcontato->update($post, $idContato, 'usuario');
 	}
 
 }

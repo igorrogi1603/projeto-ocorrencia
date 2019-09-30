@@ -55,7 +55,7 @@ class MContato {
 		}
 	}
 
-	public function update($post, $idContato)
+	public function update($post, $idContato, $complemento)
 	{
 		$sql = new Conexao;
 
@@ -64,16 +64,51 @@ class MContato {
 
 		$contato->setData($post);
 
-		$sql->query("
-			UPDATE tb_contato 
-			SET celular = :celular, fixo = :fixo, email = :email
-			WHERE idContato = :idContato
-		", [
-			":celular" => $validacao->replaceCelularBd($contato->getcelularUsuario()),
-			":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoUsuario()),
-			":email" => utf8_decode($contato->getemailUsuario()),
-			":idContato" => $idContato
-		]);
+		switch ($complemento) {
+			case 'usuario':
+				$sql->query("
+					UPDATE tb_contato 
+					SET celular = :celular, fixo = :fixo, email = :email
+					WHERE idContato = :idContato
+				", [
+					":celular" => $validacao->replaceCelularBd($contato->getcelularUsuario()),
+					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoUsuario()),
+					":email" => utf8_decode($contato->getemailUsuario()),
+					":idContato" => $idContato
+				]);			
+				break;
+			
+			case 'vitima':
+				$sql->query("
+					UPDATE tb_contato 
+					SET celular = :celular, fixo = :fixo, email = :email
+					WHERE idContato = :idContato
+				", [
+					":celular" => $validacao->replaceCelularBd($contato->getcelularVitima()),
+					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoVitima()),
+					":email" => utf8_decode($contato->getemailVitima()),
+					":idContato" => $idContato
+				]);			
+				break;
+
+			case 'responsavelVitima':
+				$sql->query("
+					UPDATE tb_contato 
+					SET celular = :celular, fixo = :fixo, email = :email
+					WHERE idContato = :idContato
+				", [
+					":celular" => $validacao->replaceCelularBd($contato->getcelularResponsavelVitima()),
+					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoResponsavelVitima()),
+					":email" => utf8_decode($contato->getemailResponsavelVitima()),
+					":idContato" => $idContato
+				]);				
+				break;
+
+			default:
+				var_dump("Não foi possivel cadastrar");
+				exit;
+				break;
+		}
 	}
 
 	//Lista tudo da tabela

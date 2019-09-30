@@ -2,7 +2,10 @@
 
 use \App\Config\Page;
 use \App\Classe\Usuario;
+use \App\Classe\Validacao;
 use \App\Controller\CListaOcorrencia;
+use \App\Controller\CDetalheOcorrencia;
+use \App\Controller\COcorrenciaVitima;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -64,10 +67,81 @@ $app->get("/ocorrencia-detalhe/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 	
+	$detalheOcorrencia = CDetalheOcorrencia::getOcorrenciaDetalhe($idOcorrencia);
+
 	$page = new Page();
 
-	$page->setTpl("ocorrencia-detalhe");
+	$page->setTpl("ocorrencia-detalhe", [
+		"detalheOcorrencia" => $detalheOcorrencia
+	]);
 });
+
+//Dentro da pagina detalhes
+//--------------------------------------------------------------
+//Vitimas
+$app->get("/ocorrencia-vitimas-lista/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$vitimas = COcorrenciaVitima::getOcorrenciaVitimasLista($idOcorrencia);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-vitimas-lista", [
+		"vitimas" => $vitimas
+	]);
+});
+
+$app->get("/ocorrencia-vitimas/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$vitima = COcorrenciaVitima::getOcorrenciaVitima($idOcorrencia);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-vitimas", [
+		"vitima" => $vitima,
+		"idVitima" => $idVitima
+	]);
+});
+
+$app->get("/ocorrencia-vitima-editar/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$vitima = COcorrenciaVitima::getOcorrenciaVitimaEditar($idVitima, $idOcorrencia);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-vitima-editar", [
+		"vitima" => $vitima,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
+$app->post("/ocorrencia-vitima-editar/:idVitima/:idOcorrencia/:idPessoa", function($idVitima, $idOcorrencia, $idPessoa){
+
+	Usuario::verifyLogin();
+
+	$vitima = COcorrenciaVitima::postOcorrenciaVitimaEditar($idVitima, $idOcorrencia, $idPessoa, $_POST);
+
+	header("Location: /ocorrencia-vitimas/".$idVitima."/".$idOcorrencia);
+	exit;
+});
+
+//--------------------------------------------------------------
+//TESTE DEPOIS EXCLUIR ESSA ROTA
+$app->get("/criar-ocorrencia", function(){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("criar-ocorrencia");
+});
+
+//--------------------------------------------------------------
 
 $app->get("/ocorrencia-relatorio", function(){
 
