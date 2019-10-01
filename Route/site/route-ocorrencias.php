@@ -130,6 +130,21 @@ $app->post("/ocorrencia-vitima-editar/:idVitima/:idOcorrencia/:idPessoa", functi
 	exit;
 });
 
+//RESPONSAVEL PELA VITIMA
+$app->get("/ocorrencia-responsavel-vitima-editar/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$vitima = COcorrenciaVitima::getOcorrenciaVitimaEditar($idVitima, $idOcorrencia);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-responsavel-vitima-editar", [
+		"vitima" => $vitima,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
 //--------------------------------------------------------------
 //TESTE DEPOIS EXCLUIR ESSA ROTA
 $app->get("/criar-ocorrencia", function(){
