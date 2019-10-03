@@ -7,16 +7,15 @@ use \App\Classe\Vitima;
 
 class MVitima {
 
-	public function cadastrar($idPessoa, $idResponsavel)
+	public function cadastrar($idPessoa)
 	{
 		$sql = new Conexao;
 
 		$sql->query("
-			INSERT INTO tb_vitimasapuracao (idPessoa, idResponsavelApuracao) 
-			VALUES(:idPessoa, :idResponsavelApuracao)
+			INSERT INTO tb_vitimasapuracao (idPessoa) 
+			VALUES(:idPessoa)
 		", [
-			":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"],
-			":idResponsavelApuracao" => (int)$idResponsavel[0]["MAX(idResponsavelApuracao)"]
+			":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"]
 		]);
 	}
 

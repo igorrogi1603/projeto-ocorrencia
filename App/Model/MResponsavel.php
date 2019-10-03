@@ -13,11 +13,18 @@ class MResponsavel {
 
 		switch ($complemento) {
 			case 'apuracao':
+
+				//isPais
+				//1 = outro
+				//2 = pai
+				//3 = mae 
+
 				$sql->query("
-					INSERT INTO tb_responsavelapuracao (idPessoa) 
-					VALUES(:idPessoa)
+					INSERT INTO tb_responsavelapuracao (idPessoa, isPais) 
+					VALUES(:idPessoa, :isPais)
 				", [
-					":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"]
+					":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"],
+					":isPais" => 1
 				]);
 				break;
 			
@@ -26,6 +33,28 @@ class MResponsavel {
 				exit;
 				break;
 		}
+	}
+
+	public function cadastrarResponsavelVitimas($idResponsavel, $idVitima, $complemento)
+	{
+		$sql = new Conexao;
+
+		switch ($complemento) {
+			case 'apuracao':
+				$sql->query("
+					INSERT INTO tb_responsavelvitimas (idResponsavelApuracao, idVitimasApuracao) 
+					VALUES(:idResponsavelApuracao, :idVitimasApuracao)
+				", [
+					":idResponsavelApuracao" => (int)$idResponsavel[0]["MAX(idResponsavelApuracao)"],
+					":idVitimasApuracao" => (int)$idVitima[0]["MAX(idVitimasApuracao)"]
+				]);
+				break;
+			
+			default:
+				var_dump("Não foi possivel cadastrar");
+				exit;
+				break;
+		}	
 	}
 
 	//Lista tudo da tabela

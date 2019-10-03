@@ -135,7 +135,7 @@ $app->get("/ocorrencia-responsavel-vitima-editar/:idVitima/:idOcorrencia", funct
 
 	Usuario::verifyLogin();
 
-	$vitima = COcorrenciaVitima::getOcorrenciaVitimaEditar($idVitima, $idOcorrencia);
+	$vitima = COcorrenciaVitima::getOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia);
 
 	$page = new Page();
 

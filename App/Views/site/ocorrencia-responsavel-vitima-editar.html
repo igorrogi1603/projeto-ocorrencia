@@ -49,6 +49,7 @@
             <!--Inicio Radio-->
             <div class="col-md-3">
               <div class="form-group">
+                <input type="hidden" id="id-radio-pais-hidden-responsavel" value="{$vitima.0.isPais}">
                 <label>O que o responsavel é da Vítima?</label><br>
                 <label class="container-radio">Pai
                   <input type="radio" name="responsavelRadio" id="id-responsavel-pai" class="minimal" value="1">
@@ -69,7 +70,7 @@
             <!--Nome do vitima-->
             <div class="col-md-3">
               <div class="form-group">
-                <label for="id-responsavel-text-outro">Outro</label>
+                <label for="id-responsavel-text-outro" id="id-responsavel-label-outro">Outro</label>
                 <input type="text" name="responsavelOutro" id="id-responsavel-text-outro" class="form-control" maxlength="40" onkeyup="validarCaracter(this, 1)">
               </div>
             </div>
@@ -763,6 +764,8 @@
 
 var divPaiSim;
 var divMaeSim;
+var inputOutro = document.getElementById('id-responsavel-text-outro');
+var labelOutro = document.getElementById('id-responsavel-label-outro');
 
 window.onload = function()
 {
@@ -783,6 +786,29 @@ window.onload = function()
   let estadoPai = document.getElementById("id-estado-pai").value = estadoHiddenPai;
   let sexoMae = document.getElementById("id-sexo-mae").value = sexoHiddenMae;  
   let estadoMae = document.getElementById("id-estado-mae").value = estadoHiddenMae;
+  //////////////////////////////////////////////////////////////////////////////////////////////  
+
+  let radioResponsavel = document.getElementById('id-radio-pais-hidden-responsavel').value;
+  let responsavelPai = document.getElementById('id-responsavel-pai');
+  let responsavelMae = document.getElementById('id-responsavel-mae');
+  let responsavelOutro = document.getElementById('id-responsavel-outro');
+
+  //isPais
+  //1 = outro
+  //2 = pai
+  //3 = mae
+
+  if (radioResponsavel == 1) {
+    responsavelOutro.checked = true;
+  }
+
+  if (radioResponsavel == 2) {
+    responsavelPai.checked = true;
+  }
+
+  if (radioResponsavel == 3) {
+    responsavelMae.checked = true;
+  }
 
   //////////////////////////////////////////////////////////////////////////////////////////////
   //Mostrar divs
@@ -791,17 +817,11 @@ window.onload = function()
   divMaeSim = document.getElementById("id-div-mae-sim");
   //var divMaeNao = document.getElementById("id-div-mae-nao");
 
-  var radioPai = document.getElementById('id-responsavel-pai');
-  radioPai.onclick = mostra1;
+  responsavelPai.onclick = mostra1;
 
-  var radioMae = document.getElementById('id-responsavel-mae');
-  radioMae.onclick = mostra2;
+  responsavelMae.onclick = mostra2;
 
-  var radioOutro = document.getElementById('id-responsavel-outro');
-  radioOutro.onclick = mostra3;
-
-  divPaiSim.classList.add("escondido");
-  divMaeSim.classList.add("escondido");
+  responsavelOutro.onclick = mostra3;
 }
 
 function digitoRg()
@@ -827,18 +847,24 @@ function mostra1()
 {
   divPaiSim.classList.add("escondido");
   divMaeSim.classList.remove("escondido");
+  inputOutro.classList.add("escondido");
+  labelOutro.classList.add("escondido");
 }
 
 function mostra2()
 {
   divPaiSim.classList.remove("escondido");
-  divMaeSim.classList.add("escondido"); 
+  divMaeSim.classList.add("escondido");
+  inputOutro.classList.add("escondido");
+  labelOutro.classList.add("escondido");
 }
 
 function mostra3()
 {
   divPaiSim.classList.remove("escondido");
   divMaeSim.classList.remove("escondido");
+  inputOutro.classList.remove("escondido");
+  labelOutro.classList.remove("escondido");
 }
 
 </script>

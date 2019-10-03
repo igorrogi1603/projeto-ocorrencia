@@ -42,7 +42,7 @@
               <input type="checkbox" id="id-concordo" name="concordo" onblur="validarEnivar()">
               Concordo com os 
               <a href="#" class="" data-toggle="modal" data-target="#myModal">
-                Termos de Responssabilidade
+                Termos de Responsabilidade
               </a>
               </label>
             </div>

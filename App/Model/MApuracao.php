@@ -264,30 +264,33 @@ class MApuracao {
 			SELECT 
 			a.idCriarApuracao, a.idUsuario, a.tipoApuracao, a.descricao, a.status, a.dataCriacao, a.dataRegistro,
 			b.idVitimasCriarApuracao, b.idVitimasApuracao,
-			c.idPessoa, c.idResponsavelApuracao,
-			d.qualFamilia, e.idPessoa idPessoaResponsavel,
-			f.nome nomeVitima, f.sexo sexoVitima, f.cpf cpfVitima,
-			g.nome nomeResponsavel, g.cpf cpfResponsavel,
-			h.celular celularVitima,
-			i.celular celularResponsavel,
-			j.cep cepVitima, j.rua ruaVitima, j.numero numeroVitima, j.bairro bairroVitima, 
-			j.cidade cidadeVitima, j.estado estadoVitima, j.complemento complementoVitima,
-			k.cep cepResponsavel, k.rua ruaResponsavel, k.numero numeroResponsavel, k.bairro bairroResponsavel, 
-			k.cidade cidadeResponsavel, k.estado estadoResponsavel, k.complemento complementoResponsavel,
-			m.nome quemCriouApuracao
+			c.idPessoa,
+			d.qualFamilia,
+			e.idResponsavelVitimas,
+			f.idPessoa idPessoaResponsavel,
+			g.nome nomeVitima, g.sexo sexoVitima, g.cpf cpfVitima,
+			h.nome nomeResponsavel, h.cpf cpfResponsavel,
+			i.celular celularVitima,
+			j.celular celularResponsavel,
+			k.cep cepVitima, k.rua ruaVitima, k.numero numeroVitima, k.bairro bairroVitima, 
+			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
+			l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, l.bairro bairroResponsavel, 
+			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel,
+			n.nome quemCriouApuracao
 			FROM tb_criarapuracao a
 			INNER JOIN tb_vitimascriarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
 			INNER JOIN tb_vitimasapuracao c ON b.idVitimasApuracao = c.idVitimasApuracao
 			INNER JOIN tb_familiaapuracao d ON c.idVitimasApuracao = d.idVitimasApuracao
-			INNER JOIN tb_responsavelapuracao e ON c.idResponsavelApuracao = e.idResponsavelApuracao
-			INNER JOIN tb_pessoa f ON c.idPessoa = f.idPessoa
-			INNER JOIN tb_pessoa g ON e.idPessoa = g.idPessoa
-			INNER JOIN tb_contato h ON f.idContato = h.idContato
+			INNER JOIN tb_responsavelVitimas e ON c.idVitimasApuracao = e.idVitimasApuracao
+			INNER JOIN tb_responsavelapuracao f ON e.idResponsavelApuracao = f.idResponsavelApuracao
+			INNER JOIN tb_pessoa g ON c.idPessoa = g.idPessoa
+			INNER JOIN tb_pessoa h ON f.idPessoa = h.idPessoa
 			INNER JOIN tb_contato i ON g.idContato = i.idContato
-			INNER JOIN tb_endereco j ON f.idEndereco = j.idEndereco
+			INNER JOIN tb_contato j ON h.idContato = j.idContato
 			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
-			INNER JOIN tb_usuario l ON a.idUsuario = l.idUsuario
-			INNER JOIN tb_pessoa m ON l.idPessoa = m.idPessoa
+			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
+			INNER JOIN tb_usuario m ON a.idUsuario = m.idUsuario
+			INNER JOIN tb_pessoa n ON m.idPessoa = n.idPessoa
 			WHERE a.idCriarApuracao = :idCriarApuracao;
 		", [
 			":idCriarApuracao" => $idApuracao
@@ -303,27 +306,30 @@ class MApuracao {
 			SELECT 
 			a.idCriarApuracao, a.idUsuario, a.tipoApuracao, a.descricao, a.status, a.dataCriacao, a.dataRegistro,
 			b.idVitimasCriarApuracao, b.idVitimasApuracao,
-			c.idPessoa, c.idResponsavelApuracao,
-			d.qualFamilia, e.idPessoa idPessoaResponsavel,
-			f.nome nomeVitima, f.sexo sexoVitima, f.cpf cpfVitima,
-			g.nome nomeResponsavel, g.cpf cpfResponsavel,
-			h.celular celularVitima,
-			i.celular celularResponsavel,
-			j.cep cepVitima, j.rua ruaVitima, j.numero numeroVitima, j.bairro bairroVitima, 
-			j.cidade cidadeVitima, j.estado estadoVitima, j.complemento complementoVitima,
-			k.cep cepResponsavel, k.rua ruaResponsavel, k.numero numeroResponsavel, k.bairro bairroResponsavel, 
-			k.cidade cidadeResponsavel, k.estado estadoResponsavel, k.complemento complementoResponsavel
+			c.idPessoa,
+			d.qualFamilia,
+			e.idResponsavelVitimas,
+			f.idPessoa idPessoaResponsavel,
+			g.nome nomeVitima, g.sexo sexoVitima, g.cpf cpfVitima,
+			h.nome nomeResponsavel, h.cpf cpfResponsavel,
+			i.celular celularVitima,
+			j.celular celularResponsavel,
+			k.cep cepVitima, k.rua ruaVitima, k.numero numeroVitima, k.bairro bairroVitima, 
+			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
+			l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, l.bairro bairroResponsavel, 
+			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel
 			FROM tb_criarapuracao a
 			INNER JOIN tb_vitimascriarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
 			INNER JOIN tb_vitimasapuracao c ON b.idVitimasApuracao = c.idVitimasApuracao
 			INNER JOIN tb_familiaapuracao d ON c.idVitimasApuracao = d.idVitimasApuracao
-			INNER JOIN tb_responsavelapuracao e ON c.idResponsavelApuracao = e.idResponsavelApuracao
-			INNER JOIN tb_pessoa f ON c.idPessoa = f.idPessoa
-			INNER JOIN tb_pessoa g ON e.idPessoa = g.idPessoa
-			INNER JOIN tb_contato h ON f.idContato = h.idContato
+			INNER JOIN tb_responsavelVitimas e ON c.idVitimasApuracao = e.idVitimasApuracao
+			INNER JOIN tb_responsavelapuracao f ON e.idResponsavelApuracao = f.idResponsavelApuracao
+			INNER JOIN tb_pessoa g ON c.idPessoa = g.idPessoa
+			INNER JOIN tb_pessoa h ON f.idPessoa = h.idPessoa
 			INNER JOIN tb_contato i ON g.idContato = i.idContato
-			INNER JOIN tb_endereco j ON f.idEndereco = j.idEndereco
+			INNER JOIN tb_contato j ON h.idContato = j.idContato
 			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
+			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
 		");
 	}
 
@@ -337,31 +343,34 @@ class MApuracao {
 			a.idConfirmacaoApuracao, a.idUsuario idgerouOcorrencia, a.isPositivo, a.isNegativo, a.dataRegistro registroConfirmacao,
 			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status, b.dataCriacao, b.dataRegistro,
 			c.idVitimasCriarApuracao, c.idVitimasApuracao,
-			d.idPessoa, d.idResponsavelApuracao,
-			e.qualFamilia, f.idPessoa idPessoaResponsavel,
-			g.nome nomeVitima, g.sexo sexoVitima, g.cpf cpfVitima,
-			h.nome nomeResponsavel, h.cpf cpfResponsavel,
-			i.celular celularVitima,
-			j.celular celularResponsavel,
-			k.cep cepVitima, k.rua ruaVitima, k.numero numeroVitima, k.bairro bairroVitima, 
-			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
-			l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, l.bairro bairroResponsavel, 
-			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel,
-			n.nome nomeGerouOcorrencia
+			d.idPessoa,
+			e.qualFamilia,
+			f.idResponsavelVitimas,
+			g.idPessoa idPessoaResponsavel,
+			h.nome nomeVitima, h.sexo sexoVitima, h.cpf cpfVitima,
+			i.nome nomeResponsavel, i.cpf cpfResponsavel,
+			j.celular celularVitima,
+			k.celular celularResponsavel,
+			l.cep cepVitima, l.rua ruaVitima, l.numero numeroVitima, l.bairro bairroVitima, 
+			l.cidade cidadeVitima, l.estado estadoVitima, l.complemento complementoVitima,
+			m.cep cepResponsavel, m.rua ruaResponsavel, m.numero numeroResponsavel, m.bairro bairroResponsavel, 
+			m.cidade cidadeResponsavel, m.estado estadoResponsavel, m.complemento complementoResponsavel,
+			o.nome nomeGerouOcorrencia
 			FROM tb_confirmacaoapuracao a
 			INNER JOIN tb_criarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
 			INNER JOIN tb_vitimascriarapuracao c ON b.idCriarApuracao = c.idCriarApuracao
 			INNER JOIN tb_vitimasapuracao d ON c.idVitimasApuracao = d.idVitimasApuracao
 			INNER JOIN tb_familiaapuracao e ON d.idVitimasApuracao = e.idVitimasApuracao
-			INNER JOIN tb_responsavelapuracao f ON d.idResponsavelApuracao = f.idResponsavelApuracao
-			INNER JOIN tb_pessoa g ON d.idPessoa = g.idPessoa
-			INNER JOIN tb_pessoa h ON f.idPessoa = h.idPessoa
-			INNER JOIN tb_contato i ON g.idContato = i.idContato
+			INNER JOIN tb_responsavelVitimas f ON d.idVitimasApuracao = f.idVitimasApuracao
+			INNER JOIN tb_responsavelapuracao g ON f.idResponsavelApuracao = g.idResponsavelApuracao
+			INNER JOIN tb_pessoa h ON d.idPessoa = h.idPessoa
+			INNER JOIN tb_pessoa i ON g.idPessoa = i.idPessoa
 			INNER JOIN tb_contato j ON h.idContato = j.idContato
-			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
+			INNER JOIN tb_contato k ON i.idContato = k.idContato
 			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
-			INNER JOIN tb_usuario m ON m.idUsuario = a.idUsuario
-			INNER JOIN tb_pessoa n ON n.idPessoa = m.idPessoa
+			INNER JOIN tb_endereco m ON i.idEndereco = m.idEndereco
+			INNER JOIN tb_usuario n ON a.idUsuario = n.idUsuario
+			INNER JOIN tb_pessoa o ON n.idPessoa = o.idPessoa
 		");
 	}
 
@@ -375,34 +384,38 @@ class MApuracao {
 			a.idConfirmacaoApuracao, a.idUsuario idgerouOcorrencia, a.isPositivo, a.isNegativo, a.dataRegistro registroConfirmacao,
 			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status, b.dataCriacao, b.dataRegistro,
 			c.idVitimasCriarApuracao, c.idVitimasApuracao,
-			d.idPessoa, d.idResponsavelApuracao,
-			e.qualFamilia, f.idPessoa idPessoaResponsavel,
-			g.nome nomeVitima, g.sexo sexoVitima, g.cpf cpfVitima,
-			h.nome nomeResponsavel, h.cpf cpfResponsavel,
-			i.celular celularVitima,
-			j.celular celularResponsavel,
-			k.cep cepVitima, k.rua ruaVitima, k.numero numeroVitima, k.bairro bairroVitima, 
-			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
-			l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, l.bairro bairroResponsavel, 
-			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel,
-			n.nome nomeGerouOcorrencia,
-			p.nome quemCriouApuracao
+			d.idPessoa,
+			e.qualFamilia, 
+			f.idResponsavelVitimas,
+
+			g.idPessoa idPessoaResponsavel,
+			h.nome nomeVitima, h.sexo sexoVitima, h.cpf cpfVitima,
+			i.nome nomeResponsavel, i.cpf cpfResponsavel,
+			j.celular celularVitima,
+			k.celular celularResponsavel,
+			l.cep cepVitima, l.rua ruaVitima, l.numero numeroVitima, l.bairro bairroVitima, 
+			l.cidade cidadeVitima, l.estado estadoVitima, l.complemento complementoVitima,
+			m.cep cepResponsavel, m.rua ruaResponsavel, m.numero numeroResponsavel, m.bairro bairroResponsavel, 
+			m.cidade cidadeResponsavel, m.estado estadoResponsavel, m.complemento complementoResponsavel,
+			o.nome nomeGerouOcorrencia,
+			q.nome quemCriouApuracao
 			FROM tb_confirmacaoapuracao a
 			INNER JOIN tb_criarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
 			INNER JOIN tb_vitimascriarapuracao c ON b.idCriarApuracao = c.idCriarApuracao
 			INNER JOIN tb_vitimasapuracao d ON c.idVitimasApuracao = d.idVitimasApuracao
 			INNER JOIN tb_familiaapuracao e ON d.idVitimasApuracao = e.idVitimasApuracao
-			INNER JOIN tb_responsavelapuracao f ON d.idResponsavelApuracao = f.idResponsavelApuracao
-			INNER JOIN tb_pessoa g ON d.idPessoa = g.idPessoa
-			INNER JOIN tb_pessoa h ON f.idPessoa = h.idPessoa
-			INNER JOIN tb_contato i ON g.idContato = i.idContato
+			INNER JOIN tb_responsavelVitimas f ON d.idVitimasApuracao = f.idVitimasApuracao
+			INNER JOIN tb_responsavelapuracao g ON f.idResponsavelApuracao = g.idResponsavelApuracao
+			INNER JOIN tb_pessoa h ON d.idPessoa = h.idPessoa
+			INNER JOIN tb_pessoa i ON g.idPessoa = i.idPessoa
 			INNER JOIN tb_contato j ON h.idContato = j.idContato
-			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
+			INNER JOIN tb_contato k ON i.idContato = k.idContato
 			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
-			INNER JOIN tb_usuario m ON m.idUsuario = a.idUsuario
-			INNER JOIN tb_pessoa n ON n.idPessoa = m.idPessoa
-			INNER JOIN tb_usuario o ON b.idUsuario = o.idUsuario
-			INNER JOIN tb_pessoa p ON o.idPessoa = p.idPessoa
+			INNER JOIN tb_endereco m ON i.idEndereco = m.idEndereco
+			INNER JOIN tb_usuario n ON a.idUsuario = n.idUsuario
+			INNER JOIN tb_pessoa o ON n.idPessoa = o.idPessoa
+			INNER JOIN tb_usuario p ON b.idUsuario = p.idUsuario
+			INNER JOIN tb_pessoa q ON p.idPessoa = q.idPessoa
 			WHERE b.idCriarApuracao = :idCriarApuracao
 		", [
 			":idCriarApuracao" => $idApuracao

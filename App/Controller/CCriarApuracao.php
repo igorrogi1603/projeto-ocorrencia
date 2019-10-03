@@ -316,10 +316,16 @@ class CCriarApuracao {
 				}
 
 				//Cadastrar na tabela vitimaApuracao
-				$mvitima->cadastrar($idPessoa, $idResponsavel);
+				$mvitima->cadastrar($idPessoa);
 
 				//Recuperando o ultimo id da vitima
 				$idVitima = $mvitima->ultimoRegistro();
+
+				//----------------------------------------------------------------
+				//CADASTRAR NA TABELA ResponsavelVitimas
+				//----------------------------------------------------------------				
+				//Essa tabela monitora quem sao os responsaveis de cada vitima
+				$mresponsavel->cadastrarResponsavelVitimas($idResponsavel, $idVitima, "apuracao");
 
 				//----------------------------------------------------------------
 				//CADASTRAR NA TABELA VitimasCriarApuracao
@@ -328,7 +334,7 @@ class CCriarApuracao {
 				$mapuracao->cadastrarVitimasCriarApuracao($idVitima, $idApuracao);
 
 				//----------------------------------------------------------------
-				//CADASTRAR NA TABELA VitimasCriarApuracao
+				//CADASTRAR NA TABELA FamiliaApuracao
 				//----------------------------------------------------------------
 				//Essa tabela serve para saber quais vitimas pertencem a mesma familia
 				$mapuracao->cadastrarFamiliaApuracao($post, $idApuracao, $idVitima, $idResponsavel);

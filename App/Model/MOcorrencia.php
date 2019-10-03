@@ -61,29 +61,32 @@ class MOcorrencia {
 			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status statusApuracao, 
 			b.dataCriacao dataCriacaoApuracao, b.dataRegistro dataRegistroApuracao,
 			c.idVitimasCriarApuracao, c.idVitimasApuracao,
-			d.idPessoa idPessoaVitima, d.idResponsavelApuracao,
-			e.qualFamilia, f.idPessoa idPessoaResponsavel,
-			g.nome nomeVitima, g.sexo sexoVitima, g.cpf cpfVitima, g.dataNasc dataNascVitima, g.rg rgVitima, 
-			h.nome nomeResponsavel, h.cpf cpfResponsavel, g.sexo sexoResponsavel, g.dataNasc dataNascResponsavel, g.rg rgResponsavel,
-			i.idContato idContatoVitima, i.celular celularVitima, i.fixo fixoVitima, i.email emailVitima,
-			j.idContato idContatoResponsavel, j.celular celularResponsavel, j.fixo fixoResponsavel, j.email emailResponsavel,
-			k.idEndereco idEnderecoVitima, k.cep cepVitima, k.rua ruaVitima, k.numero numeroVitima, k.bairro bairroVitima, 
-			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
-			l.idEndereco idEnderecoResponsavel, l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, 
-			l.bairro bairroResponsavel, 
-			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel
+			d.idPessoa idPessoaVitima,
+			e.qualFamilia, 
+			f.idResponsavelVitimas,
+			g.idPessoa idPessoaResponsavel, g.isPais,
+			h.nome nomeVitima, h.sexo sexoVitima, h.cpf cpfVitima, h.dataNasc dataNascVitima, h.rg rgVitima, 
+			i.nome nomeResponsavel, i.cpf cpfResponsavel, i.sexo sexoResponsavel, i.dataNasc dataNascResponsavel, i.rg rgResponsavel,
+			j.idContato idContatoVitima, j.celular celularVitima, j.fixo fixoVitima, j.email emailVitima,
+			k.idContato idContatoResponsavel, k.celular celularResponsavel, k.fixo fixoResponsavel, k.email emailResponsavel,
+			l.idEndereco idEnderecoVitima, l.cep cepVitima, l.rua ruaVitima, l.numero numeroVitima, l.bairro bairroVitima, 
+			l.cidade cidadeVitima, l.estado estadoVitima, l.complemento complementoVitima,
+			m.idEndereco idEnderecoResponsavel, m.cep cepResponsavel, m.rua ruaResponsavel, m.numero numeroResponsavel, 
+			m.bairro bairroResponsavel, 
+			m.cidade cidadeResponsavel, m.estado estadoResponsavel, m.complemento complementoResponsavel
 			FROM tb_ocorrencia a
 			INNER JOIN tb_criarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
 			INNER JOIN tb_vitimascriarapuracao c ON b.idCriarApuracao = c.idCriarApuracao
 			INNER JOIN tb_vitimasapuracao d ON c.idVitimasApuracao = d.idVitimasApuracao
 			INNER JOIN tb_familiaapuracao e ON d.idVitimasApuracao = e.idVitimasApuracao
-			INNER JOIN tb_responsavelapuracao f ON d.idResponsavelApuracao = f.idResponsavelApuracao
-			INNER JOIN tb_pessoa g ON d.idPessoa = g.idPessoa
-			INNER JOIN tb_pessoa h ON f.idPessoa = h.idPessoa
-			INNER JOIN tb_contato i ON g.idContato = i.idContato
+			INNER JOIN tb_responsavelVitimas f ON d.idVitimasApuracao = f.idVitimasApuracao
+			INNER JOIN tb_responsavelapuracao g ON f.idResponsavelApuracao = g.idResponsavelApuracao
+			INNER JOIN tb_pessoa h ON d.idPessoa = h.idPessoa
+			INNER JOIN tb_pessoa i ON g.idPessoa = i.idPessoa
 			INNER JOIN tb_contato j ON h.idContato = j.idContato
-			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
+			INNER JOIN tb_contato k ON i.idContato = k.idContato
 			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
+			INNER JOIN tb_endereco m ON i.idEndereco = m.idEndereco
 		");
 	}
 
@@ -98,29 +101,32 @@ class MOcorrencia {
 			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status statusApuracao, 
 			b.dataCriacao dataCriacaoApuracao, b.dataRegistro dataRegistroApuracao,
 			c.idVitimasCriarApuracao, c.idVitimasApuracao,
-			d.idPessoa idPessoaVitima, d.idResponsavelApuracao,
-			e.qualFamilia, f.idPessoa idPessoaResponsavel,
-			g.nome nomeVitima, g.sexo sexoVitima, g.cpf cpfVitima, g.dataNasc dataNascVitima, g.rg rgVitima, 
-			h.nome nomeResponsavel, h.cpf cpfResponsavel, g.sexo sexoResponsavel, g.dataNasc dataNascResponsavel, g.rg rgResponsavel,
-			i.idContato idContatoVitima, i.celular celularVitima, i.fixo fixoVitima, i.email emailVitima,
-			j.idContato idContatoResponsavel, j.celular celularResponsavel, j.fixo fixoResponsavel, j.email emailResponsavel,
-			k.idEndereco idEnderecoVitima, k.cep cepVitima, k.rua ruaVitima, k.numero numeroVitima, k.bairro bairroVitima, 
-			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
-			l.idEndereco idEnderecoResponsavel, l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, 
-			l.bairro bairroResponsavel, 
-			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel
+			d.idPessoa idPessoaVitima,
+			e.qualFamilia, 
+			f.idResponsavelVitimas,
+			g.idPessoa idPessoaResponsavel, g.isPais,
+			h.nome nomeVitima, h.sexo sexoVitima, h.cpf cpfVitima, h.dataNasc dataNascVitima, h.rg rgVitima, 
+			i.nome nomeResponsavel, i.cpf cpfResponsavel, i.sexo sexoResponsavel, i.dataNasc dataNascResponsavel, i.rg rgResponsavel,
+			j.idContato idContatoVitima, j.celular celularVitima, j.fixo fixoVitima, j.email emailVitima,
+			k.idContato idContatoResponsavel, k.celular celularResponsavel, k.fixo fixoResponsavel, k.email emailResponsavel,
+			l.idEndereco idEnderecoVitima, l.cep cepVitima, l.rua ruaVitima, l.numero numeroVitima, l.bairro bairroVitima, 
+			l.cidade cidadeVitima, l.estado estadoVitima, l.complemento complementoVitima,
+			m.idEndereco idEnderecoResponsavel, m.cep cepResponsavel, m.rua ruaResponsavel, m.numero numeroResponsavel, 
+			m.bairro bairroResponsavel, 
+			m.cidade cidadeResponsavel, m.estado estadoResponsavel, m.complemento complementoResponsavel
 			FROM tb_ocorrencia a
 			INNER JOIN tb_criarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
 			INNER JOIN tb_vitimascriarapuracao c ON b.idCriarApuracao = c.idCriarApuracao
 			INNER JOIN tb_vitimasapuracao d ON c.idVitimasApuracao = d.idVitimasApuracao
 			INNER JOIN tb_familiaapuracao e ON d.idVitimasApuracao = e.idVitimasApuracao
-			INNER JOIN tb_responsavelapuracao f ON d.idResponsavelApuracao = f.idResponsavelApuracao
-			INNER JOIN tb_pessoa g ON d.idPessoa = g.idPessoa
-			INNER JOIN tb_pessoa h ON f.idPessoa = h.idPessoa
-			INNER JOIN tb_contato i ON g.idContato = i.idContato
+			INNER JOIN tb_responsavelVitimas f ON d.idVitimasApuracao = f.idVitimasApuracao
+			INNER JOIN tb_responsavelapuracao g ON f.idResponsavelApuracao = g.idResponsavelApuracao
+			INNER JOIN tb_pessoa h ON d.idPessoa = h.idPessoa
+			INNER JOIN tb_pessoa i ON g.idPessoa = i.idPessoa
 			INNER JOIN tb_contato j ON h.idContato = j.idContato
-			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
+			INNER JOIN tb_contato k ON i.idContato = k.idContato
 			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
+			INNER JOIN tb_endereco m ON i.idEndereco = m.idEndereco
 			WHERE a.idOcorrencia = :idOcorrencia
 		", [
 			":idOcorrencia" => $idOcorrencia
@@ -137,29 +143,32 @@ class MOcorrencia {
 			b.idCriarApuracao, b.idUsuario, b.tipoApuracao, b.descricao, b.status statusApuracao, 
 			b.dataCriacao dataCriacaoApuracao, b.dataRegistro dataRegistroApuracao,
 			c.idVitimasCriarApuracao, c.idVitimasApuracao,
-			d.idPessoa idPessoaVitima, d.idResponsavelApuracao,
-			e.qualFamilia, f.idPessoa idPessoaResponsavel,
-			g.nome nomeVitima, g.sexo sexoVitima, g.cpf cpfVitima, g.dataNasc dataNascVitima, g.rg rgVitima, 
-			h.nome nomeResponsavel, h.cpf cpfResponsavel, g.sexo sexoResponsavel, g.dataNasc dataNascResponsavel, g.rg rgResponsavel,
-			i.idContato idContatoVitima, i.celular celularVitima, i.fixo fixoVitima, i.email emailVitima,
-			j.idContato idContatoResponsavel, j.celular celularResponsavel, j.fixo fixoResponsavel, j.email emailResponsavel,
-			k.idEndereco idEnderecoVitima, k.cep cepVitima, k.rua ruaVitima, k.numero numeroVitima, k.bairro bairroVitima, 
-			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
-			l.idEndereco idEnderecoResponsavel, l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, 
-			l.bairro bairroResponsavel, 
-			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel
+			d.idPessoa idPessoaVitima,
+			e.qualFamilia, 
+			f.idResponsavelVitimas,
+			g.idPessoa idPessoaResponsavel, g.isPais,
+			h.nome nomeVitima, h.sexo sexoVitima, h.cpf cpfVitima, h.dataNasc dataNascVitima, h.rg rgVitima, 
+			i.nome nomeResponsavel, i.cpf cpfResponsavel, i.sexo sexoResponsavel, i.dataNasc dataNascResponsavel, i.rg rgResponsavel,
+			j.idContato idContatoVitima, j.celular celularVitima, j.fixo fixoVitima, j.email emailVitima,
+			k.idContato idContatoResponsavel, k.celular celularResponsavel, k.fixo fixoResponsavel, k.email emailResponsavel,
+			l.idEndereco idEnderecoVitima, l.cep cepVitima, l.rua ruaVitima, l.numero numeroVitima, l.bairro bairroVitima, 
+			l.cidade cidadeVitima, l.estado estadoVitima, l.complemento complementoVitima,
+			m.idEndereco idEnderecoResponsavel, m.cep cepResponsavel, m.rua ruaResponsavel, m.numero numeroResponsavel, 
+			m.bairro bairroResponsavel, 
+			m.cidade cidadeResponsavel, m.estado estadoResponsavel, m.complemento complementoResponsavel
 			FROM tb_ocorrencia a
 			INNER JOIN tb_criarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
 			INNER JOIN tb_vitimascriarapuracao c ON b.idCriarApuracao = c.idCriarApuracao
 			INNER JOIN tb_vitimasapuracao d ON c.idVitimasApuracao = d.idVitimasApuracao
 			INNER JOIN tb_familiaapuracao e ON d.idVitimasApuracao = e.idVitimasApuracao
-			INNER JOIN tb_responsavelapuracao f ON d.idResponsavelApuracao = f.idResponsavelApuracao
-			INNER JOIN tb_pessoa g ON d.idPessoa = g.idPessoa
-			INNER JOIN tb_pessoa h ON f.idPessoa = h.idPessoa
-			INNER JOIN tb_contato i ON g.idContato = i.idContato
+			INNER JOIN tb_responsavelVitimas f ON d.idVitimasApuracao = f.idVitimasApuracao
+			INNER JOIN tb_responsavelapuracao g ON f.idResponsavelApuracao = g.idResponsavelApuracao
+			INNER JOIN tb_pessoa h ON d.idPessoa = h.idPessoa
+			INNER JOIN tb_pessoa i ON g.idPessoa = i.idPessoa
 			INNER JOIN tb_contato j ON h.idContato = j.idContato
-			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
+			INNER JOIN tb_contato k ON i.idContato = k.idContato
 			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
+			INNER JOIN tb_endereco m ON i.idEndereco = m.idEndereco
 			WHERE a.idOcorrencia = :idOcorrencia AND c.idVitimasApuracao = :idVitima
 		", [
 			":idOcorrencia" => $idOcorrencia,
