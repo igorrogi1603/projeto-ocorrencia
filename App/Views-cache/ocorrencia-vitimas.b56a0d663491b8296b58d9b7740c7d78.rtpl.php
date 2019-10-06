@@ -78,7 +78,7 @@
 
             <a href="/ocorrencia-vitima-editar/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-edit"></i>Editar Vítima</a>
 
-            <a href="/ocorrencia-responsavel-vitima-editar/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Editar Responsavel</a>
+            <a href="/ocorrencia-responsavel-vitima-lista/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Editar Responsavel</a>
 
             <a href="/ocorrencia-vitima-ver-arquivo" class="btn btn-app"><i class="fa fa-file-pdf-o"></i>Envio de Documentos</a>
 

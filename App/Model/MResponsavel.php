@@ -17,14 +17,19 @@ class MResponsavel {
 				//isPais
 				//1 = outro
 				//2 = pai
-				//3 = mae 
+				//3 = mae
+
+				//isAindaResponsavel
+				//1 = sim
+				//0 = não
 
 				$sql->query("
-					INSERT INTO tb_responsavelapuracao (idPessoa, isPais) 
-					VALUES(:idPessoa, :isPais)
+					INSERT INTO tb_responsavelapuracao (idPessoa, isPais, isAindaResponsavel) 
+					VALUES(:idPessoa, :isPais, :isAindaResponsavel)
 				", [
 					":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"],
-					":isPais" => 1
+					":isPais" => 1,
+					":isAindaResponsavel" => 1
 				]);
 				break;
 			
@@ -91,6 +96,24 @@ class MResponsavel {
 		}
 	}
 
+	//Atualizar o responsavel da vitima
+	public function updateResponsavelApuracao($post)
+	{
+		$sql = new Conexao;
+		$responsavel = new Responsavel;
+
+		$responsavel->setData($post);
+
+		$sql->query("
+			UPDATE tb_responsavelapuracao 
+			SET isPais = :isPais, outro = :outro
+			WHERE idResponsavelApuracao = :idResponsavelApuracao
+		", [
+			":isPais" => $responsavel->getresponsavelRadio(),
+			":outro" => utf8_decode($responsavel->getresponsavelOutro()),
+			":idResponsavelApuracao" => (int)$responsavel->getidResponsavelApuracao()
+		]);
+	}
 }
 
 ?>

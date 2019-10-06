@@ -67,11 +67,6 @@ class COcorrenciaVitima {
 		return COcorrenciaVitima::validacaoVitimasEditar($idVitima, $idOcorrencia);
 	}
 
-	public static function getOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia)
-	{
-		return COcorrenciaVitima::validacaoVitimasEditar($idVitima, $idOcorrencia);
-	}
-
 	public static function getOcorrenciaVitima($idOcorrencia)
 	{	
 		return COcorrenciaVitima::validacaoListaVitimas($idOcorrencia);

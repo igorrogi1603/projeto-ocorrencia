@@ -57,3 +57,57 @@ function getCalculaCepApuracao(){
     });
   }
 }
+
+//Responsavel Ocorrencia
+$(document).ready(function(){
+  $("#id-cep-responsavel").focusout(function(){
+    let cep = $("#id-cep-responsavel").val();
+    cep = cep.replace("-", "");
+
+    let urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+ 
+    $.ajax({
+        url : urlStr,
+        type : "get",
+        dataType : "json",
+        success : function(data){
+            console.log(data);
+             
+            $("#id-cidade-responsavel").val(data.localidade);
+            $("#id-estado-responsavel").val(data.uf.toLowerCase());
+            $("#id-bairro-responsavel").val(data.bairro);
+            $("#id-rua-responsavel").val(data.logradouro);
+        },
+        error : function(erro){
+            console.log(erro);
+        }
+    });
+  });
+});
+
+//Vitimas Ocorrencia
+$(document).ready(function(){
+  $("#id-cep-vitima").focusout(function(){
+    let cep = $("#id-cep-vitima").val();
+    cep = cep.replace("-", "");
+
+    let urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+ 
+    $.ajax({
+        url : urlStr,
+        type : "get",
+        dataType : "json",
+        success : function(data){
+            console.log(data);
+             
+            $("#id-cidade-vitima").val(data.localidade);
+            $("#id-estado-vitima").val(data.uf.toLowerCase());
+            $("#id-bairro-vitima").val(data.bairro);
+            $("#id-rua-vitima").val(data.logradouro);
+        },
+        error : function(erro){
+            console.log(erro);
+        }
+    });
+  });
+});

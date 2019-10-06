@@ -6,6 +6,7 @@ use \App\Classe\Validacao;
 use \App\Controller\CListaOcorrencia;
 use \App\Controller\CDetalheOcorrencia;
 use \App\Controller\COcorrenciaVitima;
+use \App\Controller\COcorrenciaResponsavel;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -131,11 +132,48 @@ $app->post("/ocorrencia-vitima-editar/:idVitima/:idOcorrencia/:idPessoa", functi
 });
 
 //RESPONSAVEL PELA VITIMA
+$app->get("/ocorrencia-responsavel-vitima-cadastrar/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-responsavel-vitima-cadastrar", [
+		"idVitima" => $idVitima,
+		"idOcorrencia" => $idOcorrencia,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
+$app->post("/ocorrencia-responsavel-vitima-cadastrar/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaResponsavel::postCadastrarResponsavelVitima($idVitima, $idOcorrencia);
+
+	header("Location: /ocorrencia-responsavel-vitima-lista/".$idVitima."/".$idOcorrencia);
+	exit;
+});
+
+$app->get("/ocorrencia-responsavel-vitima-lista/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$responsavel = COcorrenciaResponsavel::getListaResponsavelVitima($idVitima, $idOcorrencia);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-responsavel-vitima-lista", [
+		"responsavel" => $responsavel,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
 $app->get("/ocorrencia-responsavel-vitima-editar/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
 
 	Usuario::verifyLogin();
 
-	$vitima = COcorrenciaVitima::getOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia);
+	$vitima = COcorrenciaResponsavel::getOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia);
 
 	$page = new Page();
 
@@ -143,6 +181,17 @@ $app->get("/ocorrencia-responsavel-vitima-editar/:idVitima/:idOcorrencia", funct
 		"vitima" => $vitima,
 		"error"=>Validacao::getMsgError()
 	]);
+});
+
+$app->post("/ocorrencia-responsavel-vitima-editar/:idVitima/:idOcorrencia/:idPessoa", function($idVitima, $idOcorrencia, $idPessoa){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaResponsavel::postOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia, $idPessoa, $_POST);
+
+	header("Location:");
+	exit;
+
 });
 
 //--------------------------------------------------------------

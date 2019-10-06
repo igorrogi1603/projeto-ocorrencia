@@ -35,3 +35,11 @@ $('#id-rg-usuario').mask('00.000.000', {reverse: true});
 $('#id-celular-usuario').mask('00 - 00000-0000', {reverse: true});
 $('#id-telfixo-usuario').mask('00 - 0000-0000', {reverse: true});
 $('#id-cep-usuario').mask('00000-000', {reverse: true});
+
+/*Pagina: Ocorrencia responsavel vitima editar*/
+$('#id-data-nasc-responsavel').mask('00/00/0000', {reverse: true});
+$('#id-cpf-responsavel').mask('000.000.000-00', {reverse: true});
+$('#id-rg-responsavel').mask('00.000.000', {reverse: true});
+$('#id-celular-responsavel').mask('00 - 00000-0000', {reverse: true});
+$('#id-telfixo-responsavel').mask('00 - 0000-0000', {reverse: true});
+$('#id-cep-responsavel').mask('00000-000', {reverse: true});
