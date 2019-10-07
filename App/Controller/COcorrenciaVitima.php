@@ -69,12 +69,58 @@ class COcorrenciaVitima {
 
 	public static function getOcorrenciaVitima($idOcorrencia)
 	{	
-		return COcorrenciaVitima::validacaoListaVitimas($idOcorrencia);
+		//Recupera a lista com os dados da vitima
+		$listaVitimas = COcorrenciaVitima::validacaoListaVitimas($idOcorrencia);
+
+		//Pega o tamanho do arry para usar no for
+		$tamanhoArray = count($listaVitimas);
+
+		for ($i = 0; $i < $tamanhoArray; $i++) {
+			//Verifica sea posicao que queremos guardar existe
+			if (isset($listaVitimas[$i])) {
+				//se existe guarda em id
+				$id = $listaVitimas[$i]['idPessoaVitima'];
+			}
+			//o for inicia na proxima posicao do array 
+			//Para nao comparar com a mesma posicao
+			for ($a = $i+1; $a < $tamanhoArray; $a++) {
+				//Se os id forem iguais entao exclui para nao duplicar
+				if ($id == $listaVitimas[$a]['idPessoaVitima']) {
+					unset($listaVitimas[$a]);
+				}
+			}
+			break;
+		}
+
+		return $listaVitimas;
 	}
 
 	public static function getOcorrenciaVitimasLista($idOcorrencia)
-	{
-		return COcorrenciaVitima::validacaoListaVitimas($idOcorrencia);
+	{	
+		//Recupera a lista com os dados da vitima
+		$listaVitimas = COcorrenciaVitima::validacaoListaVitimas($idOcorrencia);
+
+		//Pega o tamanho do arry para usar no for
+		$tamanhoArray = count($listaVitimas);
+
+		for ($i = 0; $i < $tamanhoArray; $i++) {
+			//Verifica sea posicao que queremos guardar existe
+			if (isset($listaVitimas[$i])) {
+				//se existe guarda em id
+				$id = $listaVitimas[$i]['idPessoaVitima'];
+			}
+			//o for inicia na proxima posicao do array 
+			//Para nao comparar com a mesma posicao
+			for ($a = $i+1; $a < $tamanhoArray; $a++) {
+				//Se os id forem iguais entao exclui para nao duplicar
+				if ($id == $listaVitimas[$a]['idPessoaVitima']) {
+					unset($listaVitimas[$a]);
+				}
+			}
+			break;
+		}
+
+		return $listaVitimas;
 	}
 
 

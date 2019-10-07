@@ -4,20 +4,26 @@ namespace App\Model;
 
 use \App\Config\Conexao;
 use \App\Classe\Responsavel;
+use \App\Classe\Validacao;
 
 class MResponsavel {
 
-	public function cadastrar($idPessoa, $complemento)
+	public function cadastrar($idPessoa, $complemento, $post)
 	{
 		$sql = new Conexao;
+
+		$responsavel = new Responsavel;
+		$validacao = new Validacao;
+
+		$responsavel->setData($post);
 
 		switch ($complemento) {
 			case 'apuracao':
 
 				//isPais
-				//1 = outro
-				//2 = pai
-				//3 = mae
+				//1 = pai
+				//2 = mae
+				//3 = outro
 
 				//isAindaResponsavel
 				//1 = sim
@@ -30,6 +36,19 @@ class MResponsavel {
 					":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"],
 					":isPais" => 1,
 					":isAindaResponsavel" => 1
+				]);
+				break;
+
+			case 'ocorrencia':
+
+				$sql->query("
+					INSERT INTO tb_responsavelapuracao (idPessoa, isPais, isAindaResponsavel, outro) 
+					VALUES(:idPessoa, :isPais, :isAindaResponsavel, :outro)
+				", [
+					":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"],
+					":isPais" => $responsavel->getresponsavelRadio(),
+					":isAindaResponsavel" => 1,
+					":outro" => utf8_decode($responsavel->getresponsavelOutro())
 				]);
 				break;
 			
@@ -52,6 +71,16 @@ class MResponsavel {
 				", [
 					":idResponsavelApuracao" => (int)$idResponsavel[0]["MAX(idResponsavelApuracao)"],
 					":idVitimasApuracao" => (int)$idVitima[0]["MAX(idVitimasApuracao)"]
+				]);
+				break;
+
+			case 'ocorrencia':
+				$sql->query("
+					INSERT INTO tb_responsavelvitimas (idResponsavelApuracao, idVitimasApuracao) 
+					VALUES(:idResponsavelApuracao, :idVitimasApuracao);
+				", [
+					":idResponsavelApuracao" => (int)$idResponsavel[0]["MAX(idResponsavelApuracao)"],
+					":idVitimasApuracao" => $idVitima
 				]);
 				break;
 			

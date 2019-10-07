@@ -49,6 +49,21 @@ class MEndereco {
 				]);		
 				break;
 
+			case 'responsavel':
+				$sql->query("
+					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
+					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
+				", [
+					":cep" => $endereco->getcepResponsavel(),
+					":rua" => utf8_decode($endereco->getruaResponsavel()),
+					":numero" => $endereco->getnumeroResponsavel(),
+					":bairro" => utf8_decode($endereco->getbairroResponsavel()),
+					":cidade" => utf8_decode($endereco->getcidadeResponsavel()),
+					":estado" => $endereco->getestadoResponsavel(),
+					":complemento" => utf8_decode($endereco->getcomplementoResponsavel())
+				]);		
+				break;
+
 			default:
 				var_dump("Não foi possivel cadastrar");
 				exit;

@@ -48,6 +48,17 @@ class MContato {
 				]);				
 				break;
 
+			case 'responsavel':
+				$sql->query("
+					INSERT INTO tb_contato (celular, fixo, email) 
+					VALUES(:celular, :fixo, :email)
+				", [
+					":celular" => $validacao->replaceCelularBd($contato->getcelularResponsavel()),
+					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoResponsavel()),
+					":email" => utf8_decode($contato->getemailResponsavel())
+				]);				
+				break;
+
 			default:
 				var_dump("Não foi possivel cadastrar");
 				exit;

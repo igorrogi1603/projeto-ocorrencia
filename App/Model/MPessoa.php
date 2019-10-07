@@ -58,6 +58,21 @@ class MPessoa {
 				]);
 				break;
 
+			case 'responsavel':
+				$sql->query("
+					INSERT INTO tb_pessoa (idEndereco, idContato, nome, dataNasc, cpf, rg, sexo) 
+					VALUES(:idEndereco, :idContato, :nome, :dataNasc, :cpf, :rg, :sexo)
+				", [
+					":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
+					":idContato" => (int)$idContato[0]["MAX(idContato)"],
+					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeResponsavel(), 1)),
+					":dataNasc" => $validacao->replaceDataBd($pessoa->getdataNascResponsavel()),
+					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfResponsavel()),
+					":rg" => $validacao->replaceRgBd($pessoa->getrgResponsavel(), $pessoa->getrgDigitoResponsavel()),
+					":sexo" => $pessoa->getsexoResponsavel()
+				]);
+				break;
+
 			default:
 				var_dump("Não foi possivel cadastrar");
 				exit;

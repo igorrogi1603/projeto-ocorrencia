@@ -29,7 +29,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <form action="/ocorrencia-responsavel-vitima-cadastrar/{idVitima}/{idOcorrencia}" method="post">
+        <form action="/ocorrencia-responsavel-vitima-cadastrar/<?php echo htmlspecialchars( $idVitima, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
 
           <!--Row-->
           <div class="row">

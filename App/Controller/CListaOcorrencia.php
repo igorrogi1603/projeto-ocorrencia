@@ -35,6 +35,7 @@ class CListaOcorrencia {
 					unset($listaOcorrencia[$a]);
 				}
 			}
+			break;
 		}
 
 		//Validacao dos campos com acentos do banco de dados

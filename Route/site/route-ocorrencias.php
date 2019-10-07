@@ -149,7 +149,7 @@ $app->post("/ocorrencia-responsavel-vitima-cadastrar/:idVitima/:idOcorrencia", f
 
 	Usuario::verifyLogin();
 
-	COcorrenciaResponsavel::postCadastrarResponsavelVitima($idVitima, $idOcorrencia);
+	COcorrenciaResponsavel::postCadastrarResponsavelVitima($idVitima, $idOcorrencia, $_POST);
 
 	header("Location: /ocorrencia-responsavel-vitima-lista/".$idVitima."/".$idOcorrencia);
 	exit;

@@ -254,7 +254,7 @@ class CCriarApuracao {
 				}
 
 				//Cadastrando na tabela responsavelApuracao
-				$mresponsavel->cadastrar($idPessoa, "apuracao");
+				$mresponsavel->cadastrar($idPessoa, "apuracao", "");
 
 				//recuperando o ultimo id do responsavel da vitima
 				$idResponsavel = $mresponsavel->ultimoRegistro();
