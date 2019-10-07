@@ -155,6 +155,21 @@ $app->post("/ocorrencia-responsavel-vitima-cadastrar/:idVitima/:idOcorrencia", f
 	exit;
 });
 
+$app->get("/ocorrencia-responsavel-vitima-detalhe/:idVitima/:idOcorrencia/:idPessoaResponsavel", function($idVitima, $idOcorrencia, $idPessoaResponsavel){
+
+	Usuario::verifyLogin();
+
+	$responsavel = COcorrenciaResponsavel::getDetalheResponsavelVitima($idPessoaResponsavel);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-responsavel-vitima-detalhe", [
+		"responsavel" => $responsavel,
+		"idVitima" => $idVitima,
+		"idOcorrencia" => $idOcorrencia
+	]);
+});
+
 $app->get("/ocorrencia-responsavel-vitima-lista/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
 
 	Usuario::verifyLogin();

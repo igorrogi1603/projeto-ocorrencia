@@ -16,6 +16,11 @@ use \App\Classe\Validacao;
 
 class COcorrenciaResponsavel {
 
+	public static function getDetalheResponsavelVitima($idPessoaResponsavel)
+	{
+		return COcorrenciaResponsavel::validacaoResponsavelCompleto($idPessoaResponsavel);
+	}
+
 	public static function getListaResponsavelVitima($idVitima, $idOcorrencia)
 	{
 		return COcorrenciaResponsavel::validacaoVitimasEditar($idVitima, $idOcorrencia);	
@@ -136,6 +141,42 @@ class COcorrenciaResponsavel {
 	//------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------
+	//Validar os campos do responsavel
+	//Tras o endereco contato e dados do responsavel especifico
+	protected function validacaoResponsavelCompleto($idPessoaResponsavel)
+	{
+		$mpessoa = new MPessoa;
+		$validacao = new Validacao;
+
+		$listaResponsavel = $mpessoa->pessoaEspecifica($idPessoaResponsavel);
+
+		//Pega o tamanho do arry para usar no for
+		$tamanhoArray = count($listaResponsavel);
+
+		//Validacao dos campos com acentos do banco de dados
+		for ($i = 0; $i < $tamanhoArray; $i++) {
+			$listaResponsavel[$i]['nome'] = utf8_encode($listaResponsavel[$i]['nome']);
+			$listaResponsavel[$i]['cpf'] = $validacao->replaceCpfView(utf8_encode($listaResponsavel[$i]['cpf']));
+			$listaResponsavel[$i]['rg'] = $validacao->replaceSemDigitoRg($listaResponsavel[$i]['rg']);
+			$listaResponsavel[$i]['rua'] = utf8_encode($listaResponsavel[$i]['rua']);
+			$listaResponsavel[$i]['bairro'] = utf8_encode($listaResponsavel[$i]['bairro']);
+			$listaResponsavel[$i]['cidade'] = utf8_encode($listaResponsavel[$i]['cidade']);
+			$listaResponsavel[$i]['estado'] = strtoupper(utf8_encode($listaResponsavel[$i]['estado']));
+			$listaResponsavel[$i]['complemento'] = utf8_encode($listaResponsavel[$i]['complemento']);
+			$listaResponsavel[$i]['fixo'] = $validacao->replaceTelefoneFixoView(utf8_encode($listaResponsavel[$i]['fixo']));
+			$listaResponsavel[$i]['celular'] = $validacao->replaceCelularView(utf8_encode($listaResponsavel[$i]['celular']));
+			$listaResponsavel[$i]['cep'] = $validacao->replaceCepView(utf8_encode($listaResponsavel[$i]['cep']));
+			
+			if ($listaResponsavel[$i]['dataNasc'] == null) {
+				//mostra nada
+			} else {
+				$listaResponsavel[$i]['dataNasc'] = $validacao->replaceDataView(utf8_encode($listaResponsavel[$i]['dataNasc']));
+			}
+		}
+
+		return $listaResponsavel;
+	}
+
 	//Valida todos os campos
 	protected function validacaoVitimasEditar($idVitima, $idOcorrencia)
 	{

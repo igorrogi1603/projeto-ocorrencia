@@ -143,6 +143,8 @@ class MResponsavel {
 			":idResponsavelApuracao" => (int)$responsavel->getidResponsavelApuracao()
 		]);
 	}
+
+
 }
 
 ?>

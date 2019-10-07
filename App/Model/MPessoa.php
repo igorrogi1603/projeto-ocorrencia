@@ -179,7 +179,16 @@ class MPessoa {
 	{
 		$sql = new Conexao;
 
-		return $sql->select("SELECT * FROM tb_pessoa WHERE idPessoa = :idPessoa", [
+		return $sql->select("
+			SELECT
+			a.idPessoa, a.nome, a.dataNasc, a.cpf, a.rg, a.sexo, a.dataRegistro,
+			b.idEndereco, b.cep, b.rua, b.bairro, b.numero, b.cidade, b.estado, b.complemento,
+			c.celular, c.fixo, c.email
+			FROM tb_pessoa a
+			INNER JOIN tb_endereco b ON a.idEndereco = b.idEndereco
+			INNER JOIN tb_contato c ON a.idContato = c.idContato
+			WHERE idPessoa = :idPessoa
+		", [
 			":idPessoa" => $idPessoa
 		]);
 	}
