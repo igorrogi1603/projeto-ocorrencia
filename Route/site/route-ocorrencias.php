@@ -184,29 +184,38 @@ $app->get("/ocorrencia-responsavel-vitima-lista/:idVitima/:idOcorrencia", functi
 	]);
 });
 
-$app->get("/ocorrencia-responsavel-vitima-editar/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+$app->get("/ocorrencia-responsavel-vitima-editar/:idVitima/:idOcorrencia/:idPessoaResponsavel", function($idVitima, $idOcorrencia, $idPessoaResponsavel){
 
 	Usuario::verifyLogin();
 
-	$vitima = COcorrenciaResponsavel::getOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia);
+	$responsavel = COcorrenciaResponsavel::getOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia, $idPessoaResponsavel);
 
 	$page = new Page();
 
 	$page->setTpl("ocorrencia-responsavel-vitima-editar", [
-		"vitima" => $vitima,
+		"responsavel" => $responsavel,
 		"error"=>Validacao::getMsgError()
 	]);
 });
 
-$app->post("/ocorrencia-responsavel-vitima-editar/:idVitima/:idOcorrencia/:idPessoa", function($idVitima, $idOcorrencia, $idPessoa){
+$app->post("/ocorrencia-responsavel-vitima-editar/:idVitima/:idOcorrencia/:idPessoaResponsavel", function($idVitima, $idOcorrencia, $idPessoaResponsavel){
 
 	Usuario::verifyLogin();
 
-	COcorrenciaResponsavel::postOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia, $idPessoa, $_POST);
+	COcorrenciaResponsavel::postOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia, $idPessoaResponsavel, $_POST);
 
-	header("Location:");
+	header("Location: /ocorrencia-responsavel-vitima-lista/".$idVitima."/".$idOcorrencia);
 	exit;
+});
 
+$app->get("/ocorrencia-responsavel-vitima-excluir/:idVitima/:idOcorrencia/:idPessoaResponsavel", function($idVitima, $idOcorrencia, $idPessoaResponsavel){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaResponsavel::getOcorrenciaResponsavelVitimaExcluir($idPessoaResponsavel);
+
+	header("Location: /ocorrencia-responsavel-vitima-lista/".$idVitima."/".$idOcorrencia);
+	exit;
 });
 
 //--------------------------------------------------------------

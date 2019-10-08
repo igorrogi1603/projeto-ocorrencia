@@ -115,6 +115,19 @@ class MContato {
 				]);				
 				break;
 
+			case 'responsavel':
+				$sql->query("
+					UPDATE tb_contato 
+					SET celular = :celular, fixo = :fixo, email = :email
+					WHERE idContato = :idContato
+				", [
+					":celular" => $validacao->replaceCelularBd($contato->getcelularResponsavel()),
+					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoResponsavel()),
+					":email" => utf8_decode($contato->getemailResponsavel()),
+					":idContato" => $idContato
+				]);				
+				break;
+
 			default:
 				var_dump("Não foi possivel cadastrar");
 				exit;

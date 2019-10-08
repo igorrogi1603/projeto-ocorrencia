@@ -26,15 +26,87 @@ class COcorrenciaResponsavel {
 		return COcorrenciaResponsavel::validacaoVitimasEditar($idVitima, $idOcorrencia);	
 	}
 
-	public static function getOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia)
+	public static function getOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia, $idPessoaResponsavel)
 	{
-		return COcorrenciaResponsavel::validacaoVitimasEditar($idVitima, $idOcorrencia);
+		return COcorrenciaResponsavel::responsavelEspecifico($idVitima, $idOcorrencia, $idPessoaResponsavel);
 	}
 
-	public static function postOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia, $idPessoa, $post)
+	public static function getOcorrenciaResponsavelVitimaExcluir($idPessoaResponsavel)
 	{
-		var_dump($post);
-		exit;
+		$mresponsavel = new MResponsavel;
+
+		$mresponsavel->updateIsAindaResponsavel(0, $idPessoaResponsavel);
+	}
+
+	public static function postOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia, $idPessoaResponsavel, $post)
+	{
+		//Instanciando objeto
+		$mpessoa = new MPessoa;
+		$mcontato = new MContato;
+		$mendereco = new MEndereco;
+		$mresponsavel = new MResponsavel;
+		$validacao = new Validacao;
+
+		//recuperando o responsavel especifico
+		$listaResponsavel = COcorrenciaResponsavel::responsavelEspecifico($idVitima, $idOcorrencia, $idPessoaResponsavel);
+
+		//Pegando o idContato e o idEndereco do Responsavel
+		foreach ($listaResponsavel as $value) {
+			$idContato = $value['idContatoResponsavel'];
+			$idEndereco = $value['idEnderecoResponsavel'];
+		}
+
+		//Validando os post
+		$post['nomeResponsavel'] = $validacao->validarString($post['nomeResponsavel'], 1);
+		$validaCPF = $validacao->validaCPF($post['cpfResponsavel']);
+		$post['cepResponsavel'] = $validacao->validarString($post['cepResponsavel'], 3);
+		$post['ruaResponsavel'] = $validacao->validarString($post['ruaResponsavel'], 2);
+		$post['bairroResponsavel'] = $validacao->validarString($post['bairroResponsavel'], 2);
+		$post['numeroResponsavel'] = $validacao->validarString($post['numeroResponsavel'], 3);
+		$post['cidadeResponsavel'] = $validacao->validarString($post['cidadeResponsavel'], 1);
+		$post['complementoResponsavel'] = $validacao->validarString($post['complementoResponsavel'], 2);
+
+		if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
+			Validacao::setMsgError("CPF Inválido.");
+	        header('Location: /ocorrencia-responsavel-vitima-editar/'.$idVitima.'/'.$idOcorrencia.'/'.$idPessoaResponsavel);
+	        exit;
+		}
+
+		if (!isset($post['nomeResponsavel']) || $post['nomeResponsavel'] === '') {
+			Validacao::setMsgError("Informe o Nome da Vítima.");
+	        header('Location: /ocorrencia-responsavel-vitima-editar/'.$idVitima.'/'.$idOcorrencia.'/'.$idPessoaResponsavel);
+	        exit;
+		}
+
+		//Nao pode cadastrar pessoas com cpf iguais
+		//Pelo cpf da para saber se tem duas pessoas com mais de um registro
+		$cpfIgual = $mpessoa->cpfIgualUpdate($idPessoaResponsavel);
+
+		foreach ($cpfIgual as $cpf) {
+			if ($validacao->replaceCpfBd($post['cpfResponsavel']) == $cpf['cpf']) {
+				Validacao::setMsgError("Este cpf já está cadastrado.");
+		        header('Location: /ocorrencia-responsavel-vitima-editar/'.$idVitima.'/'.$idOcorrencia.'/'.$idPessoaResponsavel);
+		        exit;
+			}
+		}
+
+		//caso o radio for 3 entao verificar se o campo "outro" nao esta vazio
+		if (!isset($post['responsavelOutro']) || $post['responsavelOutro'] == "") {
+			Validacao::setMsgError("Não foi preenchido o campo outro.");
+	        header('Location: /ocorrencia-responsavel-vitima-editar/'.$idVitima.'/'.$idOcorrencia.'/'.$idPessoaResponsavel);
+	        exit;
+		}
+
+		//Caso for pai ou mae deixar vazio o campo "outro"
+		if ($post['responsavelRadio'] == 1 || $post['responsavelRadio'] == 2) {
+			$post['responsavelOutro'] = "";
+		}
+
+		//Atualizando os dados
+		$mpessoa->update($post, $idPessoaResponsavel, 'responsavel');
+		$mcontato->update($post, $idContato, 'responsavel');
+		$mendereco->update($post, $idEndereco, 'responsavel');
+		$mresponsavel->updateResponsavelApuracao($post, $idPessoaResponsavel);
 	}
 
 	//Cadastrar um novo responsavel para vitima
@@ -141,6 +213,25 @@ class COcorrenciaResponsavel {
 	//------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------
+	//Responsavel especifico
+	protected function responsavelEspecifico($idVitima, $idOcorrencia, $idPessoaResponsavel)
+	{
+		$listaResponsavel = COcorrenciaResponsavel::validacaoVitimasEditar($idVitima, $idOcorrencia);
+
+		//Pega o tamanho do arry para usar no for
+		$tamanhoArray = count($listaResponsavel);
+
+		//Deixar apenas o array do responsavel
+		for ($i = 0; $i < $tamanhoArray; $i++) {
+			//Se os id forem diferentes entao exclui para nao vir outra pessoa junto
+			if ($idPessoaResponsavel != $listaResponsavel[$i]['idPessoaResponsavel']) {
+				unset($listaResponsavel[$i]);
+			}
+		}
+
+		return $listaResponsavel;
+	}
+
 	//Validar os campos do responsavel
 	//Tras o endereco contato e dados do responsavel especifico
 	protected function validacaoResponsavelCompleto($idPessoaResponsavel)
@@ -190,6 +281,7 @@ class COcorrenciaResponsavel {
 
 		//Validacao dos campos com acentos do banco de dados
 		for ($i = 0; $i < $tamanhoArray; $i++) {
+			$vitimaOcorrencia[$i]['outro'] = utf8_encode($vitimaOcorrencia[$i]['outro']);
 			$vitimaOcorrencia[$i]['descricao'] = utf8_encode($vitimaOcorrencia[$i]['descricao']);
 			$vitimaOcorrencia[$i]['tipoApuracao'] = utf8_encode($vitimaOcorrencia[$i]['tipoApuracao']);
 			$vitimaOcorrencia[$i]['qualFamilia'] = utf8_encode($vitimaOcorrencia[$i]['qualFamilia']);

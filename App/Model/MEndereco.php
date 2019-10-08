@@ -131,6 +131,23 @@ class MEndereco {
 				]);		
 				break;
 
+			case 'responsavel':
+				$sql->query("
+					UPDATE tb_endereco 
+					SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
+					WHERE idEndereco = :idEndereco
+				", [
+					":cep" => $endereco->getcepResponsavel(),
+					":rua" => utf8_decode($endereco->getruaResponsavel()),
+					":numero" => $endereco->getnumeroResponsavel(),
+					":bairro" => utf8_decode($endereco->getbairroResponsavel()),
+					":cidade" => utf8_decode($endereco->getcidadeResponsavel()),
+					":estado" => $endereco->getestadoResponsavel(),
+					":complemento" => utf8_decode($endereco->getcomplementoResponsavel()),
+					":idEndereco" => $idEndereco
+				]);		
+				break;
+
 			default:
 				var_dump("Não foi possivel cadastrar");
 				exit;

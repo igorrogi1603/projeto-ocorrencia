@@ -92,14 +92,14 @@ class MPessoa {
 
 		$pessoa->setData($post);
 
-		if ($pessoa->getdataNascUsuario() == null) {
-			$dataNasc = null;
-		} else {
-			$dataNasc = $validacao->replaceDataBd($pessoa->getdataNascUsuario());
-		}
-
 		switch ($complemento) {
 			case 'usuario':
+				if ($pessoa->getdataNascUsuario() == null) {
+					$dataNasc = null;
+				} else {
+					$dataNasc = $validacao->replaceDataBd($pessoa->getdataNascUsuario());
+				}
+
 				$sql->query("
 					UPDATE tb_pessoa 
 					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
@@ -115,6 +115,12 @@ class MPessoa {
 				break;
 
 			case 'vitima':
+				if ($pessoa->getdataNascUsuario() == null) {
+					$dataNasc = null;
+				} else {
+					$dataNasc = $validacao->replaceDataBd($pessoa->getdataNascUsuario());
+				}
+
 				$sql->query("
 					UPDATE tb_pessoa 
 					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
@@ -128,18 +134,24 @@ class MPessoa {
 					"idPessoa" => $idPessoa
 				]);
 				break;
-			
-			case 'responsavelVitima':
+
+			case 'responsavel':
+				if ($pessoa->getdataNascResponsavel() == null) {
+					$dataNasc = null;
+				} else {
+					$dataNasc = $validacao->replaceDataBd($pessoa->getdataNascResponsavel());
+				}
+
 				$sql->query("
 					UPDATE tb_pessoa 
 					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
 					WHERE idPessoa = :idPessoa
 				", [
-					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeUsuario(), 1)),
+					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeResponsavel(), 1)),
 					":dataNasc" => $dataNasc,
-					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
-					":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
-					":sexo" => $pessoa->getsexoUsuario(),
+					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfResponsavel()),
+					":rg" => $validacao->replaceRgBd($pessoa->getrgResponsavel(), $pessoa->getrgDigitoResponsavel()),
+					":sexo" => $pessoa->getsexoResponsavel(),
 					"idPessoa" => $idPessoa
 				]);
 				break;

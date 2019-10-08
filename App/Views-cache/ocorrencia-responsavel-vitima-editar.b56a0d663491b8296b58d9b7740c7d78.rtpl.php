@@ -29,7 +29,8 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <form action="/ocorrencia-responsavel-vitima-editar/<?php echo htmlspecialchars( $vitima["0"]["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $vitima["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $vitima["0"]["idPessoaVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
+        <?php $counter1=-1;  if( isset($responsavel) && ( is_array($responsavel) || $responsavel instanceof Traversable ) && sizeof($responsavel) ) foreach( $responsavel as $key1 => $value1 ){ $counter1++; ?>
+        <form action="/ocorrencia-responsavel-vitima-editar/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
 
           <!--Row-->
           <div class="row">
@@ -37,7 +38,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="id-nome-responsavel">Nome Completo *</label>
-                <input type="text" name="nomeResponsavel" id="id-nome-responsavel" class="form-control" placeholder="Digite o nome aqui" maxlength="70" onkeyup="validarCaracter(this, 1)" value="<?php echo htmlspecialchars( $vitima["0"]["nomeResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
+                <input type="text" name="nomeResponsavel" id="id-nome-responsavel" class="form-control" placeholder="Digite o nome aqui" maxlength="70" onkeyup="validarCaracter(this, 1)" value="<?php echo htmlspecialchars( $value1["nomeResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
               </div>
             </div>
             <!--Fim Nome do vitima-->
@@ -45,8 +46,7 @@
             <!--Inicio Radio-->
             <div class="col-md-3">
               <div class="form-group">
-                <input type="hidden" name="idResponsavelApuracao" value="<?php echo htmlspecialchars( $vitima["0"]["idResponsavelApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                <input type="hidden" id="id-radio-pais-hidden-responsavel" value="<?php echo htmlspecialchars( $vitima["0"]["isPais"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="hidden" id="id-radio-pais-hidden-responsavel" value="<?php echo htmlspecialchars( $value1["isPais"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                 <label>O que o responsavel é da Vítima?</label><br>
                 <label class="container-radio">Pai
                   <input type="radio" name="responsavelRadio" id="id-responsavel-pai" class="minimal" value="1">
@@ -68,7 +68,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="id-responsavel-text-outro" id="id-responsavel-label-outro">Outro</label>
-                <input type="text" name="responsavelOutro" id="id-responsavel-text-outro" class="form-control" maxlength="40" onkeyup="validarCaracter(this, 1)">
+                <input type="text" name="responsavelOutro" id="id-responsavel-text-outro" class="form-control" maxlength="40" onkeyup="validarCaracter(this, 1)" value="<?php echo htmlspecialchars( $value1["outro"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim Nome do vitima-->
@@ -81,7 +81,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="id-cpf-responsavel">CPF *</label>
-                <input type="text" name="cpfResponsavel" id="id-cpf-responsavel" class="form-control" placeholder="___.___.___-__" value="<?php echo htmlspecialchars( $vitima["0"]["cpfResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
+                <input type="text" name="cpfResponsavel" id="id-cpf-responsavel" class="form-control" placeholder="___.___.___-__" value="<?php echo htmlspecialchars( $value1["cpfResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
               </div>
             </div>
             <!--Fim CPF-->
@@ -90,7 +90,7 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label for="id-rg-responsavel">RG</label>
-                <input type="text" name="rgResponsavel" id="id-rg-responsavel" class="form-control" placeholder="__.___.___" onblur="digitoRg()" value="<?php echo htmlspecialchars( $vitima["0"]["rgResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="text" name="rgResponsavel" id="id-rg-responsavel" class="form-control" placeholder="__.___.___" onblur="digitoRg()" value="<?php echo htmlspecialchars( $value1["rgResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim RG-->
@@ -99,7 +99,7 @@
             <div class="col-md-1 divBordaVermelhaVerde">
               <div class="form-group">
                 <label for="id-rg-digito-responsavel">Digito</label>
-                <input type="text" name="rgDigitoResponsavel" id="id-rg-digito-responsavel" class="form-control" maxlength="1" onblur="digitoRg()" onkeyup="validarCaracter(this, 2)" value="<?php echo htmlspecialchars( $vitima["0"]["rgResponsavelDigito"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="text" name="rgDigitoResponsavel" id="id-rg-digito-responsavel" class="form-control" maxlength="1" onblur="digitoRg()" onkeyup="validarCaracter(this, 2)" value="<?php echo htmlspecialchars( $value1["rgResponsavelDigito"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim RG digito verificador-->
@@ -112,7 +112,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" name="dataNascResponsavel" id="id-data-nasc-responsavel" class="form-control" placeholder="__/__/____" value="<?php echo htmlspecialchars( $vitima["0"]["dataNascResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    <input type="text" name="dataNascResponsavel" id="id-data-nasc-responsavel" class="form-control" placeholder="__/__/____" value="<?php echo htmlspecialchars( $value1["dataNascResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                   </div>
                 </div>
               </div>
@@ -121,7 +121,7 @@
               <!--Sexo-->
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="hidden" id="id-sexo-hidden-responsavel" value="<?php echo htmlspecialchars( $vitima["0"]["sexoResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                  <input type="hidden" id="id-sexo-hidden-responsavel" value="<?php echo htmlspecialchars( $value1["sexoResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                   <label for="id-sexo-responsavel">Sexo</label>
                   <select class="form-control select2" name="sexoResponsavel" id="id-sexo-responsavel">
                     <option value="m">Masculino</option>
@@ -139,7 +139,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="id-email-responsavel">E-mail</label>
-                <input type="email" name="emailResponsavel" id="id-email-responsavel" class="form-control" placeholder="Digite o e-mail aqui" maxlength="100" value="<?php echo htmlspecialchars( $vitima["0"]["emailResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="email" name="emailResponsavel" id="id-email-responsavel" class="form-control" placeholder="Digite o e-mail aqui" maxlength="100" value="<?php echo htmlspecialchars( $value1["emailResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim Email-->
@@ -148,7 +148,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="id-telfixo-responsavel">Telefone Fixo</label>
-                <input type="text" name="telFixoResponsavel" id="id-telfixo-responsavel" class="form-control" placeholder="____-____" value="<?php echo htmlspecialchars( $vitima["0"]["fixoResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="text" name="telFixoResponsavel" id="id-telfixo-responsavel" class="form-control" placeholder="____-____" value="<?php echo htmlspecialchars( $value1["fixoResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Telefone Fixo vitima-->
@@ -157,7 +157,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="id-celular-responsavel">Celular</label>
-                <input type="text" name="celularResponsavel" id="id-celular-responsavel" class="form-control" placeholder="_____-____" value="<?php echo htmlspecialchars( $vitima["0"]["celularResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="text" name="celularResponsavel" id="id-celular-responsavel" class="form-control" placeholder="_____-____" value="<?php echo htmlspecialchars( $value1["celularResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim Celular vitima-->
@@ -179,7 +179,7 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label for="id-cep-responsavel">CEP</label>
-                <input type="text" name="cepResponsavel" id="id-cep-responsavel" class="form-control" placeholder="_____-___" value="<?php echo htmlspecialchars( $vitima["0"]["cepResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="text" name="cepResponsavel" id="id-cep-responsavel" class="form-control" placeholder="_____-___" value="<?php echo htmlspecialchars( $value1["cepResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim Numero cep-->
@@ -188,7 +188,7 @@
             <div class="col-md-5">
               <div class="form-group">
                 <label for="id-rua-responsavel">Rua</label>
-                <input type="text" name="ruaResponsavel" id="id-rua-responsavel" class="form-control" placeholder="Digite o nome da rua da vitima" maxlength="100" onkeyup="validarCaracter(this, 3)" value="<?php echo htmlspecialchars( $vitima["0"]["ruaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="text" name="ruaResponsavel" id="id-rua-responsavel" class="form-control" placeholder="Digite o nome da rua da vitima" maxlength="100" onkeyup="validarCaracter(this, 3)" value="<?php echo htmlspecialchars( $value1["ruaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim Rua vitima-->
@@ -197,7 +197,7 @@
             <div class="col-md-5">
               <div class="form-group">
                 <label for="id-bairro-responsavel">Bairro</label>
-                <input type="text" name="bairroResponsavel" id="id-bairro-responsavel" class="form-control" placeholder="Digite o nome do bairro da vitima" maxlength="100" onkeyup="validarCaracter(this, 3)" value="<?php echo htmlspecialchars( $vitima["0"]["bairroResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="text" name="bairroResponsavel" id="id-bairro-responsavel" class="form-control" placeholder="Digite o nome do bairro da vitima" maxlength="100" onkeyup="validarCaracter(this, 3)" value="<?php echo htmlspecialchars( $value1["bairroResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim Bairro vitima-->
@@ -210,7 +210,7 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label for="id-numero-responsavel">Numero</label>
-                <input type="number" name="numeroResponsavel" id="id-numero-responsavel" class="form-control" placeholder="Numero da casa" min="0" value="<?php echo htmlspecialchars( $vitima["0"]["numeroResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="number" name="numeroResponsavel" id="id-numero-responsavel" class="form-control" placeholder="Numero da casa" min="0" value="<?php echo htmlspecialchars( $value1["numeroResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim Numero vitima--> 
@@ -218,7 +218,7 @@
             <!--Estado vitima-->
             <div class="col-md-3">
               <div class="form-group">
-                <input type="hidden" id="id-estado-hidden-responsavel" value="<?php echo htmlspecialchars( $vitima["0"]["estadoResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="hidden" id="id-estado-hidden-responsavel" value="<?php echo htmlspecialchars( $value1["estadoResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                 <label for="id-estado-responsavel">Estado</label>
                 <select class="form-control select2" name="estadoResponsavel" id="id-estado-responsavel">
                   <option value="ac">Acre</option>
@@ -257,7 +257,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="id-cidade-responsavel">Cidade</label>
-                <input type="text" name="cidadeResponsavel" id="id-cidade-responsavel" class="form-control" placeholder="Cidade" onkeyup="validarCaracter(this, 1)" value="<?php echo htmlspecialchars( $vitima["0"]["cidadeResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="text" name="cidadeResponsavel" id="id-cidade-responsavel" class="form-control" placeholder="Cidade" onkeyup="validarCaracter(this, 1)" value="<?php echo htmlspecialchars( $value1["cidadeResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim Cidade vitima-->
@@ -266,7 +266,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="id-complemento-responsavel">Complemento</label>
-                <input type="text" name="complementoResponsavel" id="id-complemento-responsavel" class="form-control" placeholder="Complemento" maxlength="100" onkeyup="validarCaracter(this, 3)" value="<?php echo htmlspecialchars( $vitima["0"]["complementoResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                <input type="text" name="complementoResponsavel" id="id-complemento-responsavel" class="form-control" placeholder="Complemento" maxlength="100" onkeyup="validarCaracter(this, 3)" value="<?php echo htmlspecialchars( $value1["complementoResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               </div>
             </div>
             <!--Fim Complemento vitima-->
@@ -277,12 +277,13 @@
           <div class="row">
             <div class="col-md-12">
               <input type="submit" class="btn btn-primary pull-right margin" id="botaoEnviar" value="Editar">
-              <a href="/ocorrencia-responsavel-vitima-lista/<?php echo htmlspecialchars( $vitima["0"]["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $vitima["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary pull-left margin">Voltar</a>
+              <a href="/ocorrencia-responsavel-vitima-lista/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary pull-left margin">Voltar</a>
             </div>            
           </div>
           <!--Fim Row-->
         </form>
         <!--Fim form-->     
+        <?php } ?>
       </div>
       <!-- /.box-body -->
     </div>
@@ -315,20 +316,24 @@ window.onload = function()
   let responsavelOutro = document.getElementById('id-responsavel-outro');
 
   //isPais
-  //1 = outro
-  //2 = pai
-  //3 = mae
+  //1 = pai
+  //2 = mae
+  //3 = outro
 
   if (radioResponsavel == 1) {
-    responsavelOutro.checked = true;
+    responsavelPai.checked = true;
+    inputOutro.classList.add("escondido");
+    labelOutro.classList.add("escondido");
   }
 
   if (radioResponsavel == 2) {
-    responsavelPai.checked = true;
+    responsavelMae.checked = true;
+    inputOutro.classList.add("escondido");
+    labelOutro.classList.add("escondido");
   }
 
   if (radioResponsavel == 3) {
-    responsavelMae.checked = true;
+    responsavelOutro.checked = true;
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////

@@ -91,6 +91,39 @@ class MResponsavel {
 		}	
 	}
 
+	//Atualizar o responsavel da vitima
+	public function updateResponsavelApuracao($post, $idPessoaResponsavel)
+	{
+		$sql = new Conexao;
+		$responsavel = new Responsavel;
+
+		$responsavel->setData($post);
+
+		$sql->query("
+			UPDATE tb_responsavelapuracao 
+			SET isPais = :isPais, outro = :outro
+			WHERE idPessoa = :idPessoa
+		", [
+			":isPais" => $responsavel->getresponsavelRadio(),
+			":outro" => utf8_decode($responsavel->getresponsavelOutro()),
+			":idPessoa" => $idPessoaResponsavel
+		]);
+	}
+
+	public function updateIsAindaResponsavel($isAindaResponsavel, $idPessoaResponsavel)
+	{
+		$sql = new Conexao;
+		
+		$sql->query("
+			UPDATE tb_responsavelapuracao 
+			SET isAindaResponsavel = :isAindaResponsavel
+			WHERE idPessoa = :idPessoa
+		", [
+			":isAindaResponsavel" => $isAindaResponsavel,
+			":idPessoa" => $idPessoaResponsavel
+		]);
+	}
+
 	//Lista tudo da tabela
 	public function listAll()
 	{
@@ -124,26 +157,6 @@ class MResponsavel {
 			return false;
 		}
 	}
-
-	//Atualizar o responsavel da vitima
-	public function updateResponsavelApuracao($post)
-	{
-		$sql = new Conexao;
-		$responsavel = new Responsavel;
-
-		$responsavel->setData($post);
-
-		$sql->query("
-			UPDATE tb_responsavelapuracao 
-			SET isPais = :isPais, outro = :outro
-			WHERE idResponsavelApuracao = :idResponsavelApuracao
-		", [
-			":isPais" => $responsavel->getresponsavelRadio(),
-			":outro" => utf8_decode($responsavel->getresponsavelOutro()),
-			":idResponsavelApuracao" => (int)$responsavel->getidResponsavelApuracao()
-		]);
-	}
-
 
 }
 
