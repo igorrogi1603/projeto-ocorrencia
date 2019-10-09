@@ -80,9 +80,9 @@
 
             <a href="/ocorrencia-responsavel-vitima-lista/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Editar Responsavel</a>
 
-            <a href="/ocorrencia-vitima-ver-arquivo" class="btn btn-app"><i class="fa fa-file-pdf-o"></i>Envio de Documentos</a>
+            <a href="/ocorrencia-vitima-enviar-arquivo-lista/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-file-pdf-o"></i>Envio de Documentos</a>
 
-            <a href="/ocorrencia-vitima-ver-arquivo" class="btn btn-app"><i class="fa fa-eye"></i>Acompanhamento</a>
+            <a href="/ocorrencia-vitima-acompanhamento/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-eye"></i>Acompanhamento</a>
 
             <?php } ?>
             <?php } ?>

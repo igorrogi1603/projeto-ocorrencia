@@ -218,6 +218,27 @@ $app->get("/ocorrencia-responsavel-vitima-excluir/:idVitima/:idOcorrencia/:idPes
 	exit;
 });
 
+$app->get("/ocorrencia-vitima-enviar-arquivo-lista/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-vitima-enviar-arquivo-lista", [
+		"idVitima" => $idVitima,
+		"idOcorrencia" => $idOcorrencia
+	]);
+});
+
+$app->get("/ocorrencia-vitima-enviar-arquivo-cadastrar/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-vitima-enviar-arquivo-cadastrar");
+});
+
 //--------------------------------------------------------------
 //TESTE DEPOIS EXCLUIR ESSA ROTA
 $app->get("/criar-ocorrencia", function(){
