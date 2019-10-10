@@ -98,9 +98,14 @@ class CListaApuracao {
 			for ($a = $i+1; $a < $tamanhoArray; $a++) {
 				//Se os id forem iguais entao exclui para nao duplicar
 				if ($id == $listaApuracao[$a]['idCriarApuracao']) {
-					unset($listaApuracao[$a]);
+					$arrayPosicaoExcluir[] = $a;
 				}
 			}
+		}
+
+		//exclui posissoes iguais
+		foreach ($arrayPosicaoExcluir as $value) {
+			unset($listaApuracao[$value]);
 		}
 
 		//Validacao dos campos com acentos do banco de dados
@@ -211,9 +216,14 @@ class CListaApuracao {
 			for ($a = $i+1; $a < $tamanhoArray; $a++) {
 				//Se os id forem iguais entao exclui para nao duplicar
 				if ($id == $listaConfirmacao[$a]['idCriarApuracao']) {
-					unset($listaConfirmacao[$a]);
+					$arrayPosicaoExcluir[] = $a;
 				}
 			}
+		}
+
+		//exclui posissoes iguais
+		foreach ($arrayPosicaoExcluir as $value) {
+			unset($listaConfirmacao[$value]);
 		}
 
 		//Validacao dos campos com acentos do banco de dados

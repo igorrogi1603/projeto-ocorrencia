@@ -86,10 +86,14 @@ class COcorrenciaVitima {
 			for ($a = $i+1; $a < $tamanhoArray; $a++) {
 				//Se os id forem iguais entao exclui para nao duplicar
 				if ($id == $listaVitimas[$a]['idPessoaVitima']) {
-					unset($listaVitimas[$a]);
+					$arrayPosicaoExcluir[] = $a;
 				}
 			}
-			break;
+		}
+
+		//exclui posissoes iguais
+		foreach ($arrayPosicaoExcluir as $value) {
+			unset($listaVitimas[$value]);
 		}
 
 		return $listaVitimas;
@@ -114,10 +118,14 @@ class COcorrenciaVitima {
 			for ($a = $i+1; $a < $tamanhoArray; $a++) {
 				//Se os id forem iguais entao exclui para nao duplicar
 				if ($id == $listaVitimas[$a]['idPessoaVitima']) {
-					unset($listaVitimas[$a]);
+					$arrayPosicaoExcluir[] = $a;
 				}
 			}
-			break;
+		}
+
+		//exclui posissoes iguais
+		foreach ($arrayPosicaoExcluir as $value) {
+			unset($listaVitimas[$value]);
 		}
 
 		return $listaVitimas;

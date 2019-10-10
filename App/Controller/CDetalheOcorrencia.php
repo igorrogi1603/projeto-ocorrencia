@@ -29,10 +29,14 @@ class CDetalheOcorrencia {
 			for ($a = $i+1; $a < $tamanhoArray; $a++) {
 				//Se os id forem iguais entao exclui para nao duplicar
 				if ($id == $detalheOcorrencia[$a]['idPessoaVitima']) {
-					unset($detalheOcorrencia[$a]);
+					$arrayPosicaoExcluir[] = $a;
 				}
 			}
-			break;
+		}
+
+		//exclui posissoes iguais
+		foreach ($arrayPosicaoExcluir as $value) {
+			unset($detalheOcorrencia[$value]);
 		}
 
 		//Validacao dos campos com acentos do banco de dados

@@ -32,10 +32,14 @@ class CListaOcorrencia {
 			for ($a = $i+1; $a < $tamanhoArray; $a++) {
 				//Se os id forem iguais entao exclui para nao duplicar
 				if ($id == $listaOcorrencia[$a]['idOcorrencia']) {
-					unset($listaOcorrencia[$a]);
+					$arrayPosicaoExcluir[] = $a;
 				}
 			}
-			break;
+		}
+
+		//exclui posissoes iguais
+		foreach ($arrayPosicaoExcluir as $value) {
+			unset($listaOcorrencia[$value]);
 		}
 
 		//Validacao dos campos com acentos do banco de dados

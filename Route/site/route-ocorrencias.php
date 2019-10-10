@@ -7,6 +7,7 @@ use \App\Controller\CListaOcorrencia;
 use \App\Controller\CDetalheOcorrencia;
 use \App\Controller\COcorrenciaVitima;
 use \App\Controller\COcorrenciaResponsavel;
+use \App\Controller\COcorrenciaEnviarArquivo;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -234,9 +235,13 @@ $app->get("/ocorrencia-vitima-enviar-arquivo-cadastrar/:idVitima/:idOcorrencia",
 
 	Usuario::verifyLogin();
 
+	$dados = COcorrenciaEnviarArquivo::getEnviarArquivoCadastrar($idVitima, $idOcorrencia);
+	
 	$page = new Page();
 
-	$page->setTpl("ocorrencia-vitima-enviar-arquivo-cadastrar");
+	$page->setTpl("ocorrencia-vitima-enviar-arquivo-cadastrar", [
+		"selecionaPessoa" => $dados
+	]);
 });
 
 //--------------------------------------------------------------
