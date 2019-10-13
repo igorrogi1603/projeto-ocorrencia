@@ -240,8 +240,22 @@ $app->get("/ocorrencia-vitima-enviar-arquivo-cadastrar/:idVitima/:idOcorrencia",
 	$page = new Page();
 
 	$page->setTpl("ocorrencia-vitima-enviar-arquivo-cadastrar", [
-		"selecionaPessoa" => $dados
+		"selecionaPessoa" => $dados,
+		"idVitima" => $idVitima,
+		"idOcorrencia" => $idOcorrencia
 	]);
+});
+
+$app->post("/ocorrencia-vitima-enviar-arquivo-cadastrar/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	if($_FILES["upDocumento"]["name"] !== ""){
+		COcorrenciaEnviarArquivo::postEnviarArquivoCadastrar($_FILES["upDocumento"], $_POST, $idVitima, $idOcorrencia);
+	}
+
+	header("Location: /ocorrencia-vitima-enviar-arquivo-lista/".$idVitima."/".$idOcorrencia);
+	exit;
 });
 
 //--------------------------------------------------------------

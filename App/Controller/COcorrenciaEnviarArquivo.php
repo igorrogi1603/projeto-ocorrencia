@@ -4,8 +4,83 @@ namespace App\Controller;
 
 use \App\Classe\Validacao;
 use \App\Model\MOcorrencia;
+use \App\Model\MArquivo;
 
 class COcorrenciaEnviarArquivo {
+
+	public static function postEnviarArquivoCadastrar($documento, $post, $idVitima, $idOcorrencia)
+	{
+		//Instancia
+		$marquivo = new MArquivo;
+
+		// verifica se foi enviado um arquivo
+		if ( isset( $documento['name'] ) && $documento['error'] == 0 ) {
+		 	
+		 	//recuperando o ultimo id da tabela arquivo
+			$idArquivo = $marquivo->ultimoRegistroArquivo();
+
+			//Recupero o ultimo id dos arquivos e somo com mais 1
+			//para ser o proximo arquivo a ser cadastrado
+			//Essa variavel server para dar o nome ao novo arquivo
+			//pois so depois de receber o arquivo e colocar ele na pasta de destino
+			//ai cadastrar na tabela de arquivo
+			$proximoIdArquivo = (int)$idArquivo[0]['MAX(idArquivo)'] + 1;
+
+		    $arquivo_tmp = $documento['tmp_name'];
+		    $nome = $documento['name'];
+		 
+		    // Pega a extensão
+		    $extensao = pathinfo ( $nome, PATHINFO_EXTENSION );
+		 
+		    // Converte a extensão para minúsculo
+		    $extensao = strtolower ( $extensao );
+		 
+		    // Somente PDF, .pdf;
+		    if ( strstr ( '.pdf', $extensao ) ) {
+		        // Cria um nome único para esta imagem
+		        // Evita que duplique as imagens no servidor.
+		        // Evita nomes com acentos, espaços e caracteres não alfanuméricos
+		        $novoNome = $proximoIdArquivo . $post['selecioneDocumento'] . $post['selecionePessoa'] . '.' . $extensao;
+		 	
+		        $pastaOcorrencia = "ocorrencia" . $idOcorrencia;
+
+		        // Concatena a pasta com o nome
+		        $destino = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
+							"ocorrencias" . DIRECTORY_SEPARATOR . 
+							$pastaOcorrencia . DIRECTORY_SEPARATOR . $novoNome;
+		 	
+		        //var_dump($destino);
+		        //exit;
+
+		        // tenta mover o arquivo para o destino
+		        if ( move_uploaded_file ( $arquivo_tmp, $destino ) ) {
+		        	$destino_final = str_replace($_SERVER['DOCUMENT_ROOT'], '', $destino);
+
+					//Cadastrando na tabela tb_arquivos
+					$marquivo->cadastrarArquivo($post['selecioneDocumento'], $destino_final);
+
+					//Resgata o arquivo criado
+					$idArquivoNovo = $marquivo->ultimoRegistroArquivo();
+
+					//registra na tabela tb_arquivosProcessoOcorrencia
+					$marquivo->cadastrarArquivoOcorrencia($idOcorrencia, $idArquivoNovo[0]["MAX(idArquivo)"]);
+
+		        } else {
+		            Validacao::setMsgError("Erro ao salvar o arquivo. Aparentemente você não tem permissão de escrita.");
+			        header('Location: /ocorrencia-vitima-enviar-arquivo-cadastrar/'.$idVitima.'/'.$idOcorrencia);
+			        exit;
+		        }
+		    } else {
+		        Validacao::setMsgError("Você pode enviar apenas arquivos PDF");
+		        header('Location: /ocorrencia-vitima-enviar-arquivo-cadastrar/'.$idVitima.'/'.$idOcorrencia);
+		        exit;
+		    }
+		} else {
+		    Validacao::setMsgError("Você não enviou nenhum arquivo!");
+	        header('Location: /ocorrencia-vitima-enviar-arquivo-cadastrar/'.$idVitima.'/'.$idOcorrencia);
+	        exit;
+		}
+	}
 
 	public static function getEnviarArquivoCadastrar($idVitima, $idOcorrencia)
 	{	
