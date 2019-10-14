@@ -50,6 +50,15 @@ class MArquivo {
 		}
 	}
 
+	public function pesquisarIdArquivo($url)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT idArquivo FROM tb_arquivo WHERE url = :url", [
+			"url" => $url
+		]);
+	}
+
 }
 
 ?>

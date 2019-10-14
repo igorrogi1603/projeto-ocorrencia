@@ -223,11 +223,14 @@ $app->get("/ocorrencia-vitima-enviar-arquivo-lista/:idVitima/:idOcorrencia", fun
 
 	Usuario::verifyLogin();
 
+	$documento = COcorrenciaEnviarArquivo::getEnviarArquivoLista($idOcorrencia);
+
 	$page = new Page();
 
 	$page->setTpl("ocorrencia-vitima-enviar-arquivo-lista", [
 		"idVitima" => $idVitima,
-		"idOcorrencia" => $idOcorrencia
+		"idOcorrencia" => $idOcorrencia,
+		"documento" => $documento
 	]);
 });
 
@@ -242,7 +245,8 @@ $app->get("/ocorrencia-vitima-enviar-arquivo-cadastrar/:idVitima/:idOcorrencia",
 	$page->setTpl("ocorrencia-vitima-enviar-arquivo-cadastrar", [
 		"selecionaPessoa" => $dados,
 		"idVitima" => $idVitima,
-		"idOcorrencia" => $idOcorrencia
+		"idOcorrencia" => $idOcorrencia,
+		"error"=>Validacao::getMsgError()
 	]);
 });
 
@@ -250,12 +254,26 @@ $app->post("/ocorrencia-vitima-enviar-arquivo-cadastrar/:idVitima/:idOcorrencia"
 
 	Usuario::verifyLogin();
 
+	//if serve para nao dar erro na variavel sendo passada como parametro caso ela nao exista dará erro
 	if($_FILES["upDocumento"]["name"] !== ""){
 		COcorrenciaEnviarArquivo::postEnviarArquivoCadastrar($_FILES["upDocumento"], $_POST, $idVitima, $idOcorrencia);
+	} else {
+		Validacao::setMsgError("Selecione um arquivo PDF");
+        header('Location: /ocorrencia-vitima-enviar-arquivo-cadastrar/'.$idVitima.'/'.$idOcorrencia);
+        exit;
 	}
 
 	header("Location: /ocorrencia-vitima-enviar-arquivo-lista/".$idVitima."/".$idOcorrencia);
 	exit;
+});
+
+$app->get("/ocorrencia-vitima-acompanhamento/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-vitima-acompanhamento");
 });
 
 //--------------------------------------------------------------

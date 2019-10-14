@@ -28,6 +28,8 @@
         </div>
         <!--Fim Row-->
 
+        <br>
+
         <!--Tabela-->
         <table class="table table-hover">
           <tr>
@@ -36,24 +38,16 @@
             <th>Tipo</th>
             <th>Opções</th>
           </tr>
-
+          <?php $counter1=-1;  if( isset($documento) && ( is_array($documento) || $documento instanceof Traversable ) && sizeof($documento) ) foreach( $documento as $key1 => $value1 ){ $counter1++; ?>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td><?php echo htmlspecialchars( $value1["tipo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
             <td>
-              <a href="/ocorrencia-vitimas/" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-              <a onclick="confirmar()" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              <a href="<?php echo htmlspecialchars( $value1["url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
             </td>
           </tr>
-          <script>
-            function confirmar()
-            {
-              if(confirm("Voce realmente deseja EXCLUIR esse documento?")){
-                location.href="/ocorrencia-responsavel-vitima-excluir/";
-              }
-            }
-          </script>
+          <?php } ?>
         </table>
         <!--Fim Tabela-->
       </div>

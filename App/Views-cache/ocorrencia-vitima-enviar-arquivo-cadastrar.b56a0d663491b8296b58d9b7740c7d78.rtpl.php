@@ -19,6 +19,21 @@
       <!-- /.box-header -->
       <div class="box-body">
 
+        <div class="alert" style="background-color: #FFF3CD; color: #A18532;" role="alert">
+          Nessa página enviar apenas documentos pessoais de cada um como <strong>CPF, RG, CNH e Certidão de Nascimento</strong>
+          <br><strong>Todos em PDF</strong>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <?php if( $error != '' ){ ?>
+            <div class="alert alert-danger">
+              <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+            </div>
+            <?php } ?>
+          </div>
+        </div>
+
         <form action="/ocorrencia-vitima-enviar-arquivo-cadastrar/<?php echo htmlspecialchars( $idVitima, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post" enctype="multipart/form-data">          
           <!--Inicio Selecione Pessoa-->
           <div class="row">
@@ -45,8 +60,8 @@
                 <select class="form-control select2" name="selecioneDocumento" id="id-selecione-documento">
                   <option value="cpf">CPF</option>
                   <option value="rg">RG</option>
-                  <option value="rg">CNH</option>
-                  <option value="rg">Certidão de Nascimento</option>
+                  <option value="cnh">CNH</option>
+                  <option value="cn">Certidão de Nascimento</option>
                 </select>
               </div>
             </div>

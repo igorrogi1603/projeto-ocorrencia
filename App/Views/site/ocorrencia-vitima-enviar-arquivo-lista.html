@@ -28,6 +28,8 @@
         </div>
         <!--Fim Row-->
 
+        <br>
+
         <!--Tabela-->
         <table class="table table-hover">
           <tr>
@@ -36,24 +38,16 @@
             <th>Tipo</th>
             <th>Opções</th>
           </tr>
-
+          {loop="$documento"}
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{$value.id}</td>
+            <td>{$value.nome}</td>
+            <td>{$value.tipo}</td>
             <td>
-              <a href="/ocorrencia-vitimas/" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-              <a onclick="confirmar()" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              <a href="{$value.url}" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
             </td>
           </tr>
-          <script>
-            function confirmar()
-            {
-              if(confirm("Voce realmente deseja EXCLUIR esse documento?")){
-                location.href="/ocorrencia-responsavel-vitima-excluir/";
-              }
-            }
-          </script>
+          {/loop}
         </table>
         <!--Fim Tabela-->
       </div>

@@ -8,6 +8,75 @@ use \App\Model\MArquivo;
 
 class COcorrenciaEnviarArquivo {
 
+	public static function getEnviarArquivoLista($idOcorrencia)
+	{	
+		$marquivo = new MArquivo;
+
+		$pastaOcorrencia = 'ocorrencia' . $idOcorrencia;
+
+		$novoDiretorio = '.'.DIRECTORY_SEPARATOR.'ocorrencias'.DIRECTORY_SEPARATOR.$pastaOcorrencia.DIRECTORY_SEPARATOR.'identidades';
+
+        if (is_dir($novoDiretorio)) {
+
+			//informando o local onde os arquivos estao
+			$path = "ocorrencias".DIRECTORY_SEPARATOR.$pastaOcorrencia.DIRECTORY_SEPARATOR."identidades";
+			$diretorio = dir($path);
+
+			//contador
+			$aux = 0;
+
+			//pegando os arquivos da pasta
+			while($arquivo = $diretorio -> read()){
+				$documento[$aux]['nome'] = str_replace('.pdf', '', $arquivo);
+				$documento[$aux]['url'] = DIRECTORY_SEPARATOR . $path. DIRECTORY_SEPARATOR .$arquivo;
+
+				//Todos os arquivos sao pdf
+				//so pode enviar arquivo pdf para o sistema
+				$documento[$aux]['tipo'] = 'PDF';
+
+				$idArquivo = $marquivo->pesquisarIdArquivo($documento[$aux]['url']);
+
+				foreach ($idArquivo as $value) {
+					$documento[$aux]['id'] = $value['idArquivo'];				
+				}
+
+				$aux++;
+			}
+
+			$diretorio -> close();
+
+			//Pega o tamanho do arry para usar no for
+			$tamanhoArray = count($documento);
+
+			//O que pesquisar no nome do arquivo
+			$pesquisarDocumento = array("/Apuracao/");
+
+			for ($i = 0; $i < $tamanhoArray; $i++) {
+				//Se os nome forem (.) ou (..) entao exclui
+				if ($documento[$i]['nome'] == '.' || $documento[$i]['nome'] == '..') {
+					$arrayPosicaoExcluir[] = $i;	
+				}
+
+				foreach ($pesquisarDocumento as $value) {
+					if (preg_match($value, $documento[$i]['nome'])) {
+						$arrayPosicaoExcluir[] = $i;
+					} else {
+						//nao achou
+					}
+				}
+			}
+
+			//exclui posissoes iguais
+			foreach ($arrayPosicaoExcluir as $value) {
+				unset($documento[$value]);
+			}
+
+			return $documento;
+		} else {
+			return false;
+		}
+	}
+
 	public static function postEnviarArquivoCadastrar($documento, $post, $idVitima, $idOcorrencia)
 	{
 		//Instancia
@@ -18,13 +87,6 @@ class COcorrenciaEnviarArquivo {
 		 	
 		 	//recuperando o ultimo id da tabela arquivo
 			$idArquivo = $marquivo->ultimoRegistroArquivo();
-
-			//Recupero o ultimo id dos arquivos e somo com mais 1
-			//para ser o proximo arquivo a ser cadastrado
-			//Essa variavel server para dar o nome ao novo arquivo
-			//pois so depois de receber o arquivo e colocar ele na pasta de destino
-			//ai cadastrar na tabela de arquivo
-			$proximoIdArquivo = (int)$idArquivo[0]['MAX(idArquivo)'] + 1;
 
 		    $arquivo_tmp = $documento['tmp_name'];
 		    $nome = $documento['name'];
@@ -40,17 +102,22 @@ class COcorrenciaEnviarArquivo {
 		        // Cria um nome único para esta imagem
 		        // Evita que duplique as imagens no servidor.
 		        // Evita nomes com acentos, espaços e caracteres não alfanuméricos
-		        $novoNome = $proximoIdArquivo . $post['selecioneDocumento'] . $post['selecionePessoa'] . '.' . $extensao;
+		        $novoNome = $post['selecioneDocumento'] . $post['selecionePessoa'] . '.' . $extensao;
 		 	
 		        $pastaOcorrencia = "ocorrencia" . $idOcorrencia;
 
-		        // Concatena a pasta com o nome
-		        $destino = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
-							"ocorrencias" . DIRECTORY_SEPARATOR . 
-							$pastaOcorrencia . DIRECTORY_SEPARATOR . $novoNome;
-		 	
-		        //var_dump($destino);
-		        //exit;
+		        $novoDiretorio = '.'.DIRECTORY_SEPARATOR.'ocorrencias'.DIRECTORY_SEPARATOR.$pastaOcorrencia.DIRECTORY_SEPARATOR.'identidades';
+
+		        if (!is_dir($novoDiretorio)) {
+		        	//criar pasta identidades
+		        	mkdir($novoDiretorio);
+
+		        	// Concatena a pasta com o nome
+		        	$destino = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
+								"ocorrencias" . DIRECTORY_SEPARATOR . 
+								$pastaOcorrencia . DIRECTORY_SEPARATOR . 
+								"identidades" . DIRECTORY_SEPARATOR . $novoNome;
+		        }
 
 		        // tenta mover o arquivo para o destino
 		        if ( move_uploaded_file ( $arquivo_tmp, $destino ) ) {

@@ -83,7 +83,8 @@ class CListaConfirmacao {
 			//--------------------------------------------------------
 			//Preencher a tabela de arquivos da ocorrencia
 			//criando a url
-			$url = $destino."".$arquivo;
+			$novaUrl = str_replace('.', '', $destino);
+			$url = $novaUrl."".$arquivo;
 
 			//Cadastrando na tabela tb_arquivos
 			$marquivo->cadastrarArquivo('Apuração', $url);
