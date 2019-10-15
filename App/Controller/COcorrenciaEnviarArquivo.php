@@ -9,7 +9,7 @@ use \App\Model\MPessoa;
 
 class COcorrenciaEnviarArquivo {
 
-	public static function getEnviarArquivoLista($idOcorrencia)
+	public static function getEnviarArquivoLista($idVitima, $idOcorrencia)
 	{	
 		$marquivo = new MArquivo;
 		$mpessoa = new MPessoa;
@@ -106,7 +106,21 @@ class COcorrenciaEnviarArquivo {
 				unset($documento[$value]);
 			}
 
-			return $documento;
+			//recupera a lista de nomes de vitima e responsaveis dessa unica vitima
+			$listaPessoas = COcorrenciaEnviarArquivo::getEnviarArquivoCadastrar($idVitima, $idOcorrencia);
+
+			//verifica se o array dessa vitima com os seus reponsaveis
+			//sao iguais o array dos documentos, caso seja igual exibi se nao exibi
+			foreach ($documento as $doc) {
+				foreach ($listaPessoas as $value) {
+					if ($doc['nome'] == $value['nome']) {
+						return $documento;
+					} else {
+						return false;
+					}
+				}	
+			}
+			
 		} else {
 			return false;
 		}
@@ -227,17 +241,22 @@ class COcorrenciaEnviarArquivo {
 			}
 			//o for inicia na proxima posicao do array 
 			//Para nao comparar com a mesma posicao
-			for ($a = $i+1; $a < $tamanhoArray; $a++) {
+			for ($b = $i+1; $b < $tamanhoArray; $b++) {
 				//Se os id forem iguais entao exclui para nao duplicar
-				if ($id == $arrayPessoas[$a]['id']) {
-					$arrayPosicaoExcluir[] = $a;
+				if ($id == $arrayPessoas[$b]['id']) {
+					$arrayPosicaoExcluir[] = $b;
 				}
 			}
 		}
 
-		//exclui posissoes iguais
-		foreach ($arrayPosicaoExcluir as $value) {
-			unset($arrayPessoas[$value]);
+		//caso nao tenha se repetido nenhum id no arrayPessoas
+		//entao a variavel arrayPosicaoExcluir nao irá existir
+		//caso ela nao exista gerará erro por isso verificar se ela existi
+		if (isset($arrayPosicaoExcluir)) {
+			//exclui posissoes iguais
+			foreach ($arrayPosicaoExcluir as $value) {
+				unset($arrayPessoas[$value]);
+			}
 		}
 
 		return $arrayPessoas;

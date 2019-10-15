@@ -223,7 +223,7 @@ $app->get("/ocorrencia-vitima-enviar-arquivo-lista/:idVitima/:idOcorrencia", fun
 
 	Usuario::verifyLogin();
 
-	$documento = COcorrenciaEnviarArquivo::getEnviarArquivoLista($idOcorrencia);
+	$documento = COcorrenciaEnviarArquivo::getEnviarArquivoLista($idVitima, $idOcorrencia);
 
 	$page = new Page();
 
@@ -239,7 +239,7 @@ $app->get("/ocorrencia-vitima-enviar-arquivo-cadastrar/:idVitima/:idOcorrencia",
 	Usuario::verifyLogin();
 
 	$dados = COcorrenciaEnviarArquivo::getEnviarArquivoCadastrar($idVitima, $idOcorrencia);
-	
+
 	$page = new Page();
 
 	$page->setTpl("ocorrencia-vitima-enviar-arquivo-cadastrar", [
