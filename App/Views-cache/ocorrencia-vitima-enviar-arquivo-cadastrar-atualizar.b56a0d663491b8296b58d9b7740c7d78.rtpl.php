@@ -2,10 +2,10 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Detalhe da Ocorrência - Enviar Arquivos</h1>
+    <h1>Detalhe da Ocorrência - Atualizar Arquivos</h1>
     <ol class="breadcrumb">
       <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Detalhe da Ocorrência - Enviar Arquivos</li>
+      <li class="active">Detalhe da Ocorrência - Atualizar Arquivos</li>
     </ol>
   </section>
 
@@ -34,17 +34,14 @@
           </div>
         </div>
 
-        <form action="/ocorrencia-vitima-enviar-arquivo-cadastrar/<?php echo htmlspecialchars( $idVitima, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post" enctype="multipart/form-data">          
+        <form action="/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/<?php echo htmlspecialchars( $idVitima, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idArquivo, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post" enctype="multipart/form-data">          
           <!--Inicio Selecione Pessoa-->
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label for="id-selecione-pessoa">Selecione a pessoa</label>
                 <select class="form-control select2" name="selecionePessoa" id="id-selecione-pessoa">
-                  <option checked>--- Selecione uma pessoa ---</option>
-                  <?php $counter1=-1;  if( isset($selecionaPessoa) && ( is_array($selecionaPessoa) || $selecionaPessoa instanceof Traversable ) && sizeof($selecionaPessoa) ) foreach( $selecionaPessoa as $key1 => $value1 ){ $counter1++; ?>
-                  <option value="<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                  <?php } ?>
+                  <option value="<?php echo htmlspecialchars( $selecionaPessoa["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $selecionaPessoa["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                 </select>
               </div>
             </div>
@@ -55,7 +52,6 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="hidden" id="id-selecione-documento-hidden" value="">
                 <label for="id-selecione-documento">Selecione o documento</label>
                 <select class="form-control select2" name="selecioneDocumento" id="id-selecione-documento">
                   <option value="cpf">CPF</option>

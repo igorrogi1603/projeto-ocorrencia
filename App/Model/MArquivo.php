@@ -13,11 +13,12 @@ class MArquivo {
 		$sql = new Conexao;
 
 		$sql->query("
-			INSERT INTO tb_arquivo (tipo, url) 
-			VALUES(:tipo, :url)
+			INSERT INTO tb_arquivo (tipo, url, status) 
+			VALUES(:tipo, :url, :status)
 		", [
 			":tipo" => utf8_decode($tipo),
-			":url" => $url
+			":url" => $url,
+			":status" => 0
 		]);
 	}
 
@@ -50,12 +51,26 @@ class MArquivo {
 		}
 	}
 
-	public function pesquisarIdArquivo($url)
+	public function pesquisarArquivo($url)
 	{
 		$sql = new Conexao;
 
-		return $sql->select("SELECT idArquivo FROM tb_arquivo WHERE url = :url", [
+		return $sql->select("SELECT * FROM tb_arquivo WHERE url = :url", [
 			"url" => $url
+		]);
+	}
+
+	public function atualizarStatus($idArquivo, $status)
+	{
+		$sql = new Conexao;
+		
+		$sql->query("
+			UPDATE tb_arquivo 
+			SET status = :status
+			WHERE idArquivo = :idArquivo
+		", [
+			":status" => $status,
+			"idArquivo" => $idArquivo
 		]);
 	}
 

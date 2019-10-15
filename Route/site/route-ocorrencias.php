@@ -267,6 +267,40 @@ $app->post("/ocorrencia-vitima-enviar-arquivo-cadastrar/:idVitima/:idOcorrencia"
 	exit;
 });
 
+$app->get("/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/:idVitima/:idOcorrencia/:idArquivo/:idPessoa", function($idVitima, $idOcorrencia, $idArquivo, $idPessoa){
+
+	Usuario::verifyLogin();
+
+	$dados = COcorrenciaEnviarArquivo::getEnviarArquivoCadastrarAtualizar($idVitima, $idOcorrencia, $idPessoa);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar", [
+		"selecionaPessoa" => $dados,
+		"idVitima" => $idVitima,
+		"idOcorrencia" => $idOcorrencia,
+		"idArquivo" => $idArquivo,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
+$app->post("/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/:idVitima/:idOcorrencia/:idArquivo", function($idVitima, $idOcorrencia, $idArquivo){
+
+	Usuario::verifyLogin();
+
+	//if serve para nao dar erro na variavel sendo passada como parametro caso ela nao exista dará erro
+	if($_FILES["upDocumento"]["name"] !== ""){
+		COcorrenciaEnviarArquivo::postEnviarArquivoCadastrarAtualizar($_FILES["upDocumento"], $_POST, $idVitima, $idOcorrencia, $idArquivo);
+	} else {
+		Validacao::setMsgError("Selecione um arquivo PDF");
+        header('Location: /ocorrencia-vitima-enviar-arquivo-cadastrar/'.$idVitima.'/'.$idOcorrencia);
+        exit;
+	}
+
+	header("Location: /ocorrencia-vitima-enviar-arquivo-lista/".$idVitima."/".$idOcorrencia);
+	exit;
+});
+
 $app->get("/ocorrencia-vitima-acompanhamento/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
 
 	Usuario::verifyLogin();
