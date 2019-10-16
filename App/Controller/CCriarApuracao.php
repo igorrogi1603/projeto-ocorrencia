@@ -11,6 +11,7 @@ use \App\Model\MContato;
 use \App\Model\MResponsavel;
 use \App\Model\MVitima;
 use \App\Model\MUsuario;
+use \App\Model\MAcompanhamento;
 
 class CCriarApuracao {
 
@@ -66,6 +67,7 @@ class CCriarApuracao {
 		$mresponsavel = new MResponsavel;
 		$mvitima = new MVitima;
 		$musuario = new MUsuario;
+		$macompanhamento = new MAcompanhamento;
 
 		//----------------------------------------------------------------
 		//VALIDACAO DO FORMULARIO
@@ -338,6 +340,11 @@ class CCriarApuracao {
 				//----------------------------------------------------------------
 				//Essa tabela serve para saber quais vitimas pertencem a mesma familia
 				$mapuracao->cadastrarFamiliaApuracao($post, $idApuracao, $idVitima, $idResponsavel);
+
+				//----------------------------------------------------------------
+				//CADASTRAR NA TABELA AcompanhamentoVitima O ENDERECO
+				//----------------------------------------------------------------
+				$macompanhamento->cadastrar($post, $idVitima[0]["MAX(idVitimasApuracao)"]);
 
 			}//Fim do else
 		}//Fim do for

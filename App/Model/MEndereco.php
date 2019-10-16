@@ -163,6 +163,15 @@ class MEndereco {
 		return $sql->select("SELECT * FROM tb_endereco");
 	}
 
+	public function enderecoEspecifico($idEndereco)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT * FROM tb_endereco WHERE idEndereco = :idEndereco", [
+			"idEndereco" => $idEndereco
+		]);
+	}
+
 	public function ultimoRegistro()
 	{
 

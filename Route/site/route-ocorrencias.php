@@ -8,6 +8,7 @@ use \App\Controller\CDetalheOcorrencia;
 use \App\Controller\COcorrenciaVitima;
 use \App\Controller\COcorrenciaResponsavel;
 use \App\Controller\COcorrenciaEnviarArquivo;
+use \App\Controller\COcorrenciaAcompanhamento;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -305,9 +306,13 @@ $app->get("/ocorrencia-vitima-acompanhamento/:idVitima/:idOcorrencia", function(
 
 	Usuario::verifyLogin();
 
+	$acompanhamento = COcorrenciaAcompanhamento::getOcorrenciaAcompanhamento($idVitima);
+
 	$page = new Page();
 
-	$page->setTpl("ocorrencia-vitima-acompanhamento");
+	$page->setTpl("ocorrencia-vitima-acompanhamento", [
+		"acompanhamento" => $acompanhamento
+	]);
 });
 
 //--------------------------------------------------------------

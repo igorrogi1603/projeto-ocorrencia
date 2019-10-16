@@ -16,23 +16,16 @@
     <div class="box">
       <!-- /.box-header -->
       <div class="box-body">
-        
-        <div class="row">
-          <div class="col-md-12">
-            <a class="btn btn-primary">Atualizar</a>
-          </div>
-        </div>
-
-        <br><hr><br>
-
+      
         <!-- /.tab-pane -->
         <div class="tab-pane" id="timeline">
           <!-- The timeline -->
           <ul class="timeline timeline-inverse">
+            {loop="$acompanhamento"}
             <!-- timeline time label -->
             <li class="time-label">
                   <span class="bg-red">
-                    10 Feb. 2014
+                    {$value.data}
                   </span>
             </li>
             <!-- /.timeline-label -->
@@ -41,98 +34,25 @@
               <i class="fa fa-map-marker bg-blue"></i>
 
               <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                <span class="time"><i class="fa fa-clock-o"></i> {$value.hora}</span>
 
                 <h3 class="timeline-header"><a href="#">Localização</a></h3>
 
                 <div class="timeline-body">
-                  <p class="sem-espacamento"><strong>Cep: </strong></p>
-                  <p class="sem-espacamento"><strong>Rua: </strong></p>
-                  <p class="sem-espacamento"><strong>Numero: </strong></p>
-                  <p class="sem-espacamento"><strong>Bairro: </strong></p>
-                  <p class="sem-espacamento"><strong>Cidade: </strong></p>
-                  <p class="sem-espacamento"><strong>Estado: </strong></p>
-                  <p class="sem-espacamento"><strong>Complemento: </strong></p>
+                  <p class="sem-espacamento"><strong>Cep: </strong>{$value.cep}</p>
+                  <p class="sem-espacamento"><strong>Rua: </strong>{$value.rua}</p>
+                  <p class="sem-espacamento"><strong>Numero: </strong>{$value.numero}</p>
+                  <p class="sem-espacamento"><strong>Bairro: </strong>{$value.bairro}</p>
+                  <p class="sem-espacamento"><strong>Cidade: </strong>{$value.cidade}</p>
+                  <p class="sem-espacamento"><strong>Estado: </strong>{$value.estado}</p>
+                  <p class="sem-espacamento"><strong>Complemento: </strong>{$value.complemento}</p>
                 </div>
                 <div class="timeline-footer">
                 </div>
               </div>
             </li>
             <!-- END timeline item -->
-            <li>
-              <i class="fa fa-user bg-blue"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                <h3 class="timeline-header"><a href="#">Responsavel</a></h3>
-
-                <div class="timeline-body">
-                  <p class="sem-espacamento"><strong>Nome: </strong></p>
-                  <p class="sem-espacamento"><strong>Sexo: </strong></p>
-                  <p class="sem-espacamento"><strong>Data de Nascimento: </strong></p>
-                  <p class="sem-espacamento"><strong>CPF: </strong></p>
-                  <p class="sem-espacamento"><strong>RG: </strong></p>
-                </div>
-                <div class="timeline-footer">
-                </div>
-              </div>
-            </li>
-            <!-- END timeline item -->
-
-
-
-            <!-- timeline time label -->
-            <li class="time-label">
-                  <span class="bg-red">
-                    10 Feb. 2014
-                  </span>
-            </li>
-            <!-- /.timeline-label -->
-            <!-- timeline item -->
-            <li>
-              <i class="fa fa-map-marker bg-blue"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                <h3 class="timeline-header"><a href="#">Localização</a></h3>
-
-                <div class="timeline-body">
-                  <p class="sem-espacamento"><strong>Cep: </strong></p>
-                  <p class="sem-espacamento"><strong>Rua: </strong></p>
-                  <p class="sem-espacamento"><strong>Numero: </strong></p>
-                  <p class="sem-espacamento"><strong>Bairro: </strong></p>
-                  <p class="sem-espacamento"><strong>Cidade: </strong></p>
-                  <p class="sem-espacamento"><strong>Estado: </strong></p>
-                  <p class="sem-espacamento"><strong>Complemento: </strong></p>
-                </div>
-                <div class="timeline-footer">
-                </div>
-              </div>
-            </li>
-            <!-- END timeline item -->
-            <li>
-              <i class="fa fa-user bg-blue"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                <h3 class="timeline-header"><a href="#">Responsavel</a></h3>
-
-                <div class="timeline-body">
-                  <p class="sem-espacamento"><strong>Nome: </strong></p>
-                  <p class="sem-espacamento"><strong>Sexo: </strong></p>
-                  <p class="sem-espacamento"><strong>Data de Nascimento: </strong></p>
-                  <p class="sem-espacamento"><strong>CPF: </strong></p>
-                  <p class="sem-espacamento"><strong>RG: </strong></p>
-                </div>
-                <div class="timeline-footer">
-                </div>
-              </div>
-            </li>
-            <!-- END timeline item -->
-
+            {/loop}
           </ul>
         </div>
         <!-- /.tab-pane -->

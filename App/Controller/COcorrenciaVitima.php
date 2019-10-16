@@ -7,6 +7,7 @@ use \App\Model\MOcorrencia;
 use \App\Model\MPessoa;
 use \App\Model\MContato;
 use \App\Model\MEndereco;
+use \App\Model\MAcompanhamento;
 
 class COcorrenciaVitima {
 
@@ -16,6 +17,7 @@ class COcorrenciaVitima {
 		$mcontato = new MContato;
 		$mendereco = new MEndereco;
 		$validacao = new Validacao;
+		$macompanhamento = new MAcompanhamento;
 
 		$vitima = COcorrenciaVitima::validacaoVitimasEditar($idVitima, $idOcorrencia);	
 
@@ -57,9 +59,46 @@ class COcorrenciaVitima {
 			}
 		}
 
+		//atualiza os dados
 		$mpessoa->update($post, $idPessoa, 'vitima');
 		$mcontato->update($post, $idContato, 'vitima');
 		$mendereco->update($post, $idEndereco, 'vitima');
+
+		//pega o endereco que acobou de atualizar
+		$enderecoPosAtualizar = $mendereco->enderecoEspecifico($idEndereco);
+
+		//recupera todos os dados dessa tabela 
+		$listaAcompanhamento = $macompanhamento->listAll($idVitima);
+
+		//verifica se existem enderecos cadastrados no id da vitima
+		if ($listaAcompanhamento != null) {
+			//verifica se o endereco atual da vitima ja nao esta cadastrado para evitar de cadastrar igual
+			foreach ($listaAcompanhamento as $value) {
+				if ($value['cep'] == $enderecoPosAtualizar[0]['cep']) {
+					//foi atualizado para o mesmo endereco atual da vitima
+					//entao nao cadastrar
+					$cadastrarAcompanhamento = false;
+				} else {
+					//nao é igual ao endereco atual
+					//pode cadastrar o novo
+					$cadastrarAcompanhamento = true;
+					$idAcompanhamento = $value['idAcompanhamentoVitima'];
+				}
+			}
+
+			//caso for true o endereco atual nao é igual o atualizado
+			if ($cadastrarAcompanhamento == true) {
+				//mudar o status do endereco antigo
+				$macompanhamento->update($idAcompanhamento);
+
+				//cadastra o novo endereco da vitima
+				$macompanhamento->cadastrar($post, $idVitima);
+			}
+		} else {
+			//se for vazio o array entao nao tem endereco no id da vitima
+			//cadastra o novo endereco da vitima
+			$macompanhamento->cadastrar($post, $idVitima);
+		}
 	}
 
 	public static function getOcorrenciaVitimaEditar($idVitima, $idOcorrencia)

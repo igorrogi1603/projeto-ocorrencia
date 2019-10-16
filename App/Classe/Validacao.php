@@ -168,6 +168,15 @@ class Validacao {
 		return $dataCompleta;
 	}
 
+	public function replaceHoraView($hora)
+	{
+		$horaProvisoria = str_replace("-", "/", $hora);
+
+		$horaCompleta = date("H:i", strtotime($horaProvisoria));
+
+		return $horaCompleta;	
+	}
+
 	public function replaceCelularBd($celular)
 	{
 		//tirar os ifens para cadastrar no banco de dados
