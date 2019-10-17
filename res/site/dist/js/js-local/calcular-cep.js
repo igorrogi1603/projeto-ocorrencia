@@ -111,3 +111,57 @@ $(document).ready(function(){
     });
   });
 });
+
+//Ocorrencia Agressor Pessoa
+$(document).ready(function(){
+  $("#id-cep-agressor").focusout(function(){
+    let cep = $("#id-cep-agressor").val();
+    cep = cep.replace("-", "");
+
+    let urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+ 
+    $.ajax({
+        url : urlStr,
+        type : "get",
+        dataType : "json",
+        success : function(data){
+            console.log(data);
+             
+            $("#id-cidade-agressor").val(data.localidade);
+            $("#id-estado-agressor").val(data.uf.toLowerCase());
+            $("#id-bairro-agressor").val(data.bairro);
+            $("#id-rua-agressor").val(data.logradouro);
+        },
+        error : function(erro){
+            console.log(erro);
+        }
+    });
+  });
+});
+
+//Ocorrencia Agressor Instituicao
+$(document).ready(function(){
+  $("#id-cep-instituicao").focusout(function(){
+    let cep = $("#id-cep-instituicao").val();
+    cep = cep.replace("-", "");
+
+    let urlStr = "https://viacep.com.br/ws/"+ cep +"/json/";
+ 
+    $.ajax({
+        url : urlStr,
+        type : "get",
+        dataType : "json",
+        success : function(data){
+            console.log(data);
+             
+            $("#id-cidade-instituicao").val(data.localidade);
+            $("#id-estado-instituicao").val(data.uf.toLowerCase());
+            $("#id-bairro-instituicao").val(data.bairro);
+            $("#id-rua-instituicao").val(data.logradouro);
+        },
+        error : function(erro){
+            console.log(erro);
+        }
+    });
+  });
+});

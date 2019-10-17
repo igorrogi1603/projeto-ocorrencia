@@ -9,6 +9,7 @@ use \App\Controller\COcorrenciaVitima;
 use \App\Controller\COcorrenciaResponsavel;
 use \App\Controller\COcorrenciaEnviarArquivo;
 use \App\Controller\COcorrenciaAcompanhamento;
+use \App\Controller\COcorrenciaAgressorCadastrar;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -314,6 +315,45 @@ $app->get("/ocorrencia-vitima-acompanhamento/:idVitima/:idOcorrencia", function(
 		"acompanhamento" => $acompanhamento
 	]);
 });
+
+//--------------------------------------------------------------
+
+$app->get("/ocorrencia-agressor/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-agressor", [
+		"idOcorrencia" => $idOcorrencia
+	]);
+});
+
+$app->get("/ocorrencia-agressor-cadastrar/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-agressor-cadastrar", [
+		"idOcorrencia" => $idOcorrencia,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
+$app->post("/ocorrencia-agressor-cadastrar/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaAgressorCadastrar::postAgressorCadastrar($idOcorrencia, $_POST);
+
+	header("Location: /ocorrencia-agressor/".$idOcorrencia);
+	exit;
+});
+
+
+
+
 
 //--------------------------------------------------------------
 //TESTE DEPOIS EXCLUIR ESSA ROTA

@@ -64,6 +64,36 @@ class MEndereco {
 				]);		
 				break;
 
+			case 'agressor':
+				$sql->query("
+					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
+					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
+				", [
+					":cep" => $endereco->getcepAgressor(),
+					":rua" => utf8_decode($endereco->getruaAgressor()),
+					":numero" => $endereco->getnumeroAgressor(),
+					":bairro" => utf8_decode($endereco->getbairroAgressor()),
+					":cidade" => utf8_decode($endereco->getcidadeAgressor()),
+					":estado" => $endereco->getestadoAgressor(),
+					":complemento" => utf8_decode($endereco->getcomplementoAgressor())
+				]);		
+				break;
+
+			case 'instituicao':
+				$sql->query("
+					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
+					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
+				", [
+					":cep" => $endereco->getcepInstituicao(),
+					":rua" => utf8_decode($endereco->getruaInstituicao()),
+					":numero" => $endereco->getnumeroInstituicao(),
+					":bairro" => utf8_decode($endereco->getbairroInstituicao()),
+					":cidade" => utf8_decode($endereco->getcidadeInstituicao()),
+					":estado" => $endereco->getestadoInstituicao(),
+					":complemento" => utf8_decode($endereco->getcomplementoInstituicao())
+				]);		
+				break;
+
 			default:
 				var_dump("Não foi possivel cadastrar");
 				exit;

@@ -59,6 +59,28 @@ class MContato {
 				]);				
 				break;
 
+			case 'agressor':
+				$sql->query("
+					INSERT INTO tb_contato (celular, fixo, email) 
+					VALUES(:celular, :fixo, :email)
+				", [
+					":celular" => $validacao->replaceCelularBd($contato->getcelularAgressor()),
+					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoAgressor()),
+					":email" => utf8_decode($contato->getemailAgressor())
+				]);				
+				break;
+
+			case 'instituicao':
+				$sql->query("
+					INSERT INTO tb_contato (celular, fixo, email) 
+					VALUES(:celular, :fixo, :email)
+				", [
+					":celular" => $validacao->replaceCelularBd($contato->getcelularInstituicao()),
+					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoInstituicao()),
+					":email" => utf8_decode($contato->getemailInstituicao())
+				]);				
+				break;
+
 			default:
 				var_dump("Não foi possivel cadastrar");
 				exit;

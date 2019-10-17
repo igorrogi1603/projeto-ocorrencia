@@ -17,15 +17,18 @@ for (let i = 0; i <= 100; i++) {
 	$('#id-celular-vitima-'+i).mask('00 - 00000-0000', {reverse: true});
 }
 
-/*Pagina: Criar Ocorrência - Mascara Agressor
+/*Pagina: Ocorrência Agressor - Mascara Agressor
 ---------------------------------------------------------------*/
 $('#id-data-nasc-agressor').mask('00/00/0000', {reverse: true});
 $('#id-cpf-agressor').mask('000.000.000-00', {reverse: true});
-$('#id-cpf-responsavel-agressor').mask('000.000.000-00', {reverse: true});
 $('#id-rg-agressor').mask('00.000.000', {reverse: true});
 $('#id-celular-agressor').mask('00 - 00000-0000', {reverse: true});
-$('#id-celular-responsavel-agressor').mask('00 - 00000-0000', {reverse: true});
 $('#id-telfixo-agressor').mask('00 - 0000-0000', {reverse: true});
+$('#id-cep-agressor').mask('00000-000', {reverse: true});
+$('#id-cnpj-instituicao').mask('00.000.000/0000-00', {reverse: true});
+$('#id-celular-instituicao').mask('00 - 00000-0000', {reverse: true});
+$('#id-telfixo-instituicao').mask('00 - 0000-0000', {reverse: true});
+$('#id-cep-instituicao').mask('00000-000', {reverse: true});
 
 /*Pagina: Cadastrar Usuario - Mascara
 --------------------------------------------------------------*/
