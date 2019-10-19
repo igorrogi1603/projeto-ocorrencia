@@ -35,16 +35,26 @@
           <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>CPF</th>
+            <th>CPF / CNPJ</th>
             <th>Tipo</th>
             <th>Opções</th>
           </tr>
-
+          {loop="$agressor"}
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Agressor ou Instituicao</td>
+            <td>{$value.idOcorrenciaAgressor}</td>
+            <td>{$value.nome}</td>
+            {if="$value.isCpf == '1'"}
+            <td>{$value.cpf}</td>
+            {/if}
+            {if="$value.isCpf == '0'"}
+            <td>{$value.cnpj}</td>
+            {/if}
+            {if="$value.isInstituicao == '0'"}
+            <td>Pessoa Física</td>
+            {/if}
+            {if="$value.isInstituicao == '1'"}
+            <td>Instituição</td>
+            {/if}
             <td>
               <a href="/ocorrencia-responsavel-vitima-detalhe/" class="btn btn-default"><i class="fa fa-bars"></i></a>
               <a href="/ocorrencia-responsavel-vitima-editar/" class="btn btn-primary"><i class="fa fa-edit"></i></a>
@@ -59,6 +69,7 @@
               }
             }
           </script>
+          {/loop}
         </table>
         <!--Fim Tabela-->
       </div>

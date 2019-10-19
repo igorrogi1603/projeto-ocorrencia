@@ -159,6 +159,23 @@ class Validacao {
 		return $cnpjProvisorio;
 	}
 
+	public function replaceCnpjView($cnpj)
+	{
+		if ($cnpj != null || $cnpj != "") {
+			$campo1 = substr($cnpj, 0, 2);
+			$campo2 = substr($cnpj, 2, 3);
+			$campo3 = substr($cnpj, 5, 3);
+			$campo4 = substr($cnpj, 8, 4);
+			$campo5 = substr($cnpj, 12, 2);
+
+			$cnpjCompleto = $campo1.".".$campo2.".".$campo3."/".$campo4."-".$campo5;
+
+			return $cnpjCompleto;
+		} else {
+			return "";
+		}
+	}
+
 	public function replaceDigitoRg($rg)
 	{
 		//pegar apenas o digito do rg

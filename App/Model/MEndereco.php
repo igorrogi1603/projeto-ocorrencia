@@ -39,7 +39,7 @@ class MEndereco {
 					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
 					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 				", [
-					":cep" => $endereco->getcepVitima(),
+					":cep" => $validacao->replaceCepBd($endereco->getcepVitima()),
 					":rua" => utf8_decode($endereco->getruaVitima()),
 					":numero" => $endereco->getnumeroVitima(),
 					":bairro" => utf8_decode($endereco->getbairroVitima()),
@@ -54,7 +54,7 @@ class MEndereco {
 					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
 					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 				", [
-					":cep" => $endereco->getcepResponsavel(),
+					":cep" => $validacao->replaceCepBd($endereco->getcepResponsavel()),
 					":rua" => utf8_decode($endereco->getruaResponsavel()),
 					":numero" => $endereco->getnumeroResponsavel(),
 					":bairro" => utf8_decode($endereco->getbairroResponsavel()),
@@ -69,7 +69,7 @@ class MEndereco {
 					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
 					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 				", [
-					":cep" => $endereco->getcepAgressor(),
+					":cep" => $validacao->replaceCepBd($endereco->getcepAgressor()),
 					":rua" => utf8_decode($endereco->getruaAgressor()),
 					":numero" => $endereco->getnumeroAgressor(),
 					":bairro" => utf8_decode($endereco->getbairroAgressor()),
@@ -84,7 +84,7 @@ class MEndereco {
 					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
 					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 				", [
-					":cep" => $endereco->getcepInstituicao(),
+					":cep" => $validacao->replaceCepBd($endereco->getcepInstituicao()),
 					":rua" => utf8_decode($endereco->getruaInstituicao()),
 					":numero" => $endereco->getnumeroInstituicao(),
 					":bairro" => utf8_decode($endereco->getbairroInstituicao()),
@@ -116,7 +116,7 @@ class MEndereco {
 					SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
 					WHERE idEndereco = :idEndereco
 				", [
-					":cep" => $endereco->getcepUsuario(),
+					":cep" => $validacao->replaceCepBd($endereco->getcepUsuario()),
 					":rua" => utf8_decode($endereco->getruaUsuario()),
 					":numero" => $endereco->getnumeroUsuario(),
 					":bairro" => utf8_decode($endereco->getbairroUsuario()),
@@ -133,7 +133,7 @@ class MEndereco {
 					SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
 					WHERE idEndereco = :idEndereco
 				", [
-					":cep" => $endereco->getcepVitima(),
+					":cep" => $validacao->replaceCepBd($endereco->getcepVitima()),
 					":rua" => utf8_decode($endereco->getruaVitima()),
 					":numero" => $endereco->getnumeroVitima(),
 					":bairro" => utf8_decode($endereco->getbairroVitima()),
@@ -150,7 +150,7 @@ class MEndereco {
 					SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
 					WHERE idEndereco = :idEndereco
 				", [
-					":cep" => $endereco->getcepResponsavelVitima(),
+					":cep" => $validacao->replaceCepBd($endereco->getcepResponsavelVitima()),
 					":rua" => utf8_decode($endereco->getruaResponsavelVitima()),
 					":numero" => $endereco->getnumeroResponsavelVitima(),
 					":bairro" => utf8_decode($endereco->getbairroResponsavelVitima()),
@@ -167,7 +167,7 @@ class MEndereco {
 					SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
 					WHERE idEndereco = :idEndereco
 				", [
-					":cep" => $endereco->getcepResponsavel(),
+					":cep" => $validacao->replaceCepBd($endereco->getcepResponsavel()),
 					":rua" => utf8_decode($endereco->getruaResponsavel()),
 					":numero" => $endereco->getnumeroResponsavel(),
 					":bairro" => utf8_decode($endereco->getbairroResponsavel()),

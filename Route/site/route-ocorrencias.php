@@ -10,6 +10,7 @@ use \App\Controller\COcorrenciaResponsavel;
 use \App\Controller\COcorrenciaEnviarArquivo;
 use \App\Controller\COcorrenciaAcompanhamento;
 use \App\Controller\COcorrenciaAgressorCadastrar;
+use \App\Controller\COcorrenciaAgressor;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -322,10 +323,13 @@ $app->get("/ocorrencia-agressor/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
+	$listaAgressor = COcorrenciaAgressor::getListaAgressor($idOcorrencia);
+
 	$page = new Page();
 
 	$page->setTpl("ocorrencia-agressor", [
-		"idOcorrencia" => $idOcorrencia
+		"idOcorrencia" => $idOcorrencia,
+		"agressor" => $listaAgressor
 	]);
 });
 

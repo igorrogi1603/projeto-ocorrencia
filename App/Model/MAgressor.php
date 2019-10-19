@@ -87,6 +87,23 @@ class MAgressor {
 		}
 	}
 
+	public function listaAgressor($idOcorrencia)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT *
+			FROM tb_ocorrenciaagressor a
+			INNER JOIN tb_agressor b ON a.idAgressor = b.idAgressor
+			INNER JOIN tb_pessoa c ON b.idPessoa = c.idPessoa
+			INNER JOIN tb_endereco d ON c.idEndereco = d.idEndereco
+			INNER JOIN tb_contato e ON c.idContato = e.idContato
+			WHERE a.idOcorrencia = :idOcorrencia
+		", [
+			":idOcorrencia" => $idOcorrencia
+		]);
+	}
+
 }
 
 ?>

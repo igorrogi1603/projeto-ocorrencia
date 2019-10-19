@@ -2,10 +2,10 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Detalhe da Ocorrência - Novo Responsável</h1>
+    <h1>Detalhe da Ocorrência - Novo Agressor</h1>
     <ol class="breadcrumb">
       <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Detalhe da Ocorrência - Novo Responsável</li>
+      <li class="active">Detalhe da Ocorrência - Novo Agressor</li>
     </ol>
   </section>
 
@@ -25,7 +25,7 @@
     <!--Box Detalhes-->
     <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title">Responsável</h3>
+        <h3 class="box-title">Agressor</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">

@@ -35,16 +35,26 @@
           <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>CPF</th>
+            <th>CPF / CNPJ</th>
             <th>Tipo</th>
             <th>Opções</th>
           </tr>
-
+          <?php $counter1=-1;  if( isset($agressor) && ( is_array($agressor) || $agressor instanceof Traversable ) && sizeof($agressor) ) foreach( $agressor as $key1 => $value1 ){ $counter1++; ?>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Agressor ou Instituicao</td>
+            <td><?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <?php if( $value1["isCpf"] == '1' ){ ?>
+            <td><?php echo htmlspecialchars( $value1["cpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <?php } ?>
+            <?php if( $value1["isCpf"] == '0' ){ ?>
+            <td><?php echo htmlspecialchars( $value1["cnpj"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+            <?php } ?>
+            <?php if( $value1["isInstituicao"] == '0' ){ ?>
+            <td>Pessoa Física</td>
+            <?php } ?>
+            <?php if( $value1["isInstituicao"] == '1' ){ ?>
+            <td>Instituição</td>
+            <?php } ?>
             <td>
               <a href="/ocorrencia-responsavel-vitima-detalhe/" class="btn btn-default"><i class="fa fa-bars"></i></a>
               <a href="/ocorrencia-responsavel-vitima-editar/" class="btn btn-primary"><i class="fa fa-edit"></i></a>
@@ -59,6 +69,7 @@
               }
             }
           </script>
+          <?php } ?>
         </table>
         <!--Fim Tabela-->
       </div>
