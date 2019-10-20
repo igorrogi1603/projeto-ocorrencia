@@ -29,6 +29,26 @@ class MInstituicao {
 		]);
 	}
 
+	public function update($post, $idInstituicao)
+	{
+		$sql = new Conexao;
+
+		$instituicao = new Instituicao;
+		$validacao = new Validacao;		
+
+		$instituicao->setData($post);
+
+		$sql->query("
+			UPDATE tb_instituicao
+			SET nome = :nome, cnpj = :cnpj
+			WHERE idInstituicao = :idInstituicao
+		", [
+			":nome" => utf8_decode($validacao->validarString($instituicao->getnomeAgressor(), 1)),
+			":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjAgressor()),
+			":idInstituicao" => $idInstituicao
+		]);
+	}
+
 	//Lista tudo da tabela
 	public function listAll()
 	{
@@ -86,6 +106,16 @@ class MInstituicao {
 			":idOcorrencia" => $idOcorrencia,
 			":idOcorrenciaAgressor" => $idOcorrenciaAgressor
 		]);	
+	}
+
+	//Evitar de duplicar cpf no banco quando for atualizar uma pessoa
+	public function cnpjIgualUpdate($idInstituicao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT cnpj FROM tb_instituicao WHERE idInstituicao != :idInstituicao", [
+			":idInstituicao" => $idInstituicao
+		]);
 	}
 
 }

@@ -171,6 +171,27 @@ class MPessoa {
 				]);
 				break;
 
+			case 'agressor':
+				if ($pessoa->getdataNascAgressor() == null) {
+					$dataNasc = null;
+				} else {
+					$dataNasc = $validacao->replaceDataBd($pessoa->getdataNascAgressor());
+				}
+
+				$sql->query("
+					UPDATE tb_pessoa 
+					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
+					WHERE idPessoa = :idPessoa
+				", [
+					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeAgressor(), 1)),
+					":dataNasc" => $dataNasc,
+					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfAgressor()),
+					":rg" => $validacao->replaceRgBd($pessoa->getrgAgressor(), $pessoa->getrgDigitoAgressor()),
+					":sexo" => $pessoa->getsexoAgressor(),
+					"idPessoa" => $idPessoa
+				]);
+				break;
+
 			default:
 				var_dump("Não foi possivel cadastrar");
 				exit;

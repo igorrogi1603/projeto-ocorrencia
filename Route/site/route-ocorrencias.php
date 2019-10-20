@@ -375,10 +375,13 @@ $app->get("/ocorrencia-agressor-editar/:idOcorrencia/:isInstituicao/:idOcorrenci
 	Usuario::verifyLogin();
 
 	$listaAgressor = COcorrenciaAgressor::getAgressorEditar($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao);
-	
+
+	//Operador ternario -> decidir qual template vai ser carregado
+	$template = $isInstituicao == 0 ? "ocorrencia-agressor-editar" : "ocorrencia-instituicao-editar";
+
 	$page = new Page();
 
-	$page->setTpl("ocorrencia-agressor-editar", [
+	$page->setTpl($template, [
 		"idOcorrencia" => $idOcorrencia,
 		"isInstituicao" => $isInstituicao,
 		"agressor" => $listaAgressor,
@@ -386,7 +389,15 @@ $app->get("/ocorrencia-agressor-editar/:idOcorrencia/:isInstituicao/:idOcorrenci
 	]);
 });
 
+$app->post("/ocorrencia-agressor-editar/:idOcorrencia/:isInstituicao/:idOcorrenciaAgressor", function($idOcorrencia, $isInstituicao, $idOcorrenciaAgressor){
 
+	Usuario::verifyLogin();
+
+	COcorrenciaAgressor::postAgressorEditar($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao, $_POST);
+
+	header("Location: /ocorrencia-agressor/".$idOcorrencia);
+	exit;
+});
 
 
 

@@ -106,6 +106,7 @@ class MEndereco {
 		$sql = new Conexao;
 
 		$endereco = new Endereco;
+		$validacao = new Validacao;
 
 		$endereco->setData($post);
 
@@ -174,6 +175,23 @@ class MEndereco {
 					":cidade" => utf8_decode($endereco->getcidadeResponsavel()),
 					":estado" => $endereco->getestadoResponsavel(),
 					":complemento" => utf8_decode($endereco->getcomplementoResponsavel()),
+					":idEndereco" => $idEndereco
+				]);		
+				break;
+
+			case 'agressor':
+				$sql->query("
+					UPDATE tb_endereco 
+					SET cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento
+					WHERE idEndereco = :idEndereco
+				", [
+					":cep" => $validacao->replaceCepBd($endereco->getcepAgressor()),
+					":rua" => utf8_decode($endereco->getruaAgressor()),
+					":numero" => $endereco->getnumeroAgressor(),
+					":bairro" => utf8_decode($endereco->getbairroAgressor()),
+					":cidade" => utf8_decode($endereco->getcidadeAgressor()),
+					":estado" => $endereco->getestadoAgressor(),
+					":complemento" => utf8_decode($endereco->getcomplementoAgressor()),
 					":idEndereco" => $idEndereco
 				]);		
 				break;

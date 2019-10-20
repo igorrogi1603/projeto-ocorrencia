@@ -22,8 +22,9 @@
 
         <!--Row-->
         <div class="row">
-          <div class="col-md-12">
-            <a href="/ocorrencia-agressor-cadastrar/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-success">Novo Agressor</a>
+          <div class="col-md-6">
+            <a href="/ocorrencia-agressor-cadastrar/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user-plus"></i>Novo Agressor</a>          
+            <a href="/ocorrencia-agressor-enviarDocumento/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-file-pdf-o"></i>Enviar Documentos</a>
           </div>          
         </div>
         <!--Fim Row-->

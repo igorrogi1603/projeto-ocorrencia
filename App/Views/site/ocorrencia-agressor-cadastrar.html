@@ -283,14 +283,14 @@
               </div>
               <!--Fim Nome do vitima-->
 
-              <!--CPF-->
+              <!--CNPJ-->
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="id-cnpj-instituicao">CNPJ *</label>
                   <input type="text" name="cnpjInstituicao" id="id-cnpj-instituicao" class="form-control" placeholder="___.___.___-__">
                 </div>
               </div>
-              <!--Fim CPF-->
+              <!--Fim CNPJ-->
             </div>
             <!--Fim Row-->
 

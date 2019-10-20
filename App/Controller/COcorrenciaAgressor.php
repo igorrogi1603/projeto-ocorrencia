@@ -6,12 +6,119 @@ use \App\Classe\Agressor;
 use \App\Classe\Validacao;
 use \App\Model\MAgressor;
 use \App\Model\MInstituicao;
+use \App\Model\MPessoa;
+use \App\Model\MEndereco;
+use \App\Model\MContato;
 
 class COcorrenciaAgressor {
 
 	public static function getAgressorEditar($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao)
 	{
 		return COcorrenciaAgressor::getAgressorDetalhe($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao);
+	}
+
+	public static function postAgressorEditar($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao, $post)
+	{
+		//Instanciando objeto
+		$mpessoa = new MPessoa;
+		$mcontato = new MContato;
+		$mendereco = new MEndereco;
+		$magressor = new MAgressor;
+		$minstituicao = new MInstituicao;
+		$validacao = new Validacao;
+
+		$listaAgressor = COcorrenciaAgressor::getAgressorDetalhe($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao);
+
+		//Pegando o idContato e o idEndereco
+		foreach ($listaAgressor as $value) {
+			$idContato = $value['idContato'];
+			$idEndereco = $value['idEndereco'];
+			$idPessoa = $value['idPessoa'];
+			$idInstituicao = $value['idInstituicao'];
+		}
+
+		//Validando os post
+		$post['nomeAgressor'] = $validacao->validarString($post['nomeAgressor'], 1);
+		$post['cepAgressor'] = $validacao->validarString($post['cepAgressor'], 3);
+		$post['ruaAgressor'] = $validacao->validarString($post['ruaAgressor'], 2);
+		$post['bairroAgressor'] = $validacao->validarString($post['bairroAgressor'], 2);
+		$post['numeroAgressor'] = $validacao->validarString($post['numeroAgressor'], 3);
+		$post['cidadeAgressor'] = $validacao->validarString($post['cidadeAgressor'], 1);
+		$post['complementoAgressor'] = $validacao->validarString($post['complementoAgressor'], 2);
+
+		//Ver se o campo nome nao esta vazio
+		if (!isset($post['nomeAgressor']) || $post['nomeAgressor'] === '') {
+			Validacao::setMsgError("Informe o Nome.");
+	        header('Location: /ocorrencia-agressor-editar/'.$idOcorrencia.'/'.$isInstituicao.'/'.$idOcorrenciaAgressor);
+	        exit;
+		}
+
+		//separar o que vai ser feito pq tem dois templates diferentes agressor e instituicao
+		if ($isInstituicao == 0) {
+			//recuperando o idPessoa
+			foreach ($listaAgressor as $value) {
+				$idPessoa = $value['idPessoa'];
+			}
+
+			//Pessoa Fisica
+			$validaCPF = $validacao->validaCPF($post['cpfAgressor']);
+
+			if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
+				Validacao::setMsgError("CPF Inválido.");
+		        header('Location: /ocorrencia-agressor-editar/'.$idOcorrencia.'/'.$isInstituicao.'/'.$idOcorrenciaAgressor);
+		        exit;
+			}
+
+			//Nao pode cadastrar pessoas com cpf iguais
+			//Pelo cpf da para saber se tem duas pessoas com mais de um registro
+			$cpfIgual = $mpessoa->cpfIgualUpdate($idPessoa);
+
+			foreach ($cpfIgual as $cpf) {
+				if ($validacao->replaceCpfBd($post['cpfAgressor']) == $cpf['cpf']) {
+					Validacao::setMsgError("Este cpf já está cadastrado.");
+			        header('Location: /ocorrencia-agressor-editar/'.$idOcorrencia.'/'.$isInstituicao.'/'.$idOcorrenciaAgressor);
+			        exit;
+				}
+			}
+
+			//Atualizando os dados
+			$mpessoa->update($post, $idPessoa, 'agressor');
+			$mcontato->update($post, $idContato, 'agressor');
+			$mendereco->update($post, $idEndereco, 'agressor');
+
+		} else {
+			//recuperando o idInstituicao
+			foreach ($listaAgressor as $value) {
+				$idInstituicao = $value['idInstituicao'];
+			}
+
+			//Instituicao
+			$validaCNPJ = $validacao->validaCnpj($post['cnpjAgressor']);
+
+			if ($validaCNPJ === false || !isset($validaCNPJ) || $validaCNPJ === '') {
+				Validacao::setMsgError("CNPJ Inválido.");
+		        header('Location: /ocorrencia-agressor-editar/'.$idOcorrencia.'/'.$isInstituicao.'/'.$idOcorrenciaAgressor);
+		        exit;
+			}
+
+			//Nao pode cadastrar pessoas com cpf iguais
+			//Pelo cpf da para saber se tem duas pessoas com mais de um registro
+			$cnpjIgual = $minstituicao->cnpjIgualUpdate($idInstituicao);
+
+			foreach ($cnpjIgual as $cnpj) {
+				if ($validacao->replaceCnpjBd($post['cnpjAgressor']) == $cnpj['cnpj']) {
+					Validacao::setMsgError("Este cnpj já está cadastrado.");
+			        header('Location: /ocorrencia-agressor-editar/'.$idOcorrencia.'/'.$isInstituicao.'/'.$idOcorrenciaAgressor);
+			        exit;
+				}
+			}
+
+			//Atualizando os dados
+			$minstituicao->update($post, $idInstituicao);
+			$mcontato->update($post, $idContato, 'agressor');
+			$mendereco->update($post, $idEndereco, 'agressor');
+
+		} // Fim else isInstituicao
 	}
 
 	public static function getListaAgressor($idOcorrencia)
