@@ -9,6 +9,11 @@ use \App\Model\MInstituicao;
 
 class COcorrenciaAgressor {
 
+	public static function getAgressorEditar($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao)
+	{
+		return COcorrenciaAgressor::getAgressorDetalhe($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao);
+	}
+
 	public static function getListaAgressor($idOcorrencia)
 	{
 		//Reucperando os array ja formatados
@@ -82,6 +87,7 @@ class COcorrenciaAgressor {
 			$listaAgressor[$i]['fixo'] = $validacao->replaceTelefoneFixoView(utf8_encode($listaAgressor[$i]['fixo']));
 			$listaAgressor[$i]['cpf'] = $validacao->replaceCpfView(utf8_encode($listaAgressor[$i]['cpf']));
 			$listaAgressor[$i]['rg'] = $validacao->replaceSemDigitoRg($listaAgressor[$i]['rg']);
+			$listaAgressor[$i]['rgDigito'] = $validacao->replaceDigitoRg($listaAgressor[$i]['rg']);
 
 			if ($listaAgressor[$i]['dataNasc'] == null) {
 				//mostra nada

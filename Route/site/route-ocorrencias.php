@@ -370,6 +370,24 @@ $app->get("/ocorrencia-agressor-detalhe/:idOcorrencia/:isInstituicao/:idOcorrenc
 	]);
 });
 
+$app->get("/ocorrencia-agressor-editar/:idOcorrencia/:isInstituicao/:idOcorrenciaAgressor", function($idOcorrencia, $isInstituicao, $idOcorrenciaAgressor){
+
+	Usuario::verifyLogin();
+
+	$listaAgressor = COcorrenciaAgressor::getAgressorEditar($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao);
+	
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-agressor-editar", [
+		"idOcorrencia" => $idOcorrencia,
+		"isInstituicao" => $isInstituicao,
+		"agressor" => $listaAgressor,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
+
+
 
 
 
