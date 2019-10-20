@@ -40,15 +40,34 @@ class COcorrenciaAgressor {
 		return $listaCompleta;
 	}
 
+	public static function getAgressorDetalhe($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao)
+	{	
+		//Verificar se e instituicao ou pessoa fisica
+		if ($isInstituicao == "0") {
+			$listaAgressor = COcorrenciaAgressor::listaAgressor($idOcorrencia, "unico", $idOcorrenciaAgressor);	
+		}
 
-	protected function listaAgressor($idOcorrencia)
+		if ($isInstituicao == "1") {
+			$listaAgressor = COcorrenciaAgressor::listaInstituicao($idOcorrencia, "unico", $idOcorrenciaAgressor);
+		}
+		
+		return $listaAgressor;
+	}
+
+	protected function listaAgressor($idOcorrencia, $complemento = "completo", $idOcorrenciaAgressor = "")
 	{
 		//Instancia
 		$magressor = new MAgressor;
 		$validacao = new Validacao;
 
 		//Recuperando dados
-		$listaAgressor = $magressor->listaAgressor($idOcorrencia);
+		if ($complemento == "unico") {
+			$listaAgressor = $magressor->listaAgressorEspecifico($idOcorrencia, $idOcorrenciaAgressor);
+		}
+
+		if ($complemento == "completo") {
+			$listaAgressor = $magressor->listaAgressor($idOcorrencia);
+		}
 
 		//Tamanho do array
 		$tamanhoArrayAgressor = count($listaAgressor);
@@ -74,14 +93,20 @@ class COcorrenciaAgressor {
 		return $listaAgressor;
 	}
 
-	protected function listaInstituicao($idOcorrencia)
+	protected function listaInstituicao($idOcorrencia, $complemento = "completo", $idOcorrenciaAgressor = "")
 	{
 		//Instancia
 		$minstituicao = new MInstituicao;
 		$validacao = new Validacao;
 
 		//Recuperando dados
-		$listaInstituicao = $minstituicao->listaInstituicao($idOcorrencia);
+		if ($complemento == "unico") {
+			$listaInstituicao = $minstituicao->listaInstituicaoEspecifica($idOcorrencia, $idOcorrenciaAgressor);
+		}
+
+		if ($complemento == "completo") {
+			$listaInstituicao = $minstituicao->listaInstituicao($idOcorrencia);
+		}
 
 		//Tamanho do array
 		$tamanhoArrayInstituicao = count($listaInstituicao);

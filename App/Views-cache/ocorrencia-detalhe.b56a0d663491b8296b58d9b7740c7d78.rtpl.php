@@ -67,9 +67,6 @@
             <a href="#" class="btn btn-app"><i class="fa fa-list-alt"></i>Detalhes</a>
 
             <!--Aparecer para todos os status-->
-            <a href="/ocorrencia-relatorio" class="btn btn-app"><i class="fa fa-file-text-o"></i>Relatório</a>
-
-            <!--Aparecer para todos os status-->
             <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
 
             <!--Aparecer se o status for aberta, reaberta-->

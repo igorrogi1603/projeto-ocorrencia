@@ -355,6 +355,22 @@ $app->post("/ocorrencia-agressor-cadastrar/:idOcorrencia", function($idOcorrenci
 	exit;
 });
 
+$app->get("/ocorrencia-agressor-detalhe/:idOcorrencia/:isInstituicao/:idOcorrenciaAgressor", function($idOcorrencia, $isInstituicao, $idOcorrenciaAgressor){
+
+	Usuario::verifyLogin();
+
+	$listaAgressor = COcorrenciaAgressor::getAgressorDetalhe($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-agressor-detalhe", [
+		"idOcorrencia" => $idOcorrencia,
+		"isInstituicao" => $isInstituicao,
+		"agressor" => $listaAgressor
+	]);
+});
+
+
 
 
 

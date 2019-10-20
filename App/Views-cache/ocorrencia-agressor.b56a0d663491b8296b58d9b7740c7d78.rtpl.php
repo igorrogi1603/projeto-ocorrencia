@@ -56,7 +56,7 @@
             <td>Instituição</td>
             <?php } ?>
             <td>
-              <a href="/ocorrencia-responsavel-vitima-detalhe/" class="btn btn-default"><i class="fa fa-bars"></i></a>
+              <a href="/ocorrencia-agressor-detalhe/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
               <a href="/ocorrencia-responsavel-vitima-editar/" class="btn btn-primary"><i class="fa fa-edit"></i></a>
               <a onclick="confirmar()" class="btn btn-danger"><i class="fa fa-trash"></i></a>
             </td>

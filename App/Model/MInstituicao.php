@@ -70,6 +70,24 @@ class MInstituicao {
 		]);
 	}
 
+	public function listaInstituicaoEspecifica($idOcorrencia, $idOcorrenciaAgressor)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT *
+			FROM tb_ocorrenciaagressor a
+			INNER JOIN tb_agressor b ON a.idAgressor = b.idAgressor
+			INNER JOIN tb_instituicao c ON b.idInstituicao = c.idInstituicao
+			INNER JOIN tb_endereco d ON c.idEndereco = d.idEndereco
+			INNER JOIN tb_contato e ON c.idContato = e.idContato
+			WHERE a.idOcorrencia = :idOcorrencia AND a.idOcorrenciaAgressor = :idOcorrenciaAgressor
+		", [
+			":idOcorrencia" => $idOcorrencia,
+			":idOcorrenciaAgressor" => $idOcorrenciaAgressor
+		]);	
+	}
+
 }
 
 ?>
