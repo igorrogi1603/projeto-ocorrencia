@@ -38,6 +38,7 @@
             <th>Nome</th>
             <th>CPF / CNPJ</th>
             <th>Tipo</th>
+            <th>Status</th>
             <th>Opções</th>
           </tr>
           <?php $counter1=-1;  if( isset($agressor) && ( is_array($agressor) || $agressor instanceof Traversable ) && sizeof($agressor) ) foreach( $agressor as $key1 => $value1 ){ $counter1++; ?>
@@ -56,20 +57,23 @@
             <?php if( $value1["isInstituicao"] == '1' ){ ?>
             <td>Instituição</td>
             <?php } ?>
+            <?php if( $value1["isExcluido"] == '0' ){ ?>
+            <td>Ativo</td>
+            <?php } ?>
+            <?php if( $value1["isExcluido"] == '1' ){ ?>
+            <td>Excluido</td>
+            <?php } ?>
             <td>
+              <?php if( $value1["isExcluido"] == '1' ){ ?>
+              <a href="/ocorrencia-agressor-detalhe/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
+              <?php } ?>
+              <?php if( $value1["isExcluido"] == '0' ){ ?>
               <a href="/ocorrencia-agressor-detalhe/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
               <a href="/ocorrencia-agressor-editar/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-              <a onclick="confirmar()" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              <a href="/ocorrencia-agressor-excluir/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              <?php } ?>
             </td>
           </tr>
-          <script>
-            function confirmar()
-            {
-              if(confirm("Voce realmente deseja EXCLUIR esse responsável?")){
-                location.href="";
-              }
-            }
-          </script>
           <?php } ?>
         </table>
         <!--Fim Tabela-->

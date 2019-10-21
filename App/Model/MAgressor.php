@@ -25,23 +25,25 @@ class MAgressor {
 		switch ($complemento) {
 			case 'agressor':
 				$sql->query("
-					INSERT INTO tb_agressor (idPessoa, idInstituicao, isInstituicao) 
-					VALUES(:idPessoa, :idInstituicao, :isInstituicao)
+					INSERT INTO tb_agressor (idPessoa, idInstituicao, isInstituicao, isExcluido) 
+					VALUES(:idPessoa, :idInstituicao, :isInstituicao, :isExcluido)
 				", [
 					":idPessoa" => (int)$id[0]["MAX(idPessoa)"],
 					":idInstituicao" => NULL,
-					":isInstituicao" => 0
+					":isInstituicao" => 0,
+					":isExcluido" => 0
 				]);	
 				break;
 
 			case 'instituicao':
 				$sql->query("
-					INSERT INTO tb_agressor (idPessoa, idInstituicao, isInstituicao) 
-					VALUES(:idPessoa, :idInstituicao, :isInstituicao)
+					INSERT INTO tb_agressor (idPessoa, idInstituicao, isInstituicao, isExcluido) 
+					VALUES(:idPessoa, :idInstituicao, :isInstituicao, :isExcluido)
 				", [
 					":idPessoa" => NULL,
 					":idInstituicao" => (int)$id[0]["MAX(idInstituicao)"],
-					":isInstituicao" => 1
+					":isInstituicao" => 1,
+					":isExcluido" => 0
 				]);	
 				break;
 		}
@@ -120,6 +122,51 @@ class MAgressor {
 			":idOcorrencia" => $idOcorrencia,
 			":idOcorrenciaAgressor" => $idOcorrenciaAgressor
 		]);	
+	}
+
+	public function excluirAgressor($idAgressor)
+	{
+		$sql = new Conexao;
+
+		$sql->query("
+			UPDATE tb_agressor 
+			SET isExcluido = :isExcluido
+			WHERE idAgressor = :idAgressor
+		", [
+			":isExcluido" => 1,
+			":idAgressor" => $idAgressor
+		]);
+	}
+
+	public function motivoAgressorExcluido($idAgressor, $idOcorrencia, $post)
+	{
+		$sql = new Conexao;
+
+		$agressor = new Agressor;
+		$validacao = new Validacao;
+
+		$agressor->setData($post);
+
+		$sql->query("
+			INSERT INTO tb_agressorexcluido (idOcorrencia, idAgressor, motivo) 
+			VALUES(:idOcorrencia, :idAgressor, :motivo)
+		", [
+			":idOcorrencia" => (int)$idOcorrencia,
+			":idAgressor" => (int)$idAgressor,
+			":motivo" => utf8_decode($agressor->getdescricaoAgressor())
+		]);
+	}
+
+	public function selecionaMotivoAgressorExcluido($idAgressor, $idOcorrencia)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT * FROM tb_agressorexcluido WHERE idAgressor = :idAgressor AND idOcorrencia = :idOcorrencia
+		", [
+			":idAgressor" => (int)$idAgressor,
+			":idOcorrencia" => (int)$idOcorrencia
+		]);
 	}
 
 }

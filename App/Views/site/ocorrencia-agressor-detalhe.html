@@ -57,11 +57,27 @@
           <!--Fim Endereco da vitima-->
         </div>
         <!--Fim Row-->
-        {/loop}
         <br>
         <hr>
         <br>
 
+        {if="$value.isExcluido == '1'"}
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Motivo da Exclusão</h4>
+            <hr>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-md-12">
+            <p class="sem-espacamento"><strong>Motivo: </strong>{$value.motivoExcluido}</p>
+          </div>
+        </div>
+        {/if}
+        {/loop}
         <!--Row-->
         <div class="row">
           <div class="col-md-12">

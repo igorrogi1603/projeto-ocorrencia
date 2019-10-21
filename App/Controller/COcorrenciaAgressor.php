@@ -12,6 +12,24 @@ use \App\Model\MContato;
 
 class COcorrenciaAgressor {
 
+	public static function postAgressorExcluir($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao, $idAgressor, $post)
+	{
+		//instanciando
+		$magressor = new MAgressor;
+		$validacao = new Validacao;
+
+		//Mudando o valor de isExcluido para 1 que indica que foi excluido
+		$magressor->excluirAgressor($idAgressor);
+
+		//Cadastrando na tabela agressorExcluido
+		$magressor->motivoAgressorExcluido($idAgressor, $idOcorrencia, $post);
+	}
+
+	public static function getAgressorExcluir($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao)
+	{
+		return COcorrenciaAgressor::getAgressorDetalhe($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao);	
+	}
+
 	public static function getAgressorEditar($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao)
 	{
 		return COcorrenciaAgressor::getAgressorDetalhe($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao);
@@ -185,6 +203,15 @@ class COcorrenciaAgressor {
 		$tamanhoArrayAgressor = count($listaAgressor);
 
 		for ($i = 0; $i < $tamanhoArrayAgressor; $i++) {
+			if ($listaAgressor[$i]['isExcluido'] == '1') {
+				$agressorExcluido = $magressor->selecionaMotivoAgressorExcluido($listaAgressor[$i]['idAgressor'], $idOcorrencia);
+				
+				foreach ($agressorExcluido as $value) {
+					$listaAgressor[$i]['motivoExcluido'] = utf8_encode($value['motivo']);	
+				}
+			}
+
+			//validacao
 			$listaAgressor[$i]['nome'] = utf8_encode($listaAgressor[$i]['nome']);
 			$listaAgressor[$i]['rua'] = utf8_encode($listaAgressor[$i]['rua']);
 			$listaAgressor[$i]['bairro'] = utf8_encode($listaAgressor[$i]['bairro']);
@@ -210,6 +237,7 @@ class COcorrenciaAgressor {
 	{
 		//Instancia
 		$minstituicao = new MInstituicao;
+		$magressor = new MAgressor;
 		$validacao = new Validacao;
 
 		//Recuperando dados
@@ -225,6 +253,15 @@ class COcorrenciaAgressor {
 		$tamanhoArrayInstituicao = count($listaInstituicao);
 
 		for ($i = 0; $i < $tamanhoArrayInstituicao; $i++) {
+			if ($listaInstituicao[$i]['isExcluido'] == '1') {
+				$agressorExcluido = $magressor->selecionaMotivoAgressorExcluido($listaInstituicao[$i]['idAgressor'], $idOcorrencia);
+				
+				foreach ($agressorExcluido as $value) {
+					$listaInstituicao[$i]['motivoExcluido'] = utf8_encode($value['motivo']);
+				}
+			}
+
+			//validacao
 			$listaInstituicao[$i]['nome'] = utf8_encode($listaInstituicao[$i]['nome']);
 			$listaInstituicao[$i]['rua'] = utf8_encode($listaInstituicao[$i]['rua']);
 			$listaInstituicao[$i]['bairro'] = utf8_encode($listaInstituicao[$i]['bairro']);

@@ -399,6 +399,31 @@ $app->post("/ocorrencia-agressor-editar/:idOcorrencia/:isInstituicao/:idOcorrenc
 	exit;
 });
 
+$app->get("/ocorrencia-agressor-excluir/:idOcorrencia/:isInstituicao/:idOcorrenciaAgressor", function($idOcorrencia, $isInstituicao, $idOcorrenciaAgressor){
+
+	Usuario::verifyLogin();
+
+	$listaAgressor = COcorrenciaAgressor::getAgressorExcluir($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao);
+
+	$page = new Page();
+
+	$page->setTpl("agressor-descartar", [
+		"idOcorrencia" => $idOcorrencia,
+		"isInstituicao" => $isInstituicao,
+		"agressor" => $listaAgressor,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
+$app->post("/ocorrencia-agressor-excluir/:idOcorrencia/:isInstituicao/:idOcorrenciaAgressor/:idAgressor", function($idOcorrencia, $isInstituicao, $idOcorrenciaAgressor, $idAgressor){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaAgressor::postAgressorExcluir($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao, $idAgressor, $_POST);
+
+	header("Location: /ocorrencia-agressor/".$idOcorrencia);
+	exit;
+});
 
 
 

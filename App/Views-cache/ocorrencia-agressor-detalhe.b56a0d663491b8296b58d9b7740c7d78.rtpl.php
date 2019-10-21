@@ -57,11 +57,27 @@
           <!--Fim Endereco da vitima-->
         </div>
         <!--Fim Row-->
-        <?php } ?>
         <br>
         <hr>
         <br>
 
+        <?php if( $value1["isExcluido"] == '1' ){ ?>
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Motivo da Exclusão</h4>
+            <hr>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-md-12">
+            <p class="sem-espacamento"><strong>Motivo: </strong><?php echo htmlspecialchars( $value1["motivoExcluido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+          </div>
+        </div>
+        <?php } ?>
+        <?php } ?>
         <!--Row-->
         <div class="row">
           <div class="col-md-12">

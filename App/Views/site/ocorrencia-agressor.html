@@ -38,6 +38,7 @@
             <th>Nome</th>
             <th>CPF / CNPJ</th>
             <th>Tipo</th>
+            <th>Status</th>
             <th>Opções</th>
           </tr>
           {loop="$agressor"}
@@ -56,20 +57,23 @@
             {if="$value.isInstituicao == '1'"}
             <td>Instituição</td>
             {/if}
+            {if="$value.isExcluido == '0'"}
+            <td>Ativo</td>
+            {/if}
+            {if="$value.isExcluido == '1'"}
+            <td>Excluido</td>
+            {/if}
             <td>
+              {if="$value.isExcluido == '1'"}
+              <a href="/ocorrencia-agressor-detalhe/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-default"><i class="fa fa-bars"></i></a>
+              {/if}
+              {if="$value.isExcluido == '0'"}
               <a href="/ocorrencia-agressor-detalhe/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-default"><i class="fa fa-bars"></i></a>
               <a href="/ocorrencia-agressor-editar/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-              <a onclick="confirmar()" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              <a href="/ocorrencia-agressor-excluir/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              {/if}
             </td>
           </tr>
-          <script>
-            function confirmar()
-            {
-              if(confirm("Voce realmente deseja EXCLUIR esse responsável?")){
-                location.href="";
-              }
-            }
-          </script>
           {/loop}
         </table>
         <!--Fim Tabela-->
