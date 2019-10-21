@@ -425,7 +425,14 @@ $app->post("/ocorrencia-agressor-excluir/:idOcorrencia/:isInstituicao/:idOcorren
 	exit;
 });
 
+$app->get("/ocorrencia-agressor-enviar-arquivo/:idOcorrencia", function($idOcorrencia){
 
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-agressor-enviar-arquivo");
+});
 
 
 
