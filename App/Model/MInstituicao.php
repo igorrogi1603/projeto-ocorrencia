@@ -108,6 +108,17 @@ class MInstituicao {
 		]);	
 	}
 
+	public function InstituicaoEspecifica($idInstituicao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT * FROM tb_instituicao WHERE idInstituicao = :idInstituicao
+		", [
+			":idInstituicao" => $idInstituicao
+		]);	
+	}
+
 	//Evitar de duplicar cpf no banco quando for atualizar uma pessoa
 	public function cnpjIgualUpdate($idInstituicao)
 	{

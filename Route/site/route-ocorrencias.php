@@ -11,6 +11,7 @@ use \App\Controller\COcorrenciaEnviarArquivo;
 use \App\Controller\COcorrenciaAcompanhamento;
 use \App\Controller\COcorrenciaAgressorCadastrar;
 use \App\Controller\COcorrenciaAgressor;
+use \App\Controller\COcorrenciaAgressorEnviarArquivo;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -425,15 +426,85 @@ $app->post("/ocorrencia-agressor-excluir/:idOcorrencia/:isInstituicao/:idOcorren
 	exit;
 });
 
+//Enviar Arquivo Agressor
 $app->get("/ocorrencia-agressor-enviar-arquivo/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
+	$documento = COcorrenciaAgressorEnviarArquivo::getEnviarArquivoLista($idOcorrencia);
+
 	$page = new Page();
 
-	$page->setTpl("ocorrencia-agressor-enviar-arquivo");
+	$page->setTpl("ocorrencia-agressor-enviar-arquivo", [
+		"idOcorrencia" => $idOcorrencia,
+		"documento" => $documento
+	]);
 });
 
+$app->get("/ocorrencia-agressor-enviar-arquivo-cadastrar/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$listaAgressor = COcorrenciaAgressorEnviarArquivo::getEnviarArquivoCadastrar($idOcorrencia);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-agressor-enviar-arquivo-cadastrar", [
+		"selecionaPessoa" => $listaAgressor,
+		"idOcorrencia" => $idOcorrencia,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
+$app->post("/ocorrencia-agressor-enviar-arquivo-cadastrar/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	//if serve para nao dar erro na variavel sendo passada como parametro caso ela nao exista dará erro
+	if($_FILES["upDocumento"]["name"] !== ""){
+		COcorrenciaAgressorEnviarArquivo::postEnviarArquivoCadastrar($idOcorrencia, $_POST, $_FILES["upDocumento"]);
+	} else {
+		Validacao::setMsgError("Selecione um arquivo PDF");
+        header('Location: /ocorrencia-agressor-enviar-arquivo-cadastrar/'.$idOcorrencia);
+        exit;
+	}
+
+	header("Location: /ocorrencia-agressor-enviar-arquivo/".$idOcorrencia);
+	exit;
+});
+
+$app->get("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrencia/:idPessoa/:idArquivo", function($idOcorrencia, $idPessoa, $idArquivo){
+
+	Usuario::verifyLogin();
+
+	$listaAgressor = COcorrenciaAgressorEnviarArquivo::getEnviarArquivoCadastrarAtualizar($idOcorrencia, $idPessoa);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar", [
+		"selecionaPessoa" => $listaAgressor,
+		"idOcorrencia" => $idOcorrencia,
+		"idArquivo" => $idArquivo,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
+$app->post("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrencia/:idArquivo", function($idOcorrencia, $idArquivo){
+
+	Usuario::verifyLogin();
+
+	//if serve para nao dar erro na variavel sendo passada como parametro caso ela nao exista dará erro
+	if($_FILES["upDocumento"]["name"] !== ""){
+		COcorrenciaAgressorEnviarArquivo::postEnviarArquivoCadastrarAtualizar($idOcorrencia, $_POST, $_FILES["upDocumento"], $idArquivo);
+	} else {
+		Validacao::setMsgError("Selecione um arquivo PDF");
+        header('Location: /ocorrencia-agressor-enviar-arquivo-cadastrar/'.$idOcorrencia);
+        exit;
+	}
+
+	header("Location: /ocorrencia-agressor-enviar-arquivo/".$idOcorrencia);
+	exit;
+});
 
 
 //--------------------------------------------------------------
