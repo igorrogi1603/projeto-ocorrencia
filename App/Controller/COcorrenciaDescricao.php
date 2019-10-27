@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use \App\Classe\Validacao;
 use \App\Model\MOcorrencia;
+use \App\Model\MApuracao;
 
 class COcorrenciaDescricao {
 
@@ -48,6 +49,29 @@ class COcorrenciaDescricao {
 		}
 
 		return $listaOcorrencia;
+	}
+
+	public static function postOcorrenciaDescricaoEditar($idOcorrencia, $idApuracao, $post)
+	{	
+		//instancia
+		$mocorrencia = new MOcorrencia;
+		$mapuracao = new MApuracao;
+
+		//validacao de campos
+		if (!isset($post['tipoApuracao']) || $post['tipoApuracao'] === '') {
+			Validacao::setMsgError("Informe o tipo da ocorrência.");
+	        header('Location: /ocorrencia-descricao-editar/'.$idOcorrencia);
+	        exit;
+		}
+
+		if (!isset($post['descricaoApuracao']) || $post['descricaoApuracao'] === '') {
+			Validacao::setMsgError("Informe o descrição da ocorrência.");
+	        header('Location: /ocorrencia-descricao-editar/'.$idOcorrencia);
+	        exit;
+		}
+
+		//update descricao e tipo
+		$mapuracao->updateDescricaoApuracao($idApuracao, $post);
 	}
 
 }

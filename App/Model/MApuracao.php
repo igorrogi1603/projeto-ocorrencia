@@ -35,6 +35,24 @@ class MApuracao {
 		]);
 	}
 
+	public function updateDescricaoApuracao($idApuracao, $post)
+	{
+		$sql = new Conexao;
+		$apuracao = new Apuracao;
+
+		$apuracao->setData($post);
+
+		$sql->query("
+			UPDATE tb_criarapuracao 
+			SET tipoApuracao = :tipoApuracao, descricao = :descricao
+			WHERE idCriarApuracao = :idCriarApuracao
+		", [
+			":tipoApuracao" => utf8_decode($apuracao->gettipoApuracao()),
+			":descricao" => utf8_decode($apuracao->getdescricaoApuracao()), 
+			":idCriarApuracao" => $idApuracao
+		]);
+	}
+
 	//Lista tudo da tabela
 	public function listAll()
 	{

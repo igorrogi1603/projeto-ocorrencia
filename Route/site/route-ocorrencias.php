@@ -518,8 +518,34 @@ $app->get("/ocorrencia-descricao/:idOcorrencia", function($idOcorrencia){
 	$page = new Page();
 
 	$page->setTpl("ocorrencia-descricao", [
-		"descricao" => $listaDescricao
+		"descricao" => $listaDescricao,
+		"idOcorrencia" => $idOcorrencia
 	]);
+});
+
+$app->get("/ocorrencia-descricao-editar/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$listaDescricao = COcorrenciaDescricao::getOcorrenciaDescricao($idOcorrencia);
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-descricao-editar", [
+		"descricao" => $listaDescricao,
+		"idOcorrencia" => $idOcorrencia,
+		"error"=>Validacao::getMsgError()
+	]);
+});
+
+$app->post("/ocorrencia-descricao-editar/:idOcorrencia/:idApuracao", function($idOcorrencia, $idApuracao){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaDescricao::postOcorrenciaDescricaoEditar($idOcorrencia, $idApuracao, $_POST);
+
+	header("Location: /ocorrencia-descricao/".$idOcorrencia);
+	exit;
 });
 
 
