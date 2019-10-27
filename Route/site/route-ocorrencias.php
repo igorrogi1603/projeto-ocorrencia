@@ -12,6 +12,7 @@ use \App\Controller\COcorrenciaAcompanhamento;
 use \App\Controller\COcorrenciaAgressorCadastrar;
 use \App\Controller\COcorrenciaAgressor;
 use \App\Controller\COcorrenciaAgressorEnviarArquivo;
+use \App\Controller\COcorrenciaDescricao;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -506,17 +507,21 @@ $app->post("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrenci
 	exit;
 });
 
-
 //--------------------------------------------------------------
-//TESTE DEPOIS EXCLUIR ESSA ROTA
-$app->get("/criar-ocorrencia", function(){
+//Ocorrencia detalhe
+$app->get("/ocorrencia-descricao/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
+	$listaDescricao = COcorrenciaDescricao::getOcorrenciaDescricao($idOcorrencia);
+
 	$page = new Page();
 
-	$page->setTpl("criar-ocorrencia");
+	$page->setTpl("ocorrencia-descricao", [
+		"descricao" => $listaDescricao
+	]);
 });
+
 
 //--------------------------------------------------------------
 

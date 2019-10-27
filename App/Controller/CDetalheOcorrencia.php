@@ -42,6 +42,7 @@ class CDetalheOcorrencia {
 		//Validacao dos campos com acentos do banco de dados
 		for ($i = 0; $i < $tamanhoArray; $i++) {
 			if (isset($detalheOcorrencia[$i])) {
+				$detalheOcorrencia[$i]['outro'] = utf8_encode($detalheOcorrencia[$i]['outro']);
 				$detalheOcorrencia[$i]['descricao'] = utf8_encode($detalheOcorrencia[$i]['descricao']);
 				$detalheOcorrencia[$i]['tipoApuracao'] = utf8_encode($detalheOcorrencia[$i]['tipoApuracao']);
 				$detalheOcorrencia[$i]['qualFamilia'] = utf8_encode($detalheOcorrencia[$i]['qualFamilia']);

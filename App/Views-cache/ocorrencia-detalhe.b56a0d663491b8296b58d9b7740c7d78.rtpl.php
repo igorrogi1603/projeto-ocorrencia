@@ -64,7 +64,7 @@
             <a href="/ocorrencia-agressor/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Agressor</a>
 
             <!--Aparecer para todos os status-->
-            <a href="#" class="btn btn-app"><i class="fa fa-list-alt"></i>Detalhes</a>
+            <a href="/ocorrencia-descricao/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-list-alt"></i>Descrição</a>
 
             <!--Aparecer para todos os status-->
             <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
