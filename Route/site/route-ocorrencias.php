@@ -581,6 +581,8 @@ $app->get("/ocorrencia-arquivos", function(){
 	$page->setTpl("ocorrencia-arquivos");
 });
 
+//--------------------------------------------------------------
+
 $app->get("/ocorrencia-solicitacao", function(){
 
 	Usuario::verifyLogin();
@@ -589,6 +591,35 @@ $app->get("/ocorrencia-solicitacao", function(){
 
 	$page->setTpl("ocorrencia-solicitacao");
 });
+
+$app->get("/ocorrencia-nova-solicitacao", function(){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-nova-solicitacao");
+});
+
+$app->get("/ocorrencia-ler-solicitacao", function(){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-ler-solicitacao");
+});
+
+$app->get("/ocorrencia-solicitacoes-enviadas", function(){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-solicitacoes-enviadas");
+});
+
+//--------------------------------------------------------------
 
 $app->get("/ocorrencia-enviada", function(){
 
