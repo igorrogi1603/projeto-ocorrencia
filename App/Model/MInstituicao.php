@@ -157,6 +157,15 @@ class MInstituicao {
 		return $sql->select("SELECT cnpj FROM tb_instituicao");		
 	}
 
+	public function excluirInstituicao($idInstituicao)
+	{
+		$sql = new Conexao;
+
+		$sql->query("DELETE FROM tb_instituicao WHERE idInstituicao = :idInstituicao", [
+			"idInstituicao" => $idInstituicao
+		]);
+	}
+
 }
 
 ?>
