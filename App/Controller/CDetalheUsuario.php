@@ -6,6 +6,7 @@ use \App\Model\MUsuario;
 use \App\Model\MPessoa;
 use \App\Model\MEndereco;
 use \App\Model\MContato;
+use \App\Model\MInstituicao;
 use \App\Classe\Pessoa;
 use \App\Classe\Validacao;
 
@@ -19,29 +20,49 @@ class CDetalheUsuario {
 		$validacao = new Validacao;
 
 		$dados = $musuario->detalheUsuario($idUsuario);
+		$dadosInstituicao = $musuario->detalheUsuarioInstituicao($idUsuario);
 
-		$dados[0]['nome'] = utf8_encode($dados[0]['nome']);
-		$dados[0]['rua'] = utf8_encode($dados[0]['rua']);
-		$dados[0]['bairro'] = utf8_encode($dados[0]['bairro']);
-		$dados[0]['cidade'] = utf8_encode($dados[0]['cidade']);
-		$dados[0]['setor'] = utf8_encode($dados[0]['setor']);
-		$dados[0]['funcao'] = utf8_encode($dados[0]['funcao']);
-		$dados[0]['qtdAnos'] = $pessoa->qtdAnos($dados[0]['dataNasc']);
-		$dados[0]['dataNasc'] = $validacao->replaceDataView($dados[0]['dataNasc']);
-		$dados[0]['cpf'] = $validacao->replaceCpfView($dados[0]['cpf']);
-		$dados[0]['rg'] = $validacao->replaceRgView($dados[0]['rg']);
-		$dados[0]['celular'] = $validacao->replaceCelularView($dados[0]['celular']);
-		$dados[0]['fixo'] = $validacao->replaceTelefoneFixoView($dados[0]['fixo']);
-		$dados[0]['cep'] = $validacao->replaceCepView($dados[0]['cep']);
-		$dados[0]['estado'] = strtoupper($dados[0]['estado']);
+		if (count($dados) != 0 || count($dados) != "" || count($dados) != null) {
+			$dados[0]['nome'] = utf8_encode($dados[0]['nome']);
+			$dados[0]['rua'] = utf8_encode($dados[0]['rua']);
+			$dados[0]['bairro'] = utf8_encode($dados[0]['bairro']);
+			$dados[0]['cidade'] = utf8_encode($dados[0]['cidade']);
+			$dados[0]['setor'] = utf8_encode($dados[0]['setor']);
+			$dados[0]['funcao'] = utf8_encode($dados[0]['funcao']);
+			$dados[0]['qtdAnos'] = $pessoa->qtdAnos($dados[0]['dataNasc']);
+			$dados[0]['dataNasc'] = $validacao->replaceDataView($dados[0]['dataNasc']);
+			$dados[0]['cpf'] = $validacao->replaceCpfView($dados[0]['cpf']);
+			$dados[0]['rg'] = $validacao->replaceRgView($dados[0]['rg']);
+			$dados[0]['digitoRg'] = $validacao->replaceDigitoRg($dados[0]['rg']);
+			$dados[0]['celular'] = $validacao->replaceCelularView($dados[0]['celular']);
+			$dados[0]['fixo'] = $validacao->replaceTelefoneFixoView($dados[0]['fixo']);
+			$dados[0]['cep'] = $validacao->replaceCepView($dados[0]['cep']);
+			$dados[0]['estado'] = strtoupper($dados[0]['estado']);
+			$dados[0]['isPessoa'] = '1';
 
-		if ($dados[0]['sexo'] == 'm') {
-			$dados[0]['sexo'] = "Masculino";
-		} else if ($dados[0]['sexo'] == 'f') {
-			$dados[0]['sexo'] = "Feminino";
+			if ($dados[0]['sexo'] == 'm') {
+				$dados[0]['sexo'] = "Masculino";
+			} else if ($dados[0]['sexo'] == 'f') {
+				$dados[0]['sexo'] = "Feminino";
+			}
+
+			return $dados[0];
 		}
-		
-		return $dados[0];
+
+		if (count($dadosInstituicao) != 0 || count($dadosInstituicao) != "" || count($dadosInstituicao) != null) {
+			$dadosInstituicao[0]['nome'] = utf8_encode($dadosInstituicao[0]['nome']);
+			$dadosInstituicao[0]['rua'] = utf8_encode($dadosInstituicao[0]['rua']);
+			$dadosInstituicao[0]['bairro'] = utf8_encode($dadosInstituicao[0]['bairro']);
+			$dadosInstituicao[0]['cidade'] = utf8_encode($dadosInstituicao[0]['cidade']);
+			$dadosInstituicao[0]['cnpj'] = $validacao->replaceCnpjView($dadosInstituicao[0]['cnpj']);
+			$dadosInstituicao[0]['celular'] = $validacao->replaceCelularView($dadosInstituicao[0]['celular']);
+			$dadosInstituicao[0]['fixo'] = $validacao->replaceTelefoneFixoView($dadosInstituicao[0]['fixo']);
+			$dadosInstituicao[0]['cep'] = $validacao->replaceCepView($dadosInstituicao[0]['cep']);
+			$dadosInstituicao[0]['estado'] = strtoupper($dadosInstituicao[0]['estado']);
+			$dadosInstituicao[0]['isPessoa'] = '0';
+
+			return $dadosInstituicao[0];
+		}
 	}
 
 	//bloquear o usuario para nao ter acesso ao sistema
@@ -83,22 +104,7 @@ class CDetalheUsuario {
 
 	public static function getEditar($idUsuario)
 	{
-		$musuario = new MUsuario;
-		$validacao = new Validacao;
-
-		$dados = $musuario->detalheUsuario($idUsuario);
-
-		$dados[0]['nome'] = utf8_encode($dados[0]['nome']);
-		$dados[0]['rua'] = utf8_encode($dados[0]['rua']);
-		$dados[0]['bairro'] = utf8_encode($dados[0]['bairro']);
-		$dados[0]['cidade'] = utf8_encode($dados[0]['cidade']);
-		$dados[0]['setor'] = utf8_encode($dados[0]['setor']);
-		$dados[0]['funcao'] = utf8_encode($dados[0]['funcao']);
-		$dados[0]['dataNasc'] = $validacao->replaceDataView($dados[0]['dataNasc']);
-		$dados[0]['digitoRg'] = $validacao->replaceDigitoRg($dados[0]['rg']);
-		$dados[0]['rg'] = $validacao->replaceSemDigitoRg($dados[0]['rg']);
-		
-		return $dados[0];
+		return CDetalheUsuario::getDetalheUsuario($idUsuario);
 	}
 
 	public static function postAlterarSenha($post, $idUsuario)
@@ -118,20 +124,85 @@ class CDetalheUsuario {
 		$mendereco = new MEndereco;
 		$mpessoa = new MPessoa;
 		$musuario = new MUsuario;
+		$minstituicao = new MInstituicao;
 
 		//Recuperando os IDs
 		$usuarioEspecifico = $musuario->usuarioEspecifico($idUsuario);
-		$pessoaEspecifica = $mpessoa->pessoaEspecifica($usuarioEspecifico[0]['idPessoa']);
 
-		$idPessoa = $usuarioEspecifico[0]['idPessoa'];		
-		$idEndereco = $pessoaEspecifica[0]['idEndereco'];
-		$idContato = $pessoaEspecifica[0]['idContato'];
+		$idInstituicao = $usuarioEspecifico[0]['idInstituicao'];
+		$idPessoa = $usuarioEspecifico[0]['idPessoa'];
+
+		if ($idPessoa != null || $idPessoa != "") {
+			$pessoaEspecifica = $mpessoa->pessoaEspecifica($usuarioEspecifico[0]['idPessoa']);
+
+			$idEndereco = $pessoaEspecifica[0]['idEndereco'];
+			$idContato = $pessoaEspecifica[0]['idContato'];
+		}
+
+		if ($idInstituicao != null || $idInstituicao != "") {
+			$instituicaoEspecifica = $minstituicao->InstituicaoEspecifica($usuarioEspecifico[0]['idInstituicao']);
+
+			$idEndereco = $instituicaoEspecifica[0]['idEndereco'];
+			$idContato = $instituicaoEspecifica[0]['idContato'];
+		}
 
 		//Validacoes de Campo
-		//--------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------
+
+		//validando pessoa
+		if ($idPessoa != null || $idPessoa != "") {
+			$validaCPF = $validacao->validaCPF($post['cpfUsuario']);
+			$post['funcaoUsuario'] = $validacao->validarString($post['funcaoUsuario'], 1);
+
+			if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
+				Validacao::setMsgError("CPF Inválido.");
+		        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+		        exit;
+			}
+
+			if (!isset($post['funcaoUsuario']) || $post['funcaoUsuario'] === '') {
+				Validacao::setMsgError("Informe a Função.");
+		        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+		        exit;
+			}
+
+			//Nao pode cadastrar usuarios com cpf iguais
+			//Pelo cpf da para saber se tem duas pessoas com mais de uma conta
+			$cpfIgual = $mpessoa->cpfIgualUpdate($idPessoa);
+
+			foreach ($cpfIgual as $cpf) {
+				if ($validacao->replaceCpfBd($post['cpfUsuario']) == $cpf['cpf']) {
+					Validacao::setMsgError("Este cpf já está cadastrado.");
+			        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+			        exit;
+				}
+			}
+		}
+
+		//validando instituicao
+		if ($idInstituicao != null || $idInstituicao != "") {
+			$validaCNPJ = $validacao->validaCnpj($post['cnpjInstituicao']);
+
+			if ($validaCNPJ === false || !isset($validaCNPJ) || $validaCNPJ === '') {
+				Validacao::setMsgError("CNPJ Inválido.");
+		        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+		        exit;
+			}
+
+			//Nao pode cadastrar usuarios com cpf iguais
+			//Pelo cpf da para saber se tem duas pessoas com mais de uma conta
+			$cnpjIgual = $minstituicao->cnpjIgualUpdate($idInstituicao);
+
+			foreach ($cnpjIgual as $cnpj) {
+				if ($validacao->replaceCnpjBd($post['cnpjInstituicao']) == $cnpj['cnpj']) {
+					Validacao::setMsgError("Este cnpj já está cadastrado.");
+			        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+			        exit;
+				}
+			}
+		}
+
 		$post['nomeUsuario'] = $validacao->validarString($post['nomeUsuario'], 1);
-		$validaCPF = $validacao->validaCPF($post['cpfUsuario']);
-		$post['funcaoUsuario'] = $validacao->validarString($post['funcaoUsuario'], 1);
 		$post['cepUsuario'] = $validacao->validarString($post['cepUsuario'], 3);
 		$post['ruaUsuario'] = $validacao->validarString($post['ruaUsuario'], 2);
 		$post['bairroUsuario'] = $validacao->validarString($post['bairroUsuario'], 2);
@@ -140,34 +211,10 @@ class CDetalheUsuario {
 		$post['complementoUsuario'] = $validacao->validarString($post['complementoUsuario'], 2);
 		$post['usernameUsuario'] = $validacao->validarString($post['usernameUsuario'], 4);
 
-		if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
-			Validacao::setMsgError("CPF Inválido.");
-	        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
-	        exit;
-		}
-
-		if (!isset($post['funcaoUsuario']) || $post['funcaoUsuario'] === '') {
-			Validacao::setMsgError("Informe a Função.");
-	        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
-	        exit;
-		}
-
 		if (!isset($post['usernameUsuario']) || $post['usernameUsuario'] === '') {
 			Validacao::setMsgError("Informe o usuário.");
 	        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
 	        exit;
-		}
-
-		//Nao pode cadastrar usuarios com cpf iguais
-		//Pelo cpf da para saber se tem duas pessoas com mais de uma conta
-		$cpfIgual = $mpessoa->cpfIgualUpdate($idPessoa);
-
-		foreach ($cpfIgual as $cpf) {
-			if ($validacao->replaceCpfBd($post['cpfUsuario']) == $cpf['cpf']) {
-				Validacao::setMsgError("Este cpf já está cadastrado.");
-		        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
-		        exit;
-			}
 		}
 
 		//Nao pode cadastrar usuarios com usernames iguais
@@ -183,10 +230,23 @@ class CDetalheUsuario {
 
 		//----------------------------------------------------------------------------------------
 		//atualizar
-		$musuario->update($post, $idUsuario);
-		$mpessoa->update($post, $idPessoa, 'usuario');
-		$mendereco->update($post, $idEndereco, 'usuario');
-		$mcontato->update($post, $idContato, 'usuario');
+
+		//Editar Pessoa
+		if ($idPessoa != null || $idPessoa != "") {
+			$musuario->update($post, $idUsuario);
+			$mpessoa->update($post, $idPessoa, 'usuario');
+			$mendereco->update($post, $idEndereco, 'usuario');
+			$mcontato->update($post, $idContato, 'usuario');
+		}
+
+		//Editar Instituicao
+		if ($idInstituicao != null || $idInstituicao != "") {
+			$musuario->update($post, $idUsuario);
+			$minstituicao->update($post, $idInstituicao, 'usuario');
+			$mendereco->update($post, $idEndereco, 'usuario');
+			$mcontato->update($post, $idContato, 'usuario');
+		}
+
 	}
 
 }

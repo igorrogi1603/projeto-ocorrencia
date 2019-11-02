@@ -28,11 +28,18 @@
           <!--Detalhes-->
           <div class="col-md-4">
             <p class="sem-espacamento"><strong>Nome: </strong><?php echo htmlspecialchars( $detalheUsuario["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <?php if( $detalheUsuario["isPessoa"] == 0 ){ ?>
+            <p class="sem-espacamento"><strong>CNPJ: </strong><?php echo htmlspecialchars( $detalheUsuario["cnpj"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>Instituição</strong></p>
+            <?php } ?>
+            <?php if( $detalheUsuario["isPessoa"] == 1 ){ ?>
+            <p class="sem-espacamento"><strong>Pessoa Física</strong></p>
             <p class="sem-espacamento"><strong>Data de Nascimento: </strong><?php echo htmlspecialchars( $detalheUsuario["dataNasc"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Idade: </strong><?php echo htmlspecialchars( $detalheUsuario["qtdAnos"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>CPF: </strong><?php echo htmlspecialchars( $detalheUsuario["cpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>RG: </strong><?php echo htmlspecialchars( $detalheUsuario["rg"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Sexo: </strong><?php echo htmlspecialchars( $detalheUsuario["sexo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <?php } ?>
           </div>
           <!--Fim Detalhes-->
 
@@ -40,8 +47,10 @@
           <div class="col-md-4">
             <p class="sem-espacamento"><strong>Usuario: </strong><?php echo htmlspecialchars( $detalheUsuario["user"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Nivel de Acesso: </strong><?php echo htmlspecialchars( $detalheUsuario["nivelAcesso"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <?php if( $detalheUsuario["isPessoa"] == 1 ){ ?>
             <p class="sem-espacamento"><strong>Função: </strong><?php echo htmlspecialchars( $detalheUsuario["funcao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Setor: </strong><?php echo htmlspecialchars( $detalheUsuario["setor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <?php } ?>
             <p class="sem-espacamento"><strong>Celular: </strong><?php echo htmlspecialchars( $detalheUsuario["celular"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Telefone Fixo: </strong><?php echo htmlspecialchars( $detalheUsuario["fixo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>E-mail: </strong><?php echo htmlspecialchars( $detalheUsuario["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>

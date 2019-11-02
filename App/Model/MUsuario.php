@@ -11,7 +11,7 @@ class MUsuario {
 	const SESSION = "User";
 
 	//Cadastrar os Usuarios no banco de dados
-	public function cadastrar($post, $idPessoa)
+	public function cadastrar($post, $id, $complemento)
 	{
 		$sql = new Conexao;
 
@@ -20,18 +20,40 @@ class MUsuario {
 
 		$usuario->setData($post);
 
-		$sql->query("
-			INSERT INTO tb_usuario (idPessoa, nivelAcesso, user, senha, funcao, setor, isBloqueado) 
-			VALUES(:idPessoa, :nivelAcesso, :user, :senha, :funcao, :setor, :isBloqueado)
-		", [
-			":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"],
-			":nivelAcesso" => $usuario->getnivelUsuario(),
-			":user" => Validacao::tirarAcentos($usuario->getusernameUsuario()),
-			":senha" => Usuario::getPasswordHash($usuario->getsenhaUsuario()),
-			":funcao" => utf8_decode($usuario->getfuncaoUsuario()),
-			":setor" => utf8_decode($usuario->getsetorUsuario()),
-			":isBloqueado" => 0
-		]);
+		switch ($complemento) {
+			case 'usuario':
+				$sql->query("
+					INSERT INTO tb_usuario (idPessoa, idInstituicao, nivelAcesso, user, senha, funcao, setor, isBloqueado) 
+					VALUES(:idPessoa, :idInstituicao, :nivelAcesso, :user, :senha, :funcao, :setor, :isBloqueado)
+				", [
+					":idPessoa" => (int)$id[0]["MAX(idPessoa)"],
+					":idInstituicao" => null,
+					":nivelAcesso" => $usuario->getnivelUsuario(),
+					":user" => Validacao::tirarAcentos($usuario->getusernameUsuario()),
+					":senha" => Usuario::getPasswordHash($usuario->getsenhaUsuario()),
+					":funcao" => utf8_decode($usuario->getfuncaoUsuario()),
+					":setor" => utf8_decode($usuario->getsetorUsuario()),
+					":isBloqueado" => 0
+				]);	
+				break;
+
+			case 'instituicao':
+				$sql->query("
+					INSERT INTO tb_usuario (idPessoa, idInstituicao, nivelAcesso, user, senha, funcao, setor, isBloqueado) 
+					VALUES(:idPessoa, :idInstituicao, :nivelAcesso, :user, :senha, :funcao, :setor, :isBloqueado)
+				", [
+					":idPessoa" => null,
+					":idInstituicao" => (int)$id[0]["MAX(idInstituicao)"],
+					":nivelAcesso" => $usuario->getnivelUsuario(),
+					":user" => Validacao::tirarAcentos($usuario->getusernameUsuario()),
+					":senha" => Usuario::getPasswordHash($usuario->getsenhaUsuario()),
+					":funcao" => "",
+					":setor" => "",
+					":isBloqueado" => 0
+				]);		
+				break;
+		}
+
 	}
 
 	public function update($post, $idUsuario)
@@ -42,7 +64,7 @@ class MUsuario {
 		$validacao = new Validacao;		
 
 		$usuario->setData($post);
-
+		
 		$sql->query("
 			UPDATE tb_usuario 
 			SET nivelAcesso = :nivelAcesso, user = :user, funcao = :funcao, setor = :setor
@@ -171,6 +193,17 @@ class MUsuario {
 		);
 	}
 
+	public function listaUsuarioInstituicao()
+	{
+		$sql = new Conexao;
+
+		return $sql->select(
+			"SELECT a.idUsuario, a.funcao, a.setor, a.isBloqueado, b.nome, b.cnpj
+			FROM tb_usuario a
+			INNER JOIN tb_instituicao b ON a.idInstituicao = b.idInstituicao"
+		);
+	}
+
 	//Detalhe do usuario para gerencia-los
 	public function detalheUsuario($idUsuario)
 	{
@@ -184,6 +217,26 @@ class MUsuario {
 			d.idEndereco, d.cep, d.rua, d.numero, d.bairro, d.cidade, d.estado, d.complemento
 			FROM tb_usuario a
 			INNER JOIN tb_pessoa b ON a.idPessoa = b.idPessoa
+			INNER JOIN tb_contato c ON b.idContato = c.idContato
+			INNER JOIN tb_endereco d ON b.idEndereco = d.idEndereco
+			WHERE a.idUsuario = :idUsuario;
+		", [
+			":idUsuario" => $idUsuario
+		]);
+	}
+
+	public function detalheUsuarioInstituicao($idUsuario)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT 
+			a.idUsuario, a.nivelAcesso, a.user, a.funcao, a.setor, a.isBloqueado, a.dataRegistro, 
+			b.idInstituicao, b.nome, b.cnpj,
+			c.idContato, c.celular, c.fixo, c.email, 
+			d.idEndereco, d.cep, d.rua, d.numero, d.bairro, d.cidade, d.estado, d.complemento
+			FROM tb_usuario a
+			INNER JOIN tb_instituicao b ON a.idInstituicao = b.idInstituicao
 			INNER JOIN tb_contato c ON b.idContato = c.idContato
 			INNER JOIN tb_endereco d ON b.idEndereco = d.idEndereco
 			WHERE a.idUsuario = :idUsuario;

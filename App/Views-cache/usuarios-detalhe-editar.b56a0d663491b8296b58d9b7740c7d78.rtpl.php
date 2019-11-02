@@ -44,6 +44,18 @@
             </div>
             <!--Fim Nome do usuario-->
 
+            <?php if( $dadosUsuario["isPessoa"] == 0 ){ ?>
+            <!--CPF-->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="id-cnpj-instituicao">CNPJ *</label>
+                <input type="text" name="cnpjInstituicao" id="id-cnpj-instituicao" class="form-control" placeholder="___.___.___-__" onblur="digitoRg()" value="<?php echo htmlspecialchars( $dadosUsuario["cnpj"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
+              </div>
+            </div>
+            <!--Fim CPF-->
+            <?php } ?>
+
+            <?php if( $dadosUsuario["isPessoa"] == 1 ){ ?>
             <!--Data de Nascimento da usuario-->
               <div class="col-md-3">
                 <div class="form-group">
@@ -102,9 +114,15 @@
                 </div>
               </div>
               <!--Fim RG digito verificador-->
+              <?php } ?>
 
               <!--Telefone Fixo usuario-->
+              <?php if( $dadosUsuario["isPessoa"] == 1 ){ ?>
               <div class="col-md-3">
+              <?php } ?>
+              <?php if( $dadosUsuario["isPessoa"] == 0 ){ ?>
+              <div class="col-md-6">
+              <?php } ?>
                 <div class="form-group">
                   <label for="id-telfixo-usuario">Telefone Fixo</label>
                   <input type="text" name="telFixoUsuario" id="id-telfixo-usuario" class="form-control" placeholder="____-____" value="<?php echo htmlspecialchars( $dadosUsuario["fixo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
@@ -113,7 +131,12 @@
               <!--Telefone Fixo usuario-->
 
               <!--Celular usuario-->
+              <?php if( $dadosUsuario["isPessoa"] == 1 ){ ?>
               <div class="col-md-3">
+              <?php } ?>
+              <?php if( $dadosUsuario["isPessoa"] == 0 ){ ?>
+              <div class="col-md-6">
+              <?php } ?>
                 <div class="form-group">
                   <label for="id-celular-usuario">Celular</label>
                   <input type="text" name="celularUsuario" id="id-celular-usuario" class="form-control" placeholder="_____-____" value="<?php echo htmlspecialchars( $dadosUsuario["celular"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
@@ -126,7 +149,12 @@
             <!--Inicio Row-->
             <div class="row">
               <!--Email do usuario-->
+              <?php if( $dadosUsuario["isPessoa"] == 1 ){ ?>
               <div class="col-md-6">
+              <?php } ?>
+              <?php if( $dadosUsuario["isPessoa"] == 0 ){ ?>
+              <div class="col-md-12">
+              <?php } ?>
                 <div class="form-group">
                   <label for="id-email-usuario">E-mail</label>
                   <input type="email" name="emailUsuario" id="id-email-usuario" class="form-control" placeholder="Digite o e-mail aqui" maxlength="100" value="<?php echo htmlspecialchars( $dadosUsuario["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
@@ -134,6 +162,7 @@
               </div>
               <!--Fim Email do usuario-->
 
+              <?php if( $dadosUsuario["isPessoa"] == 1 ){ ?>
               <!--setor do usuario-->
               <div class="col-md-3">
                 <div class="form-group">
@@ -155,6 +184,7 @@
                 </div>
               </div>
               <!--Fim funcao do usuario-->
+              <?php } ?>
             </div>
             <!--Fim Row-->
 

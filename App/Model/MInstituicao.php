@@ -29,7 +29,7 @@ class MInstituicao {
 		]);
 	}
 
-	public function update($post, $idInstituicao)
+	public function update($post, $idInstituicao, $complemento = "agressor")
 	{
 		$sql = new Conexao;
 
@@ -38,15 +38,35 @@ class MInstituicao {
 
 		$instituicao->setData($post);
 
-		$sql->query("
-			UPDATE tb_instituicao
-			SET nome = :nome, cnpj = :cnpj
-			WHERE idInstituicao = :idInstituicao
-		", [
-			":nome" => utf8_decode($validacao->validarString($instituicao->getnomeAgressor(), 1)),
-			":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjAgressor()),
-			":idInstituicao" => $idInstituicao
-		]);
+		switch ($complemento) {
+			case 'agressor':
+				$sql->query("
+					UPDATE tb_instituicao
+					SET nome = :nome, cnpj = :cnpj
+					WHERE idInstituicao = :idInstituicao
+				", [
+					":nome" => utf8_decode($validacao->validarString($instituicao->getnomeAgressor(), 1)),
+					":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjAgressor()),
+					":idInstituicao" => $idInstituicao
+				]);
+				break;
+
+			case 'usuario':
+				$sql->query("
+					UPDATE tb_instituicao
+					SET nome = :nome, cnpj = :cnpj
+					WHERE idInstituicao = :idInstituicao
+				", [
+					":nome" => utf8_decode($validacao->validarString($instituicao->getnomeUsuario(), 1)),
+					":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjInstituicao()),
+					":idInstituicao" => $idInstituicao
+				]);
+				break;
+			
+			default:
+				# code...
+				break;
+		}
 	}
 
 	//Lista tudo da tabela
@@ -127,6 +147,14 @@ class MInstituicao {
 		return $sql->select("SELECT cnpj FROM tb_instituicao WHERE idInstituicao != :idInstituicao", [
 			":idInstituicao" => $idInstituicao
 		]);
+	}
+
+	//Evitar de duplicar cnpj no banco quando for cadastrar uma instituicao
+	public function cnpjIgual()
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT cnpj FROM tb_instituicao");		
 	}
 
 }

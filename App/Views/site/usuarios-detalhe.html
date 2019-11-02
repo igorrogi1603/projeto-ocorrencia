@@ -28,11 +28,18 @@
           <!--Detalhes-->
           <div class="col-md-4">
             <p class="sem-espacamento"><strong>Nome: </strong>{$detalheUsuario.nome}</p>
+            {if="$detalheUsuario.isPessoa == 0"}
+            <p class="sem-espacamento"><strong>CNPJ: </strong>{$detalheUsuario.cnpj}</p>
+            <p class="sem-espacamento"><strong>Instituição</strong></p>
+            {/if}
+            {if="$detalheUsuario.isPessoa == 1"}
+            <p class="sem-espacamento"><strong>Pessoa Física</strong></p>
             <p class="sem-espacamento"><strong>Data de Nascimento: </strong>{$detalheUsuario.dataNasc}</p>
             <p class="sem-espacamento"><strong>Idade: </strong>{$detalheUsuario.qtdAnos}</p>
             <p class="sem-espacamento"><strong>CPF: </strong>{$detalheUsuario.cpf}</p>
             <p class="sem-espacamento"><strong>RG: </strong>{$detalheUsuario.rg}</p>
             <p class="sem-espacamento"><strong>Sexo: </strong>{$detalheUsuario.sexo}</p>
+            {/if}
           </div>
           <!--Fim Detalhes-->
 
@@ -40,8 +47,10 @@
           <div class="col-md-4">
             <p class="sem-espacamento"><strong>Usuario: </strong>{$detalheUsuario.user}</p>
             <p class="sem-espacamento"><strong>Nivel de Acesso: </strong>{$detalheUsuario.nivelAcesso}</p>
+            {if="$detalheUsuario.isPessoa == 1"}
             <p class="sem-espacamento"><strong>Função: </strong>{$detalheUsuario.funcao}</p>
             <p class="sem-espacamento"><strong>Setor: </strong>{$detalheUsuario.setor}</p>
+            {/if}
             <p class="sem-espacamento"><strong>Celular: </strong>{$detalheUsuario.celular}</p>
             <p class="sem-espacamento"><strong>Telefone Fixo: </strong>{$detalheUsuario.fixo}</p>
             <p class="sem-espacamento"><strong>E-mail: </strong>{$detalheUsuario.email}</p>

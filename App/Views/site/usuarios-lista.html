@@ -34,7 +34,12 @@
             <tr>
               <td>{$value.idUsuario}</td>
               <td>{$value.nome}</td>
+              {if="$value.isCpf == '1'"}
               <td>{$value.cpf}</td>
+              {/if}
+              {if="$value.isCpf == '0'"}
+              <td>{$value.cnpj}</td>
+              {/if}
               <td>{$value.funcao}</td>
               <td>{$value.setor}</td>
               <td>
