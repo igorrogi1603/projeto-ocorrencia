@@ -46,15 +46,16 @@ class MSolicitacao {
 		$solicitacao->setData($post);
 
 		$sql->query("
-			INSERT INTO tb_solicitacao (idOcorrencia, idRemetente, idDestinatario, assunto, mensagem, dataCriacao)
-			VALUES(:idOcorrencia, :idRemetente, :idDestinatario, :assunto, :mensagem, :dataCriacao)
+			INSERT INTO tb_solicitacao (idOcorrencia, idRemetente, idDestinatario, assunto, mensagem, dataCriacao, isResposta)
+			VALUES(:idOcorrencia, :idRemetente, :idDestinatario, :assunto, :mensagem, :dataCriacao, :isResposta)
 		", [
 			":idOcorrencia" => (int)$idOcorrencia,
 			":idRemetente" => (int)$idRemetente,
 			":idDestinatario" => (int)$idDestinatario,
 			":assunto" => utf8_decode($solicitacao->getassunto()),
 			":mensagem" => utf8_decode($solicitacao->getmensagem()),
-			":dataCriacao" => date("Y-m-d H:i:s")
+			":dataCriacao" => date("Y-m-d H:i:s"),
+			":isResposta" => 0
 		]);
 	}
 
@@ -154,6 +155,33 @@ class MSolicitacao {
 		} else {
 			return false;
 		}
+	}
+
+	//FAZER DOIS SELECT UM PARA USUARIO PESSOA FISICA E OUTRO PARA USUARIO INSTITUICAO
+	//Lista de Solicitacao
+	public function listaSolicitacao($idOcorrencia)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT 
+			a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			b.idVitimasApuracao,
+			c.idUsuario idUsuarioDestinatario,
+			d.funcao funcaoDestinatario, d.setor setorDestinatario,
+			e.nome nomeDestinatario, e.cpf cpfDestinatario, e.rg rgDestinatario,
+			g.nome nomeVitima, g.cpf cpfVitima, g.rg rgVitima 
+			FROM tb_solicitacao a
+			INNER JOIN tb_solicitacaovitimas b ON a.idSolicitacao = b.idSolicitacao
+			INNER JOIN tb_destinatario c ON a.idDestinatario = c.idDestinatario
+			INNER JOIN tb_usuario d ON c.idUsuario = d.idUsuario
+			INNER JOIN tb_pessoa e ON d.idPessoa = e.idPessoa
+			INNER JOIN tb_vitimasApuracao f ON b.idVitimasApuracao = f.idVitimasApuracao
+			INNER JOIN tb_pessoa g ON f.idPessoa = g.idPessoa
+			WHERE a.idOcorrencia = :idOcorrencia
+		", [
+			":idOcorrencia" => $idOcorrencia
+		]);
 	}
 
 }
