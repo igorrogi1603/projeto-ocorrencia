@@ -13,6 +13,7 @@ use \App\Controller\COcorrenciaAgressorCadastrar;
 use \App\Controller\COcorrenciaAgressor;
 use \App\Controller\COcorrenciaAgressorEnviarArquivo;
 use \App\Controller\COcorrenciaDescricao;
+use \App\Controller\COcorrenciaNovaSolicitacao;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -583,22 +584,41 @@ $app->get("/ocorrencia-arquivos", function(){
 
 //--------------------------------------------------------------
 
-$app->get("/ocorrencia-solicitacao", function(){
+$app->get("/ocorrencia-solicitacao/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
 	$page = new Page();
 
-	$page->setTpl("ocorrencia-solicitacao");
+	$page->setTpl("ocorrencia-solicitacao", [
+		"idOcorrencia" => $idOcorrencia
+	]);
 });
 
-$app->get("/ocorrencia-nova-solicitacao", function(){
+$app->get("/ocorrencia-nova-solicitacao/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
+	$usuarios = COcorrenciaNovaSolicitacao::getNovaSolicitacaoUsuario();
+	$vitima = COcorrenciaNovaSolicitacao::getNovaSolicitacaoVitima($idOcorrencia);
+
 	$page = new Page();
 
-	$page->setTpl("ocorrencia-nova-solicitacao");
+	$page->setTpl("ocorrencia-nova-solicitacao", [
+		"usuarios" => $usuarios,
+		"vitima" => $vitima,
+		"idOcorrencia" => $idOcorrencia
+	]);
+});
+
+$app->post("/ocorrencia-nova-solicitacao/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaNovaSolicitacao::postNovaSolicitacao($_POST, $idOcorrencia);
+
+	header("Location: /ocorrencia-solicitacao/".$idOcorrencia);
+	exit;
 });
 
 $app->get("/ocorrencia-ler-solicitacao", function(){
@@ -608,15 +628,6 @@ $app->get("/ocorrencia-ler-solicitacao", function(){
 	$page = new Page();
 
 	$page->setTpl("ocorrencia-ler-solicitacao");
-});
-
-$app->get("/ocorrencia-solicitacoes-enviadas", function(){
-
-	Usuario::verifyLogin();
-
-	$page = new Page();
-
-	$page->setTpl("ocorrencia-solicitacoes-enviadas");
 });
 
 //--------------------------------------------------------------

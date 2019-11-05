@@ -15,7 +15,7 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="/ocorrencia-nova-solicitacao" class="btn btn-primary btn-block margin-bottom">Nova Solicitação</a>
+          <a href="/ocorrencia-nova-solicitacao/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-block margin-bottom">Nova Solicitação</a>
 
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -28,9 +28,9 @@
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="/ocorrencia-solicitacao"><i class="fa fa-inbox"></i> Caixa de Entrada
-                  <span class="label label-primary pull-right">12</span></a></li>
-                <li><a href="/ocorrencia-solicitacoes-enviadas"><i class="fa fa-envelope-o"></i> Enviados</a></li>
+                <li class="active"><a href="/ocorrencia-solicitacao/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>"><i class="fa fa-inbox"></i> Caixa de Entrada
+                  <span class="label label-primary pull-right">12</span></a>
+                </li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -38,73 +38,55 @@
           <!-- /. box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-9">
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Nova Solicitação</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="form-group">
-                <select class="form-control" name="para">
-                  <option value="">Para: Pessoa 1</option>
-                  <option value="">Para: Pessoa 1</option>
-                  <option value="">Para: Pessoa 1</option>
-                  <option value="">Para: Pessoa 1</option>
-                  <option value="">Para: Pessoa 1</option>
-                  <option value="">Para: Pessoa 1</option>
-                </select>
+
+        <form action="/ocorrencia-nova-solicitacao/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
+
+          <div class="col-md-9">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Nova Solicitação</h3>
               </div>
-              <div class="form-group">
-                <input class="form-control" placeholder="Assunto:">
-              </div>
-              <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control" style="height: 300px">
-                      <h1><u>Heading Of Message</u></h1>
-                      <h4>Subheading</h4>
-                      <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
-                        was born and I will give you a complete account of the system, and expound the actual teachings
-                        of the great explorer of the truth, the master-builder of human happiness. No one rejects,
-                        dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know
-                        how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again
-                        is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain,
-                        but because occasionally circumstances occur in which toil and pain can procure him some great
-                        pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise,
-                        except to obtain some advantage from it? But who has any right to find fault with a man who
-                        chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that
-                        produces no resultant pleasure? On the other hand, we denounce with righteous indignation and
-                        dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so
-                        blinded by desire, that they cannot foresee</p>
-                      <ul>
-                        <li>List item one</li>
-                        <li>List item two</li>
-                        <li>List item three</li>
-                        <li>List item four</li>
-                      </ul>
-                      <p>Thank you,</p>
-                      <p>John Doe</p>
-                    </textarea>
-              </div>
-              <div class="form-group">
-                <div class="btn btn-default btn-file">
-                  <i class="fa fa-paperclip"></i> Attachment
-                  <input type="file" name="attachment">
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="ocorrencia-solicitacao-vitima">Vítima:</label>
+                  <select id="ocorrencia-solicitacao-vitima" class="form-control" name="vitima">
+                    <?php $counter1=-1;  if( isset($vitima) && ( is_array($vitima) || $vitima instanceof Traversable ) && sizeof($vitima) ) foreach( $vitima as $key1 => $value1 ){ $counter1++; ?>
+                    <option value="<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                    <?php } ?>
+                  </select>
                 </div>
-                <p class="help-block">Max. 32MB</p>
+                <div class="form-group">
+                  <label for="ocorrencia-solicitacao-para">Para:</label>
+                  <select id="ocorrencia-solicitacao-para" class="form-control" name="para">
+                    <?php $counter1=-1;  if( isset($usuarios) && ( is_array($usuarios) || $usuarios instanceof Traversable ) && sizeof($usuarios) ) foreach( $usuarios as $key1 => $value1 ){ $counter1++; ?>
+                    <option value="<?php echo htmlspecialchars( $value1["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Para: <?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $value1["funcao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="ocorrencia-solicitacao-assunto">Assunto:</label>
+                  <input id="ocorrencia-solicitacao-assunto" class="form-control" name="assunto" placeholder="Assunto:">
+                </div>
+                <div class="form-group">
+                  <label for="ocorrencia-solicitacao-mensagem">Mensagem:</label>
+                  <textarea id="ocorrencia-solicitacao-mensagem" name="mensagem" class="form-control" rows="10" placeholder="Mensagem:"></textarea>
+                </div>
               </div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-              <div class="pull-right">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Enviar</button>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <div class="pull-right">
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Enviar</button>
+                </div>
+                <a href="/ocorrencia-solicitacao/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-times"></i> Excluir</a>
               </div>
-              <a href="/ocorrencia-solicitacao" class="btn btn-default"><i class="fa fa-times"></i> Excluir</a>
+              <!-- /.box-footer -->
             </div>
-            <!-- /.box-footer -->
+            <!-- /. box -->
           </div>
-          <!-- /. box -->
-        </div>
-        <!-- /.col -->
+          <!-- /.col -->
+        </form>
+        <!--Fim Form-->
       </div>
       <!-- /.row -->
     </section>

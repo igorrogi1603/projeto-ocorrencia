@@ -187,7 +187,7 @@ class MUsuario {
 		$sql = new Conexao;
 
 		return $sql->select(
-			"SELECT a.idUsuario, a.funcao, a.setor, a.isBloqueado, b.nome, b.cpf
+			"SELECT a.idUsuario, a.funcao, a.setor, a.isBloqueado, a.nivelAcesso, b.nome, b.cpf
 			FROM tb_usuario a
 			INNER JOIN tb_pessoa b ON a.idPessoa = b.idPessoa"
 		);
@@ -198,7 +198,7 @@ class MUsuario {
 		$sql = new Conexao;
 
 		return $sql->select(
-			"SELECT a.idUsuario, a.funcao, a.setor, a.isBloqueado, b.nome, b.cnpj
+			"SELECT a.idUsuario, a.funcao, a.setor, a.isBloqueado, a.nivelAcesso, b.nome, b.cnpj
 			FROM tb_usuario a
 			INNER JOIN tb_instituicao b ON a.idInstituicao = b.idInstituicao"
 		);
