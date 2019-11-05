@@ -589,15 +589,13 @@ $app->get("/ocorrencia-solicitacao/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
-	$lista = COcorrenciaSolicitacao::listaSolicitacao($idOcorrencia);
-
-	var_dump($lista);
-	exit;
+	$lista = COcorrenciaSolicitacao::getListaSolicitacao($idOcorrencia);
 
 	$page = new Page();
 
 	$page->setTpl("ocorrencia-solicitacao", [
-		"idOcorrencia" => $idOcorrencia
+		"idOcorrencia" => $idOcorrencia,
+		"mensagem" => $lista
 	]);
 });
 
@@ -627,13 +625,18 @@ $app->post("/ocorrencia-nova-solicitacao/:idOcorrencia", function($idOcorrencia)
 	exit;
 });
 
-$app->get("/ocorrencia-ler-solicitacao", function(){
+$app->get("/ocorrencia-ler-solicitacao/:idOcorrencia/:idSolicitacao/:isInstituicao", function($idOcorrencia, $idSolicitacao, $isInstituicao){
 
 	Usuario::verifyLogin();
 
+	$lista = COcorrenciaSolicitacao::getlerSolicitacao($idOcorrencia, $idSolicitacao, $isInstituicao);
+
 	$page = new Page();
 
-	$page->setTpl("ocorrencia-ler-solicitacao");
+	$page->setTpl("ocorrencia-ler-solicitacao", [
+		"idOcorrencia" => $idOcorrencia, 
+		"mensagem" => $lista
+	]);
 });
 
 //--------------------------------------------------------------

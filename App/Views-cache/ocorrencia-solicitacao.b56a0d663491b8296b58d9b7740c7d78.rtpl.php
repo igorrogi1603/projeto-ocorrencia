@@ -52,15 +52,21 @@
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
-                  
+                  <?php $counter1=-1;  if( isset($mensagem) && ( is_array($mensagem) || $mensagem instanceof Traversable ) && sizeof($mensagem) ) foreach( $mensagem as $key1 => $value1 ){ $counter1++; ?>
                   <tr>
-                    <td><a href="/ocorrencia-ler-solicitacao"><i class="fa fa-inbox"></i></a></td>
-                    <td class="mailbox-name"><a href="/ocorrencia-ler-solicitacao">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                    <?php if( $value1["isInstituicao"] == '1' ){ ?>
+                    <td><a href="/ocorrencia-ler-solicitacao/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/1"><i class="fa fa-inbox"></i></a></td>
+                    <td class="mailbox-name"><a href="/ocorrencia-ler-solicitacao/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/1"><?php echo htmlspecialchars( $value1["nomeDestinatario"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></td>
+                    <?php } ?>
+                    <?php if( $value1["isInstituicao"] == '0' ){ ?>
+                    <td><a href="/ocorrencia-ler-solicitacao/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/0"><i class="fa fa-inbox"></i></a></td>
+                    <td class="mailbox-name"><a href="/ocorrencia-ler-solicitacao/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/0"><?php echo htmlspecialchars( $value1["funcaoDestinatario"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </a></td>
+                    <?php } ?>
+                    <td class="mailbox-subject" style="overflow: hidden; max-width:500px; text-overflow: ellipsis; white-space:nowrap;"><b><?php echo htmlspecialchars( $value1["assunto"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> - <?php echo htmlspecialchars( $value1["mensagem"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $value1["mensagem"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </td>
-                    <td class="mailbox-date">5 mins ago</td>
+                    <td class="mailbox-date"><?php echo htmlspecialchars( $value1["dataCriacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                   </tr>
-                  
+                  <?php } ?>
                   </tbody>
                 </table>
                 <!-- /.table -->

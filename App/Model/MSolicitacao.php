@@ -158,14 +158,14 @@ class MSolicitacao {
 	}
 
 	//FAZER DOIS SELECT UM PARA USUARIO PESSOA FISICA E OUTRO PARA USUARIO INSTITUICAO
-	//Lista de Solicitacao
+	//Lista de Solicitacao Pessoa Fisica
 	public function listaSolicitacao($idOcorrencia)
 	{
 		$sql = new Conexao;
 
 		return $sql->select("
 			SELECT 
-			a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
 			b.idVitimasApuracao,
 			c.idUsuario idUsuarioDestinatario,
 			d.funcao funcaoDestinatario, d.setor setorDestinatario,
@@ -182,6 +182,84 @@ class MSolicitacao {
 		", [
 			":idOcorrencia" => $idOcorrencia
 		]);
+	}
+
+	//Lista de Solicitacao Instituicao
+	public function listaSolicitacaoInstituicao($idOcorrencia)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT 
+			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			b.idVitimasApuracao,
+			c.idUsuario idUsuarioDestinatario,
+			d.funcao funcaoDestinatario, d.setor setorDestinatario,
+			e.nome nomeDestinatario, e.cnpj cnpjDestinatario,
+			g.nome nomeVitima, g.cpf cpfVitima, g.rg rgVitima 
+			FROM tb_solicitacao a
+			INNER JOIN tb_solicitacaovitimas b ON a.idSolicitacao = b.idSolicitacao
+			INNER JOIN tb_destinatario c ON a.idDestinatario = c.idDestinatario
+			INNER JOIN tb_usuario d ON c.idUsuario = d.idUsuario
+			INNER JOIN tb_instituicao e ON d.idInstituicao = e.idInstituicao
+			INNER JOIN tb_vitimasApuracao f ON b.idVitimasApuracao = f.idVitimasApuracao
+			INNER JOIN tb_pessoa g ON f.idPessoa = g.idPessoa
+			WHERE a.idOcorrencia = :idOcorrencia
+		", [
+			":idOcorrencia" => $idOcorrencia
+		]);
+	}
+
+	//Select Solicitacao Especifica Pessoa
+	public function listaSolicitacaoPessoa($idSolicitacao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT 
+			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			b.idVitimasApuracao,
+			c.idUsuario idUsuarioDestinatario,
+			d.funcao funcaoDestinatario, d.setor setorDestinatario,
+			e.nome nomeDestinatario, e.cpf cpfDestinatario, e.rg rgDestinatario,
+			g.nome nomeVitima, g.cpf cpfVitima, g.rg rgVitima 
+			FROM tb_solicitacao a
+			INNER JOIN tb_solicitacaovitimas b ON a.idSolicitacao = b.idSolicitacao
+			INNER JOIN tb_destinatario c ON a.idDestinatario = c.idDestinatario
+			INNER JOIN tb_usuario d ON c.idUsuario = d.idUsuario
+			INNER JOIN tb_pessoa e ON d.idPessoa = e.idPessoa
+			INNER JOIN tb_vitimasApuracao f ON b.idVitimasApuracao = f.idVitimasApuracao
+			INNER JOIN tb_pessoa g ON f.idPessoa = g.idPessoa
+			WHERE a.idSolicitacao = :idSolicitacao
+		", [
+			":idSolicitacao" => $idSolicitacao
+		]);
+	}
+
+	//Select Solicitacao Especifica Instituicao
+	public function solicitacaoEspecificaInstituicao($idSolicitacao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT 
+			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			b.idVitimasApuracao,
+			c.idUsuario idUsuarioDestinatario,
+			d.funcao funcaoDestinatario, d.setor setorDestinatario,
+			e.nome nomeDestinatario, e.cnpj cnpjDestinatario,
+			g.nome nomeVitima, g.cpf cpfVitima, g.rg rgVitima 
+			FROM tb_solicitacao a
+			INNER JOIN tb_solicitacaovitimas b ON a.idSolicitacao = b.idSolicitacao
+			INNER JOIN tb_destinatario c ON a.idDestinatario = c.idDestinatario
+			INNER JOIN tb_usuario d ON c.idUsuario = d.idUsuario
+			INNER JOIN tb_instituicao e ON d.idInstituicao = e.idInstituicao
+			INNER JOIN tb_vitimasApuracao f ON b.idVitimasApuracao = f.idVitimasApuracao
+			INNER JOIN tb_pessoa g ON f.idPessoa = g.idPessoa
+			WHERE a.idSolicitacao = :idSolicitacao
+		", [
+			":idSolicitacao" => $idSolicitacao
+		]);	
 	}
 
 }

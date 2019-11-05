@@ -52,15 +52,21 @@
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
-                  
+                  {loop="$mensagem"}
                   <tr>
-                    <td><a href="/ocorrencia-ler-solicitacao"><i class="fa fa-inbox"></i></a></td>
-                    <td class="mailbox-name"><a href="/ocorrencia-ler-solicitacao">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                    {if="$value.isInstituicao == '1'"}
+                    <td><a href="/ocorrencia-ler-solicitacao/{$idOcorrencia}/{$value.idSolicitacao}/1"><i class="fa fa-inbox"></i></a></td>
+                    <td class="mailbox-name"><a href="/ocorrencia-ler-solicitacao/{$idOcorrencia}/{$value.idSolicitacao}/1">{$value.nomeDestinatario}</a></td>
+                    {/if}
+                    {if="$value.isInstituicao == '0'"}
+                    <td><a href="/ocorrencia-ler-solicitacao/{$idOcorrencia}/{$value.idSolicitacao}/0"><i class="fa fa-inbox"></i></a></td>
+                    <td class="mailbox-name"><a href="/ocorrencia-ler-solicitacao/{$idOcorrencia}/{$value.idSolicitacao}/0">{$value.funcaoDestinatario} </a></td>
+                    {/if}
+                    <td class="mailbox-subject" style="overflow: hidden; max-width:500px; text-overflow: ellipsis; white-space:nowrap;"><b>{$value.assunto}</b> - {$value.mensagem} {$value.mensagem}
                     </td>
-                    <td class="mailbox-date">5 mins ago</td>
+                    <td class="mailbox-date">{$value.dataCriacao}</td>
                   </tr>
-                  
+                  {/loop}
                   </tbody>
                 </table>
                 <!-- /.table -->
