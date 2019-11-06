@@ -5,17 +5,17 @@ namespace App\Controller;
 use \App\Classe\Validacao;
 use \App\Model\MSolicitacao;
 
-class COcorrenciaSolicitacao {
+class CSolicitacoes {
 
-	public static function getListaSolicitacao($idOcorrencia)
+	public static function getListaSolicitacoes($idUsuario)
 	{
 		//Instancia
 		$msolicitacao = new MSolicitacao;
 		$validacao = new Validacao;
 
 		//Recuperando a lista de pesso fisica e Instituicao
-		$instituicao = $msolicitacao->listaOcorrenciaSolicitacaoInstituicao($idOcorrencia);
-		$pessoa = $msolicitacao->listaOcorrenciaSolicitacao($idOcorrencia);
+		$instituicao = $msolicitacao->listaSolicitacaoInstituicao($idUsuario);
+		$pessoa = $msolicitacao->listaSolicitacao($idUsuario);
 
 		//Validando os dados da Instituicao
 		for ($i = 0; $i < count($instituicao); $i++) {
@@ -58,7 +58,7 @@ class COcorrenciaSolicitacao {
 		}
 	}
 
-	public static function getlerSolicitacao($idOcorrencia, $idSolicitacao, $isInstituicao)
+	public static function getlerSolicitacao($idSolicitacao, $isInstituicao)
 	{
 		//Instancia
 		$msolicitacao = new MSolicitacao;

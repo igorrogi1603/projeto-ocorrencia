@@ -2,44 +2,33 @@
 
 use \App\Classe\Usuario;
 use \App\Config\Page;
+use \App\Controller\CSolicitacoes;
 
 $app->get('/solicitacoes', function(){
 
 	Usuario::verifyLogin();
 
+	$lista = CSolicitacoes::getListaSolicitacoes($_SESSION['User']['idUsuario']);
+
 	$page = new Page();
 
-	$page->setTpl("solicitacoes");
+	$page->setTpl("solicitacoes", [
+		"mensagem" => $lista
+	]);
 
 });
 
-$app->get('/ler-solicitacao', function(){
+$app->get('/ler-solicitacao/:idSolicitacao/:isInstituicao', function($idSolicitacao, $isInstituicao){
 
 	Usuario::verifyLogin();
 
-	$page = new Page();
-
-	$page->setTpl("ler-solicitacao");
-
-});
-
-$app->get('/nova-solicitacao', function(){
-
-	Usuario::verifyLogin();
+	$lista = CSolicitacoes::getlerSolicitacao($idSolicitacao, $isInstituicao);
 
 	$page = new Page();
 
-	$page->setTpl("nova-solicitacao");
-
-});
-
-$app->get('/solicitacoes-enviadas', function(){
-
-	Usuario::verifyLogin();
-
-	$page = new Page();
-
-	$page->setTpl("solicitacoes-enviadas");
+	$page->setTpl("ler-solicitacao", [
+		"mensagem" => $lista
+	]);
 
 });
 

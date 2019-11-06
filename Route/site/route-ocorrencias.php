@@ -585,6 +585,37 @@ $app->get("/ocorrencia-arquivos", function(){
 
 //--------------------------------------------------------------
 
+$app->get("/ocorrencia-enviada", function(){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-enviada");
+});
+
+$app->post("/ocorrencia-enviada", function(){
+
+	Usuario::verifyLogin();
+
+	header('Location: /ocorrencia-enviada');
+    exit;
+});
+
+$app->get("/ocorrencia-enviada-print", function(){
+
+	Usuario::verifyLogin();
+
+	$page = new Page([
+		"header"=>false,
+		"footer"=>false
+	]);
+
+	$page->setTpl("/ocorrencia-enviada-print");	
+});
+
+//--------------------------------------------------------------
+
 $app->get("/ocorrencia-solicitacao/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
@@ -639,34 +670,4 @@ $app->get("/ocorrencia-ler-solicitacao/:idOcorrencia/:idSolicitacao/:isInstituic
 	]);
 });
 
-//--------------------------------------------------------------
-
-$app->get("/ocorrencia-enviada", function(){
-
-	Usuario::verifyLogin();
-
-	$page = new Page();
-
-	$page->setTpl("ocorrencia-enviada");
-});
-
-$app->post("/ocorrencia-enviada", function(){
-
-	Usuario::verifyLogin();
-
-	header('Location: /ocorrencia-enviada');
-    exit;
-});
-
-$app->get("/ocorrencia-enviada-print", function(){
-
-	Usuario::verifyLogin();
-
-	$page = new Page([
-		"header"=>false,
-		"footer"=>false
-	]);
-
-	$page->setTpl("/ocorrencia-enviada-print");	
-});
 ?>

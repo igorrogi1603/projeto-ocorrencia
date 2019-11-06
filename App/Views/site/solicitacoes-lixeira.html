@@ -15,8 +15,6 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="/nova-solicitacao" class="btn btn-primary btn-block margin-bottom">Nova Solicitação</a>
-
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Pastas</h3>
@@ -30,7 +28,6 @@
               <ul class="nav nav-pills nav-stacked">
                 <li><a href="/solicitacoes"><i class="fa fa-inbox"></i> Caixa de Entrada
                   <span class="label label-primary pull-right">12</span></a></li>
-                <li><a href="/solicitacoes-enviadas"><i class="fa fa-envelope-o"></i> Enviados</a></li>
                 <li class="active"><a href="/solicitacoes-lixeira"><i class="fa fa-trash-o"></i> Lixeira</a></li>
               </ul>
             </div>
@@ -43,35 +40,11 @@
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Lixeira</h3>
-
-              <div class="box-tools pull-right">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Pesquisar Solicitação">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                </div>
-              </div>
-              <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
+                <a href="/solicitacoes-lixeira" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></a>
               </div>
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
@@ -93,23 +66,7 @@
             <!-- /.box-body -->
             <div class="box-footer no-padding">
               <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
+                <a href="/solicitacoes-lixeira" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></a>
               </div>
             </div>
           </div>

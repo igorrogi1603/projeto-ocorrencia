@@ -15,8 +15,6 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="/nova-solicitacao" class="btn btn-primary btn-block margin-bottom">Nova Solicitação</a>
-
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Pastas</h3>
@@ -30,7 +28,6 @@
               <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="/solicitacoes"><i class="fa fa-inbox"></i> Caixa de Entrada
                   <span class="label label-primary pull-right">12</span></a></li>
-                <li><a href="/solicitacoes-enviadas"><i class="fa fa-envelope-o"></i> Enviados</a></li>
                 <li><a href="/solicitacoes-lixeira"><i class="fa fa-trash-o"></i> Lixeira</a></li>
               </ul>
             </div>
@@ -43,47 +40,37 @@
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Caixa de Entrada</h3>
-
-              <div class="box-tools pull-right">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Pesquisar Solicitação">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                </div>
-              </div>
-              <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                </div>
-                <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
               </div>
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
+                  <?php $counter1=-1;  if( isset($mensagem) && ( is_array($mensagem) || $mensagem instanceof Traversable ) && sizeof($mensagem) ) foreach( $mensagem as $key1 => $value1 ){ $counter1++; ?>
+
                   <tr>
-                    <td><input type="checkbox"></td>
-                    <td><a href="/ler-solicitacao"><i class="fa fa-inbox"></i></a></td>
-                    <td class="mailbox-name"><a href="/ler-solicitacao">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                    <?php if( $value1["isInstituicao"] == '1' ){ ?>
+
+                    <td><a href="/ler-solicitacao/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/1"><i class="fa fa-inbox"></i></a></td>
+                    <td class="mailbox-name"><a href="/ler-solicitacao/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/1"><?php echo htmlspecialchars( $value1["nomeDestinatario"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></td>
+                    <?php } ?>
+
+                    <?php if( $value1["isInstituicao"] == '0' ){ ?>
+
+                    <td><a href="/ler-solicitacao/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/0"><i class="fa fa-inbox"></i></a></td>
+                    <td class="mailbox-name"><a href="/ler-solicitacao/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/0"><?php echo htmlspecialchars( $value1["funcaoDestinatario"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </a></td>
+                    <?php } ?>
+
+                    <td class="mailbox-subject" style="overflow: hidden; max-width:500px; text-overflow: ellipsis; white-space:nowrap;"><b><?php echo htmlspecialchars( $value1["assunto"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> - <?php echo htmlspecialchars( $value1["mensagem"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $value1["mensagem"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
                     </td>
-                    <td class="mailbox-date">5 mins ago</td>
+                    <td class="mailbox-date"><?php echo htmlspecialchars( $value1["dataCriacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                   </tr>
+                  <?php } ?>
+
                   </tbody>
                 </table>
                 <!-- /.table -->
@@ -93,23 +80,7 @@
             <!-- /.box-body -->
             <div class="box-footer no-padding">
               <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
+                <a href="/solicitacoes" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></a>
               </div>
             </div>
           </div>
