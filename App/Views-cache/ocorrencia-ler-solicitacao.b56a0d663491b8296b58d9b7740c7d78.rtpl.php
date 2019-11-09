@@ -63,6 +63,8 @@
             <?php if( $value1["isResposta"] == '1' ){ ?>
             <div class="box-footer">
               <h4>Resposta</h4>
+
+              <p><?php echo htmlspecialchars( $value1["resposta"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             </div>
             <!-- /.box-footer -->
             <?php } ?>

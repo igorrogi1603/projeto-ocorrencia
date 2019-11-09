@@ -62,18 +62,23 @@
             <?php if( $value1["isResposta"] == '1' ){ ?>
             <div class="box-footer">
               <h4>Resposta</h4>
+
+              <p><?php echo htmlspecialchars( $value1["resposta"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             </div>
             <!-- /.box-footer -->
             <?php } ?>
           </div>
-          <?php } ?>
+          
           <div class="box-footer">
+            <?php if( $value1["isResposta"] == '0' ){ ?>
             <div class="pull-right">
-              <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Responder</button>
+              <a href="/solicitacao-responder/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-reply"></i> Responder</a>
             </div>
+            <?php } ?>
             <button type="button" id="btn" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
           </div>
           <!-- /.box-footer -->
+          <?php } ?>
         </div>
         <!-- /. box -->
       </div>

@@ -46,8 +46,8 @@ class MSolicitacao {
 		$solicitacao->setData($post);
 
 		$sql->query("
-			INSERT INTO tb_solicitacao (idOcorrencia, idRemetente, idDestinatario, assunto, mensagem, dataCriacao, isResposta)
-			VALUES(:idOcorrencia, :idRemetente, :idDestinatario, :assunto, :mensagem, :dataCriacao, :isResposta)
+			INSERT INTO tb_solicitacao (idOcorrencia, idRemetente, idDestinatario, assunto, mensagem, dataCriacao, isResposta, isLixeira)
+			VALUES(:idOcorrencia, :idRemetente, :idDestinatario, :assunto, :mensagem, :dataCriacao, :isResposta, :isLixeira)
 		", [
 			":idOcorrencia" => (int)$idOcorrencia,
 			":idRemetente" => (int)$idRemetente,
@@ -55,7 +55,8 @@ class MSolicitacao {
 			":assunto" => utf8_decode($solicitacao->getassunto()),
 			":mensagem" => utf8_decode($solicitacao->getmensagem()),
 			":dataCriacao" => date("Y-m-d H:i:s"),
-			":isResposta" => 0
+			":isResposta" => 0,
+			":isLixeira" => 0
 		]);
 	}
 
@@ -157,6 +158,49 @@ class MSolicitacao {
 		}
 	}
 
+	//Alterar valor da solicitacao IsLixeira
+	public function alterarIsLixeira($idSolicitacao)
+	{
+		$sql = new Conexao;
+
+		$sql->query("
+			UPDATE tb_solicitacao
+			SET isLixeira = :isLixeira
+			WHERE idSolicitacao = :idSolicitacao
+		", [
+			":isLixeira" => 1,
+			":idSolicitacao" => $idSolicitacao
+		]);
+	}
+
+	//Alterar isResposta da solicitacao
+	public function alterarIsResposta($idSolicitacao)
+	{
+		$sql = new Conexao;
+
+		$sql->query("
+			UPDATE tb_solicitacao
+			SET isResposta = :isResposta
+			WHERE idSolicitacao = :idSolicitacao
+		", [
+			":isResposta" => 1,
+			":idSolicitacao" => $idSolicitacao
+		]);
+	}
+
+	public function listaSolicitacaoResposta($idSolicitacao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT *
+			FROM tb_resposta
+			WHERE idSolicitacao = :idSolicitacao
+		", [
+			":idSolicitacao" => $idSolicitacao
+		]);
+	}
+
 	//FAZER DOIS SELECT UM PARA USUARIO PESSOA FISICA E OUTRO PARA USUARIO INSTITUICAO
 	//Lista de Solicitacao Pessoa Fisica
 	public function listaOcorrenciaSolicitacao($idOcorrencia)
@@ -165,7 +209,8 @@ class MSolicitacao {
 
 		return $sql->select("
 			SELECT 
-			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, 
+			a.mensagem, a.dataCriacao, a.isResposta, a.isLixeira,
 			b.idVitimasApuracao,
 			c.idUsuario idUsuarioDestinatario,
 			d.funcao funcaoDestinatario, d.setor setorDestinatario,
@@ -191,7 +236,8 @@ class MSolicitacao {
 
 		return $sql->select("
 			SELECT 
-			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, 
+			a.mensagem, a.dataCriacao, a.isResposta, a.isLixeira,
 			b.idVitimasApuracao,
 			c.idUsuario idUsuarioDestinatario,
 			d.funcao funcaoDestinatario, d.setor setorDestinatario,
@@ -217,7 +263,8 @@ class MSolicitacao {
 
 		return $sql->select("
 			SELECT 
-			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, 
+			a.mensagem, a.dataCriacao, a.isResposta, a.isLixeira,
 			b.idVitimasApuracao,
 			c.idUsuario idUsuarioDestinatario,
 			d.funcao funcaoDestinatario, d.setor setorDestinatario,
@@ -243,7 +290,8 @@ class MSolicitacao {
 
 		return $sql->select("
 			SELECT 
-			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, 
+			a.mensagem, a.dataCriacao, a.isResposta, a.isLixeira,
 			b.idVitimasApuracao,
 			c.idUsuario idUsuarioDestinatario,
 			d.funcao funcaoDestinatario, d.setor setorDestinatario,
@@ -270,7 +318,8 @@ class MSolicitacao {
 
 		return $sql->select("
 			SELECT 
-			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, 
+			a.mensagem, a.dataCriacao, a.isResposta, a.isLixeira,
 			b.idVitimasApuracao,
 			c.idUsuario idUsuarioDestinatario,
 			d.funcao funcaoDestinatario, d.setor setorDestinatario,
@@ -296,7 +345,8 @@ class MSolicitacao {
 
 		return $sql->select("
 			SELECT 
-			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, a.mensagem, a.dataCriacao, a.isResposta,
+			a.idSolicitacao, a.idOcorrencia, a.idRemetente, a.idDestinatario, a.assunto, 
+			a.mensagem, a.dataCriacao, a.isResposta, a.isLixeira,
 			b.idVitimasApuracao,
 			c.idUsuario idUsuarioDestinatario,
 			d.funcao funcaoDestinatario, d.setor setorDestinatario,

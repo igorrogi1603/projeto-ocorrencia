@@ -62,18 +62,23 @@
             {if="$value.isResposta == '1'"}
             <div class="box-footer">
               <h4>Resposta</h4>
+
+              <p>{$value.resposta}</p>
             </div>
             <!-- /.box-footer -->
             {/if}
           </div>
-          {/loop}
+          
           <div class="box-footer">
+            {if="$value.isResposta == '0'"}
             <div class="pull-right">
-              <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Responder</button>
+              <a href="/solicitacao-responder/{$value.idSolicitacao}/{$value.isInstituicao}" class="btn btn-default"><i class="fa fa-reply"></i> Responder</a>
             </div>
+            {/if}
             <button type="button" id="btn" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
           </div>
           <!-- /.box-footer -->
+          {/loop}
         </div>
         <!-- /. box -->
       </div>

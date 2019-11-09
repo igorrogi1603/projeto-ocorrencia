@@ -51,16 +51,20 @@
                   <tbody>
                   <?php $counter1=-1;  if( isset($mensagem) && ( is_array($mensagem) || $mensagem instanceof Traversable ) && sizeof($mensagem) ) foreach( $mensagem as $key1 => $value1 ){ $counter1++; ?>
 
+                  <?php if( $value1["isLixeira"] == '0' ){ ?>
+
                   <tr>
                     <?php if( $value1["isInstituicao"] == '1' ){ ?>
 
                     <td><a href="/ler-solicitacao/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/1"><i class="fa fa-inbox"></i></a></td>
+                    <td><a href="/solicitacao-lixeira/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/1"><i class="fa fa-trash"></i></a></td>
                     <td class="mailbox-name"><a href="/ler-solicitacao/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/1"><?php echo htmlspecialchars( $value1["nomeDestinatario"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></td>
                     <?php } ?>
 
                     <?php if( $value1["isInstituicao"] == '0' ){ ?>
 
                     <td><a href="/ler-solicitacao/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/0"><i class="fa fa-inbox"></i></a></td>
+                    <td><a href="/solicitacao-lixeira/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/0"><i class="fa fa-trash"></i></a></td>
                     <td class="mailbox-name"><a href="/ler-solicitacao/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/0"><?php echo htmlspecialchars( $value1["funcaoDestinatario"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </a></td>
                     <?php } ?>
 
@@ -69,6 +73,8 @@
                     </td>
                     <td class="mailbox-date"><?php echo htmlspecialchars( $value1["dataCriacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                   </tr>
+                  <?php } ?>
+
                   <?php } ?>
 
                   </tbody>

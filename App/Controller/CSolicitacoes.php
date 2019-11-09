@@ -64,6 +64,9 @@ class CSolicitacoes {
 		$msolicitacao = new MSolicitacao;
 		$validacao = new Validacao;
 
+		//Recuperando Resposta
+		$listaResposta = $msolicitacao->listaSolicitacaoResposta($idSolicitacao);
+
 		if ($isInstituicao == 1) {
 			//Recuperando a lista da Instituicao
 			$instituicao = $msolicitacao->solicitacaoEspecificaInstituicao($idSolicitacao);
@@ -76,6 +79,12 @@ class CSolicitacoes {
 				$instituicao[$i]['nomeDestinatario'] = utf8_encode($instituicao[$i]['nomeDestinatario']);
 				$instituicao[$i]['dataCriacao'] = $validacao->replaceDataView($instituicao[$i]['dataCriacao']);
 				$instituicao[$i]['isInstituicao'] = '1';
+				
+				if (isset($listaResposta) && $listaResposta != "" && $listaResposta != null) {
+					$instituicao[$i]['resposta'] = utf8_encode($listaResposta[$i]['resposta']);
+				} else {
+					$instituicao[$i]['resposta'] = "";
+				}
 			}
 
 			return $instituicao;
@@ -93,11 +102,39 @@ class CSolicitacoes {
 				$pessoa[$i]['nomeDestinatario'] = utf8_encode($pessoa[$i]['nomeDestinatario']);
 				$pessoa[$i]['dataCriacao'] = $validacao->replaceDataView($pessoa[$i]['dataCriacao']);
 				$pessoa[$i]['isInstituicao'] = '0';
+				
+				if (isset($listaResposta) && $listaResposta != "" && $listaResposta != null) {
+					$pessoa[$i]['resposta'] = utf8_encode($listaResposta[$i]['resposta']);
+				} else {
+					$pessoa[$i]['resposta'] = "";
+				}
 			}
 
 			return $pessoa;
 		}
 
+	}
+
+	//Alterar status da lixeira da solicitacao
+	public static function getSolicitacoesLixeira($idSolicitacao)
+	{
+		//Instancia
+		$msolicitacao = new MSolicitacao;
+
+		$msolicitacao->alterarIsLixeira($idSolicitacao);
+	}
+
+	//Alterar status isResposta e cadastrar na tabela resposta da solicitacao
+	public static function postSolicitacaoResponder($post, $idSolicitacao)
+	{
+		//Instancia
+		$msolicitacao = new MSolicitacao;
+
+		//cadastrando na tabela resposta
+		$msolicitacao->cadastrarResposta($post, $idSolicitacao);
+
+		//Alterar o isResposta para 1 que agora tem resposta na solicitacao
+		$msolicitacao->alterarIsResposta($idSolicitacao);
 	}
 
 }

@@ -32,14 +32,50 @@ $app->get('/ler-solicitacao/:idSolicitacao/:isInstituicao', function($idSolicita
 
 });
 
-$app->get('/solicitacoes-lixeira', function(){
+$app->get('/solicitacao-responder/:idSolicitacao/:isInstituicao', function($idSolicitacao, $isInstituicao){
 
 	Usuario::verifyLogin();
 
 	$page = new Page();
 
-	$page->setTpl("solicitacoes-lixeira");
+	$page->setTpl("solicitacao-responder", [
+		"idSolicitacao" => $idSolicitacao,
+		"isInstituicao" => $isInstituicao
+	]);
 
+});
+
+$app->post('/solicitacao-responder/:idSolicitacao/:isInstituicao', function($idSolicitacao, $isInstituicao){
+
+	Usuario::verifyLogin();
+
+	CSolicitacoes::postSolicitacaoResponder($_POST, $idSolicitacao);
+
+	header("Location: /ler-solicitacao/".$idSolicitacao."/".$isInstituicao);
+	exit;
+});
+
+$app->get('/solicitacoes-lixeira', function(){
+
+	Usuario::verifyLogin();
+
+	$lista = CSolicitacoes::getListaSolicitacoes($_SESSION['User']['idUsuario']);
+
+	$page = new Page();
+
+	$page->setTpl("solicitacoes-lixeira", [
+		"mensagem" => $lista
+	]);
+});
+
+$app->get('/solicitacao-lixeira/:idSolicitacao/:isInstituicao', function($idSolicitacao, $isInstituicao){
+
+	Usuario::verifyLogin();
+
+	CSolicitacoes::getSolicitacoesLixeira($idSolicitacao);
+
+	header("Location: /solicitacoes");
+	exit;
 });
 
 ?>
