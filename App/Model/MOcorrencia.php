@@ -50,6 +50,48 @@ class MOcorrencia {
 		}
 	}
 
+	public function reabrirOcorrencia($idOcorrencia)
+	{	
+		$sql = new Conexao;
+
+		$sql->query("
+			UPDATE tb_ocorrencia
+			SET status = :status
+			WHERE idOcorrencia = :idOcorrencia
+		", [
+			":status" => 2,
+			"idOcorrencia" => $idOcorrencia
+		]);
+	}
+
+	public function arquivarOcorrencia($idOcorrencia)
+	{	
+		$sql = new Conexao;
+
+		$sql->query("
+			UPDATE tb_ocorrencia
+			SET status = :status
+			WHERE idOcorrencia = :idOcorrencia
+		", [
+			":status" => 3,
+			"idOcorrencia" => $idOcorrencia
+		]);
+	}
+
+	public function encerrarOcorrencia($idOcorrencia)
+	{	
+		$sql = new Conexao;
+
+		$sql->query("
+			UPDATE tb_ocorrencia
+			SET status = :status
+			WHERE idOcorrencia = :idOcorrencia
+		", [
+			":status" => 4,
+			"idOcorrencia" => $idOcorrencia
+		]);
+	}
+
 	//Listar todos os dados da ocorrencia como pessoas envolvidas, endereco, contato, dados da apuracao
 	public function listaOcorrenciaCompleta()
 	{

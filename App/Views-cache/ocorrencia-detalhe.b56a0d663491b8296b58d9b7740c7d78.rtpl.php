@@ -57,29 +57,39 @@
         <!--Inicio Row-->
         <div class="row">
           <div class="col-md-12">
-            <!--Aparecer para todos os status-->
+            
+            
+            
+            <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 1 ){ ?>
             <a href="/ocorrencia-vitimas-lista/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Vítimas</a>
-
-            <!--Aparecer para todos os status-->
             <a href="/ocorrencia-agressor/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Agressor</a>
-
-            <!--Aparecer para todos os status-->
             <a href="/ocorrencia-descricao/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-list-alt"></i>Descrição</a>
-
-            <!--Aparecer para todos os status-->
             <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
-
-            <!--Aparecer se o status for aberta, reaberta-->
             <a href="/ocorrencia-solicitacao/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-envelope"></i>Solicitação</a>
+            <a onclick="confirmarArquivar();" class="btn btn-app"><i class="fa fa-inbox"></i>Arquivar</a>
+            <a onclick="confirmarEncerrar();" class="btn btn-app"><i class="fa fa-archive"></i>Encerrar</a>
+            <?php } ?>
             
-            <!--Aparecer se o status for aberta, reaberta-->
-            <a href="#" class="btn btn-app"><i class="fa fa-inbox"></i>Arquivar</a>
-            <!--Aparecer quando estiver arquivada a ocorrencia-->
-            <!--<a href="#" class="btn btn-app"><i class="fa fa-inbox"></i>Desarquivar</a>-->
+            <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 2 ){ ?>
+            <a href="/ocorrencia-vitimas-lista/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Vítimas</a>
+            <a href="/ocorrencia-agressor/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Agressor</a>
+            <a href="/ocorrencia-descricao/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-list-alt"></i>Descrição</a>
+            <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
+            <a href="/ocorrencia-solicitacao/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-envelope"></i>Solicitação</a>
+            <a onclick="confirmarArquivar();" class="btn btn-app"><i class="fa fa-inbox"></i>Arquivar</a>
+            <a onclick="confirmarEncerrar();" class="btn btn-app"><i class="fa fa-archive"></i>Encerrar</a>
+            <?php } ?>
 
-            <!--Aparecer se o status for aberta, reaberta e arquivada-->
-            <a href="#" class="btn btn-app"><i class="fa fa-archive"></i>Encerrar</a>
-            
+            <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 3 ){ ?>
+            <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
+            <a onclick="confirmarReabrir();" class="btn btn-app"><i class="fa fa-inbox"></i>Reabrir</a>
+            <?php } ?>
+
+            <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 4 ){ ?>
+            <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
+            <a onclick="confirmarReabrir();" class="btn btn-app"><i class="fa fa-inbox"></i>Reabrir</a>
+            <?php } ?>
+
           </div>
         </div>
         <!--Fim Row-->
@@ -92,3 +102,26 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+function confirmarArquivar()
+{
+  if(confirm("Voce realmente deseja ARQUIVAR essa ocorrência?")){
+    location.href="/ocorrencia-detalhe/arquivar/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>";
+  }
+}
+
+function confirmarEncerrar()
+{
+  if(confirm("Voce realmente deseja ENCERRAR essa ocorrência?")){
+    location.href="/ocorrencia-detalhe/encerrar/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>";
+  }
+}
+
+function confirmarReabrir()
+{
+  if(confirm("Voce realmente deseja REABRIR essa ocorrência?")){
+    location.href="/ocorrencia-detalhe/reabrir/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>";
+  }
+}
+</script>

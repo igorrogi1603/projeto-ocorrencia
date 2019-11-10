@@ -15,6 +15,7 @@ use \App\Controller\COcorrenciaAgressorEnviarArquivo;
 use \App\Controller\COcorrenciaDescricao;
 use \App\Controller\COcorrenciaNovaSolicitacao;
 use \App\Controller\COcorrenciaSolicitacao;
+use \App\Controller\COcorrenciaStatus;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -669,5 +670,38 @@ $app->get("/ocorrencia-ler-solicitacao/:idOcorrencia/:idSolicitacao/:isInstituic
 		"mensagem" => $lista
 	]);
 });
+
+//-----------------------------------------------------------------
+//Status da ocorrencia
+$app->get("/ocorrencia-detalhe/arquivar/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaStatus::getArquivar($idOcorrencia);
+
+	header("Location: /ocorrencias-arquivadas");
+	exit;
+});
+
+$app->get("/ocorrencia-detalhe/encerrar/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaStatus::getEncerrar($idOcorrencia);
+
+	header("Location: /ocorrencias-encerradas");
+	exit;
+});
+
+$app->get("/ocorrencia-detalhe/reabrir/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaStatus::getReabrir($idOcorrencia);
+
+	header("Location: /ocorrencias-reabertas");
+	exit;
+});
+
 
 ?>
