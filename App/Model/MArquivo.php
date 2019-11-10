@@ -56,7 +56,7 @@ class MArquivo {
 		$sql = new Conexao;
 
 		return $sql->select("SELECT * FROM tb_arquivo WHERE url = :url", [
-			"url" => $url
+			":url" => $url
 		]);
 	}
 
@@ -70,7 +70,7 @@ class MArquivo {
 			WHERE idArquivo = :idArquivo
 		", [
 			":status" => $status,
-			"idArquivo" => $idArquivo
+			":idArquivo" => $idArquivo
 		]);
 	}
 
