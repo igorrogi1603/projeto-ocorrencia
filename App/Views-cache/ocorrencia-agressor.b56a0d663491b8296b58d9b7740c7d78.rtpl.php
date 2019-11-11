@@ -31,52 +31,54 @@
 
         <br>
 
-        <!--Tabela-->
-        <table class="table table-hover">
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>CPF / CNPJ</th>
-            <th>Tipo</th>
-            <th>Status</th>
-            <th>Opções</th>
-          </tr>
-          <?php $counter1=-1;  if( isset($agressor) && ( is_array($agressor) || $agressor instanceof Traversable ) && sizeof($agressor) ) foreach( $agressor as $key1 => $value1 ){ $counter1++; ?>
-          <tr>
-            <td><?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <?php if( $value1["isCpf"] == '1' ){ ?>
-            <td><?php echo htmlspecialchars( $value1["cpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <?php } ?>
-            <?php if( $value1["isCpf"] == '0' ){ ?>
-            <td><?php echo htmlspecialchars( $value1["cnpj"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-            <?php } ?>
-            <?php if( $value1["isInstituicao"] == '0' ){ ?>
-            <td>Pessoa Física</td>
-            <?php } ?>
-            <?php if( $value1["isInstituicao"] == '1' ){ ?>
-            <td>Instituição</td>
-            <?php } ?>
-            <?php if( $value1["isExcluido"] == '0' ){ ?>
-            <td>Ativo</td>
-            <?php } ?>
-            <?php if( $value1["isExcluido"] == '1' ){ ?>
-            <td>Excluido</td>
-            <?php } ?>
-            <td>
-              <?php if( $value1["isExcluido"] == '1' ){ ?>
-              <a href="/ocorrencia-agressor-detalhe/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
+        <div style="overflow: auto; width: 100%; height: 100%;">
+          <!--Tabela-->
+          <table class="table table-hover">
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>CPF / CNPJ</th>
+              <th>Tipo</th>
+              <th>Status</th>
+              <th>Opções</th>
+            </tr>
+            <?php $counter1=-1;  if( isset($agressor) && ( is_array($agressor) || $agressor instanceof Traversable ) && sizeof($agressor) ) foreach( $agressor as $key1 => $value1 ){ $counter1++; ?>
+            <tr>
+              <td><?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <?php if( $value1["isCpf"] == '1' ){ ?>
+              <td><?php echo htmlspecialchars( $value1["cpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <?php } ?>
+              <?php if( $value1["isCpf"] == '0' ){ ?>
+              <td><?php echo htmlspecialchars( $value1["cnpj"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <?php } ?>
+              <?php if( $value1["isInstituicao"] == '0' ){ ?>
+              <td>Pessoa Física</td>
+              <?php } ?>
+              <?php if( $value1["isInstituicao"] == '1' ){ ?>
+              <td>Instituição</td>
               <?php } ?>
               <?php if( $value1["isExcluido"] == '0' ){ ?>
-              <a href="/ocorrencia-agressor-detalhe/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
-              <a href="/ocorrencia-agressor-editar/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-              <a href="/ocorrencia-agressor-excluir/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              <td>Ativo</td>
               <?php } ?>
-            </td>
-          </tr>
-          <?php } ?>
-        </table>
-        <!--Fim Tabela-->
+              <?php if( $value1["isExcluido"] == '1' ){ ?>
+              <td>Excluido</td>
+              <?php } ?>
+              <td>
+                <?php if( $value1["isExcluido"] == '1' ){ ?>
+                <a href="/ocorrencia-agressor-detalhe/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
+                <?php } ?>
+                <?php if( $value1["isExcluido"] == '0' ){ ?>
+                <a href="/ocorrencia-agressor-detalhe/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
+                <a href="/ocorrencia-agressor-editar/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                <a href="/ocorrencia-agressor-excluir/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                <?php } ?>
+              </td>
+            </tr>
+            <?php } ?>
+          </table>
+          <!--Fim Tabela-->
+        </div>
       </div>
       <!-- /.box-body -->
     </div>

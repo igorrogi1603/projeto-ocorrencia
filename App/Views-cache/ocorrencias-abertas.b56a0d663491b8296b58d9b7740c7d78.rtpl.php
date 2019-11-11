@@ -15,37 +15,39 @@
     <div class="box">
       <!-- /.box-header -->
       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Vítima</th>
-              <th>CPF da Vítima</th>
-              <th>Data de Criação</th>
-              <th>Opções</th>
-            </tr>
-          </thead>
+        <div style="overflow: auto; width: 100%; height: 100%;">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Vítima</th>
+                <th>CPF da Vítima</th>
+                <th>Data de Criação</th>
+                <th>Opções</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <?php $counter1=-1;  if( isset($listaOcorrencia) && ( is_array($listaOcorrencia) || $listaOcorrencia instanceof Traversable ) && sizeof($listaOcorrencia) ) foreach( $listaOcorrencia as $key1 => $value1 ){ $counter1++; ?>
+            <tbody>
+              <?php $counter1=-1;  if( isset($listaOcorrencia) && ( is_array($listaOcorrencia) || $listaOcorrencia instanceof Traversable ) && sizeof($listaOcorrencia) ) foreach( $listaOcorrencia as $key1 => $value1 ){ $counter1++; ?>
 
-            <?php if( $value1["statusOcorrencia"] == 1 ){ ?>
+              <?php if( $value1["statusOcorrencia"] == 1 ){ ?>
 
-            <tr>
-              <td><?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td><?php echo htmlspecialchars( $value1["cpfVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td><?php echo htmlspecialchars( $value1["dataCriacaoOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td>
-                <a href="/ocorrencia-detalhe/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-edit"></i></a>
-              </td>
-            </tr>
-            <?php } ?>
+              <tr>
+                <td><?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                <td><?php echo htmlspecialchars( $value1["nomeVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                <td><?php echo htmlspecialchars( $value1["cpfVitima"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                <td><?php echo htmlspecialchars( $value1["dataCriacaoOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                <td>
+                  <a href="/ocorrencia-detalhe/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                </td>
+              </tr>
+              <?php } ?>
 
-            <?php } ?>
+              <?php } ?>
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
       <!-- /.box-body -->
     </div>

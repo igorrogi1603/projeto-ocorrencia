@@ -16,54 +16,54 @@
     <div class="box">
       <!-- /.box-header -->
       <div class="box-body">
-        
-        <table id="example1" class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>CPF</th>
-              <th>Cargo</th>
-              <th>Setor</th>
-              <th>Opções</th>
-            </tr>
-          </thead>
+        <div style="overflow: auto; width: 100%; height: 100%;">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Cargo</th>
+                <th>Setor</th>
+                <th>Opções</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <?php $counter1=-1;  if( isset($listaUsuario) && ( is_array($listaUsuario) || $listaUsuario instanceof Traversable ) && sizeof($listaUsuario) ) foreach( $listaUsuario as $key1 => $value1 ){ $counter1++; ?>
+            <tbody>
+              <?php $counter1=-1;  if( isset($listaUsuario) && ( is_array($listaUsuario) || $listaUsuario instanceof Traversable ) && sizeof($listaUsuario) ) foreach( $listaUsuario as $key1 => $value1 ){ $counter1++; ?>
 
-            <tr>
-              <td><?php echo htmlspecialchars( $value1["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <?php if( $value1["isCpf"] == '1' ){ ?>
+              <tr>
+                <td><?php echo htmlspecialchars( $value1["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                <?php if( $value1["isCpf"] == '1' ){ ?>
 
-              <td><?php echo htmlspecialchars( $value1["cpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <?php } ?>
-
-              <?php if( $value1["isCpf"] == '0' ){ ?>
-
-              <td><?php echo htmlspecialchars( $value1["cnpj"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <?php } ?>
-
-              <td><?php echo htmlspecialchars( $value1["funcao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td><?php echo htmlspecialchars( $value1["setor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td>
-                <a href="/usuarios-detalhe/<?php echo htmlspecialchars( $value1["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                <?php if( $value1["isBloqueado"] == 0 ){ ?>
-
-                <a href="#" class="btn btn-success"><i class="fa fa-check"></i></a>
-                <?php }else{ ?>
-
-                <a href="#" class="btn btn-danger"><i class="fa fa-ban"></i></a>
+                <td><?php echo htmlspecialchars( $value1["cpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                 <?php } ?>
 
-              </td>
-            </tr>
-            <?php } ?>
+                <?php if( $value1["isCpf"] == '0' ){ ?>
 
-          </tbody>
-        </table>
-        
+                <td><?php echo htmlspecialchars( $value1["cnpj"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                <?php } ?>
+
+                <td><?php echo htmlspecialchars( $value1["funcao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                <td><?php echo htmlspecialchars( $value1["setor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                <td>
+                  <a href="/usuarios-detalhe/<?php echo htmlspecialchars( $value1["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                  <?php if( $value1["isBloqueado"] == 0 ){ ?>
+
+                  <a href="#" class="btn btn-success"><i class="fa fa-check"></i></a>
+                  <?php }else{ ?>
+
+                  <a href="#" class="btn btn-danger"><i class="fa fa-ban"></i></a>
+                  <?php } ?>
+
+                </td>
+              </tr>
+              <?php } ?>
+
+            </tbody>
+          </table>
+        </div>
       </div>
       <!--Fim box body-->
     </div>

@@ -1,70 +1,91 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>Arquivos da Ocorrência</h1>
-    <ol class="breadcrumb">
-      <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Arquivos da Ocorrência</li>
-    </ol>
-  </section>
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Main content -->
-  <section class="content">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-    <!--Box Detalhes-->
-    <div class="box">
-      <!-- /.box-header -->
-      <div class="box-body">
-        
-        <!--Arquivos-->
+    <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
+    <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
 
-        <!--Row-->
-        <div class="row">
-          <div class="col-md-12">
-            <a href="#" class="btn btn-flat btn-success"><i class="fa fa-upload"></i> Novo Arquivo</a>
-          </div>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/res/site/dist/css/bootstrap4/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/res/site/dist/css/css-arquivo-ocorrencia.css">
+
+    <title>SOM | Arquivos da Ocorrência</title>
+  </head>
+  <body>
+    
+    <div class="container-fluid total">
+      <!--Row-->
+      <div class="row" class="total">
+        <!--Inicio Lateral-->
+        <div class="col-md-3 total">
+
+          <ul class="list-group list-group-flush lateral">
+
+            <div class="row lateral-superior">
+              <div class="col-md-12">
+                <label><input type="checkbox" name="selecionaTudo" value="0"> Seleciona Tudo</label>
+              </div>
+            </div>
+
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+            <a href="#"><li class="list-group-item documento">
+              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            </li></a>
+          </ul>
         </div>
-        <!--Fim Row-->
+        <!--Fim Lateral-->
 
-        <br>
-
-        <!--Tabela-->
-        <table class="table table-hover">
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Date</th>
-            <th>Opções</th>
-          </tr>
-          <tr>
-            <td>183</td>
-            <td>John Doe</td>
-            <td>11-7-2014</td>
-            <td>
-              <a href="#" class="btn btn-primary"><i class="fa fa-download"></i></a>
-              <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <td>219</td>
-            <td>Alexander Pierce</td>
-            <td>11-7-2014</td>
-            <td>
-              <a href="#" class="btn btn-primary"><i class="fa fa-download"></i></a>
-              <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-            </td>
-          </tr>
-        </table>
-        <!--Fim Tabela-->
-        <!--Fim Arquivos-->
-
+        <!--Inicio iframes-->
+        <div class="col-md-8" class="total">
+          <iframe id="id-iframe" src="/ocorrencias/ocorrencia42/Apuracao16.pdf"></iframe>
+        </div>
+        <!--Fim iframes-->
       </div>
-      <!-- /.box-body -->
+      <!--Fim row-->      
     </div>
-    <!--Fim Box Detalhes-->
 
-  </section>
-  <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/res/site/dist/js/bootstrap4/jquery-3.3.1.slim.min.js"></script>
+    <script src="/res/site/dist/js/bootstrap4/popper.min.js"></script>
+    <script src="/res/site/dist/js/bootstrap4/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -58,13 +58,13 @@
         <div class="row">
           <div class="col-md-12">
             
-            
-            
             <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 1 ){ ?>
             <a href="/ocorrencia-vitimas-lista/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Vítimas</a>
             <a href="/ocorrencia-agressor/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Agressor</a>
             <a href="/ocorrencia-descricao/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-list-alt"></i>Descrição</a>
-            <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
+            
+            <a href="" class="btn btn-app" onclick="open('/ocorrencia-arquivos/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>','','status=no,Width=1000,Height=600');"><i class="fa fa-folder"></i>Arquivos</a>
+
             <a href="/ocorrencia-solicitacao/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-envelope"></i>Solicitação</a>
             <a onclick="confirmarArquivar();" class="btn btn-app"><i class="fa fa-inbox"></i>Arquivar</a>
             <a onclick="confirmarEncerrar();" class="btn btn-app"><i class="fa fa-archive"></i>Encerrar</a>
@@ -74,7 +74,9 @@
             <a href="/ocorrencia-vitimas-lista/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Vítimas</a>
             <a href="/ocorrencia-agressor/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-user"></i>Agressor</a>
             <a href="/ocorrencia-descricao/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-list-alt"></i>Descrição</a>
-            <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
+            
+            <a href="" class="btn btn-app" onclick="open('/ocorrencia-arquivos/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>','','status=no,Width=1000,Height=600');"><i class="fa fa-folder"></i>Arquivos</a>
+
             <a href="/ocorrencia-solicitacao/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-envelope"></i>Solicitação</a>
             <a onclick="confirmarArquivar();" class="btn btn-app"><i class="fa fa-inbox"></i>Arquivar</a>
             <a onclick="confirmarEncerrar();" class="btn btn-app"><i class="fa fa-archive"></i>Encerrar</a>

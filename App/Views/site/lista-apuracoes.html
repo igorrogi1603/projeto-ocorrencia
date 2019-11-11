@@ -16,35 +16,35 @@
     <div class="box">
       <!-- /.box-header -->
       <div class="box-body">
-        
-        <table id="example1" class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Vítima</th>
-              <th>CPF da Vítima</th>
-              <th>Data de Criação</th>
-              <th>Opções</th>
-            </tr>
-          </thead>
+        <div style="overflow: auto; width: 100%; height: 100%;">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Vítima</th>
+                <th>CPF da Vítima</th>
+                <th>Data de Criação</th>
+                <th>Opções</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {loop="$listaApuracao"}
-            {if="$value.status == 1"}
-            <tr>
-              <td>{$value.idCriarApuracao}</td>
-              <td>{$value.nomeVitima}</td>
-              <td>{$value.cpfVitima}</td>
-              <td>{$value.dataCriacao}</td>
-              <td>
-                <a href="/apuracao-detalhe/{$value.idCriarApuracao}" class="btn btn-default"><i class="fa fa-edit"></i></a>
-              </td>
-            </tr>
-            {/if}
-            {/loop}
-          </tbody>
-        </table>
-        
+            <tbody>
+              {loop="$listaApuracao"}
+              {if="$value.status == 1"}
+              <tr>
+                <td>{$value.idCriarApuracao}</td>
+                <td>{$value.nomeVitima}</td>
+                <td>{$value.cpfVitima}</td>
+                <td>{$value.dataCriacao}</td>
+                <td>
+                  <a href="/apuracao-detalhe/{$value.idCriarApuracao}" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                </td>
+              </tr>
+              {/if}
+              {/loop}
+            </tbody>
+          </table>
+        </div>
       </div>
       <!--Fim box body-->
     </div>

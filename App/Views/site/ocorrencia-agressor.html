@@ -31,52 +31,54 @@
 
         <br>
 
-        <!--Tabela-->
-        <table class="table table-hover">
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>CPF / CNPJ</th>
-            <th>Tipo</th>
-            <th>Status</th>
-            <th>Opções</th>
-          </tr>
-          {loop="$agressor"}
-          <tr>
-            <td>{$value.idOcorrenciaAgressor}</td>
-            <td>{$value.nome}</td>
-            {if="$value.isCpf == '1'"}
-            <td>{$value.cpf}</td>
-            {/if}
-            {if="$value.isCpf == '0'"}
-            <td>{$value.cnpj}</td>
-            {/if}
-            {if="$value.isInstituicao == '0'"}
-            <td>Pessoa Física</td>
-            {/if}
-            {if="$value.isInstituicao == '1'"}
-            <td>Instituição</td>
-            {/if}
-            {if="$value.isExcluido == '0'"}
-            <td>Ativo</td>
-            {/if}
-            {if="$value.isExcluido == '1'"}
-            <td>Excluido</td>
-            {/if}
-            <td>
-              {if="$value.isExcluido == '1'"}
-              <a href="/ocorrencia-agressor-detalhe/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-default"><i class="fa fa-bars"></i></a>
+        <div style="overflow: auto; width: 100%; height: 100%;">
+          <!--Tabela-->
+          <table class="table table-hover">
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>CPF / CNPJ</th>
+              <th>Tipo</th>
+              <th>Status</th>
+              <th>Opções</th>
+            </tr>
+            {loop="$agressor"}
+            <tr>
+              <td>{$value.idOcorrenciaAgressor}</td>
+              <td>{$value.nome}</td>
+              {if="$value.isCpf == '1'"}
+              <td>{$value.cpf}</td>
+              {/if}
+              {if="$value.isCpf == '0'"}
+              <td>{$value.cnpj}</td>
+              {/if}
+              {if="$value.isInstituicao == '0'"}
+              <td>Pessoa Física</td>
+              {/if}
+              {if="$value.isInstituicao == '1'"}
+              <td>Instituição</td>
               {/if}
               {if="$value.isExcluido == '0'"}
-              <a href="/ocorrencia-agressor-detalhe/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-default"><i class="fa fa-bars"></i></a>
-              <a href="/ocorrencia-agressor-editar/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-              <a href="/ocorrencia-agressor-excluir/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              <td>Ativo</td>
               {/if}
-            </td>
-          </tr>
-          {/loop}
-        </table>
-        <!--Fim Tabela-->
+              {if="$value.isExcluido == '1'"}
+              <td>Excluido</td>
+              {/if}
+              <td>
+                {if="$value.isExcluido == '1'"}
+                <a href="/ocorrencia-agressor-detalhe/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-default"><i class="fa fa-bars"></i></a>
+                {/if}
+                {if="$value.isExcluido == '0'"}
+                <a href="/ocorrencia-agressor-detalhe/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-default"><i class="fa fa-bars"></i></a>
+                <a href="/ocorrencia-agressor-editar/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                <a href="/ocorrencia-agressor-excluir/{$idOcorrencia}/{$value.isInstituicao}/{$value.idOcorrenciaAgressor}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                {/if}
+              </td>
+            </tr>
+            {/loop}
+          </table>
+          <!--Fim Tabela-->
+        </div>
       </div>
       <!-- /.box-body -->
     </div>

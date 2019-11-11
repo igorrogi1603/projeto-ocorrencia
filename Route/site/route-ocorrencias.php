@@ -575,11 +575,14 @@ $app->get("/ocorrencia-relatorio-print", function(){
 	$page->setTpl("ocorrencia-relatorio-print");	
 });
 
-$app->get("/ocorrencia-arquivos", function(){
+$app->get("/ocorrencia-arquivos/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
-	$page = new Page();
+	$page = new Page([
+		"header"=>false,
+		"footer"=>false
+	]);
 
 	$page->setTpl("ocorrencia-arquivos");
 });

@@ -30,31 +30,33 @@
 
         <br>
 
-        <!--Tabela-->
-        <table class="table table-hover">
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Arquivo</th>
-            <th>Tipo</th>
-            <th>Opções</th>
-          </tr>
-          {loop="$documento"}
-          {if="$value.status == 0"}
-          <tr>
-            <td>{$value.idArquivo}</td>
-            <td>{$value.nome}</td>
-            <td>{$value.arquivo}</td>
-            <td>{$value.tipo}</td>
-            <td>
-              <a href="{$value.url}" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-              <a href="/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/{$idVitima}/{$idOcorrencia}/{$value.idArquivo}/{$value.idPessoa}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
-            </td>
-          </tr>
-          {/if}
-          {/loop}
-        </table>
-        <!--Fim Tabela-->
+        <div style="overflow: auto; width: 100%; height: 100%;">
+          <!--Tabela-->
+          <table class="table table-hover">
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Arquivo</th>
+              <th>Tipo</th>
+              <th>Opções</th>
+            </tr>
+            {loop="$documento"}
+            {if="$value.status == 0"}
+            <tr>
+              <td>{$value.idArquivo}</td>
+              <td>{$value.nome}</td>
+              <td>{$value.arquivo}</td>
+              <td>{$value.tipo}</td>
+              <td>
+                <a href="{$value.url}" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                <a href="/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/{$idVitima}/{$idOcorrencia}/{$value.idArquivo}/{$value.idPessoa}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
+              </td>
+            </tr>
+            {/if}
+            {/loop}
+          </table>
+          <!--Fim Tabela-->
+        </div>
       </div>
       <!-- /.box-body -->
     </div>
