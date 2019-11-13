@@ -34,46 +34,19 @@
               </div>
             </div>
 
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            <?php $counter1=-1;  if( isset($arquivos) && ( is_array($arquivos) || $arquivos instanceof Traversable ) && sizeof($arquivos) ) foreach( $arquivos as $key1 => $value1 ){ $counter1++; ?>
+            <a href="<?php echo htmlspecialchars( $value1["url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" target="name-iframe"><li class="list-group-item documento">
+              <input type="checkbox" name="documento" value="<?php echo htmlspecialchars( $value1["idArquivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"> <?php echo htmlspecialchars( $value1["tipo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
             </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
+            <?php } ?>
+
           </ul>
         </div>
         <!--Fim Lateral-->
 
         <!--Inicio iframes-->
         <div class="col-md-8" class="total">
-          <iframe id="id-iframe" src="/ocorrencias/ocorrencia42/Apuracao16.pdf"></iframe>
+          <iframe id="id-iframe" name="name-iframe"></iframe>
         </div>
         <!--Fim iframes-->
       </div>

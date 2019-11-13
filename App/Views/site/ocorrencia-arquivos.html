@@ -34,46 +34,19 @@
               </div>
             </div>
 
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
+            {loop="$arquivos"}
+            <a href="{$value.url}" target="name-iframe"><li class="list-group-item documento">
+              <input type="checkbox" name="documento" value="{$value.idArquivo}"> {$value.tipo}
             </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
-            <a href="#"><li class="list-group-item documento">
-              <input type="checkbox" name="selecionaTudo" value=""> Documento.pdf
-            </li></a>
+            {/loop}
+
           </ul>
         </div>
         <!--Fim Lateral-->
 
         <!--Inicio iframes-->
         <div class="col-md-8" class="total">
-          <iframe id="id-iframe" src="/ocorrencias/ocorrencia42/Apuracao16.pdf"></iframe>
+          <iframe id="id-iframe" name="name-iframe"></iframe>
         </div>
         <!--Fim iframes-->
       </div>

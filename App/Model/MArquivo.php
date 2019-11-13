@@ -74,6 +74,21 @@ class MArquivo {
 		]);
 	}
 
+	public function arquivosOcorencia($idOcorrencia)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT * 
+			FROM tb_arquivosprocessoocorrencia a
+			INNER JOIN tb_arquivo b ON a.idArquivo = b.idArquivo
+			WHERE idOcorrencia = :idOcorrencia
+			ORDER BY b.idArquivo ASC
+		", [
+			":idOcorrencia" => $idOcorrencia
+		]);
+	}
+
 }
 
 ?>

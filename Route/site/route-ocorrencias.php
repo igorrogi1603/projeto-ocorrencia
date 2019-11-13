@@ -16,6 +16,7 @@ use \App\Controller\COcorrenciaDescricao;
 use \App\Controller\COcorrenciaNovaSolicitacao;
 use \App\Controller\COcorrenciaSolicitacao;
 use \App\Controller\COcorrenciaStatus;
+use \App\Controller\COcorrenciaArquivos;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -579,12 +580,16 @@ $app->get("/ocorrencia-arquivos/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
+	$listaArquivos = COcorrenciaArquivos::getArquivos($idOcorrencia);
+
 	$page = new Page([
 		"header"=>false,
 		"footer"=>false
 	]);
 
-	$page->setTpl("ocorrencia-arquivos");
+	$page->setTpl("ocorrencia-arquivos", [
+		"arquivos" => $listaArquivos
+	]);
 });
 
 //--------------------------------------------------------------
