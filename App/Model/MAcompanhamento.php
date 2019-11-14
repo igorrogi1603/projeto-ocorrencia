@@ -68,8 +68,8 @@ class MAcompanhamento {
 	{
 		$sql = new Conexao;
 
-		return $sql->select("SELECT * FROM tb_acompanhamentovitima WHERE idVitimaApuracao = :idVitimaApuracao ORDER BY idAcompanhamentoVitima DESC", [
-			":idVitimaApuracao" => $idVitima
+		return $sql->select("SELECT * FROM tb_acompanhamentovitima WHERE idVitimasApuracao = :idVitimasApuracao ORDER BY idAcompanhamentoVitima DESC", [
+			":idVitimasApuracao" => $idVitima
 		]);
 	}
 
