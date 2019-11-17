@@ -56,6 +56,7 @@
             <div class="row">
               <div class="col-md-12">
                 <input type="submit" class="btn btn-primary pull-right margin" id="botaoEnviar" value="Cadastrar">
+                <a href="/usuarios-detalhe/<?php echo htmlspecialchars( $idUsuario, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary pull-left margin">Voltar</a> 
               </div>            
             </div>
             <!--Fim Row-->

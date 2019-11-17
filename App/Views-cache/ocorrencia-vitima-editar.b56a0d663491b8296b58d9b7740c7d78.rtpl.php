@@ -246,6 +246,7 @@
           <div class="row">
             <div class="col-md-12">
               <input type="submit" class="btn btn-primary pull-right margin" id="botaoEnviar" value="Editar">
+              <a href="/ocorrencia-vitimas/<?php echo htmlspecialchars( $vitima["0"]["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $vitima["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary pull-left margin">Voltar</a> 
             </div>            
           </div>
           <!--Fim Row-->

@@ -84,6 +84,8 @@
 
             <a href="/ocorrencia-vitima-acompanhamento/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-eye"></i>Acompanhamento</a>
 
+            <a href="/ocorrencia-vitimas-lista/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-arrow-left"></i>Voltar</a>
+
             <?php } ?>
             <?php } ?>
           </div>

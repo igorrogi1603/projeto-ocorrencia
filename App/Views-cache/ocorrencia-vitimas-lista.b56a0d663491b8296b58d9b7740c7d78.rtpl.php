@@ -41,6 +41,16 @@
           </table>
           <!--Fim Tabela-->
         </div>
+
+        <?php if( $vitimas != null ){ ?>
+        <!--Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <a href="/ocorrencia-detalhe/<?php echo htmlspecialchars( $vitimas["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary pull-left margin">Voltar</a> 
+          </div>
+        </div>
+        <!--Fim Row-->
+        <?php } ?>
       </div>
       <!-- /.box-body -->
     </div>

@@ -16,7 +16,17 @@
     <div class="box">
       <!-- /.box-header -->
       <div class="box-body">
-      
+        
+        <!--Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <a href="/ocorrencia-vitimas/<?php echo htmlspecialchars( $idVitima, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary">Voltar</a>
+          </div>          
+        </div>
+        <!--Fim Row-->
+
+        <br><hr><br>
+
         <!-- /.tab-pane -->
         <div class="tab-pane" id="timeline">
           <!-- The timeline -->

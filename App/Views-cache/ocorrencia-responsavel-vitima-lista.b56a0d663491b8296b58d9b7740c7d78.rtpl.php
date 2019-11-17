@@ -24,6 +24,7 @@
         <div class="row">
           <div class="col-md-12">
             <a href="/ocorrencia-responsavel-vitima-cadastrar/<?php echo htmlspecialchars( $responsavel["0"]["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $responsavel["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-success">Novo Responsavel</a>
+            <a href="/ocorrencia-vitimas/<?php echo htmlspecialchars( $responsavel["0"]["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $responsavel["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary">Voltar</a>
           </div>          
         </div>
         <!--Fim Row-->

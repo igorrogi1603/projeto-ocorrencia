@@ -41,6 +41,16 @@
           </table>
           <!--Fim Tabela-->
         </div>
+
+        {if="$vitimas != null"}
+        <!--Row-->
+        <div class="row">
+          <div class="col-md-12">
+            <a href="/ocorrencia-detalhe/{$vitimas.0.idOcorrencia}" class="btn btn-primary pull-left margin">Voltar</a> 
+          </div>
+        </div>
+        <!--Fim Row-->
+        {/if}
       </div>
       <!-- /.box-body -->
     </div>

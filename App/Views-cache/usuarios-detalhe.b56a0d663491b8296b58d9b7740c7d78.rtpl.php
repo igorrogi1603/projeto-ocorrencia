@@ -115,6 +115,8 @@
 
             <a href="/usuarios-alterar-senha/senha/<?php echo htmlspecialchars( $detalheUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-lock"></i>Alterar Senha</a>
 
+            <a href="/usuarios-lista" class="btn btn-app"><i class="fa fa-arrow-left"></i>Voltar</a>
+
           </div>
         </div>
         <!--Fim Row-->

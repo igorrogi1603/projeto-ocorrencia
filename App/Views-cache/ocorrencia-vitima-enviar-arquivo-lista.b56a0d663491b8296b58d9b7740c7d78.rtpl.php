@@ -24,6 +24,7 @@
         <div class="row">
           <div class="col-md-12">
             <a href="/ocorrencia-vitima-enviar-arquivo-cadastrar/<?php echo htmlspecialchars( $idVitima, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-success">Novo Documento</a>
+            <a href="/ocorrencia-vitimas/<?php echo htmlspecialchars( $idVitima, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary">Voltar</a>
           </div>          
         </div>
         <!--Fim Row-->

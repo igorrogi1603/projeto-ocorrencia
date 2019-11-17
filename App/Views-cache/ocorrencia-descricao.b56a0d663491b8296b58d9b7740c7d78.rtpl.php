@@ -23,7 +23,8 @@
         <!--Row-->
         <div class="row">
           <div class="col-md-12">
-            <a href="/ocorrencia-descricao-editar/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-edit"></i>Editar</a>          
+            <a href="/ocorrencia-descricao-editar/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-edit"></i>Editar</a> 
+            <a href="/ocorrencia-detalhe/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-arrow-left"></i>Voltar</a>       
           </div>          
         </div>
         <!--Fim Row-->

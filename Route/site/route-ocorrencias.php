@@ -319,7 +319,9 @@ $app->get("/ocorrencia-vitima-acompanhamento/:idVitima/:idOcorrencia", function(
 	$page = new Page();
 
 	$page->setTpl("ocorrencia-vitima-acompanhamento", [
-		"acompanhamento" => $acompanhamento
+		"acompanhamento" => $acompanhamento,
+		"idVitima" => $idVitima,
+		"idOcorrencia" => $idOcorrencia
 	]);
 });
 
