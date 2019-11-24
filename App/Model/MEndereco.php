@@ -49,6 +49,26 @@ class MEndereco {
 				]);		
 				break;
 
+			case 'vitimaCiarApuracao':
+				for ($i = 0; $i < count($post); $i++) {
+					$aux = $i + 1;
+					if (isset($post['nomeVitima'.$aux])) {
+					$sql->query("
+						INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 
+						VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
+					", [
+						":cep" => $validacao->replaceCepBd($post['cepVitima'.$aux]),
+						":rua" => utf8_decode($post['ruaVitima'.$aux]),
+						":numero" => $post['numeroVitima'.$aux],
+						":bairro" => utf8_decode($post['bairroVitima'.$aux]),
+						":cidade" => utf8_decode($post['cidadeVitima'.$aux]),
+						":estado" => $post['estadoVitima'.$aux],
+						":complemento" => utf8_decode($post['complementoVitima'.$aux])
+					]);
+					}
+				}		
+				break;
+
 			case 'responsavel':
 				$sql->query("
 					INSERT INTO tb_endereco (cep, rua, numero, bairro, cidade, estado, complemento) 

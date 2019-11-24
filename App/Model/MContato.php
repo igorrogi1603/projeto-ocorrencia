@@ -29,7 +29,21 @@ class MContato {
 					":email" => utf8_decode($contato->getemailUsuario())
 				]);				
 				break;
-			
+
+			case 'vitimaCiarApuracao':
+				for ($i = 0; $i < count($post); $i++) {
+					$aux = $i + 1;
+					if (isset($post['nomeVitima'.$aux])) {
+						$sql->query("
+							INSERT INTO tb_contato (celular) 
+							VALUES(:celular)
+						", [
+							":celular" => $validacao->replaceCelularBd($post['celularVitima'.$aux])
+						]);
+					}
+				}			
+				break;
+
 			case 'vitima':
 				$sql->query("
 					INSERT INTO tb_contato (celular) 

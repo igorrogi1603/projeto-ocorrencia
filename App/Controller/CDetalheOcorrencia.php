@@ -34,9 +34,11 @@ class CDetalheOcorrencia {
 			}
 		}
 
-		//exclui posissoes iguais
-		foreach ($arrayPosicaoExcluir as $value) {
-			unset($detalheOcorrencia[$value]);
+		if (isset($arrayPosicaoExcluir)) {
+			//exclui posissoes iguais
+			foreach ($arrayPosicaoExcluir as $value) {
+				unset($detalheOcorrencia[$value]);
+			}
 		}
 
 		//Validacao dos campos com acentos do banco de dados

@@ -74,6 +74,9 @@ class CListaConfirmacao {
 			//Instancia o mpdf
 			$mpdf = new Mpdf();
 
+			//Permitir marca d'agua
+			$mpdf->showWatermarkText = true;
+
 			//Coloca o html criado dentro da variavel para gerar o pdf
 			$mpdf->WriteHTML($pagina);
 

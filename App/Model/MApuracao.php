@@ -294,6 +294,7 @@ class MApuracao {
 			k.cidade cidadeVitima, k.estado estadoVitima, k.complemento complementoVitima,
 			l.cep cepResponsavel, l.rua ruaResponsavel, l.numero numeroResponsavel, l.bairro bairroResponsavel, 
 			l.cidade cidadeResponsavel, l.estado estadoResponsavel, l.complemento complementoResponsavel,
+			m.setor,
 			n.nome quemCriouApuracao
 			FROM tb_criarapuracao a
 			INNER JOIN tb_vitimascriarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
@@ -348,6 +349,7 @@ class MApuracao {
 			INNER JOIN tb_contato j ON h.idContato = j.idContato
 			INNER JOIN tb_endereco k ON g.idEndereco = k.idEndereco
 			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
+			ORDER BY a.idCriarApuracao DESC
 		");
 	}
 
@@ -389,6 +391,7 @@ class MApuracao {
 			INNER JOIN tb_endereco m ON i.idEndereco = m.idEndereco
 			INNER JOIN tb_usuario n ON a.idUsuario = n.idUsuario
 			INNER JOIN tb_pessoa o ON n.idPessoa = o.idPessoa
+			ORDER BY a.idConfirmacaoApuracao DESC
 		");
 	}
 

@@ -15,8 +15,6 @@ class MResponsavel {
 		$responsavel = new Responsavel;
 		$validacao = new Validacao;
 
-		$responsavel->setData($post);
-
 		switch ($complemento) {
 			case 'apuracao':
 
@@ -40,7 +38,7 @@ class MResponsavel {
 				break;
 
 			case 'ocorrencia':
-
+				$responsavel->setData($post);
 				$sql->query("
 					INSERT INTO tb_responsavelapuracao (idPessoa, isPais, isAindaResponsavel, outro) 
 					VALUES(:idPessoa, :isPais, :isAindaResponsavel, :outro)

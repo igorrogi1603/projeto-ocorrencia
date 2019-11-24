@@ -2,10 +2,16 @@
 use \App\Classe\Validacao;
 use \App\Classe\Usuario;
 use \App\Model\MApuracao;
+use \App\Model\MArquivo;
 
 //instaciando
 $mapuracao = new MApuracao;
+$marquivo = new MArquivo;
 $validacao = new Validacao;
+
+$idArquivo = $marquivo->ultimoRegistroArquivo();
+
+$idArquivoNovo = (int)$idArquivo[0]['MAX(idArquivo)'] + 1;
 
 //INFORMACOES
 $detalheApuracao = $mapuracao->listApuracao($idApuracao);
@@ -15,29 +21,30 @@ $tamanhoArray = count($detalheApuracao);
 
 //Validacao dos campos com acentos do banco de dados
 for ($i = 0; $i < $tamanhoArray; $i++) {
-	$detalheApuracao[$i]['descricao'] = utf8_encode($detalheApuracao[$i]['descricao']);
-	$detalheApuracao[$i]['tipoApuracao'] = utf8_encode($detalheApuracao[$i]['tipoApuracao']);
-	$detalheApuracao[$i]['qualFamilia'] = utf8_encode($detalheApuracao[$i]['qualFamilia']);
-	$detalheApuracao[$i]['nomeVitima'] = utf8_encode($detalheApuracao[$i]['nomeVitima']);
-	$detalheApuracao[$i]['nomeResponsavel'] = utf8_encode($detalheApuracao[$i]['nomeResponsavel']);
-	$detalheApuracao[$i]['ruaVitima'] = utf8_encode($detalheApuracao[$i]['ruaVitima']);
-	$detalheApuracao[$i]['bairroVitima'] = utf8_encode($detalheApuracao[$i]['bairroVitima']);
-	$detalheApuracao[$i]['cidadeVitima'] = utf8_encode($detalheApuracao[$i]['cidadeVitima']);
-	$detalheApuracao[$i]['estadoVitima'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoVitima']));
-	$detalheApuracao[$i]['complementoVitima'] = utf8_encode($detalheApuracao[$i]['complementoVitima']);
-	$detalheApuracao[$i]['ruaResponsavel'] = utf8_encode($detalheApuracao[$i]['ruaResponsavel']);
-	$detalheApuracao[$i]['bairroResponsavel'] = utf8_encode($detalheApuracao[$i]['bairroResponsavel']);
-	$detalheApuracao[$i]['cidadeResponsavel'] = utf8_encode($detalheApuracao[$i]['cidadeResponsavel']);
-	$detalheApuracao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoResponsavel']));
-	$detalheApuracao[$i]['complementoResponsavel'] = utf8_encode($detalheApuracao[$i]['complementoResponsavel']);
-	$detalheApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfVitima']));
-	$detalheApuracao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularVitima']));
-	$detalheApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfResponsavel']));
-	$detalheApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularResponsavel']));
-	$detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepVitima']));
-	$detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepResponsavel']));
-	$detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataRegistro']));
-	$detalheApuracao[$i]['quemCriouApuracao'] = utf8_encode($detalheApuracao[$i]['quemCriouApuracao']);
+    $detalheApuracao[$i]['descricao'] = utf8_encode($detalheApuracao[$i]['descricao']);
+    $detalheApuracao[$i]['tipoApuracao'] = utf8_encode($detalheApuracao[$i]['tipoApuracao']);
+    $detalheApuracao[$i]['qualFamilia'] = utf8_encode($detalheApuracao[$i]['qualFamilia']);
+    $detalheApuracao[$i]['nomeVitima'] = utf8_encode($detalheApuracao[$i]['nomeVitima']);
+    $detalheApuracao[$i]['nomeResponsavel'] = utf8_encode($detalheApuracao[$i]['nomeResponsavel']);
+    $detalheApuracao[$i]['ruaVitima'] = utf8_encode($detalheApuracao[$i]['ruaVitima']);
+    $detalheApuracao[$i]['bairroVitima'] = utf8_encode($detalheApuracao[$i]['bairroVitima']);
+    $detalheApuracao[$i]['cidadeVitima'] = utf8_encode($detalheApuracao[$i]['cidadeVitima']);
+    $detalheApuracao[$i]['estadoVitima'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoVitima']));
+    $detalheApuracao[$i]['complementoVitima'] = utf8_encode($detalheApuracao[$i]['complementoVitima']);
+    $detalheApuracao[$i]['ruaResponsavel'] = utf8_encode($detalheApuracao[$i]['ruaResponsavel']);
+    $detalheApuracao[$i]['bairroResponsavel'] = utf8_encode($detalheApuracao[$i]['bairroResponsavel']);
+    $detalheApuracao[$i]['cidadeResponsavel'] = utf8_encode($detalheApuracao[$i]['cidadeResponsavel']);
+    $detalheApuracao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoResponsavel']));
+    $detalheApuracao[$i]['complementoResponsavel'] = utf8_encode($detalheApuracao[$i]['complementoResponsavel']);
+    $detalheApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfVitima']));
+    $detalheApuracao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularVitima']));
+    $detalheApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfResponsavel']));
+    $detalheApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularResponsavel']));
+    $detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepVitima']));
+    $detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepResponsavel']));
+    $detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataRegistro']));
+    $detalheApuracao[$i]['quemCriouApuracao'] = utf8_encode($detalheApuracao[$i]['quemCriouApuracao']);
+    $detalheApuracao[$i]['setor'] = utf8_encode($detalheApuracao[$i]['setor']);
 }
 
 //HTML DO RELATORIO
@@ -46,176 +53,137 @@ $pagina =
 "
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <title>Relatório Apuração</title>
+<head>
+    <title>Documento</title>
 
-        <style>
-            h1 {
-                font-size: 16px;
-                font-weight: bold;
-                margin: 0px;
-                padding: 0px;
-            }
+    <style>
 
-            h2 {
-                font-size: 14px;
-                font-weight: bold;
-                margin: 0px;
-                padding: 0px;
-            }
+    html, body {
+        height: 100%;
+        width: 100%;
+        font-family: 'Arial', Helvetica, sans-serif;
+        font-size: 12px;
+    }
 
-            hr {
-                border-color: #eee;
-            }
+    .container-total {
+        margin-left: 1.5cm;
+        margin-top: 2cm;
+        margin-bottom: 2cm;
+        margin-right: 1.5cm;
+    }
 
-            .font {
-                font-family: Arial, Helvetica, sans-serif;
-                padding: 0px;
-                margin: 0px;
-            }
+    .cabecalho {
+        width: 100%;
+        height: 100px;
+    }
 
-            .container {
-                margin: 0px;
-            }
+    .pos-cabecalho {
+        width: 100%;
+        height: 70px;
+        text-align: center;
+        line-height: 50px;
+        font-weight: bold;
+    }
 
-            .container-header {
-                width: 100%;
-            }
+    .antes-conteudo {
+        width: 100%;
+        height: 80px;
+        line-height: 80px;
+    }
 
-            .cabecalho-esquerda {
-                width: 100%;
-            }
+    .oficio {
+        float: left;
+        width: 50%;
+        text-align: left;
+    }
 
-            .cabecalho-direita {
-                float: right;
-                width: 50%;           
-            }
+    .data {
+        float: right;
+        width: 50%;
+        text-align: right;
+    }
 
-            .container-body {
-                width: 100%;
-                clear: both;
-            }
+    .conteudo {
+        text-align: justify;
+    }
 
-            .container-data {
-                width: 100%;
-            }
+    .dedicatoria {
+        width: 100%;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+    }
 
-            .container-detalhe {
-                width: 100%;
-            }
+    .assinatura {
+        width: 100%;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+    }
 
-            .direita {
-                float: right;
-            }
+    .assinatura .linha {
+        display: block;
+    }
 
-            .esquerda {
-                float: left;
-            }
+    .assinatura .nome {
+        margin-top: -60px;
+        font-weight: bold;
+        display: block;
+    }
 
-            .data {
-                font-size: 12px;
-                font-weight: bold;
-                margin: 0px;
-                padding: 0px;
-            }
+    .assinatura .setor {
+        margin-top: -60px;
+        display: block;
+    }
 
-            .bot{
-                margin-bottom: 10px;
-            }
+    .rodape {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin-bottom: 5px;
+        width: 100%;
+        text-align: center;
+    }
 
-            .bot2 {
-                margin-bottom: 20px;
-            }
+    . sem-espacamento {
+        margin: 0px;
+        padding: 0px;
+    }
 
-            .categoria {
-                font-size: 12px;
-            }
+    </style>
+</head>
+<body>
 
-            .metade {
-                width: 50%;
-            }
+    <div class='container-total'>
+        
+        <div class='cabecalho'>
+            Logo
+        </div>
 
-            .footer {
-                position:absolute;
-                bottom:0;
-                width:100%;
-            }
+        <div class='pos-cabecalho'>
+            ".$detalheApuracao[0]['setor']."
+        </div>
 
-            .assinatura {
-                font-size: 12px;
-                margin: 0px;
-                padding: 0px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class='container'>
-            <div class='container-header'>
-                <div class='cabecalho-esquerda'>
-                    <h1 class='esquerda font'><img src='/res/site/dist/img/logo-preta.png' width='20' height='20'> SISTEMA DE OCORRÊNCIA MUNICIPAL</h1>
-                </div>
-            </div>
+        <div class='antes-conteudo'>
+            <div class='oficio'><p>Oficio ".$idArquivoNovo."/".date('Y')."</p></div>
+            <div class='data'><p>Nova Campina, ".date('d')." de ".date('M')." de ".date('Y')."</p></div>
+        </div>
 
-            <hr>
-
-            <div class='container-data'>
-            	<p class='categoria font'><strong>Número Apuração: </strong>".$detalheApuracao[0]['idCriarApuracao']."</p>
-                <p class='categoria font'><strong>Data: </strong>".$detalheApuracao[0]['dataRegistro']."</p>
-            </div>
-            <hr>
-
-            ";
+        <div class='conteudo'>
             
-
-            for ($i = 0; $i < $tamanhoArray; $i++) {
-            $pagina .= "
-            <div class='container-body'>
-                <h2 class='font bot'>Dados Vítima</h2>
-
-                <div class='metade esquerda'>";
-                    $pagina .= "<p class='font categoria'><strong>Nome da Vítima: </strong>".$detalheApuracao[$i]['nomeVitima']."</p>";
-                    if ($detalheApuracao[$i]['sexoVitima'] == 'm') {
-                    	$pagina .= "<p class='font categoria'><strong>Sexo: </strong>Masculino</p>";
-                    }
-                    if ($detalheApuracao[$i]['sexoVitima'] == 'f') {
-                    	$pagina .= "<p class='font categoria'><strong>Sexo: </strong>Feminino</p>";
-                    }
-                    $pagina .= "<p class='font categoria'><strong>CPF: </strong>".$detalheApuracao[$i]['cpfVitima']."</p>";
-                    $pagina .= "<p class='font categoria'><strong>Celular: </strong>".$detalheApuracao[$i]['celularVitima']."</p>";
-                    $pagina .= "<p class='font categoria'><strong>Nome Responsavel: </strong>".$detalheApuracao[$i]['nomeResponsavel']."</p>";
-                    $pagina .= "<p class='font categoria'><strong>CPF Responsavel: </strong>".$detalheApuracao[$i]['cpfResponsavel']."</p>";
-                    $pagina .= "<p class='font categoria'><strong>Celular Responsavel: </strong>".$detalheApuracao[$i]['celularResponsavel']."</p>";
-                $pagina .= "</div>";
-
-                $pagina .= "<div class='metade direita'>";
-                    $pagina .= "<p class='font categoria'><strong>CEP: </strong>".$detalheApuracao[$i]['cepVitima']."</p>";
-                    $pagina .= "<p class='font categoria'><strong>Rua: </strong>".$detalheApuracao[$i]['ruaVitima']."</p>";
-                    $pagina .= "<p class='font categoria'><strong>Número: </strong>".$detalheApuracao[$i]['numeroVitima']."</p>";
-                    $pagina .= "<p class='font categoria'><strong>Bairro: </strong>".$detalheApuracao[$i]['bairroVitima']."</p>";
-                    $pagina .= "<p class='font categoria'><strong>Cidade: </strong>".$detalheApuracao[$i]['cidadeVitima']."</p>";
-                    $pagina .= "<p class='font categoria'><strong>Estado: </strong>".$detalheApuracao[$i]['estadoVitima']."</p>";
-                    $pagina .= "<p class='font categoria'><strong>Complemento: </strong>".$detalheApuracao[$i]['complementoVitima']."</p>";
-                $pagina .= "</div>
-                <hr>
-            </div>
-
-            ";
-        	}
-            $pagina .= "
-
-            <div class='container-detalhe'>
-                <h2 class='font bot'>Detalhe</h2>
-
-                <p class='font categoria'><strong>Tipo da Apuração: </strong>".$detalheApuracao[0]['tipoApuracao']."</p>
-                <p class='font categoria'><strong>Descrição: </strong>".$detalheApuracao[0]['descricao']."</p>
-            </div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            
         </div>
 
-        <div class='footer'>
-            <p class='font assinatura'><strong>".$detalheApuracao[0]['quemCriouApuracao']."</strong> concordou com os termos impostos pelo sistema e se responsabilizo por esse documento.</p>
-        </div>
-    </body>
+    </div>
+
+    <div class='rodape'>
+        <hr class='sem-espacamento'>
+        <p class='sem-espacamento'>Assinado digitalmente por <strong>".$detalheApuracao[0]['quemCriouApuracao']."</strong></p>
+    </div>
+
+</body>
 </html>
 ";
 

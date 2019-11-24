@@ -129,6 +129,7 @@ class MOcorrencia {
 			INNER JOIN tb_contato k ON i.idContato = k.idContato
 			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
 			INNER JOIN tb_endereco m ON i.idEndereco = m.idEndereco
+			ORDER BY a.idOcorrencia DESC
 		");
 	}
 

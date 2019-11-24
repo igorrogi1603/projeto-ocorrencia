@@ -67,7 +67,7 @@ class CCriarApuracao {
 		$mresponsavel = new MResponsavel;
 		$mvitima = new MVitima;
 		$musuario = new MUsuario;
-		$macompanhamento = new MAcompanhamento;
+		$macompanhamento = new MAcompanhamento;		
 
 		//----------------------------------------------------------------
 		//VALIDACAO DO FORMULARIO
@@ -242,7 +242,7 @@ class CCriarApuracao {
 					//Levando a hipotese que o responsavel more junto com a vitima
 					//Entao o mesmo endereco da vitima corresponde ao responssavel
 					$mcontato->cadastrar($post, "responsavelVitima");
-					$mendereco->cadastrar($post, "vitima");
+					$mendereco->cadastrar($post, "vitimaCiarApuracao");
 
 					//recuperando o ultimo id de contato e endereco
 					$idContato = $mcontato->ultimoRegistro();
@@ -303,8 +303,8 @@ class CCriarApuracao {
 				//entao criar uma nova pessoa
 				if($usuarioVitimaBloqueou != true) {
 					//Cadastrando o endereco e o contato da vitima
-					$mcontato->cadastrar($post, "vitima");
-					$mendereco->cadastrar($post, "vitima");
+					$mcontato->cadastrar($post, "vitimaCiarApuracao");
+					$mendereco->cadastrar($post, "vitimaCiarApuracao");
 
 					//recuperando o ultimo id de contato e endereco
 					$idContato = $mcontato->ultimoRegistro();
