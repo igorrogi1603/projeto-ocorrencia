@@ -37,9 +37,11 @@ class CListaOcorrencia {
 			}
 		}
 
-		//exclui posissoes iguais
-		foreach ($arrayPosicaoExcluir as $value) {
-			unset($listaOcorrencia[$value]);
+		if (isset($arrayPosicaoExcluir)) {
+			//exclui posissoes iguais
+			foreach ($arrayPosicaoExcluir as $value) {
+				unset($listaOcorrencia[$value]);
+			}
 		}
 
 		//Validacao dos campos com acentos do banco de dados

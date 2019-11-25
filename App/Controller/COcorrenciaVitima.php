@@ -130,9 +130,11 @@ class COcorrenciaVitima {
 			}
 		}
 
-		//exclui posissoes iguais
-		foreach ($arrayPosicaoExcluir as $value) {
-			unset($listaVitimas[$value]);
+		if (isset($arrayPosicaoExcluir)) {
+			//exclui posissoes iguais
+			foreach ($arrayPosicaoExcluir as $value) {
+				unset($listaVitimas[$value]);
+			}
 		}
 
 		return $listaVitimas;
@@ -162,9 +164,11 @@ class COcorrenciaVitima {
 			}
 		}
 
-		//exclui posissoes iguais
-		foreach ($arrayPosicaoExcluir as $value) {
-			unset($listaVitimas[$value]);
+		if (isset($arrayPosicaoExcluir)) {
+			//exclui posissoes iguais
+			foreach ($arrayPosicaoExcluir as $value) {
+				unset($listaVitimas[$value]);
+			}
 		}
 
 		return $listaVitimas;

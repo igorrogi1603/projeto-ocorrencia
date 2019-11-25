@@ -101,9 +101,11 @@ class COcorrenciaEnviarArquivo {
 				}
 			}
 
-			//exclui posissoes iguais
-			foreach ($arrayPosicaoExcluir as $value) {
-				unset($documento[$value]);
+			if (isset($arrayPosicaoExcluir)) {
+				//exclui posissoes iguais
+				foreach ($arrayPosicaoExcluir as $value) {
+					unset($documento[$value]);
+				}
 			}
 
 			//recupera a lista de nomes de vitima e responsaveis dessa unica vitima

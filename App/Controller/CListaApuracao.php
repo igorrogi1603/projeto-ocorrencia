@@ -103,9 +103,11 @@ class CListaApuracao {
 			}
 		}
 
-		//exclui posissoes iguais
-		foreach ($arrayPosicaoExcluir as $value) {
-			unset($listaApuracao[$value]);
+		if (isset($arrayPosicaoExcluir)) {
+			//exclui posissoes iguais
+			foreach ($arrayPosicaoExcluir as $value) {
+				unset($listaApuracao[$value]);
+			}
 		}
 
 		//Validacao dos campos com acentos do banco de dados
@@ -221,9 +223,11 @@ class CListaApuracao {
 			}
 		}
 
-		//exclui posissoes iguais
-		foreach ($arrayPosicaoExcluir as $value) {
-			unset($listaConfirmacao[$value]);
+		if (isset($arrayPosicaoExcluir)) {
+			//exclui posissoes iguais
+			foreach ($arrayPosicaoExcluir as $value) {
+				unset($listaConfirmacao[$value]);
+			}
 		}
 
 		//Validacao dos campos com acentos do banco de dados

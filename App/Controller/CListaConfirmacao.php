@@ -226,9 +226,11 @@ class CListaConfirmacao {
 			}
 		}
 
-		//exclui posissoes iguais
-		foreach ($arrayPosicaoExcluir as $value) {
-			unset($listaConfirmacao[$value]);
+		if (isset($arrayPosicaoExcluir)) {
+			//exclui posissoes iguais
+			foreach ($arrayPosicaoExcluir as $value) {
+				unset($listaConfirmacao[$value]);
+			}
 		}
 
 		//Validacao dos campos com acentos do banco de dados

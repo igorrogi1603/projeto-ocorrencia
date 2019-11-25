@@ -230,9 +230,11 @@ class COcorrenciaAgressorEnviarArquivo extends COcorrenciaAgressor {
 				}
 			}
 
-			//exclui posissoes iguais
-			foreach ($arrayPosicaoExcluir as $value) {
-				unset($documento2[$value]);
+			if (isset($arrayPosicaoExcluir)) {
+				//exclui posissoes iguais
+				foreach ($arrayPosicaoExcluir as $value) {
+					unset($documento2[$value]);
+				}
 			}
 
 			//recupera a lista de nomes de vitima e responsaveis dessa unica vitima

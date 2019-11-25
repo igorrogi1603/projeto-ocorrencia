@@ -35,9 +35,11 @@ class COcorrenciaDescricao {
 			}
 		}
 
-		//exclui posissoes iguais
-		foreach ($arrayPosicaoExcluir as $value) {
-			unset($listaOcorrencia[$value]);
+		if (isset($arrayPosicaoExcluir)) {
+			//exclui posissoes iguais
+			foreach ($arrayPosicaoExcluir as $value) {
+				unset($listaOcorrencia[$value]);
+			}
 		}
 
 		//formatando as string 
