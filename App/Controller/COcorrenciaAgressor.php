@@ -167,7 +167,11 @@ class COcorrenciaAgressor {
 			$listaCompleta[] = $listaInstituicao[$i];
 		}
 
-		return $listaCompleta;
+		if (isset($listaCompleta) && $listaCompleta != null && $listaCompleta != "") {
+			return $listaCompleta;
+		} else {
+			return false;
+		}
 	}
 
 	public static function getAgressorDetalhe($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao)
