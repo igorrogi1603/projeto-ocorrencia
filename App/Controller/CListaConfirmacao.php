@@ -47,7 +47,7 @@ class CListaConfirmacao {
 		if ($confirmarApuracaoPronta[0]['isPositivo'] == 2) {
 			//Mudar o status da apuracao para 3 (virou ocorrencia)
 			$mapuracao->updateStatus(3, $idApuracao);
-
+			
 			//Cadastrar na tabela ocorrencia
 			$mocorrencia->cadastrar($idApuracao);
 

@@ -45,6 +45,13 @@ for ($i = 0; $i < $tamanhoArray; $i++) {
     $detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataRegistro']));
     $detalheApuracao[$i]['quemCriouApuracao'] = utf8_encode($detalheApuracao[$i]['quemCriouApuracao']);
     $detalheApuracao[$i]['setor'] = utf8_encode($detalheApuracao[$i]['setor']);
+
+    if ($detalheApuracao[$i]['sexoVitima'] == "m") {
+        $detalheApuracao[$i]['sexoVitima'] = "Masculino";
+    }
+    if ($detalheApuracao[$i]['sexoVitima'] == "f") {
+        $detalheApuracao[$i]['sexoVitima'] = "Feminino";
+    }
 }
 
 //HTML DO RELATORIO
@@ -169,12 +176,21 @@ $pagina =
             <div class='data'><p>Nova Campina, ".date('d')." de ".date('M')." de ".date('Y')."</p></div>
         </div>
 
-        <div class='conteudo'>
-            
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-            
-        </div>
+        <div class='conteudo'>";
+
+            for ($i = 0; $i < $tamanhoArray; $i++) {
+                $pagina .= "<p>A vítima ".$detalheApuracao[$i]['nomeVitima']." do sexo ".$detalheApuracao[$i]['sexoVitima']." 
+                portadora do CPF: ".$detalheApuracao[$i]['cpfVitima']." e do celular ".$detalheApuracao[$i]['celularVitima']."
+                tendo como seu responsavel ".$detalheApuracao[$i]['nomeResponsavel']." portadora do CPF: ".$detalheApuracao[$i]['cpfResponsavel'].
+                " e do celular ".$detalheApuracao[$i]['celularResponsavel'].". A vítima se localiza no CEP: ".$detalheApuracao[$i]['cepVitima']."
+                , rua ".$detalheApuracao[$i]['ruaVitima'].", bairro ".$detalheApuracao[$i]['bairroVitima'].", numero 
+                ".$detalheApuracao[$i]['numeroVitima'].", estado ".$detalheApuracao[$i]['estadoVitima']." e cidade de 
+                ".$detalheApuracao[$i]['cidadeVitima']."</p>";
+            }
+
+            $pagina .= "<p>Apuração do tipo ".$detalheApuracao[0]['tipoApuracao']." com a descricao: ".$detalheApuracao[0]['descricao']."</p>";
+        
+        $pagina .= "</div>
 
     </div>
 
