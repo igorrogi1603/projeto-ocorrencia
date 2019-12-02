@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use \Mpdf\Mpdf;	
+use \Mpdf\Mpdf;
 
 use \App\Classe\Validacao;
 use \App\Classe\Usuario;

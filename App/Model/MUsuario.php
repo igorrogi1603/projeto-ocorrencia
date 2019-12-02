@@ -155,7 +155,11 @@ class MUsuario {
 
 		$sql = new Conexao;
 
-		$results = $sql->select("SELECT * FROM tb_usuario WHERE user = :user", array(
+		$results = $sql->select("
+			SELECT * FROM tb_usuario a
+			INNER JOIN tb_pessoa b ON a.idPessoa = b.idPessoa
+			WHERE user = :user
+		", array(
 			":user"=>$login
 		));
 

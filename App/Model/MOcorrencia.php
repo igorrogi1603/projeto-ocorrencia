@@ -198,7 +198,9 @@ class MOcorrencia {
 			l.cidade cidadeVitima, l.estado estadoVitima, l.complemento complementoVitima,
 			m.idEndereco idEnderecoResponsavel, m.cep cepResponsavel, m.rua ruaResponsavel, m.numero numeroResponsavel, 
 			m.bairro bairroResponsavel, 
-			m.cidade cidadeResponsavel, m.estado estadoResponsavel, m.complemento complementoResponsavel
+			m.cidade cidadeResponsavel, m.estado estadoResponsavel, m.complemento complementoResponsavel,
+			n.setor,
+			o.nome quemCriouApuracao
 			FROM tb_ocorrencia a
 			INNER JOIN tb_criarapuracao b ON a.idCriarApuracao = b.idCriarApuracao
 			INNER JOIN tb_vitimascriarapuracao c ON b.idCriarApuracao = c.idCriarApuracao
@@ -212,6 +214,8 @@ class MOcorrencia {
 			INNER JOIN tb_contato k ON i.idContato = k.idContato
 			INNER JOIN tb_endereco l ON h.idEndereco = l.idEndereco
 			INNER JOIN tb_endereco m ON i.idEndereco = m.idEndereco
+			INNER JOIN tb_usuario n ON b.idUsuario = n.idUsuario
+			INNER JOIN tb_pessoa o ON n.idPessoa = o.idPessoa
 			WHERE a.idOcorrencia = :idOcorrencia AND c.idVitimasApuracao = :idVitima
 		", [
 			":idOcorrencia" => $idOcorrencia,
