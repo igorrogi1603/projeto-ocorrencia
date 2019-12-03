@@ -105,49 +105,49 @@ class COcorrenciaVitima {
 		}
 
 		//--------------------------------------------------------
-			//Gerar o PDF
-			//Buscando o conteudo do pdf
-			require_once('./App/Views-pdf/PdfEditarVitima.php');
+		//Gerar o PDF
+		//Buscando o conteudo do pdf
+		require_once('./App/Views-pdf/PdfEditarVitima.php');
 
-			//Resgata o arquivo criado
-			//PRECISA DE UM CONTADOR PARA DIFERENCIAR QUANDO FOR EDITADO MAIS QUE UMA VEZ
-			$idArquivoAnterior = $marquivo->ultimoRegistroArquivo();
-			$novoIdArquivo = $idArquivoAnterior[0]["MAX(idArquivo)"] + 1;
+		//Resgata o arquivo criado
+		//PRECISA DE UM CONTADOR PARA DIFERENCIAR QUANDO FOR EDITADO MAIS QUE UMA VEZ
+		$idArquivoAnterior = $marquivo->ultimoRegistroArquivo();
+		$novoIdArquivo = $idArquivoAnterior[0]["MAX(idArquivo)"] + 1;
 
-			//Nome do arquivo final
-			$arquivo = "vitima".$idVitima."Editada".$novoIdArquivo.".pdf";
+		//Nome do arquivo final
+		$arquivo = "vitima".$idVitima."Editada".$novoIdArquivo.".pdf";
 
-			$nomePasta = "ocorrencia".$idOcorrencia;
+		$nomePasta = "ocorrencia".$idOcorrencia;
 
-			//Para onde vai o pdf
-			$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+		//Para onde vai o pdf
+		$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
 
-			//Instancia o mpdf
-			$mpdf = new Mpdf();
+		//Instancia o mpdf
+		$mpdf = new Mpdf();
 
-			//Permitir marca d'agua
-			$mpdf->showWatermarkText = true;
+		//Permitir marca d'agua
+		$mpdf->showWatermarkText = true;
 
-			//Coloca o html criado dentro da variavel para gerar o pdf
-			$mpdf->WriteHTML($pagina);
+		//Coloca o html criado dentro da variavel para gerar o pdf
+		$mpdf->WriteHTML($pagina);
 
-			//Colocar o PDF dentro da pasta da ocorrencia criada
-			$mpdf->Output($destino."".$arquivo, 'F');
+		//Colocar o PDF dentro da pasta da ocorrencia criada
+		$mpdf->Output($destino."".$arquivo, 'F');
 
-			//--------------------------------------------------------
-			//Preencher a tabela de arquivos da ocorrencia
-			//criando a url
-			$novaUrl = str_replace('.', '', $destino);
-			$url = $novaUrl."".$arquivo;
+		//--------------------------------------------------------
+		//Preencher a tabela de arquivos da ocorrencia
+		//criando a url
+		$novaUrl = str_replace('.', '', $destino);
+		$url = $novaUrl."".$arquivo;
 
-			//Cadastrando na tabela tb_arquivos
-			$marquivo->cadastrarArquivo('Vitima Editada', $url);
+		//Cadastrando na tabela tb_arquivos
+		$marquivo->cadastrarArquivo('Vitima Editada', $url);
 
-			//Resgata o arquivo criado
-			$idArquivo = $marquivo->ultimoRegistroArquivo();
+		//Resgata o arquivo criado
+		$idArquivo = $marquivo->ultimoRegistroArquivo();
 
-			//registra na tabela tb_arquivosProcessoOcorrencia
-			$marquivo->cadastrarArquivoOcorrencia($idOcorrencia, $idArquivo[0]["MAX(idArquivo)"]);
+		//registra na tabela tb_arquivosProcessoOcorrencia
+		$marquivo->cadastrarArquivoOcorrencia($idOcorrencia, $idArquivo[0]["MAX(idArquivo)"]);
 	}
 
 	public static function getOcorrenciaVitimaEditar($idVitima, $idOcorrencia)

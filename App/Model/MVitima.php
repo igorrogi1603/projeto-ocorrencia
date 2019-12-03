@@ -43,6 +43,20 @@ class MVitima {
 		}
 	}
 
+	public function vitimaEspecificaVitimasApuracao($idVitimasApuracao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT 
+			b.idEndereco, b.idContato, b.nome, b.dataNasc, b.cpf, b.rg, b.sexo
+			FROM tb_vitimasapuracao a
+			INNER JOIN tb_pessoa b ON a.idPessoa = b.idPessoa
+			WHERE a.idVitimasApuracao = :idVitimasApuracao
+		", [
+			":idVitimasApuracao" => $idVitimasApuracao
+		]);
+	}
 }
 
 ?>
