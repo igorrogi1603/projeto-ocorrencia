@@ -34,11 +34,59 @@ class COcorrenciaResponsavel {
 		return COcorrenciaResponsavel::responsavelEspecifico($idVitima, $idOcorrencia, $idPessoaResponsavel);
 	}
 
-	public static function getOcorrenciaResponsavelVitimaExcluir($idPessoaResponsavel)
-	{
+	public static function getOcorrenciaResponsavelVitimaExcluir($idResponsavelApuracao, $post, $idCriarApuracao, $idOcorrencia, $idVitima, $idPessoaResponsavel)
+	{	
 		$mresponsavel = new MResponsavel;
 
-		$mresponsavel->updateIsAindaResponsavel(0, $idPessoaResponsavel);
+		$mresponsavel->updateIsAindaResponsavel(0, $idResponsavelApuracao);
+
+		//--------------------------------------------------------
+		//Gerar o PDF
+		//Buscando o conteudo do pdf
+		require_once('./App/Views-pdf/PdfExcluirResponsavel.php');
+
+		//Resgata o arquivo criado
+		//PRECISA DE UM CONTADOR PARA DIFERENCIAR QUANDO FOR EDITADO MAIS QUE UMA VEZ
+		$idArquivoAnterior = $marquivo->ultimoRegistroArquivo();
+		$novoIdArquivo = $idArquivoAnterior[0]["MAX(idArquivo)"] + 1;
+
+		//Nome do arquivo final
+		$arquivo = "ResponsavelVitima".$idResponsavelApuracao."excluir".$novoIdArquivo.".pdf";
+
+		$nomePasta = "ocorrencia".$idOcorrencia;
+
+		//Para onde vai o pdf
+		$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+
+		//Instancia o mpdf
+		$mpdf = new Mpdf();
+
+		//Permitir marca d'agua
+		$mpdf->showWatermarkText = true;
+
+		//Coloca o html criado dentro da variavel para gerar o pdf
+		$mpdf->WriteHTML($pagina);
+
+		//Colocar o PDF dentro da pasta da ocorrencia criada
+		$mpdf->Output($destino."".$arquivo, 'F');
+
+		//--------------------------------------------------------
+		//Preencher a tabela de arquivos da ocorrencia
+		//criando a url
+		$novaUrl = str_replace('.', '', $destino);
+		$url = $novaUrl."".$arquivo;
+
+		//Cadastrando na tabela tb_arquivos
+		$marquivo->cadastrarArquivo('Responsavel Excluido', $url);
+
+		//Resgata o arquivo criado
+		$idArquivo = $marquivo->ultimoRegistroArquivo();
+
+		//registra na tabela tb_arquivosProcessoOcorrencia
+		$marquivo->cadastrarArquivoOcorrencia($idOcorrencia, $idArquivo[0]["MAX(idArquivo)"]);
+
+		//Cadastrar na Tabela Excluir Responsavel
+		$mresponsavel->cadastrarMotivoDescartarResponsavel($idResponsavelApuracao, $post, $idCriarApuracao, $_SESSION['User']['idUsuario']);
 	}
 
 	public static function postOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia, $idPessoaResponsavel, $post)
@@ -110,6 +158,48 @@ class COcorrenciaResponsavel {
 		$mcontato->update($post, $idContato, 'responsavel');
 		$mendereco->update($post, $idEndereco, 'responsavel');
 		$mresponsavel->updateResponsavelApuracao($post, $idPessoaResponsavel);
+
+		//--------------------------------------------------------
+		//Gerar o PDF
+		//Buscando o conteudo do pdf
+		require_once('./App/Views-pdf/PdfEditarResponsavel.php');
+
+		//Resgata o arquivo criado
+		//PRECISA DE UM CONTADOR PARA DIFERENCIAR QUANDO FOR EDITADO MAIS QUE UMA VEZ
+		$idArquivoAnterior = $marquivo->ultimoRegistroArquivo();
+		$novoIdArquivo = $idArquivoAnterior[0]["MAX(idArquivo)"] + 1;
+
+		//Nome do arquivo final
+		$arquivo = "ResponsavelVitima".$idPessoaResponsavel."editado".$novoIdArquivo.".pdf";
+
+		$nomePasta = "ocorrencia".$idOcorrencia;
+
+		//Para onde vai o pdf
+		$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+
+		//Instancia o mpdf
+		$mpdf = new Mpdf();	
+
+		//Coloca o html criado dentro da variavel para gerar o pdf
+		$mpdf->WriteHTML($pagina);
+
+		//Colocar o PDF dentro da pasta da ocorrencia criada
+		$mpdf->Output($destino."".$arquivo, 'F');
+
+		//--------------------------------------------------------
+		//Preencher a tabela de arquivos da ocorrencia
+		//criando a url
+		$novaUrl = str_replace('.', '', $destino);
+		$url = $novaUrl."".$arquivo;
+
+		//Cadastrando na tabela tb_arquivos
+		$marquivo->cadastrarArquivo('Responsavel Editado', $url);
+
+		//Resgata o arquivo criado
+		$idArquivo = $marquivo->ultimoRegistroArquivo();
+
+		//registra na tabela tb_arquivosProcessoOcorrencia
+		$marquivo->cadastrarArquivoOcorrencia($idOcorrencia, $idArquivo[0]["MAX(idArquivo)"]);
 	}
 
 	//Cadastrar um novo responsavel para vitima

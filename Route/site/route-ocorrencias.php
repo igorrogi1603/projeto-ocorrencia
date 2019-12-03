@@ -218,11 +218,26 @@ $app->post("/ocorrencia-responsavel-vitima-editar/:idVitima/:idOcorrencia/:idPes
 	exit;
 });
 
-$app->get("/ocorrencia-responsavel-vitima-excluir/:idVitima/:idOcorrencia/:idPessoaResponsavel", function($idVitima, $idOcorrencia, $idPessoaResponsavel){
+$app->get("/ocorrencia-responsavel-vitima-excluir/:idVitima/:idOcorrencia/:idPessoaResponsavel/:idResponsavelApuracao/:idCriarApuracao", function($idVitima, $idOcorrencia, $idPessoaResponsavel, $idResponsavelApuracao, $idCriarApuracao){
 
 	Usuario::verifyLogin();
 
-	COcorrenciaResponsavel::getOcorrenciaResponsavelVitimaExcluir($idPessoaResponsavel);
+	$page = new Page();
+
+	$page->setTpl("responsavel-descartar", [
+		"idVitima" => $idVitima,
+		"idOcorrencia" => $idOcorrencia,
+		"idPessoaResponsavel" => $idPessoaResponsavel,
+		"idResponsavelApuracao" => $idResponsavelApuracao,
+		"idCriarApuracao" => $idCriarApuracao
+	]);
+});
+
+$app->post("/ocorrencia-responsavel-vitima-excluir/:idVitima/:idOcorrencia/:idPessoaResponsavel/:idResponsavelApuracao/:idCriarApuracao", function($idVitima, $idOcorrencia, $idPessoaResponsavel, $idResponsavelApuracao, $idCriarApuracao){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaResponsavel::getOcorrenciaResponsavelVitimaExcluir($idResponsavelApuracao, $_POST, $idCriarApuracao, $idOcorrencia, $idVitima, $idPessoaResponsavel);
 
 	header("Location: /ocorrencia-responsavel-vitima-lista/".$idVitima."/".$idOcorrencia);
 	exit;

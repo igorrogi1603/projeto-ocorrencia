@@ -49,18 +49,10 @@
               <td>
                 <a href="/ocorrencia-responsavel-vitima-detalhe/{$value.idVitimasApuracao}/{$value.idOcorrencia}/{$value.idPessoaResponsavel}" class="btn btn-default"><i class="fa fa-bars"></i></a>
                 <a href="/ocorrencia-responsavel-vitima-editar/{$value.idVitimasApuracao}/{$value.idOcorrencia}/{$value.idPessoaResponsavel}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                <a onclick="confirmar()" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                <a href="/ocorrencia-responsavel-vitima-excluir/{$value.idVitimasApuracao}/{$value.idOcorrencia}/{$value.idPessoaResponsavel}/{$value.idResponsavelApuracao}/{$value.idCriarApuracao}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
               </td>
             </tr>
             {/if}
-            <script>
-              function confirmar()
-              {
-                if(confirm("Voce realmente deseja EXCLUIR esse responsável?")){
-                  location.href="/ocorrencia-responsavel-vitima-excluir/{$value.idVitimasApuracao}/{$value.idOcorrencia}/{$value.idPessoaResponsavel}";
-                }
-              }
-            </script>
             {/loop}
           </table>
           <!--Fim Tabela-->

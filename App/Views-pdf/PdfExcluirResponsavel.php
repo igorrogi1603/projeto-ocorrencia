@@ -3,18 +3,22 @@ use \App\Classe\Validacao;
 use \App\Model\MOcorrencia;
 use \App\Model\MArquivo;
 use \App\Model\MVitima;
+use \App\Model\MResponsavel;
 
 //instaciando
 $mocorrencia = new MOcorrencia;
 $marquivo = new MArquivo;
 $validacao = new Validacao;
 $mvitima = new MVitima;
+$mpessoa = new MResponsavel;
 
 $idArquivo = $marquivo->ultimoRegistroArquivo();
 
 $idArquivoNovo = (int)$idArquivo[0]['MAX(idArquivo)'] + 1;
 
 $listaVitima = $mvitima->vitimaEspecificaVitimasApuracao($idVitima);
+
+$listaResponsavel = $mresponsavel->responsavelEspecifico($idResponsavelApuracao);
 
 //HTML DO RELATORIO
 $pagina = 
@@ -24,6 +28,7 @@ $pagina =
 <html>
 <head>
     <title>Documento</title>
+    <meta charset='utf-8'>
 
     <style>
 
@@ -139,45 +144,60 @@ $pagina =
         </div>
 
         <div class='conteudo'>";
+            
+        foreach ($listaResponsavel as $value) {
 
-            $pagina .= "<p>Novo(a) responsável criado, apresenta-se pelo nome ".$post['nomeResponsavel'].", sendo";
+            $pagina .= "<p>O(a) responsável foi excluido, tal qual apresenta-se 
+            pelo nome ".utf8_encode($value['nome']).", sendo";
 
-            if ($post['responsavelRadio'] == '1') {
+            if ($value['isPais'] == '1') {
                 $pagina .= " pai ";
             }
 
-            if ($post['responsavelRadio'] == '2') {
+            if ($value['isPais'] == '2') {
                 $pagina .= " mae ";
             }
 
-            if ($post['responsavelRadio'] == '3') {
-                $pagina .= " ".$post['responsavelOutro']." ";
+            if ($value['isPais'] == '3') {
+                $pagina .= " ".utf8_encode($value['outro'])." ";
             }
 
-            $rgResponsavelView = $validacao->replaceRgBd($post['rgResponsavel'], $post['rgDigitoResponsavel']);
+            $pagina .= "da vítima ".utf8_encode($listaVitima[0]['nome'])." com grau de parentesco. 
+            Portador(a) do CPF ".$validacao->replaceCpfView($value['cpf']).", 
+            RG ".$validacao->replaceRgView($value['rg']);
 
-            $pagina .= "da vítima ".$listaVitima[0]['nome']." com grau de parentesco. Portador(a) do CPF ".$post['cpfResponsavel'].", 
-            RG ".$validacao->replaceRgView($rgResponsavelView);
-
-            $pagina .= ". Nascido(a) em ".$validacao->replaceDataView($post['dataNascResponsavel']);
+            $pagina .= ". Nascido(a) em ".$validacao->replaceDataView($value['dataNasc']);
 
             $pagina .= ", como consta em cartório, e assim possuindo o gênero";
 
-            if ($post['sexoResponsavel'] == 'm') {
+            if ($value['sexo'] == 'm') {
                 $pagina .= " masculino. ";
             }
 
-            if ($post['sexoResponsavel'] == 'f') {
+            if ($value['sexo'] == 'f') {
                 $pagina .= " feminino. ";
             }
 
-            $pagina .= "O e-mail ".$post['emailResponsavel']." é um método de comunicação, juntamente do telefone 
-            fixo ".$post['telFixoResponsavel']." e número de celular ".$post['celularResponsavel'].". 
-            Reside no CEP ".$post['cepResponsavel'].", conforme a Rua ".$post['ruaResponsavel'].", do 
-            bairro ".$post['bairroResponsavel'].", número ".$post['numeroResponsavel'].", situado no 
-            Estado ".$post['estadoResponsavel'].", na cidade ".$post['cidadeResponsavel'].", com 
-            complemento ".$post['complementoResponsavel'].".</p>";
-        
+            $pagina .= "O e-mail ".$value['email']." é um método de comunicação, ";
+
+            $pagina .= "juntamente do telefone fixo ".$validacao->replaceTelefoneFixoView($value['fixo'])." ";
+
+            $pagina .= "e número de celular ".$validacao->replaceCelularView($value['celular']).". ";
+
+            $pagina .= "Reside no CEP ".$validacao->replaceCepView($value['cep']).", 
+            conforme a Rua ".utf8_encode($value['rua']).", ";
+
+            $pagina .= "do bairro ".utf8_encode($value['bairro']).", número ".$value['numero'].", ";
+
+            $pagina .= "situado no Estado ".$value['estado'].", ";
+
+            $pagina .= "na cidade ".utf8_encode($value['cidade']).", com 
+            complemento ".utf8_encode($value['complemento']).".</p>";
+
+        }
+
+        $pagina .= "<p>O(a) responsável foi excluido(a) pelo seguinte motivo: ".$post['descricao']."</p>";
+
         $pagina .= "</div>
 
     </div>

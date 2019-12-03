@@ -108,17 +108,17 @@ class MResponsavel {
 		]);
 	}
 
-	public function updateIsAindaResponsavel($isAindaResponsavel, $idPessoaResponsavel)
+	public function updateIsAindaResponsavel($isAindaResponsavel, $idResponsavelApuracao)
 	{
 		$sql = new Conexao;
 		
 		$sql->query("
 			UPDATE tb_responsavelapuracao 
 			SET isAindaResponsavel = :isAindaResponsavel
-			WHERE idPessoa = :idPessoa
+			WHERE idResponsavelApuracao = :idResponsavelApuracao
 		", [
 			":isAindaResponsavel" => $isAindaResponsavel,
-			":idPessoa" => $idPessoaResponsavel
+			":idResponsavelApuracao" => $idResponsavelApuracao
 		]);
 	}
 
@@ -142,7 +142,6 @@ class MResponsavel {
 
 	public function ultimoRegistro()
 	{
-
 		$sql = new Conexao;
 
 		$qtd = $sql->select("SELECT MAX(idResponsavelApuracao) FROM tb_responsavelapuracao");
@@ -154,6 +153,44 @@ class MResponsavel {
 		} else {
 			return false;
 		}
+	}
+
+	public function cadastrarMotivoDescartarResponsavel($idResponsavelApuracao, $post, $idCriarApuracao, $idUsuario) 
+	{
+		$sql = new Conexao;
+		$responsavel = new Responsavel;
+
+		$responsavel->setData($post);
+
+		$sql->query("
+			INSERT INTO tb_responsavelexcluido (idUsuario, idResponsavelApuracao, idCriarApuracao, motivo) 
+			VALUES(:idUsuario, :idResponsavelApuracao, :idCriarApuracao, :motivo)
+		", [
+			":idUsuario" => $idUsuario,
+			":idResponsavelApuracao" => $idResponsavelApuracao,
+			":idCriarApuracao" => $idCriarApuracao,
+			":motivo" => $responsavel->getdescricao()
+		]);	
+	}
+
+	public function responsavelEspecifico($idResponsavelApuracao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT
+			a.isPais, a.isAindaResponsavel, a.outro,
+			b.idPessoa, b.nome, b.dataNasc, b.cpf, b.rg, b.sexo, b.dataRegistro,
+			c.idEndereco, c.cep, c.rua, c.bairro, c.numero, c.cidade, c.estado, c.complemento,
+			d.idContato, d.celular, d.fixo, d.email
+			FROM tb_responsavelapuracao a
+			INNER JOIN tb_pessoa b ON a.idPessoa = b.idPessoa
+			INNER JOIN tb_endereco c ON b.idEndereco = c.idEndereco
+			INNER JOIN tb_contato d ON b.idContato = d.idContato
+			WHERE a.idResponsavelApuracao = :idResponsavelApuracao
+		", [
+			":idResponsavelApuracao" => $idResponsavelApuracao
+		]);
 	}
 
 }

@@ -24,6 +24,7 @@ $pagina =
 <html>
 <head>
     <title>Documento</title>
+    <meta charset='utf-8'>
 
     <style>
 
@@ -140,7 +141,8 @@ $pagina =
 
         <div class='conteudo'>";
 
-            $pagina .= "<p>Novo(a) responsável criado, apresenta-se pelo nome ".$post['nomeResponsavel'].", sendo";
+            $pagina .= "<p>O(a) responsável foi editado, tal qual apresenta-se 
+            pelo nome ".$post['nomeResponsavel'].", sendo";
 
             if ($post['responsavelRadio'] == '1') {
                 $pagina .= " pai ";
@@ -171,13 +173,21 @@ $pagina =
                 $pagina .= " feminino. ";
             }
 
-            $pagina .= "O e-mail ".$post['emailResponsavel']." é um método de comunicação, juntamente do telefone 
-            fixo ".$post['telFixoResponsavel']." e número de celular ".$post['celularResponsavel'].". 
-            Reside no CEP ".$post['cepResponsavel'].", conforme a Rua ".$post['ruaResponsavel'].", do 
-            bairro ".$post['bairroResponsavel'].", número ".$post['numeroResponsavel'].", situado no 
-            Estado ".$post['estadoResponsavel'].", na cidade ".$post['cidadeResponsavel'].", com 
+            $pagina .= "O e-mail ".$post['emailResponsavel']." é um método de comunicação, ";
+
+            $pagina .= "juntamente do telefone fixo ".$post['telFixoResponsavel']." ";
+
+            $pagina .= "e número de celular ".$post['celularResponsavel'].". ";
+
+            $pagina .= "Reside no CEP ".$post['cepResponsavel'].", conforme a Rua ".$post['ruaResponsavel'].", ";
+
+            $pagina .= "do bairro ".$post['bairroResponsavel'].", número ".$post['numeroResponsavel'].", ";
+
+            $pagina .= "situado no Estado ".$post['estadoResponsavel'].", ";
+
+            $pagina .= "na cidade ".$post['cidadeResponsavel'].", com 
             complemento ".$post['complementoResponsavel'].".</p>";
-        
+
         $pagina .= "</div>
 
     </div>

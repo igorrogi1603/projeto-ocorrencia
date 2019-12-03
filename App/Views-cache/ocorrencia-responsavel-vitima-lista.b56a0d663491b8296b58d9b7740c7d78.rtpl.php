@@ -49,18 +49,10 @@
               <td>
                 <a href="/ocorrencia-responsavel-vitima-detalhe/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
                 <a href="/ocorrencia-responsavel-vitima-editar/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                <a onclick="confirmar()" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                <a href="/ocorrencia-responsavel-vitima-excluir/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idResponsavelApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
               </td>
             </tr>
             <?php } ?>
-            <script>
-              function confirmar()
-              {
-                if(confirm("Voce realmente deseja EXCLUIR esse responsável?")){
-                  location.href="/ocorrencia-responsavel-vitima-excluir/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>";
-                }
-              }
-            </script>
             <?php } ?>
           </table>
           <!--Fim Tabela-->
