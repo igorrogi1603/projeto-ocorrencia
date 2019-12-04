@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use \Mpdf\Mpdf;
+
 use \App\Classe\Validacao;
 use \App\Model\MOcorrencia;
 use \App\Model\MApuracao;
@@ -74,6 +76,48 @@ class COcorrenciaDescricao {
 
 		//update descricao e tipo
 		$mapuracao->updateDescricaoApuracao($idApuracao, $post);
+
+		//--------------------------------------------------------
+		//Gerar o PDF
+		//Buscando o conteudo do pdf
+		require_once('./App/Views-pdf/PdfEditarDescricaoOcorrencia.php');
+
+		//Resgata o arquivo criado
+		//PRECISA DE UM CONTADOR PARA DIFERENCIAR QUANDO FOR EDITADO MAIS QUE UMA VEZ
+		$idArquivoAnterior = $marquivo->ultimoRegistroArquivo();
+		$novoIdArquivo = $idArquivoAnterior[0]["MAX(idArquivo)"] + 1;
+
+		//Nome do arquivo final
+		$arquivo = "Ocorrencia".$idOcorrencia."editado".$novoIdArquivo.".pdf";
+
+		$nomePasta = "ocorrencia".$idOcorrencia;
+
+		//Para onde vai o pdf
+		$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+
+		//Instancia o mpdf
+		$mpdf = new Mpdf();	
+
+		//Coloca o html criado dentro da variavel para gerar o pdf
+		$mpdf->WriteHTML($pagina);
+
+		//Colocar o PDF dentro da pasta da ocorrencia criada
+		$mpdf->Output($destino."".$arquivo, 'F');
+
+		//--------------------------------------------------------
+		//Preencher a tabela de arquivos da ocorrencia
+		//criando a url
+		$novaUrl = str_replace('.', '', $destino);
+		$url = $novaUrl."".$arquivo;
+
+		//Cadastrando na tabela tb_arquivos
+		$marquivo->cadastrarArquivo('Descricao Editada', $url);
+
+		//Resgata o arquivo criado
+		$idArquivo = $marquivo->ultimoRegistroArquivo();
+
+		//registra na tabela tb_arquivosProcessoOcorrencia
+		$marquivo->cadastrarArquivoOcorrencia($idOcorrencia, $idArquivo[0]["MAX(idArquivo)"]);
 	}
 
 }
