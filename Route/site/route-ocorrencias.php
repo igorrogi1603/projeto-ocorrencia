@@ -434,7 +434,8 @@ $app->get("/ocorrencia-agressor-excluir/:idOcorrencia/:isInstituicao/:idOcorrenc
 		"idOcorrencia" => $idOcorrencia,
 		"isInstituicao" => $isInstituicao,
 		"agressor" => $listaAgressor,
-		"error"=>Validacao::getMsgError()
+		"error"=>Validacao::getMsgError(),
+		"idOcorrenciaAgressor" => $idOcorrenciaAgressor
 	]);
 });
 
@@ -442,7 +443,7 @@ $app->post("/ocorrencia-agressor-excluir/:idOcorrencia/:isInstituicao/:idOcorren
 
 	Usuario::verifyLogin();
 
-	COcorrenciaAgressor::postAgressorExcluir($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao, $idAgressor, $_POST);
+	COcorrenciaAgressor::postAgressorExcluir($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao, $_POST, $idAgressor);
 
 	header("Location: /ocorrencia-agressor/".$idOcorrencia);
 	exit;

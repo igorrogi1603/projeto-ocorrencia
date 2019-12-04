@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use \Mpdf\Mpdf;
+
 use \App\Classe\Agressor;
 use \App\Classe\Validacao;
 use \App\Model\MAgressor;
@@ -12,7 +14,7 @@ use \App\Model\MContato;
 
 class COcorrenciaAgressor {
 
-	public static function postAgressorExcluir($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao, $idAgressor, $post)
+	public static function postAgressorExcluir($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao, $post, $idAgressor)
 	{
 		//instanciando
 		$magressor = new MAgressor;
@@ -23,7 +25,49 @@ class COcorrenciaAgressor {
 
 		//Cadastrando na tabela agressorExcluido
 		$magressor->motivoAgressorExcluido($idAgressor, $idOcorrencia, $post);
-	}
+
+		//--------------------------------------------------------
+		//Gerar o PDF
+		//Buscando o conteudo do pdf
+		require_once('./App/Views-pdf/PdfExcluirAgressor.php');
+
+		//Resgata o arquivo criado
+		//PRECISA DE UM CONTADOR PARA DIFERENCIAR QUANDO FOR EDITADO MAIS QUE UMA VEZ
+		$idArquivoAnterior = $marquivo->ultimoRegistroArquivo();
+		$novoIdArquivo = $idArquivoAnterior[0]["MAX(idArquivo)"] + 1;
+
+		//Nome do arquivo final
+		$arquivo = "Agressor".$idAgressor."excluido".$novoIdArquivo.".pdf";
+
+		$nomePasta = "ocorrencia".$idOcorrencia;
+
+		//Para onde vai o pdf
+		$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+
+		//Instancia o mpdf
+		$mpdf = new Mpdf();	
+
+		//Coloca o html criado dentro da variavel para gerar o pdf
+		$mpdf->WriteHTML($pagina);
+
+		//Colocar o PDF dentro da pasta da ocorrencia criada
+		$mpdf->Output($destino."".$arquivo, 'F');
+
+		//--------------------------------------------------------
+		//Preencher a tabela de arquivos da ocorrencia
+		//criando a url
+		$novaUrl = str_replace('.', '', $destino);
+		$url = $novaUrl."".$arquivo;
+
+		//Cadastrando na tabela tb_arquivos
+		$marquivo->cadastrarArquivo('Agressor Excluido', $url);
+
+		//Resgata o arquivo criado
+		$idArquivo = $marquivo->ultimoRegistroArquivo();
+
+		//registra na tabela tb_arquivosProcessoOcorrencia
+		$marquivo->cadastrarArquivoOcorrencia($idOcorrencia, $idArquivo[0]["MAX(idArquivo)"]);
+	}	
 
 	public static function getAgressorExcluir($idOcorrenciaAgressor, $idOcorrencia, $isInstituicao)
 	{
@@ -137,6 +181,49 @@ class COcorrenciaAgressor {
 			$mendereco->update($post, $idEndereco, 'agressor');
 
 		} // Fim else isInstituicao
+
+		//--------------------------------------------------------
+		//Gerar o PDF
+		//Buscando o conteudo do pdf
+		require_once('./App/Views-pdf/PdfEditarAgressor.php');
+
+		//Resgata o arquivo criado
+		//PRECISA DE UM CONTADOR PARA DIFERENCIAR QUANDO FOR EDITADO MAIS QUE UMA VEZ
+		$idArquivoAnterior = $marquivo->ultimoRegistroArquivo();
+		$novoIdArquivo = $idArquivoAnterior[0]["MAX(idArquivo)"] + 1;
+
+		//Nome do arquivo final
+		$arquivo = "Agressor".$idOcorrenciaAgressor."editado".$novoIdArquivo.".pdf";
+
+		$nomePasta = "ocorrencia".$idOcorrencia;
+
+		//Para onde vai o pdf
+		$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+
+		//Instancia o mpdf
+		$mpdf = new Mpdf();	
+
+		//Coloca o html criado dentro da variavel para gerar o pdf
+		$mpdf->WriteHTML($pagina);
+
+		//Colocar o PDF dentro da pasta da ocorrencia criada
+		$mpdf->Output($destino."".$arquivo, 'F');
+
+		//--------------------------------------------------------
+		//Preencher a tabela de arquivos da ocorrencia
+		//criando a url
+		$novaUrl = str_replace('.', '', $destino);
+		$url = $novaUrl."".$arquivo;
+
+		//Cadastrando na tabela tb_arquivos
+		$marquivo->cadastrarArquivo('Agressor Editado', $url);
+
+		//Resgata o arquivo criado
+		$idArquivo = $marquivo->ultimoRegistroArquivo();
+
+		//registra na tabela tb_arquivosProcessoOcorrencia
+		$marquivo->cadastrarArquivoOcorrencia($idOcorrencia, $idArquivo[0]["MAX(idArquivo)"]);
+
 	}
 
 	public static function getListaAgressor($idOcorrencia)
