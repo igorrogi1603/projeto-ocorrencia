@@ -1,0 +1,115 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>Arquivar Ocorrência</h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li class="active">Arquivar Ocorrência</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!--Box agressor--> 
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Relatótio de Arquivar a Ocorrência com <strong>id: {$idOcorrencia}</strong></h3>
+      </div>
+
+      <!-- /.box-header -->
+      <div class="box-body">
+
+        <form action="/ocorrencia-detalhe/arquivar/{$idOcorrencia}" method="post">
+          
+          <!--Inicio row-->
+          <div class="row">
+            <!--Descricao da Ocorrencia-->
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="id-descricao-da-ocorrencia">Descrição do porque está arquivando a ocorrência *</label>
+                <textarea name="descricao" id="id-descricao-agressor" class="form-control" rows="10" onblur="validarEnivar()" required></textarea>
+              </div>
+            </div>
+            <!--Fim Descricao da Ocorrencia-->
+          </div>
+          <!--Fim row-->
+
+          <div class="row">
+            <div class="col-md-12">
+              <label>
+              <input type="checkbox" id="id-concordo" name="concordo" onblur="validarEnivar()">
+              Concordo com os 
+              <a href="#" class="" data-toggle="modal" data-target="#myModal">
+                Termos de Responsabilidade
+              </a>
+              </label>
+            </div>
+          </div>          
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Termo de Responsabilidade</h4>
+                </div>
+                <div class="modal-body">
+                  Aqui fica o termo de responssabilidade pedir ajuda a giovanna para criar esse termo onde diz que o usuario se responssabiliza pela exclusao por tudo que faz no sistema.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!--Inicio Row-->
+          <div class="row">
+            <div class="col-md-12">
+              <a href="/ocorrencia-detalhe/{$idOcorrencia}" class="btn btn-primary pull-left margin" id="botaoCancelar">Cancelar</a>
+              <input type="submit" class="btn btn-primary pull-right margin" id="botaoEnviar" value="Enviar">
+            </div>            
+          </div>
+          <!--Fim Row-->
+
+        </form>
+
+      </div>
+      <!--Fim box body-->
+    </div>
+    <!--Fim box apuracao-->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<script>
+
+window.onload = function()
+{
+  let botaoEnviar = document.getElementById("botaoEnviar");
+
+  botaoEnviar.setAttribute("disabled", false);
+}
+
+function validarEnivar()
+{
+  let botaoEnviar = document.getElementById("botaoEnviar");
+  let concordo = document.getElementById("id-concordo");
+  let descricaoAgressor = document.getElementById("id-descricao-agressor");
+  
+  if
+  (
+    concordo.checked != false &&
+    descricaoAgressor.value != ""
+  ){
+    botaoEnviar.disabled = false;
+  } else {
+    botaoEnviar.setAttribute("disabled", false);
+  }
+}
+
+</script>

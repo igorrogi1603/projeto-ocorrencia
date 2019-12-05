@@ -2,42 +2,15 @@
 use \App\Classe\Validacao;
 use \App\Model\MOcorrencia;
 use \App\Model\MArquivo;
-use \App\Model\MUsuario;
-use \App\Model\MPessoa;
-use \App\Model\MInstituicao;
-use \App\Model\MVitima;
 
 //instaciando
 $mocorrencia = new MOcorrencia;
 $marquivo = new MArquivo;
 $validacao = new Validacao;
-$musuario = new MUsuario;
-$mpessoa = new MPessoa;
-$minstituicao = new MInstituicao;
-$mvitima = new MVitima;
 
 $idArquivo = $marquivo->ultimoRegistroArquivo();
 
 $idArquivoNovo = (int)$idArquivo[0]['MAX(idArquivo)'] + 1;
-
-//Recuperando o id do usuario
-$listaUsuario = $musuario->usuarioEspecifico($post['para']);
-
-//Descobrir se o usuario e instituicao ou pessoa fisica
-foreach ($listaUsuario as $value) {
-    
-    if (isset($value['idPessoa']) && $value['idPessoa'] != null && $value['idPessoa'] != "") {
-
-        $nomePdfPara = $mpessoa->pessoaEspecifica($value['idPessoa']);
-    }
-
-    if (isset($value['idInstituicao']) && $value['idInstituicao'] != null && $value['idInstituicao'] != "") {
-
-        $nomePdfPara = $minstituicao->InstituicaoEspecifica($value['idInstituicao']);
-    }
-}//fim foreache descobrir usuario
-
-$listaVitima = $mvitima->vitimaEspecificaVitimasApuracao($post['vitima']);
 
 //HTML DO RELATORIO
 $pagina = 
@@ -163,11 +136,7 @@ $pagina =
 
         <div class='conteudo'>";
 
-        $pagina .= "<p>Nova solicitação criada por ".utf8_encode($_SESSION['User']['nome']).", 
-        foi direcionada para ".utf8_encode($nomePdfPara[0]['nome']).", 
-        onde a vítima é ".utf8_encode($listaVitima[0]['nome']).", 
-        com assunto: ".$post['assunto']." 
-        e mensagem: ".$post['mensagem']."</p>";
+        $pagina .= "<p>A ocorrência ".$idOcorrencia." está sendo ENCERRADA pelo seguinte motivo: ".$post['descricao']."</p>";
 
         $pagina .= "</div>
 

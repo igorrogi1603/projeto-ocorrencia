@@ -72,7 +72,7 @@
           <div class="box-footer">
             <?php if( $value1["isResposta"] == '0' ){ ?>
             <div class="pull-right">
-              <a href="/solicitacao-responder/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-reply"></i> Responder</a>
+              <a href="/solicitacao-responder/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-reply"></i> Responder</a>
             </div>
             <?php } ?>
             <button type="button" id="btn" class="btn btn-default"><i class="fa fa-print"></i> Print</button>

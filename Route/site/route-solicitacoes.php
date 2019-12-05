@@ -32,7 +32,7 @@ $app->get('/ler-solicitacao/:idSolicitacao/:isInstituicao', function($idSolicita
 
 });
 
-$app->get('/solicitacao-responder/:idSolicitacao/:isInstituicao', function($idSolicitacao, $isInstituicao){
+$app->get('/solicitacao-responder/:idSolicitacao/:isInstituicao/:idOcorrencia', function($idSolicitacao, $isInstituicao, $idOcorrencia){
 
 	Usuario::verifyLogin();
 
@@ -40,16 +40,17 @@ $app->get('/solicitacao-responder/:idSolicitacao/:isInstituicao', function($idSo
 
 	$page->setTpl("solicitacao-responder", [
 		"idSolicitacao" => $idSolicitacao,
-		"isInstituicao" => $isInstituicao
+		"isInstituicao" => $isInstituicao,
+		"idOcorrencia" => $idOcorrencia
 	]);
 
 });
 
-$app->post('/solicitacao-responder/:idSolicitacao/:isInstituicao', function($idSolicitacao, $isInstituicao){
+$app->post('/solicitacao-responder/:idSolicitacao/:isInstituicao/:idOcorrencia', function($idSolicitacao, $isInstituicao, $idOcorrencia){
 
 	Usuario::verifyLogin();
 
-	CSolicitacoes::postSolicitacaoResponder($_POST, $idSolicitacao);
+	CSolicitacoes::postSolicitacaoResponder($_POST, $idSolicitacao, $idOcorrencia);
 
 	header("Location: /ler-solicitacao/".$idSolicitacao."/".$isInstituicao);
 	exit;

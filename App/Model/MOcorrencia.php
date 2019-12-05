@@ -64,6 +64,24 @@ class MOcorrencia {
 		]);
 	}
 
+	//Preencher a tabela de arquivar ocorrencia o motivo
+	public function tabelaReabrirOcorrencia($idOcorrencia, $post, $idUsuario)
+	{
+		$sql = new Conexao;
+		$ocorrencia = new Ocorrencia;
+
+		$ocorrencia->setData($post);
+
+		$sql->query("
+			INSERT INTO tb_reabrirocorrencia (idOcorrencia, idUsuario, motivo) 
+			VALUES(:idOcorrencia, :idUsuario, :motivo)
+		", [
+			":idOcorrencia" => $idOcorrencia,
+			":idUsuario" => $idUsuario,
+			":motivo" => utf8_decode($ocorrencia->getdescricao())
+		]);
+	}
+
 	public function arquivarOcorrencia($idOcorrencia)
 	{	
 		$sql = new Conexao;
@@ -78,6 +96,24 @@ class MOcorrencia {
 		]);
 	}
 
+	//Preencher a tabela de arquivar ocorrencia o motivo
+	public function tabelaArquivarOcorrencia($idOcorrencia, $post, $idUsuario)
+	{
+		$sql = new Conexao;
+		$ocorrencia = new Ocorrencia;
+
+		$ocorrencia->setData($post);
+
+		$sql->query("
+			INSERT INTO tb_arquivarocorrencia (idOcorrencia, idUsuario, motivo) 
+			VALUES(:idOcorrencia, :idUsuario, :motivo)
+		", [
+			":idOcorrencia" => $idOcorrencia,
+			":idUsuario" => $idUsuario,
+			":motivo" => utf8_decode($ocorrencia->getdescricao())
+		]);
+	}
+
 	public function encerrarOcorrencia($idOcorrencia)
 	{	
 		$sql = new Conexao;
@@ -89,6 +125,24 @@ class MOcorrencia {
 		", [
 			":status" => 4,
 			"idOcorrencia" => $idOcorrencia
+		]);
+	}
+
+	//Preencher a tabela de arquivar ocorrencia o motivo
+	public function tabelaEncerrarOcorrencia($idOcorrencia, $post, $idUsuario)
+	{
+		$sql = new Conexao;
+		$ocorrencia = new Ocorrencia;
+
+		$ocorrencia->setData($post);
+
+		$sql->query("
+			INSERT INTO tb_encerrarocorrencia (idOcorrencia, idUsuario, motivo) 
+			VALUES(:idOcorrencia, :idUsuario, :motivo)
+		", [
+			":idOcorrencia" => $idOcorrencia,
+			":idUsuario" => $idUsuario,
+			":motivo" => utf8_decode($ocorrencia->getdescricao())
 		]);
 	}
 

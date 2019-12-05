@@ -38,7 +38,7 @@
         </div>
         <!-- /.col -->
 
-        <form action="/solicitacao-responder/<?php echo htmlspecialchars( $idSolicitacao, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $isInstituicao, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
+        <form action="/solicitacao-responder/<?php echo htmlspecialchars( $idSolicitacao, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $isInstituicao, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
 
           <div class="col-md-9">
             <div class="box box-primary">

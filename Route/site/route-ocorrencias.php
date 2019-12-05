@@ -703,7 +703,18 @@ $app->get("/ocorrencia-detalhe/arquivar/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
-	COcorrenciaStatus::getArquivar($idOcorrencia);
+	$page = new Page();
+
+	$page->setTpl("arquivar-ocorrencia", [
+		"idOcorrencia" => $idOcorrencia
+	]);
+});
+
+$app->post("/ocorrencia-detalhe/arquivar/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaStatus::getArquivar($idOcorrencia, $_POST);
 
 	header("Location: /ocorrencias-arquivadas");
 	exit;
@@ -713,7 +724,18 @@ $app->get("/ocorrencia-detalhe/encerrar/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
-	COcorrenciaStatus::getEncerrar($idOcorrencia);
+	$page = new Page();
+
+	$page->setTpl("encerrar-ocorrencia", [
+		"idOcorrencia" => $idOcorrencia
+	]);
+});
+
+$app->post("/ocorrencia-detalhe/encerrar/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaStatus::getEncerrar($idOcorrencia, $_POST);
 
 	header("Location: /ocorrencias-encerradas");
 	exit;
@@ -723,7 +745,18 @@ $app->get("/ocorrencia-detalhe/reabrir/:idOcorrencia", function($idOcorrencia){
 
 	Usuario::verifyLogin();
 
-	COcorrenciaStatus::getReabrir($idOcorrencia);
+	$page = new Page();
+
+	$page->setTpl("reabrir-ocorrencia", [
+		"idOcorrencia" => $idOcorrencia
+	]);	
+});
+
+$app->post("/ocorrencia-detalhe/reabrir/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	COcorrenciaStatus::getReabrir($idOcorrencia, $_POST);
 
 	header("Location: /ocorrencias-reabertas");
 	exit;
