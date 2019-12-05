@@ -152,10 +152,9 @@ class MUsuario {
 	//Logar no sistema
 	public static function login($login, $password)
 	{
-
 		$sql = new Conexao;
 
-		$results = $sql->select("
+		$pessoa = $sql->select("
 			SELECT * FROM tb_usuario a
 			INNER JOIN tb_pessoa b ON a.idPessoa = b.idPessoa
 			WHERE user = :user
@@ -163,12 +162,26 @@ class MUsuario {
 			":user"=>$login
 		));
 
-		if (count($results) === 0)
+		$instituicao = $sql->select("
+			SELECT * FROM tb_usuario a
+			INNER JOIN tb_instituicao b ON a.idInstituicao = b.idInstituicao
+			WHERE user = :user
+		", array(
+			":user"=>$login
+		));		
+
+		if (count($pessoa) === 0 && count($instituicao) === 0)
 		{
 			return false;
 		}
 
-		$data = $results[0];
+		if (isset($pessoa) && $pessoa != null && $pessoa != "" && count($pessoa) != 0) {
+			$data = $pessoa[0];
+		}
+
+		if (isset($instituicao) && $instituicao != null && $instituicao != "" && count($instituicao) != 0) {
+			$data = $instituicao[0];
+		}
 
 		if (password_verify($password, $data["senha"]) === true)
 		{
