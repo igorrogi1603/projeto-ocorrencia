@@ -150,13 +150,19 @@ $pagina =
         
         <div class='cabecalho'>
             Logo
-        </div>
+        </div>";
 
-        <div class='pos-cabecalho'>
-            ".utf8_encode($_SESSION['User']['setor'])."
-        </div>
+        if (isset($_SESSION['User']['setor']) && $_SESSION['User']['setor'] != "" && $_SESSION['User']['setor'] != null) {
+            $pagina .= "<div class='pos-cabecalho'>
+                ".utf8_encode($_SESSION['User']['setor'])."
+            </div>";
+        } else {
+            $pagina .= "<div class='pos-cabecalho'>
+                ".utf8_encode($_SESSION['User']['nome'])."
+            </div>";
+        }
 
-        <div class='antes-conteudo'>
+        $pagina .= "<div class='antes-conteudo'>
             <div class='oficio'><p>Oficio ".$idArquivoNovo."/".date('Y')."</p></div>
             <div class='data'><p>Nova Campina, ".date('d')." de ".date('M')." de ".date('Y')."</p></div>
         </div>
