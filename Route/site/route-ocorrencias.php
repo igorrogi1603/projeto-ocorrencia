@@ -17,6 +17,7 @@ use \App\Controller\COcorrenciaNovaSolicitacao;
 use \App\Controller\COcorrenciaSolicitacao;
 use \App\Controller\COcorrenciaStatus;
 use \App\Controller\COcorrenciaArquivos;
+use \App\Controller\COcorrenciaArquivoExterno;
 
 //QUATRO FASES DA OCORRENCIA
 $app->get("/ocorrencias-abertas", function(){
@@ -762,5 +763,33 @@ $app->post("/ocorrencia-detalhe/reabrir/:idOcorrencia", function($idOcorrencia){
 	exit;
 });
 
+$app->get("/ocorrencia-arquivo-externo/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	$page = new Page();
+
+	$page->setTpl("ocorrencia-arquivo-externo", [
+		"idOcorrencia" => $idOcorrencia,
+		"error"=>Validacao::getMsgError()
+	]);	
+});
+
+$app->post("/ocorrencia-arquivo-externo/:idOcorrencia", function($idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	//if serve para nao dar erro na variavel sendo passada como parametro caso ela nao exista dará erro
+	if($_FILES["upDocumento"]["name"] !== ""){
+		COcorrenciaArquivoExterno::postEnviarAquivoExterno($idOcorrencia, $_POST, $_FILES["upDocumento"]);
+	} else {
+		Validacao::setMsgError("Selecione um arquivo PDF");
+        header('Location: /ocorrencia-arquivo-externo/'.$idOcorrencia);
+        exit;
+	}
+
+	header("Location: /ocorrencia-detalhe".$idOcorrencia);
+	exit;
+});
 
 ?>
