@@ -30,7 +30,10 @@ class Page {
 		
 		$this->setData($this->options["data"]);
 		
-		if ($this->options["header"] === true) $this->tpl->draw("header");
+		//Na forma original do arquivo nao tem a ultima linha da session apenas ate o HEADER
+		//O segundo parametro e o unico jeito de mandar uma variavel para o header
+
+		if ($this->options["header"] === true) $this->setTpl("header", ['user' => $_SESSION['User']['nome'] ]);
 	}
 
 	public function setData($data = array())
