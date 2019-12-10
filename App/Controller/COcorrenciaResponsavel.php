@@ -357,7 +357,9 @@ class COcorrenciaResponsavel {
 	//------------------------------------------------------------------------------------
 	//Responsavel especifico
 	protected function responsavelEspecifico($idVitima, $idOcorrencia, $idPessoaResponsavel)
-	{
+	{	
+		$validacao = new Validacao;
+
 		$listaResponsavel = COcorrenciaResponsavel::validacaoVitimasEditar($idVitima, $idOcorrencia);
 
 		//Pega o tamanho do arry para usar no for
@@ -368,6 +370,15 @@ class COcorrenciaResponsavel {
 			//Se os id forem diferentes entao exclui para nao vir outra pessoa junto
 			if ($idPessoaResponsavel != $listaResponsavel[$i]['idPessoaResponsavel']) {
 				unset($listaResponsavel[$i]);
+			}
+		}
+
+		for ($i = 0; $i < count($listaResponsavel); $i++) {
+
+			if ($listaResponsavel[$i]['dataNascResponsavel'] == null) {
+				//mostra nada
+			} else {
+				$listaResponsavel[$i]['dataNascResponsavel'] = $validacao->replaceDataView(utf8_encode($listaResponsavel[$i]['dataNascResponsavel']));
 			}
 		}
 

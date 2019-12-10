@@ -130,10 +130,10 @@ class MPessoa {
 				break;
 
 			case 'vitima':
-				if ($pessoa->getdataNascUsuario() == null) {
+				if ($pessoa->getdataNascVitima() == null) {
 					$dataNasc = null;
 				} else {
-					$dataNasc = $validacao->replaceDataBd($pessoa->getdataNascUsuario());
+					$dataNasc = $validacao->replaceDataBd($pessoa->getdataNascVitima());
 				}
 
 				$sql->query("
