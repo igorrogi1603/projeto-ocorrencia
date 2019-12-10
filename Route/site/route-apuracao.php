@@ -5,7 +5,6 @@ use \App\Classe\Validacao;
 use \App\Config\Page;
 use \App\Controller\CCriarApuracao;
 use \App\Controller\CListaApuracao;
-use \App\Controller\CListaConfirmacao;
 
 $app->get("/criar-apuracao", function(){
 	
@@ -78,33 +77,57 @@ $app->get("/apuracao-enviada-print/:idApuracao", function($idApuracao){
 	}
 });
 
+//As rotas de cima nao estao validadas com nivel de acesso
+//pois todos os usuario poderao criar apuracao (denuncia)
+
 $app->get("/lista-apuracoes", function(){
 
 	Usuario::verifyLogin();
-	
-	$listaApuracao = CListaApuracao::getListaApuracao();
 
-	$page = new Page();
+	if ($_SESSION['User']['nivelAcesso'] == "4" ||
+		$_SESSION['User']['nivelAcesso'] == "2210"
+	) {
+		$listaApuracao = CListaApuracao::getListaApuracao();
 
-	$page->setTpl("lista-apuracoes", [
-		"listaApuracao" => $listaApuracao
-	]);
+		$page = new Page();
+
+		$page->setTpl("lista-apuracoes", [
+			"listaApuracao" => $listaApuracao
+		]);
+	} else {
+		$page = new Page([
+			"header"=>false,
+			"footer"=>false
+		]);
+		$page->setTpl("404");
+	}	
 });
 
 $app->get("/apuracao-detalhe/:idApuracao", function($idApuracao){
 
 	Usuario::verifyLogin();
 
-	$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
-
 	//Verificação para nao acessar paginas que ja passou 
 	//pelo sistema para nao poder acessar novamente
-	if (isset($detalheApuracao[0]['status']) && $detalheApuracao[0]['status'] == 1) {
-		$page = new Page();
 
-		$page->setTpl("apuracao-detalhe", [
-			"detalheApuracao" => $detalheApuracao
-		]);
+	if ($_SESSION['User']['nivelAcesso'] == "4" ||
+		$_SESSION['User']['nivelAcesso'] == "2210"
+	) {
+		$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
+
+		if (isset($detalheApuracao[0]['status']) && $detalheApuracao[0]['status'] == 1) {
+			$page = new Page();
+
+			$page->setTpl("apuracao-detalhe", [
+				"detalheApuracao" => $detalheApuracao
+			]);
+		} else {
+			$page = new Page([
+				"header"=>false,
+				"footer"=>false
+			]);
+			$page->setTpl("404");
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -118,16 +141,27 @@ $app->get("/apuracao-detalhe/descartar/:idApuracao", function($idApuracao){
 
 	Usuario::verifyLogin();
 
-	$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
-
 	//Verificação para nao acessar paginas que ja passou 
 	//pelo sistema para nao poder acessar novamente
-	if (isset($detalheApuracao[0]['status']) && $detalheApuracao[0]['status'] == 1) {
-		$page = new Page();
 
-		$page->setTpl("apuracao-descartar", [
-			"idApuracao" => $idApuracao
-		]);
+	if ($_SESSION['User']['nivelAcesso'] == "4" ||
+		$_SESSION['User']['nivelAcesso'] == "2210"
+	) {
+		$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
+
+		if (isset($detalheApuracao[0]['status']) && $detalheApuracao[0]['status'] == 1) {
+			$page = new Page();
+
+			$page->setTpl("apuracao-descartar", [
+				"idApuracao" => $idApuracao
+			]);
+		} else {
+			$page = new Page([
+				"header"=>false,
+				"footer"=>false
+			]);
+			$page->setTpl("404");
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -141,25 +175,46 @@ $app->post("/apuracao-detalhe/descartar/:idApuracao", function($idApuracao){
 
 	Usuario::verifyLogin();
 
-	CListaApuracao::postDescartarApuracao($_POST, $idApuracao);
+	if ($_SESSION['User']['nivelAcesso'] == "4" ||
+		$_SESSION['User']['nivelAcesso'] == "2210"
+	) {
+		CListaApuracao::postDescartarApuracao($_POST, $idApuracao);
 
-	header("Location: /lista-apuracoes");
-	exit;
+		header("Location: /lista-apuracoes");
+		exit;
+	} else {
+		$page = new Page([
+			"header"=>false,
+			"footer"=>false
+		]);
+		$page->setTpl("404");
+	}
 });
 
 $app->get("/apuracao-detalhe/gerar-ocorrencia/:idApuracao", function($idApuracao){
 
 	Usuario::verifyLogin();
 
-	$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
-
 	//Verificação para nao acessar paginas que ja passou 
 	//pelo sistema para nao poder acessar novamente
-	if (isset($detalheApuracao[0]['status']) && $detalheApuracao[0]['status'] == 1) {
-		CListaApuracao::getGerarOcorrencia($idApuracao);
 
-		header("Location: /confirmar-apuracao");
-		exit;
+	if ($_SESSION['User']['nivelAcesso'] == "4" ||
+		$_SESSION['User']['nivelAcesso'] == "2210"
+	) {
+		$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
+		
+		if (isset($detalheApuracao[0]['status']) && $detalheApuracao[0]['status'] == 1) {
+			CListaApuracao::getGerarOcorrencia($idApuracao);
+
+			header("Location: /confirmar-apuracao");
+			exit;
+		} else {
+			$page = new Page([
+				"header"=>false,
+				"footer"=>false
+			]);
+			$page->setTpl("404");
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -168,143 +223,5 @@ $app->get("/apuracao-detalhe/gerar-ocorrencia/:idApuracao", function($idApuracao
 		$page->setTpl("404");
 	}
 });
-
-$app->get("/confirmar-apuracao", function(){
-
-	Usuario::verifyLogin();
-
-	$confirmarApuracao = CListaConfirmacao::getListaConfirmacao();
-
-	$page = new Page();
-
-	$page->setTpl("confirmar-apuracao", [
-		"confirmarApuracao" => $confirmarApuracao
-	]);
-});
-
-$app->get("/confirmar-apuracao-detalhe/:idApuracao", function($idApuracao){
-
-	Usuario::verifyLogin();
-
-	$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
-
-	//Verificação para nao acessar paginas que ja passou 
-	//pelo sistema para nao poder acessar novamente
-	if (isset($confirmacaoDetalhe[0]['status']) && $confirmacaoDetalhe[0]['status'] == 2) {	
-		$page = new Page();
-
-		$page->setTpl("confirmar-apuracao-detalhe", [
-			"confirmacaoDetalhe" => $confirmacaoDetalhe,
-			"error" => Validacao::getMsgError()
-		]);
-	} else {
-		$page = new Page([
-			"header"=>false,
-			"footer"=>false
-		]);
-		$page->setTpl("404");
-	}
-});
-
-$app->get("/confirmacao-positivo/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
-
-	Usuario::verifyLogin();
-
-	$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
-
-	//Verificação para nao acessar paginas que ja passou 
-	//pelo sistema para nao poder acessar novamente
-	if (isset($confirmacaoDetalhe[0]['status']) && $confirmacaoDetalhe[0]['status'] == 2) {
-		CListaConfirmacao::getConfirmacaoPositivo($idApuracao, $idConfirmacao);
-
-		header('Location: /ocorrencias-abertas');
-		exit;
-	} else {
-		$page = new Page([
-			"header"=>false,
-			"footer"=>false
-		]);
-		$page->setTpl("404");
-	}
-});
-
-$app->get("/confirmacao-negativo/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
-
-	Usuario::verifyLogin();
-
-	$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
-
-	//Verificação para nao acessar paginas que ja passou 
-	//pelo sistema para nao poder acessar novamente
-	if (isset($confirmacaoDetalhe[0]['status']) && $confirmacaoDetalhe[0]['status'] == 2) {	
-		CListaConfirmacao::getConfirmacaoNegativo($idApuracao, $idConfirmacao);
-
-		header('Location: /confirmar-apuracao-detalhe/'.$idApuracao);
-		exit;
-	} else {
-		$page = new Page([
-			"header"=>false,
-			"footer"=>false
-		]);
-		$page->setTpl("404");
-	}
-});
-
-$app->get("/confirmacao-detalhe/descartar/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
-
-	Usuario::verifyLogin();
-
-	$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
-
-	//Verificação para nao acessar paginas que ja passou 
-	//pelo sistema para nao poder acessar novamente
-	if (isset($confirmacaoDetalhe[0]['status']) && $confirmacaoDetalhe[0]['status'] == 2) {
-		$page = new Page();
-
-		$page->setTpl("confirmacao-descartar", [
-			"idApuracao" => $idApuracao,
-			"idConfirmacao" => $idConfirmacao
-		]);
-	} else {
-		$page = new Page([
-			"header"=>false,
-			"footer"=>false
-		]);
-		$page->setTpl("404");
-	}
-});
-
-$app->get("/confirmacao-detalhe/cancelar/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
-
-	Usuario::verifyLogin();
-
-	$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
-
-	//Verificação para nao acessar paginas que ja passou 
-	//pelo sistema para nao poder acessar novamente
-	if (isset($confirmacaoDetalhe[0]['status']) && $confirmacaoDetalhe[0]['status'] == 2) {
-		CListaConfirmacao::confirmacaoDetalheCancelar($idConfirmacao);
-
-		header("Location: /confirmar-apuracao");
-		exit;
-	} else {
-		$page = new Page([
-			"header"=>false,
-			"footer"=>false
-		]);
-		$page->setTpl("404");
-	}
-});
-
-$app->post("/confirmacao-detalhe/descartar/:idApuracao/:idConfirmacao", function($idApuracao, $idConfirmacao){
-
-	Usuario::verifyLogin();
-
-	CListaApuracao::postDescartarApuracao($_POST, $idApuracao);
-
-	header("Location: /confirmar-apuracao");
-	exit;
-});
-
 
 ?>

@@ -21,7 +21,7 @@
       <!-- /.box-header -->
       <div class="box-body">
 
-        <form action="/ocorrencia-agressor-excluir/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $isInstituicao, ENT_COMPAT, 'UTF-8', FALSE ); ?>/{agressor.0.$idOcorrenciaAgressor}/<?php echo htmlspecialchars( $agressor["0"]["idAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
+        <form action="/ocorrencia-agressor-excluir/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $isInstituicao, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrenciaAgressor, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $agressor["0"]["idAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
           
           <!--Inicio row-->
           <div class="row">

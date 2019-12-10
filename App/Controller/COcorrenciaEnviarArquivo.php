@@ -58,12 +58,12 @@ class COcorrenciaEnviarArquivo {
 						$documento[$aux]['idPessoa'] = str_replace($documento[$aux]['idArquivo'].'rg', '', $documento[$aux]['arquivo']);	
 					}
 					
-					if ($posCnh !== false) {
-						$documento[$aux]['idPessoa'] = str_replace($documento[$aux]['idArquivo'].'cnh', '', $documento[$aux]['arquivo']);	
-					}
-
 					if ($posCn !== false) {
 						$documento[$aux]['idPessoa'] = str_replace($documento[$aux]['idArquivo'].'cn', '', $documento[$aux]['arquivo']);	
+					}
+
+					if ($posCnh !== false) {
+						$documento[$aux]['idPessoa'] = str_replace($documento[$aux]['idArquivo'].'cnh', '', $documento[$aux]['arquivo']);	
 					}
 
 					//Recuperando a pessoa para exibicao

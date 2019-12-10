@@ -142,10 +142,13 @@ class COcorrenciaResponsavel {
 		}
 
 		//caso o radio for 3 entao verificar se o campo "outro" nao esta vazio
-		if (!isset($post['responsavelOutro']) || $post['responsavelOutro'] == "") {
-			Validacao::setMsgError("Não foi preenchido o campo outro.");
-	        header('Location: /ocorrencia-responsavel-vitima-editar/'.$idVitima.'/'.$idOcorrencia.'/'.$idPessoaResponsavel);
-	        exit;
+		if ($post['responsavelRadio'] == 3) {
+			
+			if (!isset($post['responsavelOutro']) || $post['responsavelOutro'] == "") {
+				Validacao::setMsgError("Não foi preenchido o campo outro.");
+		        header('Location: /ocorrencia-responsavel-vitima-editar/'.$idVitima.'/'.$idOcorrencia.'/'.$idPessoaResponsavel);
+		        exit;
+			}
 		}
 
 		//Caso for pai ou mae deixar vazio o campo "outro"
