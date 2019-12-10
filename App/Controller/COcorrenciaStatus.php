@@ -6,16 +6,21 @@ use \Mpdf\Mpdf;
 
 use \App\Classe\Validacao;
 use \App\Model\MOcorrencia;
+use \App\Model\MNotificacao;
 
 class COcorrenciaStatus {
 
 	public static function getArquivar($idOcorrencia, $post)
 	{
 		$mocorrencia = new MOcorrencia;
+		$mnotificacao = new MNotificacao;
 
 		$mocorrencia->arquivarOcorrencia($idOcorrencia);
 
 		$mocorrencia->tabelaArquivarOcorrencia($idOcorrencia, $post, $_SESSION['User']['idUsuario']);
+
+		//Notificacao
+		$mnotificacao->cadastrar("Ocorrência Arquivada", "/ocorrencia-detalhe/".$idOcorrencia);
 
 		//--------------------------------------------------------
 		//Gerar o PDF
@@ -63,10 +68,14 @@ class COcorrenciaStatus {
 	public static function getEncerrar($idOcorrencia, $post)
 	{
 		$mocorrencia = new MOcorrencia;
+		$mnotificacao = new MNotificacao;
 
 		$mocorrencia->encerrarOcorrencia($idOcorrencia);
 
 		$mocorrencia->tabelaEncerrarOcorrencia($idOcorrencia, $post, $_SESSION['User']['idUsuario']);
+
+		//Notificacao
+		$mnotificacao->cadastrar("Ocorrência Encerrada", "/ocorrencia-detalhe/".$idOcorrencia);
 
 		//--------------------------------------------------------
 		//Gerar o PDF
@@ -114,10 +123,14 @@ class COcorrenciaStatus {
 	public static function getReabrir($idOcorrencia, $post)
 	{
 		$mocorrencia = new MOcorrencia;
+		$mnotificacao = new MNotificacao;
 
 		$mocorrencia->reabrirOcorrencia($idOcorrencia);
 
 		$mocorrencia->tabelaReabrirOcorrencia($idOcorrencia, $post, $_SESSION['User']['idUsuario']);
+
+		//Notificacao
+		$mnotificacao->cadastrar("Ocorrência Reaberta", "/ocorrencia-detalhe/".$idOcorrencia);
 
 		//--------------------------------------------------------
 		//Gerar o PDF

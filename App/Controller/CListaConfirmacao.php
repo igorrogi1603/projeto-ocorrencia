@@ -8,6 +8,7 @@ use \App\Classe\Validacao;
 use \App\Classe\Usuario;
 use \App\Model\MApuracao;
 use \App\Model\MOcorrencia;
+use \App\Model\MNotificacao;
 use \App\Model\MArquivo;
 
 class CListaConfirmacao {
@@ -18,6 +19,7 @@ class CListaConfirmacao {
 		$mapuracao = new MApuracao;
 		$mocorrencia = new MOcorrencia;
 		$marquivo = new MArquivo;
+		$mnotificacao = new MNotificacao;
 
 		//Recupero na tabela para ver se tem alguma informacao do usuario logado
 		//Caso nessa tabela tenha uma informacao desse usuario quer dizer que ele ja votou
@@ -53,6 +55,9 @@ class CListaConfirmacao {
 
 			//Buscar a ocorrencia que foi cadastrada agora
 			$idOcorrencia = $mocorrencia->ultimoRegistro();
+
+			//Notificacao
+			$mnotificacao->cadastrar("Nova Ocorrência", "/ocorrencia-detalhe/".$idOcorrencia[0]["MAX(idOcorrencia)"]);
 
 			//Gerar nome da pasta
 			$nomePasta = "ocorrencia".$idOcorrencia[0]["MAX(idOcorrencia)"];

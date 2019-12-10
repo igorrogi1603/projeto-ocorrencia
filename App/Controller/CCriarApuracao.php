@@ -12,6 +12,7 @@ use \App\Model\MResponsavel;
 use \App\Model\MVitima;
 use \App\Model\MUsuario;
 use \App\Model\MAcompanhamento;
+use \App\Model\MNotificacao;
 
 class CCriarApuracao {
 
@@ -67,7 +68,8 @@ class CCriarApuracao {
 		$mresponsavel = new MResponsavel;
 		$mvitima = new MVitima;
 		$musuario = new MUsuario;
-		$macompanhamento = new MAcompanhamento;		
+		$macompanhamento = new MAcompanhamento;
+		$mnotificacao = new MNotificacao;		
 
 		//----------------------------------------------------------------
 		//VALIDACAO DO FORMULARIO
@@ -348,6 +350,9 @@ class CCriarApuracao {
 
 			}//Fim do else
 		}//Fim do for
+
+		//Notificacao
+		$mnotificacao->cadastrar("Nova Apuração", "/apuracao-detalhe/".$idApuracao[0]["MAX(idCriarApuracao)"]);
 
 		return $idApuracao;
 

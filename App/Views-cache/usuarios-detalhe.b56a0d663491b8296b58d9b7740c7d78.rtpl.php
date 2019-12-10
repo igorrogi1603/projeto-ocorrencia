@@ -110,8 +110,6 @@
             <?php }else{ ?>
             <a class="btn btn-app" onclick="confirmarDesbloquear()"><i class="fa fa-check"></i>Desbloquear</a>
             <?php } ?>      
-            
-            <a class="btn btn-app" onclick="confirmarExluir()"><i class="fa fa-trash-o"></i>Excluir</a>
 
             <a href="/usuarios-alterar-senha/senha/<?php echo htmlspecialchars( $detalheUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-app"><i class="fa fa-lock"></i>Alterar Senha</a>
 
@@ -131,13 +129,6 @@
 <!-- /.content-wrapper -->
 
 <script>
-
-function confirmarExluir()
-{
-  if(confirm("Voce realmente deseja EXCLUIR esse usuário ")){
-    location.href="/usuarios-detalhe/excluir/<?php echo htmlspecialchars( $detalheUsuario["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>";
-  }
-}
 
 function confirmarBloquear()
 {

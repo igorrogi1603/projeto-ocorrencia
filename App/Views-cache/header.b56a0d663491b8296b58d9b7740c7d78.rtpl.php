@@ -93,101 +93,88 @@ desired effect
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-              <li>
-                <!-- inner menu: contains the messages -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <!-- User Image -->
-                        <img src="/res/site/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <!-- Message title and timestamp -->
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <!-- The message -->
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                </ul>
-                <!-- /.menu -->
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
-          <!-- /.messages-menu -->
+          
+          <?php $conselho = 0; ?>
+          <?php $outro = 0; ?>
+
+          <?php $counter1=-1;  if( isset($notificacao) && ( is_array($notificacao) || $notificacao instanceof Traversable ) && sizeof($notificacao) ) foreach( $notificacao as $key1 => $value1 ){ $counter1++; ?>
+
+            <?php if( $value1["idUsuario"] == null ){ ?>
+              <?php $conselho += 1; ?>
+            <?php } ?>
+            
+            <?php if( $value1["idUsuario"] != null ){ ?>
+            <?php if( $nivelAcesso == 2 ){ ?>
+            <?php if( $value1["idUsuario"] == $idUser ){ ?>
+              <?php $outro += 1; ?>
+            <?php } ?>
+            <?php } ?>
+            <?php } ?>
+
+          <?php } ?>
 
           <!-- Notifications Menu -->
           <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
+            <?php if( $nivelAcesso == 4 ){ ?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+              <span class="label label-warning"><?php echo htmlspecialchars( $conselho, ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
             </a>
+            <?php } ?>
+
+            <?php if( $nivelAcesso == 2 ){ ?>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning"><?php echo htmlspecialchars( $outro, ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+            </a>
+            <?php } ?>
+
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+
+              <?php if( $nivelAcesso == 4 ){ ?>
+              <li class="header">Você tem <?php echo htmlspecialchars( $conselho, ENT_COMPAT, 'UTF-8', FALSE ); ?> notificação(s)</li>
+              <?php } ?>
+
+              <?php if( $nivelAcesso == 2 ){ ?>
+              <li class="header">Você tem <?php echo htmlspecialchars( $outro, ENT_COMPAT, 'UTF-8', FALSE ); ?> notificação(s)</li>
+              <?php } ?>
+
               <li>
                 <!-- Inner Menu: contains the notifications -->
                 <ul class="menu">
+                  <?php $counter1=-1;  if( isset($notificacao) && ( is_array($notificacao) || $notificacao instanceof Traversable ) && sizeof($notificacao) ) foreach( $notificacao as $key1 => $value1 ){ $counter1++; ?>
+
+                  <?php if( $value1["idUsuario"] == null ){ ?>
+                  <?php if( $nivelAcesso == 4 ){ ?>
                   <li><!-- start notification -->
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    <a href="/excluir-notificacao/<?php echo htmlspecialchars( $value1["idNotificacoes"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                      <small><i class="fa fa-clock-o"></i> <?php echo htmlspecialchars( $value1["dataRegistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></small> 
+                      <br><strong><?php echo htmlspecialchars( $value1["tipo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>
                     </a>
-                  </li>
-                  <!-- end notification -->
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks Menu -->
-          <li class="dropdown tasks-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- Inner menu: contains the tasks -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <!-- Task title and progress text -->
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
+                  </li><!-- end notification -->
+                  <?php } ?>
+                  <?php } ?>
+
+                  <?php if( $value1["idUsuario"] != null ){ ?>
+                  <?php if( $nivelAcesso == 2 ){ ?>
+                  <?php if( $value1["idUsuario"] == $idUser ){ ?>
+                  <li><!-- start notification -->
+                    <a href="/excluir-notificacao/<?php echo htmlspecialchars( $value1["idNotificacoes"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                      <small><i class="fa fa-clock-o"></i> <?php echo htmlspecialchars( $value1["dataRegistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></small> 
+                      <br><strong><?php echo htmlspecialchars( $value1["tipo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>
                     </a>
-                  </li>
-                  <!-- end task item -->
+                  </li><!-- end notification -->
+                  <?php } ?>
+                  <?php } ?>
+                  <?php } ?>
+
+                  <?php } ?>
                 </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
               </li>
             </ul>
           </li>
+          
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- hidden-xs hides the username on small devices so only the image appears. -->

@@ -103,16 +103,6 @@ $app->get('/usuarios-detalhe/desbloquear/:idUsuario', function($idUsuario){
 	exit;
 });
 
-$app->get('/usuarios-detalhe/excluir/:idUsuario', function($idUsuario){
-
-	Usuario::verifyLogin();
-
-	CDetalheUsuario::getExcluir($idUsuario);
-
-	header('Location: /usuarios-lista');
-	exit;
-});
-
 $app->get('/usuarios-alterar-senha/senha/:idUsuario', function($idUsuario){
 
 	Usuario::verifyLogin();

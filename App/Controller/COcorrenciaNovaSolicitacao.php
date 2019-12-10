@@ -6,6 +6,7 @@ use \Mpdf\Mpdf;
 
 use \App\Classe\Validacao;
 use \App\Model\MSolicitacao;
+use \App\Model\MNotificacao;
 use \App\Controller\CListaUsuario;
 use \App\Controller\CDetalheOcorrencia;
 
@@ -38,9 +39,10 @@ class COcorrenciaNovaSolicitacao {
 	}
 
 	public static function postNovaSolicitacao($post, $idOcorrencia)
-	{
+	{	
 		//Instancia
 		$msolicitacao = new MSolicitacao;
+		$mnotificacao = new MNotificacao;
 		$validacao = new Validacao;
 
 		//Validando os post
@@ -107,6 +109,22 @@ class COcorrenciaNovaSolicitacao {
 
 		//registra na tabela tb_arquivosProcessoOcorrencia
 		$marquivo->cadastrarArquivoOcorrencia($idOcorrencia, $idArquivo[0]["MAX(idArquivo)"]);
+
+		//Fim Gerar PDF
+		//////////////////////////////////////////////////////////////////////////////////////
+
+		//Notificacao
+		foreach ($listaUsuario as $value) {
+			if ($value['idPessoa'] == null && $value['idInstituicao'] != null) {
+				//Notificacao
+				$mnotificacao->cadastrar("Nova Solicitação", "/ler-solicitacao/".$idSolicitacao[0]['MAX(idSolicitacao)']."/1", $post['para']);
+			}
+
+			if ($value['idInstituicao'] == null && $value['idPessoa'] != null) {
+				//Notificacao
+				$mnotificacao->cadastrar("Nova Solicitação", "/ler-solicitacao/".$idSolicitacao[0]['MAX(idSolicitacao)']."/0", $post['para']);
+			}
+		}
 	}
 
 }

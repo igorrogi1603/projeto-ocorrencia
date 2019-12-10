@@ -50,7 +50,7 @@ $app->post('/solicitacao-responder/:idSolicitacao/:isInstituicao/:idOcorrencia',
 
 	Usuario::verifyLogin();
 
-	CSolicitacoes::postSolicitacaoResponder($_POST, $idSolicitacao, $idOcorrencia);
+	CSolicitacoes::postSolicitacaoResponder($_POST, $idSolicitacao, $idOcorrencia, $isInstituicao);
 
 	header("Location: /ler-solicitacao/".$idSolicitacao."/".$isInstituicao);
 	exit;

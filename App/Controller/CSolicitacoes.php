@@ -6,6 +6,7 @@ use \Mpdf\Mpdf;
 
 use \App\Classe\Validacao;
 use \App\Model\MSolicitacao;
+use \App\Model\MNotificacao;
 
 class CSolicitacoes {
 
@@ -127,16 +128,20 @@ class CSolicitacoes {
 	}
 
 	//Alterar status isResposta e cadastrar na tabela resposta da solicitacao
-	public static function postSolicitacaoResponder($post, $idSolicitacao, $idOcorrencia)
+	public static function postSolicitacaoResponder($post, $idSolicitacao, $idOcorrencia, $isInstituicao)
 	{
 		//Instancia
 		$msolicitacao = new MSolicitacao;
+		$mnotificacao = new MNotificacao;
 
 		//cadastrando na tabela resposta
 		$msolicitacao->cadastrarResposta($post, $idSolicitacao);
 
 		//Alterar o isResposta para 1 que agora tem resposta na solicitacao
 		$msolicitacao->alterarIsResposta($idSolicitacao);
+
+		//Notificacao
+		$mnotificacao->cadastrar("Nova Solicitação Ocorrência", "/ocorrencia-ler-solicitacao/".$idOcorrencia."/".$idSolicitacao."/".$isInstituicao);
 
 		//--------------------------------------------------------
 		//Gerar o PDF

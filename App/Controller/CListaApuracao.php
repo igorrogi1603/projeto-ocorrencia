@@ -5,18 +5,23 @@ namespace App\Controller;
 use \App\Classe\Validacao;
 use \App\Classe\Usuario;
 use \App\Model\MApuracao;
+use \App\Model\MNotificacao;
 
 class CListaApuracao {
 
 	public static function getGerarOcorrencia($idApuracao)
 	{
 		$mapuracao = new MApuracao;
+		$mnotificacao = new MNotificacao;
 
 		$mapuracao->confirmacaoApuracao($idApuracao, $_SESSION[Usuario::SESSION]['idUsuario'], 1, 0);
 
 		$mapuracao->updateStatus(2, $idApuracao);
 
 		$mapuracao->gerenciarConfirmacao($idApuracao, $_SESSION[Usuario::SESSION]['idUsuario']);
+
+		//Notificacao
+		$mnotificacao->cadastrar("Apuração para Votar", "/confirmar-apuracao-detalhe/".$idApuracao);
 	}
 
 	public static function postDescartarApuracao($post, $idApuracao)

@@ -110,8 +110,6 @@
             {else}
             <a class="btn btn-app" onclick="confirmarDesbloquear()"><i class="fa fa-check"></i>Desbloquear</a>
             {/if}      
-            
-            <a class="btn btn-app" onclick="confirmarExluir()"><i class="fa fa-trash-o"></i>Excluir</a>
 
             <a href="/usuarios-alterar-senha/senha/{$detalheUsuario.idUsuario}" class="btn btn-app"><i class="fa fa-lock"></i>Alterar Senha</a>
 
@@ -131,13 +129,6 @@
 <!-- /.content-wrapper -->
 
 <script>
-
-function confirmarExluir()
-{
-  if(confirm("Voce realmente deseja EXCLUIR esse usuário ")){
-    location.href="/usuarios-detalhe/excluir/{$detalheUsuario.idUsuario}";
-  }
-}
 
 function confirmarBloquear()
 {

@@ -4,6 +4,10 @@ namespace App\Config;
 
 use \Rain\Tpl;
 
+//Não faz parte da arquitetura padrao
+//apenas para poder passar informacao para o header
+use \App\Controller\CHeader;
+
 class Page {
 	
 	private $tpl;
@@ -33,7 +37,14 @@ class Page {
 		//Na forma original do arquivo nao tem a ultima linha da session apenas ate o HEADER
 		//O segundo parametro e o unico jeito de mandar uma variavel para o header
 
-		if ($this->options["header"] === true) $this->setTpl("header", ['user' => $_SESSION['User']['nome'] ]);
+		if ($this->options["header"] === true) {
+			$this->setTpl("header", [
+				'user' => $_SESSION['User']['nome'],
+				'notificacao' => CHeader::getNotificacao(),
+				'nivelAcesso' => $_SESSION['User']['nivelAcesso'],
+				'idUser' => $_SESSION['User']['idUsuario']
+			]);
+		}
 	}
 
 	public function setData($data = array())

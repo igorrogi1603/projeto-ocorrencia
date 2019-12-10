@@ -280,15 +280,6 @@ class MUsuario {
 		]);
 	}
 
-	public function excluirUsuario($idUsuario)
-	{
-		$sql = new Conexao;
-
-		$sql->query("DELETE FROM tb_usuario WHERE idUsuario = :idUsuario", [
-			"idUsuario" => $idUsuario
-		]);
-	}
-
 }
 
 ?>

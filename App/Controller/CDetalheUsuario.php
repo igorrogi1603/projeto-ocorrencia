@@ -81,45 +81,6 @@ class CDetalheUsuario {
 		$musuario->desbloquearUsuario($idUsuario);
 	}
 
-	//desbloquear o usuario para ter acesso ao sistema
-	public static function getExcluir($idUsuario)
-	{
-		$musuario = new MUsuario;
-		$mpessoa = new MPessoa;
-		$mendereco = new MEndereco;
-		$mcontato = new MContato;
-		$minstituicao = new MInstituicao;
-
-		$usuario = $musuario->usuarioEspecifico($idUsuario);
-
-		$idInstituicao = $usuario[0]['idInstituicao'];
-		$idPessoa = $usuario[0]['idPessoa'];
-
-		if ($idPessoa != null || $idPessoa != "") {
-			$pessoa = $mpessoa->pessoaEspecifica($usuario[0]['idPessoa']);
-
-			$idEndereco = $pessoa[0]['idEndereco'];
-			$idContato = $pessoa[0]['idContato'];
-
-			$musuario->excluirUsuario($idUsuario);
-			$mpessoa->excluirPessoa($idPessoa);
-			$mendereco->excluirEndereco($idEndereco);
-			$mcontato->excluirContato($idContato);
-		}
-
-		if ($idInstituicao != null || $idInstituicao != "") {
-			$instituicaoEspecifica = $minstituicao->InstituicaoEspecifica($idInstituicao);
-
-			$idEndereco = $instituicaoEspecifica[0]['idEndereco'];
-			$idContato = $instituicaoEspecifica[0]['idContato'];
-
-			$musuario->excluirUsuario($idUsuario);
-			$minstituicao->excluirInstituicao($idInstituicao);
-			$mendereco->excluirEndereco($idEndereco);
-			$mcontato->excluirContato($idContato);
-		}
-	}
-
 	public static function getEditar($idUsuario)
 	{
 		return CDetalheUsuario::getDetalheUsuario($idUsuario);
