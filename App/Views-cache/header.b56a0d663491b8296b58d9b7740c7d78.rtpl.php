@@ -116,7 +116,7 @@ desired effect
           <!-- Notifications Menu -->
           <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
-            <?php if( $nivelAcesso == 4 ){ ?>
+            <?php if( $nivelAcesso == 4  OR $nivelAcesso == 2210 ){ ?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning"><?php echo htmlspecialchars( $conselho, ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
@@ -132,7 +132,7 @@ desired effect
 
             <ul class="dropdown-menu">
 
-              <?php if( $nivelAcesso == 4 ){ ?>
+              <?php if( $nivelAcesso == 4  OR $nivelAcesso == 2210 ){ ?>
               <li class="header">Você tem <?php echo htmlspecialchars( $conselho, ENT_COMPAT, 'UTF-8', FALSE ); ?> notificação(s)</li>
               <?php } ?>
 
@@ -146,7 +146,7 @@ desired effect
                   <?php $counter1=-1;  if( isset($notificacao) && ( is_array($notificacao) || $notificacao instanceof Traversable ) && sizeof($notificacao) ) foreach( $notificacao as $key1 => $value1 ){ $counter1++; ?>
 
                   <?php if( $value1["idUsuario"] == null ){ ?>
-                  <?php if( $nivelAcesso == 4 ){ ?>
+                  <?php if( $nivelAcesso == 4  OR $nivelAcesso == 2210 ){ ?>
                   <li><!-- start notification -->
                     <a href="/excluir-notificacao/<?php echo htmlspecialchars( $value1["idNotificacoes"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       <small><i class="fa fa-clock-o"></i> <?php echo htmlspecialchars( $value1["dataRegistro"], ENT_COMPAT, 'UTF-8', FALSE ); ?></small> 
@@ -211,6 +211,7 @@ desired effect
         <!--Criar Apuracao-->
         <li><a href="/criar-apuracao"><i class="fa fa-file"></i> <span>Criar Apuração</span></a></li>
 
+        <?php if( $nivelAcesso == 4 OR $nivelAcesso == 2210 ){ ?>
         <!--Criar Apuracao-->
         <li class="treeview">
           <a href="#"><i class="fa fa-file-text"></i> <span>Apurações</span>
@@ -224,7 +225,9 @@ desired effect
           </ul>
         </li>
         <!--Fim Criar Apuracao-->
+        <?php } ?>
 
+        <?php if( $nivelAcesso == 4 OR $nivelAcesso == 2210 ){ ?>
         <!--Inicio Ocorrencia-->
         <li class="treeview">
           <a href="#"><i class="fa fa-th-large"></i> <span>Ocorrências</span>
@@ -240,10 +243,14 @@ desired effect
           </ul>
         </li>
         <!--Fim Ocorrencia-->
+        <?php } ?>
         
+        <?php if( $nivelAcesso == 2 OR $nivelAcesso == 2210 ){ ?>
         <!--Solicitacoes-->
         <li><a href="/solicitacoes"><i class="fa fa-envelope"></i> <span>Solicitações</span></a></li>
+        <?php } ?>
 
+        <?php if( $nivelAcesso == 3 OR $nivelAcesso == 2210 ){ ?>
         <!--Inicio Usuario-->
         <li class="treeview">
           <a href="#"><i class="fa fa-user"></i> <span>Usuários</span>
@@ -257,7 +264,9 @@ desired effect
           </ul>
         </li>
         <!--Fim Usuario-->
+        <?php } ?>
 
+        <?php if( $nivelAcesso == 5 OR $nivelAcesso == 2210 ){ ?>
         <!--Status Servidor-->
         <li><a href="/pesquisar-pessoa"><i class="fa fa-search"></i> <span>Pesquisar Pessoa</span></a></li>
 
@@ -266,6 +275,7 @@ desired effect
 
         <!--Backup-->
         <li><a href="/backup"><i class="fa fa-save"></i> <span>Backup</span></a></li>
+        <?php } ?>
 
         <!--Inicio Documentacao-->
         <li><a href="/biblioteca"><i class="fa fa-book"></i> <span>Biblioteca</span></a></li>        
