@@ -57,7 +57,7 @@ $app->post("/ocorrencia-arquivo-externo/:idOcorrencia", function($idOcorrencia){
 	        exit;
 		}
 
-		header("Location: /ocorrencia-detalhe".$idOcorrencia);
+		header("Location: /ocorrencia-detalhe/".$idOcorrencia);
 		exit;
 	} else {
 		$page = new Page([

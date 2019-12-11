@@ -87,12 +87,12 @@
             <?php } ?>
 
             <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 3 ){ ?>
-            <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
+            <a onclick="open('/ocorrencia-arquivos/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>','','status=no,Width=1000,Height=600');" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
             <a onclick="confirmarReabrir();" class="btn btn-app"><i class="fa fa-inbox"></i>Reabrir</a>
             <?php } ?>
 
             <?php if( $detalheOcorrencia["0"]["statusOcorrencia"] == 4 ){ ?>
-            <a href="/ocorrencia-arquivos" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
+            <a onclick="open('/ocorrencia-arquivos/<?php echo htmlspecialchars( $detalheOcorrencia["0"]["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>','','status=no,Width=1000,Height=600');" class="btn btn-app"><i class="fa fa-folder"></i>Arquivos</a>
             <a onclick="confirmarReabrir();" class="btn btn-app"><i class="fa fa-inbox"></i>Reabrir</a>
             <?php } ?>
 
