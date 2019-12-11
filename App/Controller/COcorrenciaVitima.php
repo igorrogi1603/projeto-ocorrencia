@@ -75,7 +75,7 @@ class COcorrenciaVitima {
 		$listaAcompanhamento = $macompanhamento->listAll($idVitima);
 
 		//verifica se existem enderecos cadastrados no id da vitima
-		if ($listaAcompanhamento != null) {
+		if (isset($listaAcompanhamento) && $listaAcompanhamento != null && $listaAcompanhamento != "") {
 			//verifica se o endereco atual da vitima ja nao esta cadastrado para evitar de cadastrar igual
 			foreach ($listaAcompanhamento as $value) {
 				if ($value['cep'] == $enderecoPosAtualizar[0]['cep']) {

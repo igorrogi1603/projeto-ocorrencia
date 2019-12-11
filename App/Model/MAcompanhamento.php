@@ -22,7 +22,7 @@ class MAcompanhamento {
 		//1 = endereco antigo
 
 		$sql->query("
-			INSERT INTO tb_acompanhamentovitima (idVitimaApuracao, cep, rua, numero, bairro, cidade, estado, complemento, status, dataRegistro) 
+			INSERT INTO tb_acompanhamentovitima (idVitimasApuracao, cep, rua, numero, bairro, cidade, estado, complemento, status, dataRegistro) 
 			VALUES(:idVitimaApuracao, :cep, :rua, :numero, :bairro, :cidade, :estado, :complemento, :status, :dataRegistro)
 		", [
 			":idVitimaApuracao" => (int)$idVitima,

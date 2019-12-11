@@ -373,12 +373,12 @@ class COcorrenciaResponsavel {
 			}
 		}
 
-		for ($i = 0; $i < count($listaResponsavel); $i++) {
+		foreach ($listaResponsavel as $value) {
 
-			if ($listaResponsavel[$i]['dataNascResponsavel'] == null) {
+			if ($value['dataNascResponsavel'] == null) {
 				//mostra nada
 			} else {
-				$listaResponsavel[$i]['dataNascResponsavel'] = $validacao->replaceDataView(utf8_encode($listaResponsavel[$i]['dataNascResponsavel']));
+				$value['dataNascResponsavel'] = $validacao->replaceDataView(utf8_encode($value['dataNascResponsavel']));
 			}
 		}
 

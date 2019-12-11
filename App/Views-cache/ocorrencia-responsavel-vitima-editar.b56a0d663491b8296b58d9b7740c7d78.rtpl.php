@@ -123,7 +123,7 @@
                 <div class="form-group">
                   <input type="hidden" id="id-sexo-hidden-responsavel" value="<?php echo htmlspecialchars( $value1["sexoResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                   <label for="id-sexo-responsavel">Sexo</label>
-                  <select class="form-control select2" name="sexoResponsavel" id="id-sexo-responsavel">
+                  <select class="form-control select2" name="sexoResponsavel" id="id-sexo-responsavel" required>
                     <option value="m">Masculino</option>
                     <option value="f">Feminino</option>
                   </select>
