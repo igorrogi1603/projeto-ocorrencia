@@ -220,31 +220,6 @@ $app->post("/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/:idVitima/:idO
 	}
 });
 
-$app->get("/ocorrencia-vitima-acompanhamento/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
-
-	Usuario::verifyLogin();
-
-	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
-	) {
-		$acompanhamento = COcorrenciaAcompanhamento::getOcorrenciaAcompanhamento($idVitima);
-
-		$page = new Page();
-
-		$page->setTpl("ocorrencia-vitima-acompanhamento", [
-			"acompanhamento" => $acompanhamento,
-			"idVitima" => $idVitima,
-			"idOcorrencia" => $idOcorrencia
-		]);
-	} else {
-		$page = new Page([
-			"header"=>false,
-			"footer"=>false
-		]);
-		$page->setTpl("404");
-	}
-});
-
 $app->get("/ocorrencia-vitima-enviar-arquivo-lista/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
 
 	Usuario::verifyLogin();
@@ -270,5 +245,29 @@ $app->get("/ocorrencia-vitima-enviar-arquivo-lista/:idVitima/:idOcorrencia", fun
 	}
 });
 
+$app->get("/ocorrencia-vitima-acompanhamento/:idVitima/:idOcorrencia", function($idVitima, $idOcorrencia){
+
+	Usuario::verifyLogin();
+
+	if ($_SESSION['User']['nivelAcesso'] == "4" ||
+		$_SESSION['User']['nivelAcesso'] == "2210"
+	) {
+		$acompanhamento = COcorrenciaAcompanhamento::getOcorrenciaAcompanhamento($idVitima);
+
+		$page = new Page();
+
+		$page->setTpl("ocorrencia-vitima-acompanhamento", [
+			"acompanhamento" => $acompanhamento,
+			"idVitima" => $idVitima,
+			"idOcorrencia" => $idOcorrencia
+		]);
+	} else {
+		$page = new Page([
+			"header"=>false,
+			"footer"=>false
+		]);
+		$page->setTpl("404");
+	}
+});
 
 ?>

@@ -41,7 +41,6 @@
               <div class="form-group">
                 <label for="id-selecione-pessoa">Selecione a pessoa</label>
                 <select class="form-control select2" name="selecionePessoa" id="id-selecione-pessoa">
-                  <option checked>--- Selecione uma pessoa ---</option>
                   <?php $counter1=-1;  if( isset($selecionaPessoa) && ( is_array($selecionaPessoa) || $selecionaPessoa instanceof Traversable ) && sizeof($selecionaPessoa) ) foreach( $selecionaPessoa as $key1 => $value1 ){ $counter1++; ?>
                   <option value="<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                   <?php } ?>

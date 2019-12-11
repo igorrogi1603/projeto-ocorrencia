@@ -41,7 +41,6 @@
               <div class="form-group">
                 <label for="id-selecione-pessoa">Selecione a pessoa</label>
                 <select class="form-control select2" name="selecionePessoa" id="id-selecione-pessoa">
-                  <option checked>--- Selecione uma pessoa ---</option>
                   {loop="$selecionaPessoa"}
                   <option value="{$value.id}">{$value.nome}</option>
                   {/loop}

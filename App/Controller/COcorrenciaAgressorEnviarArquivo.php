@@ -368,71 +368,80 @@ class COcorrenciaAgressorEnviarArquivo extends COcorrenciaAgressor {
 		$listaAgressor = COcorrenciaAgressor::listaAgressor($idOcorrencia);
 		$listaInstituicao = COcorrenciaAgressor::listaInstituicao($idOcorrencia);
 
-		//Juntando os dois array em um so array chamado dados
-		foreach ($listaAgressor as $value) {
-			$dados[] = $value;
-		}
-
-		foreach ($listaInstituicao as $value) {
-			$dados[] = $value;
-		}
-
-		//Tamanho do array dados
-		$tamanhoArrayDados = count($dados);
-
-		//pegando apenas os nomes e os id das vitimas e responsaveis
-		foreach ($dados as $key => $value) {
-			$arrayNome[]['nome'] = $value['nome'];
-
-			if ($value['idPessoa'] != null) {
-				$arrayId[]['id'] = $value['idPessoa'];
-				$arrayIsInstituicao[]['isInstituicao'] = "0";
-			}
-			
-			if ($value['idInstituicao'] != null) {
-				$arrayId[]['id'] = $value['idInstituicao'];
-				$arrayIsInstituicao[]['isInstituicao'] = "1";
+		if (isset($listaAgressor) && $listaAgressor != null & $listaAgressor != "") {
+			//Juntando os dois array em um so array chamado dados
+			foreach ($listaAgressor as $value) {
+				$dados[] = $value;
 			}
 		}
 
-		//Junta o nome e o id de cada pessoa em um unico array
-		for ($a = 0; $a < $tamanhoArrayDados; $a++) {
-			$arrayPessoas[$a]['nome'] = $arrayNome[$a]['nome'];
-			$arrayPessoas[$a]['id'] = $arrayId[$a]['id'];
-			$arrayPessoas[$a]['isInstituicao'] = $arrayIsInstituicao[$a]['isInstituicao'];
+		if (isset($listaInstituicao) && $listaInstituicao != null & $listaInstituicao != "") {
+			foreach ($listaInstituicao as $value) {
+				$dados[] = $value;
+			}
 		}
 
-		//Pega o tamanho do arry para usar no for
-		$tamanhoArray = count($arrayPessoas);
+		if (isset($dados) && $dados != null && $dados != "") {
 
-		//Esse loop serve para tirar a duplicação de informação que vem do array
-		for ($i = 0; $i < $tamanhoArray; $i++) {
-			//Verifica sea posicao que queremos guardar existe
-			if (isset($arrayPessoas[$i])) {
-				//se existe guarda em id
-				$id = $arrayPessoas[$i]['id'];
-			}
-			//o for inicia na proxima posicao do array 
-			//Para nao comparar com a mesma posicao
-			for ($b = $i+1; $b < $tamanhoArray; $b++) {
-				//Se os id forem iguais entao exclui para nao duplicar
-				if ($id == $arrayPessoas[$b]['id']) {
-					$arrayPosicaoExcluir[] = $b;
+			//Tamanho do array dados
+			$tamanhoArrayDados = count($dados);
+
+			//pegando apenas os nomes e os id das vitimas e responsaveis
+			foreach ($dados as $key => $value) {
+				$arrayNome[]['nome'] = $value['nome'];
+
+				if ($value['idPessoa'] != null) {
+					$arrayId[]['id'] = $value['idPessoa'];
+					$arrayIsInstituicao[]['isInstituicao'] = "0";
+				}
+				
+				if ($value['idInstituicao'] != null) {
+					$arrayId[]['id'] = $value['idInstituicao'];
+					$arrayIsInstituicao[]['isInstituicao'] = "1";
 				}
 			}
-		}
 
-		//caso nao tenha se repetido nenhum id no arrayPessoas
-		//entao a variavel arrayPosicaoExcluir nao irá existir
-		//caso ela nao exista gerará erro por isso verificar se ela existi
-		if (isset($arrayPosicaoExcluir)) {
-			//exclui posissoes iguais
-			foreach ($arrayPosicaoExcluir as $value) {
-				unset($arrayPessoas[$value]);
+			//Junta o nome e o id de cada pessoa em um unico array
+			for ($a = 0; $a < $tamanhoArrayDados; $a++) {
+				$arrayPessoas[$a]['nome'] = $arrayNome[$a]['nome'];
+				$arrayPessoas[$a]['id'] = $arrayId[$a]['id'];
+				$arrayPessoas[$a]['isInstituicao'] = $arrayIsInstituicao[$a]['isInstituicao'];
 			}
-		}
 
-		return $arrayPessoas;
+			//Pega o tamanho do arry para usar no for
+			$tamanhoArray = count($arrayPessoas);
+
+			//Esse loop serve para tirar a duplicação de informação que vem do array
+			for ($i = 0; $i < $tamanhoArray; $i++) {
+				//Verifica sea posicao que queremos guardar existe
+				if (isset($arrayPessoas[$i])) {
+					//se existe guarda em id
+					$id = $arrayPessoas[$i]['id'];
+				}
+				//o for inicia na proxima posicao do array 
+				//Para nao comparar com a mesma posicao
+				for ($b = $i+1; $b < $tamanhoArray; $b++) {
+					//Se os id forem iguais entao exclui para nao duplicar
+					if ($id == $arrayPessoas[$b]['id']) {
+						$arrayPosicaoExcluir[] = $b;
+					}
+				}
+			}
+
+			//caso nao tenha se repetido nenhum id no arrayPessoas
+			//entao a variavel arrayPosicaoExcluir nao irá existir
+			//caso ela nao exista gerará erro por isso verificar se ela existi
+			if (isset($arrayPosicaoExcluir)) {
+				//exclui posissoes iguais
+				foreach ($arrayPosicaoExcluir as $value) {
+					unset($arrayPessoas[$value]);
+				}
+			}
+
+			return $arrayPessoas;
+		} else {
+			return false;
+		}
 	}
 
 	public static function getEnviarArquivoCadastrarAtualizar($idOcorrencia, $idPessoa)
