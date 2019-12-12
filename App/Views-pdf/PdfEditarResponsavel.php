@@ -164,7 +164,7 @@ $pagina =
 
             $rgResponsavelView = $validacao->replaceRgBd($post['rgResponsavel'], $post['rgDigitoResponsavel']);
 
-            $pagina .= "da vítima ".$listaVitima[0]['nome']." com grau de parentesco. Portador(a) do CPF ".$post['cpfResponsavel'].", 
+            $pagina .= "da vítima ".utf8_encode($listaVitima[0]['nome'])." com grau de parentesco. Portador(a) do CPF ".$post['cpfResponsavel'].", 
             RG ".$validacao->replaceRgView($rgResponsavelView);
 
             $pagina .= ". Nascido(a) em ".$validacao->replaceDataView($post['dataNascResponsavel']);

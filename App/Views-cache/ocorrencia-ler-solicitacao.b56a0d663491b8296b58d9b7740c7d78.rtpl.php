@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col-md-3">
         <a href="/ocorrencia-nova-solicitacao/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-block">Nova Solicitação</a>
-          <a href="/ocorrencia-detalhe/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-block margin-bottom">Voltar</a>
+          <a href="/ocorrencia-solicitacao/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-block margin-bottom">Voltar</a>
 
         <div class="box box-solid">
           <div class="box-header with-border">

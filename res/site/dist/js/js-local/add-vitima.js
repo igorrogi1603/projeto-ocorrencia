@@ -160,7 +160,7 @@ $(function () {
                 '<div class="col-md-3">'+
                   '<div class="form-group">'+
                     '<label for="id-cidade-vitima">Cidade</label>'+
-                    '<input type="text" name="cidadeVitima'+proximoNum+'" id="id-cidade-vitima-'+proximoNum+'" class="form-control" value="Nova Campina" onkeyup="validarCaracter(this, 1)">'+
+                    '<input type="text" name="cidadeVitima'+proximoNum+'" id="id-cidade-vitima-'+proximoNum+'" class="form-control" onkeyup="validarCaracter(this, 1)">'+
                   '</div>'+
                 '</div>'+
                 '<div class="col-md-4">'+
