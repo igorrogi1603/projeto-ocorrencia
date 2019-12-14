@@ -9,7 +9,8 @@ $app->get('/solicitacoes', function(){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "2" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$lista = CSolicitacoes::getListaSolicitacoes($_SESSION['User']['idUsuario']);
 
@@ -32,7 +33,8 @@ $app->get('/ler-solicitacao/:idSolicitacao/:isInstituicao', function($idSolicita
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "2" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$lista = CSolicitacoes::getlerSolicitacao($idSolicitacao, $isInstituicao);
 
@@ -55,7 +57,8 @@ $app->get('/solicitacao-responder/:idSolicitacao/:isInstituicao/:idOcorrencia', 
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "2" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$page = new Page();
 
@@ -78,7 +81,8 @@ $app->post('/solicitacao-responder/:idSolicitacao/:isInstituicao/:idOcorrencia',
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "2" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		CSolicitacoes::postSolicitacaoResponder($_POST, $idSolicitacao, $idOcorrencia, $isInstituicao);
 
@@ -98,7 +102,8 @@ $app->get('/solicitacoes-lixeira', function(){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "2" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$lista = CSolicitacoes::getListaSolicitacoes($_SESSION['User']['idUsuario']);
 
@@ -121,7 +126,8 @@ $app->get('/solicitacao-lixeira/:idSolicitacao/:isInstituicao', function($idSoli
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "2" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		CSolicitacoes::getSolicitacoesLixeira($idSolicitacao);
 

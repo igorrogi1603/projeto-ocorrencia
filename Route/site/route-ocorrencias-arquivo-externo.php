@@ -24,7 +24,8 @@ $app->get("/ocorrencia-arquivo-externo/:idOcorrencia", function($idOcorrencia){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$page = new Page();
 
@@ -46,7 +47,8 @@ $app->post("/ocorrencia-arquivo-externo/:idOcorrencia", function($idOcorrencia){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		//if serve para nao dar erro na variavel sendo passada como parametro caso ela nao exista dará erro
 		if($_FILES["upDocumento"]["name"] !== ""){

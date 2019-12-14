@@ -11,7 +11,8 @@ $app->get("/ocorrencias-abertas", function(){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaOcorrencia = CListaOcorrencia::getListaOcorrencia();
 
@@ -34,7 +35,8 @@ $app->get("/ocorrencias-reabertas", function(){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaOcorrencia = CListaOcorrencia::getListaOcorrencia();
 
@@ -57,7 +59,8 @@ $app->get("/ocorrencias-arquivadas", function(){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaOcorrencia = CListaOcorrencia::getListaOcorrencia();
 
@@ -80,7 +83,8 @@ $app->get("/ocorrencias-encerradas", function(){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaOcorrencia = CListaOcorrencia::getListaOcorrencia();
 

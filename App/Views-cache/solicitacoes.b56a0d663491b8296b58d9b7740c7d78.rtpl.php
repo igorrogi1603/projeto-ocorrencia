@@ -68,7 +68,7 @@
                     <td class="mailbox-name"><a href="/ler-solicitacao/<?php echo htmlspecialchars( $value1["idSolicitacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/0"><?php echo htmlspecialchars( $value1["funcaoDestinatario"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </a></td>
                     <?php } ?>
 
-                    <td class="mailbox-subject" style="overflow: hidden; max-width:500px; text-overflow: ellipsis; white-space:nowrap;"><b><?php echo htmlspecialchars( $value1["assunto"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> - <?php echo htmlspecialchars( $value1["mensagem"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $value1["mensagem"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    <td class="mailbox-subject" style="overflow: hidden; max-width:500px; text-overflow: ellipsis; white-space:nowrap;"><b><?php echo htmlspecialchars( $value1["assunto"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> - <?php echo htmlspecialchars( $value1["mensagem"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
 
                     </td>
                     <td class="mailbox-date"><?php echo htmlspecialchars( $value1["dataCriacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>

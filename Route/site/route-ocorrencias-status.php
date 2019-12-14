@@ -25,7 +25,8 @@ $app->get("/ocorrencia-detalhe/arquivar/:idOcorrencia", function($idOcorrencia){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$page = new Page();
 
@@ -46,7 +47,8 @@ $app->post("/ocorrencia-detalhe/arquivar/:idOcorrencia", function($idOcorrencia)
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		COcorrenciaStatus::getArquivar($idOcorrencia, $_POST);
 
@@ -66,7 +68,8 @@ $app->get("/ocorrencia-detalhe/encerrar/:idOcorrencia", function($idOcorrencia){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$page = new Page();
 
@@ -87,7 +90,8 @@ $app->post("/ocorrencia-detalhe/encerrar/:idOcorrencia", function($idOcorrencia)
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		COcorrenciaStatus::getEncerrar($idOcorrencia, $_POST);
 
@@ -107,7 +111,8 @@ $app->get("/ocorrencia-detalhe/reabrir/:idOcorrencia", function($idOcorrencia){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$page = new Page();
 
@@ -128,7 +133,8 @@ $app->post("/ocorrencia-detalhe/reabrir/:idOcorrencia", function($idOcorrencia){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		COcorrenciaStatus::getReabrir($idOcorrencia, $_POST);
 

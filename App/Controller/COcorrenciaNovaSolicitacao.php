@@ -30,7 +30,7 @@ class COcorrenciaNovaSolicitacao {
 		$dados = CListaUsuario::getListaUsuario();
 
 		foreach ($dados as $value) {
-			if ($value['nivelAcesso'] == '2') {
+			if ($value['nivelAcesso'] == '2' || $value['nivelAcesso'] == '3748') {
 				$novoArray[] = $value;
 			}
 		}

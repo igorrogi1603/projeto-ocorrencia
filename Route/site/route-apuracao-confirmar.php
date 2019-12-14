@@ -12,7 +12,8 @@ $app->get("/confirmar-apuracao", function(){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$confirmarApuracao = CListaConfirmacao::getListaConfirmacao();
 
@@ -35,7 +36,8 @@ $app->get("/confirmar-apuracao-detalhe/:idApuracao", function($idApuracao){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 
 		$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
@@ -70,7 +72,8 @@ $app->get("/confirmacao-positivo/:idApuracao/:idConfirmacao", function($idApurac
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 
 		$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
@@ -103,7 +106,8 @@ $app->get("/confirmacao-negativo/:idApuracao/:idConfirmacao", function($idApurac
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
 
@@ -135,7 +139,8 @@ $app->get("/confirmacao-detalhe/descartar/:idApuracao/:idConfirmacao", function(
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 
 		$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
@@ -170,7 +175,8 @@ $app->get("/confirmacao-detalhe/cancelar/:idApuracao/:idConfirmacao", function($
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 
 		$confirmacaoDetalhe = CListaConfirmacao::getConfirmacaoDetalhe($idApuracao);
@@ -203,7 +209,8 @@ $app->post("/confirmacao-detalhe/descartar/:idApuracao/:idConfirmacao", function
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		CListaApuracao::postDescartarApuracao($_POST, $idApuracao);
 

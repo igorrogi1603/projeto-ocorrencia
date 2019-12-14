@@ -211,7 +211,7 @@ desired effect
         <!--Criar Apuracao-->
         <li><a href="/criar-apuracao"><i class="fa fa-file"></i> <span>Criar Apuração</span></a></li>
 
-        <?php if( $nivelAcesso == 4 OR $nivelAcesso == 2210 ){ ?>
+        <?php if( $nivelAcesso == 4 OR $nivelAcesso == 2210 OR $nivelAcesso == 3748 ){ ?>
         <!--Criar Apuracao-->
         <li class="treeview">
           <a href="#"><i class="fa fa-file-text"></i> <span>Apurações</span>
@@ -227,7 +227,7 @@ desired effect
         <!--Fim Criar Apuracao-->
         <?php } ?>
 
-        <?php if( $nivelAcesso == 4 OR $nivelAcesso == 2210 ){ ?>
+        <?php if( $nivelAcesso == 4 OR $nivelAcesso == 2210 OR $nivelAcesso == 3748 ){ ?>
         <!--Inicio Ocorrencia-->
         <li class="treeview">
           <a href="#"><i class="fa fa-th-large"></i> <span>Ocorrências</span>
@@ -245,7 +245,7 @@ desired effect
         <!--Fim Ocorrencia-->
         <?php } ?>
         
-        <?php if( $nivelAcesso == 2 OR $nivelAcesso == 2210 ){ ?>
+        <?php if( $nivelAcesso == 2 OR $nivelAcesso == 2210 OR $nivelAcesso == 3748 ){ ?>
         <!--Solicitacoes-->
         <li><a href="/solicitacoes"><i class="fa fa-envelope"></i> <span>Solicitações</span></a></li>
         <?php } ?>
@@ -266,9 +266,12 @@ desired effect
         <!--Fim Usuario-->
         <?php } ?>
 
-        <?php if( $nivelAcesso == 5 OR $nivelAcesso == 2210 ){ ?>
+        <?php if( $nivelAcesso == 4 OR $nivelAcesso == 2210  OR $nivelAcesso == 3748 ){ ?>
         <!--Status Servidor-->
         <li><a href="/pesquisar-pessoa"><i class="fa fa-search"></i> <span>Pesquisar Pessoa</span></a></li>
+        <?php } ?>
+
+        <?php if( $nivelAcesso == 5 OR $nivelAcesso == 2210 ){ ?>
 
         <!--Status Servidor-->
         <li><a href="/status-servidor"><i class="fa fa-tv"></i> <span>Status Servidor</span></a></li>

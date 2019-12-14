@@ -25,14 +25,16 @@ $app->get("/ocorrencia-detalhe/:idOcorrencia", function($idOcorrencia){
 	Usuario::verifyLogin();
 	
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$detalheOcorrencia = CDetalheOcorrencia::getOcorrenciaDetalhe($idOcorrencia);
 
 		$page = new Page();
 
 		$page->setTpl("ocorrencia-detalhe", [
-			"detalheOcorrencia" => $detalheOcorrencia
+			"detalheOcorrencia" => $detalheOcorrencia,
+			"nivelAcesso" => $_SESSION['User']['nivelAcesso']
 		]);
 	} else {
 		$page = new Page([

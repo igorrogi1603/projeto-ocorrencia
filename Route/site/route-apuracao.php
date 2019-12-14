@@ -85,7 +85,8 @@ $app->get("/lista-apuracoes", function(){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaApuracao = CListaApuracao::getListaApuracao();
 
@@ -111,7 +112,8 @@ $app->get("/apuracao-detalhe/:idApuracao", function($idApuracao){
 	//pelo sistema para nao poder acessar novamente
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
 
@@ -145,7 +147,8 @@ $app->get("/apuracao-detalhe/descartar/:idApuracao", function($idApuracao){
 	//pelo sistema para nao poder acessar novamente
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
 
@@ -176,7 +179,8 @@ $app->post("/apuracao-detalhe/descartar/:idApuracao", function($idApuracao){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		CListaApuracao::postDescartarApuracao($_POST, $idApuracao);
 
@@ -199,7 +203,8 @@ $app->get("/apuracao-detalhe/gerar-ocorrencia/:idApuracao", function($idApuracao
 	//pelo sistema para nao poder acessar novamente
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
 		

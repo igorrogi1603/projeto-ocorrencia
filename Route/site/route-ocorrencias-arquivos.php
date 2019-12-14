@@ -24,7 +24,8 @@ $app->get("/ocorrencia-arquivos/:idOcorrencia", function($idOcorrencia){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaArquivos = COcorrenciaArquivos::getArquivos($idOcorrencia);
 

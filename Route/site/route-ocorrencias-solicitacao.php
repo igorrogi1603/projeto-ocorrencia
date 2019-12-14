@@ -24,7 +24,8 @@ $app->get("/ocorrencia-solicitacao/:idOcorrencia", function($idOcorrencia){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$lista = COcorrenciaSolicitacao::getListaSolicitacao($idOcorrencia);
 
@@ -48,7 +49,8 @@ $app->get("/ocorrencia-nova-solicitacao/:idOcorrencia", function($idOcorrencia){
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$usuarios = COcorrenciaNovaSolicitacao::getNovaSolicitacaoUsuario();
 		$vitima = COcorrenciaNovaSolicitacao::getNovaSolicitacaoVitima($idOcorrencia);
@@ -74,7 +76,8 @@ $app->post("/ocorrencia-nova-solicitacao/:idOcorrencia", function($idOcorrencia)
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		COcorrenciaNovaSolicitacao::postNovaSolicitacao($_POST, $idOcorrencia);
 
@@ -94,7 +97,8 @@ $app->get("/ocorrencia-ler-solicitacao/:idOcorrencia/:idSolicitacao/:isInstituic
 	Usuario::verifyLogin();
 
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
-		$_SESSION['User']['nivelAcesso'] == "2210"
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$lista = COcorrenciaSolicitacao::getlerSolicitacao($idOcorrencia, $idSolicitacao, $isInstituicao);
 
