@@ -104,7 +104,7 @@ desired effect
             {/if}
             
             {if="$value.idUsuario != null"}
-            {if="$nivelAcesso == 2"}
+            {if="$nivelAcesso == 2 OR $nivelAcesso == 3748"}
             {if="$value.idUsuario == $idUser"}
               {$outro += 1}
             {/if}
@@ -116,14 +116,14 @@ desired effect
           <!-- Notifications Menu -->
           <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
-            {if="$nivelAcesso == 4  OR $nivelAcesso == 2210"}
+            {if="$nivelAcesso == 4 OR $nivelAcesso == 2210"}
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">{$conselho}</span>
             </a>
             {/if}
 
-            {if="$nivelAcesso == 2"}
+            {if="$nivelAcesso == 2 OR $nivelAcesso == 3748"}
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">{$outro}</span>
@@ -136,7 +136,7 @@ desired effect
               <li class="header">Você tem {$conselho} notificação(s)</li>
               {/if}
 
-              {if="$nivelAcesso == 2"}
+              {if="$nivelAcesso == 2 OR $nivelAcesso == 3748"}
               <li class="header">Você tem {$outro} notificação(s)</li>
               {/if}
 
@@ -157,7 +157,7 @@ desired effect
                   {/if}
 
                   {if="$value.idUsuario != null"}
-                  {if="$nivelAcesso == 2"}
+                  {if="$nivelAcesso == 2 OR $nivelAcesso == 3748"}
                   {if="$value.idUsuario == $idUser"}
                   <li><!-- start notification -->
                     <a href="/excluir-notificacao/{$value.idNotificacoes}/{$value.url}">
@@ -222,6 +222,7 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="/lista-apuracoes">Abertas</a></li>
             <li><a href="/confirmar-apuracao">Confirmações</a></li>
+            <li><a href="/apuracao-excluida">Excluidas</a></li>
           </ul>
         </li>
         <!--Fim Criar Apuracao-->

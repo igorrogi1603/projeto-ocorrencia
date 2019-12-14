@@ -2,10 +2,10 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Detalhe da Apuração</h1>
+    <h1>Detalhe da Apuração Excluida</h1>
     <ol class="breadcrumb">
       <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Detalhe da Apuração</li>
+      <li class="active">Detalhe da Apuração Excluida</li>
     </ol>
   </section>
 
@@ -16,10 +16,6 @@
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">Detalhes</h3>
-
-        <!--<div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-        </div>-->
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -27,9 +23,9 @@
         <div class="row">
           <!--Detalhes-->
           <div class="col-md-12">
-            <p class="sem-espacamento"><strong>N° da Apuração: </strong>{$detalheApuracao.0.idCriarApuracao}</p>
-            <p class="sem-espacamento"><strong>Data: </strong>{$detalheApuracao.0.dataCriacao}</p>
-            <p class="sem-espacamento"><strong>Usuário que criou apuração: </strong>{$detalheApuracao.0.quemCriouApuracao}</p>
+            <p class="sem-espacamento"><strong>N° da Apuração: </strong>{$listaApuracao.0.idCriarApuracao}</p>
+            <p class="sem-espacamento"><strong>Data: </strong>{$listaApuracao.0.dataCriacao}</p>
+            <p class="sem-espacamento"><strong>Usuário que criou apuração: </strong>{$listaApuracao.0.quemCriouApuracao}</p>
           </div>
           <!--Fim Detalhes-->
         </div>
@@ -37,7 +33,7 @@
 
         <br><hr>
 
-        {loop="$detalheApuracao"}
+        {loop="$listaApuracao"}
         <!--Inicio Row-->
         <div class="row">
           <div class="col-md-12">
@@ -91,8 +87,8 @@
         <div class="row">
           <!--Detalhes-->
           <div class="col-md-12">
-            <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong>{$detalheApuracao.0.tipoApuracao}</p>
-            <p class="sem-espacamento"><strong>Descrição: </strong>{$detalheApuracao.0.descricao}</p>
+            <p class="sem-espacamento"><strong>Tipo da Ocorrência: </strong>{$listaApuracao.0.tipoApuracao}</p>
+            <p class="sem-espacamento"><strong>Descrição: </strong>{$listaApuracao.0.descricao}</p>
           </div>
           <!--Fim Detalhes-->
         </div>
@@ -100,13 +96,23 @@
         <br>
         <hr>
         <br>
+
+        <div class="row">
+          <div class="col-md-12">
+            <p class="sem-espacamento"><strong>Quem excluiu: </strong>{$listaApuracao.0.quemExcluiuApuracao}</p>
+            <p class="sem-espacamento"><strong>Motivo: </strong>{$listaApuracao.0.motivoExclusao}</p>
+          </div>
+        </div>
+
+        <br>
+        <hr>
+        <br>
+
         <!--Inicio Row-->
         <div class="row">
           <div class="col-md-12">
             
-            <a href="/apuracao-detalhe/gerar-ocorrencia/{$detalheApuracao.0.idCriarApuracao}" class="btn btn-app"><i class="fa fa-th-large"></i>Gerar Ocorrência</a>
-
-            <a href="/apuracao-detalhe/descartar/{$detalheApuracao.0.idCriarApuracao}" class="btn btn-app"><i class="fa fa-trash-o"></i>Descartar</a>            
+            <a onclick="confirmarReabrir();" class="btn btn-app"><i class="fa fa-inbox"></i>Reabrir</a>
 
           </div>
         </div>
@@ -120,3 +126,13 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+
+function confirmarReabrir()
+{
+  if(confirm("Voce realmente deseja REABRIR essa ocorrência?")){
+    location.href="/apuracao-excluida-detalhe/reabrir/{$listaApuracao.0.idApuracaoExcluida}/{$listaApuracao.0.idCriarApuracao}";
+  }
+}
+</script>

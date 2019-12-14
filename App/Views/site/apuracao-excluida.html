@@ -1,0 +1,55 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>Apurações Excluidas</h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <li class="active">Apuraçôes Excluidas</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!--Box apuracao--> 
+    <div class="box">
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div style="overflow: auto; width: 100%; height: 100%;">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Vítima</th>
+                <th>CPF da Vítima</th>
+                <th>Data de Criação</th>
+                <th>Opções</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {loop="$listaApuracao"}
+              {if="$value.status == 4"}
+              <tr>
+                <td>{$value.idCriarApuracao}</td>
+                <td>{$value.nomeVitima}</td>
+                <td>{$value.cpfVitima}</td>
+                <td>{$value.dataCriacao}</td>
+                <td>
+                  <a href="/apuracao-excluida-detalhe/{$value.idCriarApuracao}" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                </td>
+              </tr>
+              {/if}
+              {/loop}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--Fim box body-->
+    </div>
+    <!--Fim box apuracao-->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

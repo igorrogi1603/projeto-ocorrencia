@@ -229,4 +229,97 @@ $app->get("/apuracao-detalhe/gerar-ocorrencia/:idApuracao", function($idApuracao
 	}
 });
 
+$app->get("/apuracao-excluida", function(){
+
+	Usuario::verifyLogin();
+
+	if ($_SESSION['User']['nivelAcesso'] == "4" ||
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
+	) {
+		$listaApuracao = CListaApuracao::getListaApuracaoExcluida();
+
+		$page = new Page();
+
+		$page->setTpl("apuracao-excluida", [
+			"listaApuracao" => $listaApuracao
+		]);
+	} else {
+		$page = new Page([
+			"header"=>false,
+			"footer"=>false
+		]);
+		$page->setTpl("404");
+	}	
+});
+
+$app->get("/apuracao-excluida-detalhe/:idCriarApuracao", function($idCriarApuracao){
+
+	Usuario::verifyLogin();
+
+	if ($_SESSION['User']['nivelAcesso'] == "4" ||
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
+	) {
+		$listaApuracao = CListaApuracao::getApuracaoDetalheExcluida($idCriarApuracao);
+
+		$page = new Page();
+
+		$page->setTpl("apuracao-excluida-detalhe", [
+			"listaApuracao" => $listaApuracao
+		]);
+	} else {
+		$page = new Page([
+			"header"=>false,
+			"footer"=>false
+		]);
+		$page->setTpl("404");
+	}	
+});
+
+$app->get("/apuracao-excluida-detalhe/reabrir/:idApuracaoExcluida/:idCriarApuracao", function($idApuracaoExcluida, $idCriarApuracao){
+
+	Usuario::verifyLogin();
+
+	if ($_SESSION['User']['nivelAcesso'] == "4" ||
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
+	) {
+		$page = new Page();
+
+		$page->setTpl("apuracao-excluida-reabrir", [
+			"idApuracaoExcluida" => $idApuracaoExcluida,
+			"idApuracao" => $idCriarApuracao
+		]);
+	} else {
+		$page = new Page([
+			"header"=>false,
+			"footer"=>false
+		]);
+		$page->setTpl("404");
+	}	
+});
+
+$app->post("/apuracao-excluida-detalhe/reabrir/:idApuracaoExcluida/:idApuracao", function($idApuracaoExcluida, $idApuracao){
+
+	Usuario::verifyLogin();
+
+	if ($_SESSION['User']['nivelAcesso'] == "4" ||
+		$_SESSION['User']['nivelAcesso'] == "2210" ||
+		$_SESSION['User']['nivelAcesso'] == "3748"
+	) {
+		CListaApuracao::postReabrirApuracao($idApuracaoExcluida, $idApuracao);
+
+		header("Location: /lista-apuracoes");
+		exit;
+	} else {
+		$page = new Page([
+			"header"=>false,
+			"footer"=>false
+		]);
+		$page->setTpl("404");
+	}	
+});
+
+
 ?>

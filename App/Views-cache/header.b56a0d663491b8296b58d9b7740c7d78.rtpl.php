@@ -104,7 +104,7 @@ desired effect
             <?php } ?>
             
             <?php if( $value1["idUsuario"] != null ){ ?>
-            <?php if( $nivelAcesso == 2 ){ ?>
+            <?php if( $nivelAcesso == 2 OR $nivelAcesso == 3748 ){ ?>
             <?php if( $value1["idUsuario"] == $idUser ){ ?>
               <?php $outro += 1; ?>
             <?php } ?>
@@ -116,14 +116,14 @@ desired effect
           <!-- Notifications Menu -->
           <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
-            <?php if( $nivelAcesso == 4  OR $nivelAcesso == 2210 ){ ?>
+            <?php if( $nivelAcesso == 4 OR $nivelAcesso == 2210 ){ ?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning"><?php echo htmlspecialchars( $conselho, ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
             </a>
             <?php } ?>
 
-            <?php if( $nivelAcesso == 2 ){ ?>
+            <?php if( $nivelAcesso == 2 OR $nivelAcesso == 3748 ){ ?>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning"><?php echo htmlspecialchars( $outro, ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
@@ -136,7 +136,7 @@ desired effect
               <li class="header">Você tem <?php echo htmlspecialchars( $conselho, ENT_COMPAT, 'UTF-8', FALSE ); ?> notificação(s)</li>
               <?php } ?>
 
-              <?php if( $nivelAcesso == 2 ){ ?>
+              <?php if( $nivelAcesso == 2 OR $nivelAcesso == 3748 ){ ?>
               <li class="header">Você tem <?php echo htmlspecialchars( $outro, ENT_COMPAT, 'UTF-8', FALSE ); ?> notificação(s)</li>
               <?php } ?>
 
@@ -157,7 +157,7 @@ desired effect
                   <?php } ?>
 
                   <?php if( $value1["idUsuario"] != null ){ ?>
-                  <?php if( $nivelAcesso == 2 ){ ?>
+                  <?php if( $nivelAcesso == 2 OR $nivelAcesso == 3748 ){ ?>
                   <?php if( $value1["idUsuario"] == $idUser ){ ?>
                   <li><!-- start notification -->
                     <a href="/excluir-notificacao/<?php echo htmlspecialchars( $value1["idNotificacoes"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
@@ -222,6 +222,7 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="/lista-apuracoes">Abertas</a></li>
             <li><a href="/confirmar-apuracao">Confirmações</a></li>
+            <li><a href="/apuracao-excluida">Excluidas</a></li>
           </ul>
         </li>
         <!--Fim Criar Apuracao-->
