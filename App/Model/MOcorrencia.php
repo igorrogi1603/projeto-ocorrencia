@@ -146,6 +146,47 @@ class MOcorrencia {
 		]);
 	}
 
+	////////////////////////////////////////////////////////////////////
+	//	BLOQUEIO DE OCORRENCIA PARA O USUARIO
+	////////////////////////////////////////////////////////////////////
+
+	public function bloquearOcorrenciaUsuario($idApuracao, $idUsuario)
+	{
+		$sql = new Conexao;
+
+		$sql->query("
+			INSERT INTO tb_bloquearocorrenciausuario (idCriarApuracao, idOcorrencia, idUsuario) 
+			VALUES(:idCriarApuracao, :idOcorrencia, :idUsuario)
+		", [
+			":idCriarApuracao" => $idApuracao,
+			":idOcorrencia" => null,
+			":idUsuario" => $idUsuario
+		]);
+	}
+
+	public function listaBloquearOcorrenciaUsuario($idUsuario)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT * FROM tb_bloquearocorrenciausuario WHERE idUsuario = :idUsuario
+		",[
+			":idUsuario" => $idUsuario
+		]);
+	}
+
+	public function listaBloquearOcorrenciaApuracao($idApuracao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT * FROM tb_bloquearocorrenciausuario WHERE idCriarApuracao = :idApuracao
+		",[
+			":idApuracao" => $idApuracao
+		]);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Listar todos os dados da ocorrencia como pessoas envolvidas, endereco, contato, dados da apuracao
 	public function listaOcorrenciaCompleta()
 	{

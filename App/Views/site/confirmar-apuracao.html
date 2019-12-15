@@ -30,14 +30,14 @@
 
             <tbody>
               {loop="$confirmarApuracao"}
-              {if="$value.status == 2"}
+              {if="$value1.status == 2"}
               <tr>
-                <td>{$value.idCriarApuracao}</td>
-                <td>{$value.nomeVitima}</td>
-                <td>{$value.nomeGerouOcorrencia}</td>
-                <td>{$value.registroConfirmacao}</td>
+                <td>{$value1.idCriarApuracao}</td>
+                <td>{$value1.nomeVitima}</td>
+                <td>{$value1.nomeGerouOcorrencia}</td>
+                <td>{$value1.registroConfirmacao}</td>
                 <td>
-                  <a href="/confirmar-apuracao-detalhe/{$value.idCriarApuracao}" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                  <a href="/confirmar-apuracao-detalhe/{$value1.idCriarApuracao}" class="btn btn-default"><i class="fa fa-edit"></i></a>
                 </td>
               </tr>
               {/if}

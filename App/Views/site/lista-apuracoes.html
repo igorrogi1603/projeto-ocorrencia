@@ -30,14 +30,14 @@
 
             <tbody>
               {loop="$listaApuracao"}
-              {if="$value.status == 1"}
+              {if="$value1.status == 1"}
               <tr>
-                <td>{$value.idCriarApuracao}</td>
-                <td>{$value.nomeVitima}</td>
-                <td>{$value.cpfVitima}</td>
-                <td>{$value.dataCriacao}</td>
+                <td>{$value1.idCriarApuracao}</td>
+                <td>{$value1.nomeVitima}</td>
+                <td>{$value1.cpfVitima}</td>
+                <td>{$value1.dataCriacao}</td>
                 <td>
-                  <a href="/apuracao-detalhe/{$value.idCriarApuracao}" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                  <a href="/apuracao-detalhe/{$value1.idCriarApuracao}" class="btn btn-default"><i class="fa fa-edit"></i></a>
                 </td>
               </tr>
               {/if}

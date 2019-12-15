@@ -11,6 +11,7 @@ use \App\Model\MContato;
 use \App\Model\MResponsavel;
 use \App\Model\MVitima;
 use \App\Model\MUsuario;
+use \App\Model\MOcorrencia;
 use \App\Model\MAcompanhamento;
 use \App\Model\MNotificacao;
 
@@ -69,7 +70,8 @@ class CCriarApuracao {
 		$mvitima = new MVitima;
 		$musuario = new MUsuario;
 		$macompanhamento = new MAcompanhamento;
-		$mnotificacao = new MNotificacao;		
+		$mnotificacao = new MNotificacao;
+		$mocorrencia = new MOcorrencia;
 
 		//----------------------------------------------------------------
 		//VALIDACAO DO FORMULARIO
@@ -224,8 +226,8 @@ class CCriarApuracao {
 						foreach ($listAllUsuario as $valueUser) {
 							//verificar se a pessoa e um usuario
 							if ($idPessoa[0]["MAX(idPessoa)"] == $valueUser['idPessoa']) {
-								//e um usuario, entao bloquear o acesso dele
-								$musuario->bloquearUsuario($valueUser['idUsuario']);
+								//e um usuario, entao bloquear o acesso dele a ocorrencia 
+								$mocorrencia->bloquearOcorrenciaUsuario($idApuracao[0]["MAX(idCriarApuracao)"], $valueUser['idUsuario']);
 							}
 						}
 
@@ -288,7 +290,7 @@ class CCriarApuracao {
 							//verificar se a pessoa e um usuario
 							if ($idPessoa[0]["MAX(idPessoa)"] == $valueUser['idPessoa']) {
 								//e um usuario, entao bloquear o acesso dele
-								$musuario->bloquearUsuario($valueUser['idUsuario']);
+								$mocorrencia->bloquearOcorrenciaUsuario($idApuracao[0]["MAX(idCriarApuracao)"], $valueUser['idUsuario']);
 							}
 						}
 

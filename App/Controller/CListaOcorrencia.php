@@ -76,6 +76,22 @@ class CListaOcorrencia {
 		return $listaOcorrencia;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////
+
+	public static function listaBloquearOcorrenciaUsuario($idUsuario)
+	{	
+		$mocorrencia = new MOcorrencia;
+
+		return $mocorrencia->listaBloquearOcorrenciaUsuario($idUsuario);
+	}
+
+	public static function listaBloquearOcorrenciaApuracao($idApuracao)
+	{	
+		$mocorrencia = new MOcorrencia;
+
+		return $mocorrencia->listaBloquearOcorrenciaApuracao($idApuracao);
+	}
+
 }
 
 ?>

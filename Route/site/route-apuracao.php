@@ -5,6 +5,7 @@ use \App\Classe\Validacao;
 use \App\Config\Page;
 use \App\Controller\CCriarApuracao;
 use \App\Controller\CListaApuracao;
+use \App\Controller\CListaOcorrencia;
 
 $app->get("/criar-apuracao", function(){
 	
@@ -89,11 +90,45 @@ $app->get("/lista-apuracoes", function(){
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaApuracao = CListaApuracao::getListaApuracao();
+		$listaBloquearOcorrenciaUsuario = CListaOcorrencia::listaBloquearOcorrenciaUsuario($_SESSION['User']['idUsuario']);
+
+		if (isset($listaBloquearOcorrenciaUsuario) && $listaBloquearOcorrenciaUsuario != null && $listaBloquearOcorrenciaUsuario != "") {
+			//Pega o tamanho do arry para usar no for
+			$tamanhoArray = count($listaApuracao);
+			$tamanhoArrayUsuario = count($listaBloquearOcorrenciaUsuario);
+
+			for ($i = 0; $i < $tamanhoArray; $i++) {
+				//Verifica sea posicao que queremos guardar existe
+				if (isset($listaApuracao[$i])) {
+					//se existe guarda em id
+					$id = $listaApuracao[$i]['idCriarApuracao'];
+				}
+				
+				//Compara com outro array
+				for ($a = 0; $a < $tamanhoArrayUsuario; $a++) {
+					//Se os id forem iguais entao exclui para nao duplicar
+					if ($id == $listaBloquearOcorrenciaUsuario[$a]['idCriarApuracao']) {
+						$arrayPosicaoExcluir[] = $i;
+					}
+				}
+			}
+
+			if (isset($arrayPosicaoExcluir)) {
+				//exclui posissoes iguais
+				foreach ($arrayPosicaoExcluir as $value) {
+					unset($listaApuracao[$value]);
+				}
+			}
+
+			$listaFinal = $listaApuracao;
+		} else {
+			$listaFinal = $listaApuracao;
+		}
 
 		$page = new Page();
 
 		$page->setTpl("lista-apuracoes", [
-			"listaApuracao" => $listaApuracao
+			"listaApuracao" => $listaFinal
 		]);
 	} else {
 		$page = new Page([
@@ -116,13 +151,34 @@ $app->get("/apuracao-detalhe/:idApuracao", function($idApuracao){
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
+		$listaBlokApuracao = CListaOcorrencia::listaBloquearOcorrenciaApuracao($idApuracao);
 
 		if (isset($detalheApuracao[0]['status']) && $detalheApuracao[0]['status'] == 1) {
-			$page = new Page();
+			//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+			//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+			if (isset($listaBlokApuracao) && $listaBlokApuracao != "" && $listaBlokApuracao != null) {
+				foreach ($listaBlokApuracao as $value) {	
+					if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+						$page = new Page();
 
-			$page->setTpl("apuracao-detalhe", [
-				"detalheApuracao" => $detalheApuracao
-			]);
+						$page->setTpl("apuracao-detalhe", [
+							"detalheApuracao" => $detalheApuracao
+						]);
+					} else {
+						$page = new Page([
+							"header"=>false,
+							"footer"=>false
+						]);
+						$page->setTpl("404");
+					}
+				}
+			} else {
+				$page = new Page();
+
+				$page->setTpl("apuracao-detalhe", [
+					"detalheApuracao" => $detalheApuracao
+				]);
+			}
 		} else {
 			$page = new Page([
 				"header"=>false,
@@ -151,13 +207,34 @@ $app->get("/apuracao-detalhe/descartar/:idApuracao", function($idApuracao){
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
+		$listaBlokApuracao = CListaOcorrencia::listaBloquearOcorrenciaApuracao($idApuracao);
 
 		if (isset($detalheApuracao[0]['status']) && $detalheApuracao[0]['status'] == 1) {
-			$page = new Page();
+			//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+			//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+			if (isset($listaBlokApuracao) && $listaBlokApuracao != "" && $listaBlokApuracao != null) {
+				foreach ($listaBlokApuracao as $value) {	
+					if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+						$page = new Page();
 
-			$page->setTpl("apuracao-descartar", [
-				"idApuracao" => $idApuracao
-			]);
+						$page->setTpl("apuracao-descartar", [
+							"idApuracao" => $idApuracao
+						]);
+					} else {
+						$page = new Page([
+							"header"=>false,
+							"footer"=>false
+						]);
+						$page->setTpl("404");
+					}
+				}
+			} else {
+				$page = new Page();
+
+				$page->setTpl("apuracao-descartar", [
+					"idApuracao" => $idApuracao
+				]);
+			}
 		} else {
 			$page = new Page([
 				"header"=>false,
@@ -182,10 +259,31 @@ $app->post("/apuracao-detalhe/descartar/:idApuracao", function($idApuracao){
 		$_SESSION['User']['nivelAcesso'] == "2210" ||
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
-		CListaApuracao::postDescartarApuracao($_POST, $idApuracao);
+		$listaBlokApuracao = CListaOcorrencia::listaBloquearOcorrenciaApuracao($idApuracao);
 
-		header("Location: /lista-apuracoes");
-		exit;
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokApuracao) && $listaBlokApuracao != "" && $listaBlokApuracao != null) {
+			foreach ($listaBlokApuracao as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					CListaApuracao::postDescartarApuracao($_POST, $idApuracao);
+
+					header("Location: /lista-apuracoes");
+					exit;
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			CListaApuracao::postDescartarApuracao($_POST, $idApuracao);
+
+			header("Location: /lista-apuracoes");
+			exit;
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -207,12 +305,32 @@ $app->get("/apuracao-detalhe/gerar-ocorrencia/:idApuracao", function($idApuracao
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$detalheApuracao = CListaApuracao::getApuracaoDetalhe($idApuracao);
+		$listaBlokApuracao = CListaOcorrencia::listaBloquearOcorrenciaApuracao($idApuracao);
 		
 		if (isset($detalheApuracao[0]['status']) && $detalheApuracao[0]['status'] == 1) {
-			CListaApuracao::getGerarOcorrencia($idApuracao);
+			//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+			//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+			if (isset($listaBlokApuracao) && $listaBlokApuracao != "" && $listaBlokApuracao != null) {
+				foreach ($listaBlokApuracao as $value) {	
+					if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+						CListaApuracao::getGerarOcorrencia($idApuracao);
 
-			header("Location: /confirmar-apuracao");
-			exit;
+						header("Location: /confirmar-apuracao");
+						exit;
+					} else {
+						$page = new Page([
+							"header"=>false,
+							"footer"=>false
+						]);
+						$page->setTpl("404");
+					}
+				}
+			} else {
+				CListaApuracao::getGerarOcorrencia($idApuracao);
+
+				header("Location: /confirmar-apuracao");
+				exit;
+			}
 		} else {
 			$page = new Page([
 				"header"=>false,
@@ -238,11 +356,45 @@ $app->get("/apuracao-excluida", function(){
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaApuracao = CListaApuracao::getListaApuracaoExcluida();
+		$listaBloquearOcorrenciaUsuario = CListaOcorrencia::listaBloquearOcorrenciaUsuario($_SESSION['User']['idUsuario']);
+
+		if (isset($listaBloquearOcorrenciaUsuario) && $listaBloquearOcorrenciaUsuario != null && $listaBloquearOcorrenciaUsuario != "") {
+			//Pega o tamanho do arry para usar no for
+			$tamanhoArray = count($listaApuracao);
+			$tamanhoArrayUsuario = count($listaBloquearOcorrenciaUsuario);
+
+			for ($i = 0; $i < $tamanhoArray; $i++) {
+				//Verifica sea posicao que queremos guardar existe
+				if (isset($listaApuracao[$i])) {
+					//se existe guarda em id
+					$id = $listaApuracao[$i]['idCriarApuracao'];
+				}
+				
+				//Compara com outro array
+				for ($a = 0; $a < $tamanhoArrayUsuario; $a++) {
+					//Se os id forem iguais entao exclui para nao duplicar
+					if ($id == $listaBloquearOcorrenciaUsuario[$a]['idCriarApuracao']) {
+						$arrayPosicaoExcluir[] = $i;
+					}
+				}
+			}
+
+			if (isset($arrayPosicaoExcluir)) {
+				//exclui posissoes iguais
+				foreach ($arrayPosicaoExcluir as $value) {
+					unset($listaApuracao[$value]);
+				}
+			}
+
+			$listaFinal = $listaApuracao;
+		} else {
+			$listaFinal = $listaApuracao;
+		}
 
 		$page = new Page();
 
 		$page->setTpl("apuracao-excluida", [
-			"listaApuracao" => $listaApuracao
+			"listaApuracao" => $listaFinal
 		]);
 	} else {
 		$page = new Page([
@@ -262,12 +414,33 @@ $app->get("/apuracao-excluida-detalhe/:idCriarApuracao", function($idCriarApurac
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaApuracao = CListaApuracao::getApuracaoDetalheExcluida($idCriarApuracao);
+		$listaBlokApuracao = CListaOcorrencia::listaBloquearOcorrenciaApuracao($idCriarApuracao);
 
-		$page = new Page();
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokApuracao) && $listaBlokApuracao != "" && $listaBlokApuracao != null) {
+			foreach ($listaBlokApuracao as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					$page = new Page();
 
-		$page->setTpl("apuracao-excluida-detalhe", [
-			"listaApuracao" => $listaApuracao
-		]);
+					$page->setTpl("apuracao-excluida-detalhe", [
+						"listaApuracao" => $listaApuracao
+					]);
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			$page = new Page();
+
+			$page->setTpl("apuracao-excluida-detalhe", [
+				"listaApuracao" => $listaApuracao
+			]);
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -284,13 +457,36 @@ $app->get("/apuracao-excluida-detalhe/reabrir/:idApuracaoExcluida/:idCriarApurac
 	if ($_SESSION['User']['nivelAcesso'] == "4" ||
 		$_SESSION['User']['nivelAcesso'] == "2210" ||
 		$_SESSION['User']['nivelAcesso'] == "3748"
-	) {
-		$page = new Page();
+	) {	
+		$listaBlokApuracao = CListaOcorrencia::listaBloquearOcorrenciaApuracao($idCriarApuracao);
 
-		$page->setTpl("apuracao-excluida-reabrir", [
-			"idApuracaoExcluida" => $idApuracaoExcluida,
-			"idApuracao" => $idCriarApuracao
-		]);
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokApuracao) && $listaBlokApuracao != "" && $listaBlokApuracao != null) {
+			foreach ($listaBlokApuracao as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					$page = new Page();
+
+					$page->setTpl("apuracao-excluida-reabrir", [
+						"idApuracaoExcluida" => $idApuracaoExcluida,
+						"idApuracao" => $idCriarApuracao
+					]);
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			$page = new Page();
+
+			$page->setTpl("apuracao-excluida-reabrir", [
+				"idApuracaoExcluida" => $idApuracaoExcluida,
+				"idApuracao" => $idCriarApuracao
+			]);
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -308,10 +504,31 @@ $app->post("/apuracao-excluida-detalhe/reabrir/:idApuracaoExcluida/:idApuracao",
 		$_SESSION['User']['nivelAcesso'] == "2210" ||
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
-		CListaApuracao::postReabrirApuracao($idApuracaoExcluida, $idApuracao, $_POST);
+		$listaBlokApuracao = CListaOcorrencia::listaBloquearOcorrenciaApuracao($idApuracao);
 
-		header("Location: /lista-apuracoes");
-		exit;
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokApuracao) && $listaBlokApuracao != "" && $listaBlokApuracao != null) {
+			foreach ($listaBlokApuracao as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					CListaApuracao::postReabrirApuracao($idApuracaoExcluida, $idApuracao, $_POST);
+
+					header("Location: /lista-apuracoes");
+					exit;
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			CListaApuracao::postReabrirApuracao($idApuracaoExcluida, $idApuracao, $_POST);
+
+			header("Location: /lista-apuracoes");
+			exit;
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
