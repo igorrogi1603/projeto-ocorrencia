@@ -384,18 +384,26 @@ class CListaApuracao {
 		return $detalheApuracao;
 	}
 
-	public static function postReabrirApuracao($idApuracaoExcluida, $idApuracao)
+	public static function postReabrirApuracao($idApuracaoExcluida, $idApuracao, $post)
 	{
 		//Instancia
 		$mapuracao = new MApuracao;
 
 		//Analisar se tem dados na tabela ConfirmacaoApuracao para excluir
+		$listaConfirmacao = $mapuracao->recuperarConfirmacaoApuracao($idApuracao);
 
-		//Excluir os votos da tabela ConfirmacaoApuracao
+		//Zerar os votos da tabela ConfirmacaoApuracao
+		if (isset($listaConfirmacao) && $listaConfirmacao != null && $listaConfirmacao != "") {
+			$mapuracao->deletarConfirmacaoApuracao($idApuracao);
+		}
 
 		//Analisar se tem dados na tabela GerenciarConfirmacao para excluir
+		$listGerenciarConfirmacao = $mapuracao->recuperarGerenciarConfirmacaoTodosUsuarios($idApuracao);
 
 		//Excluir os votos da tabela GerenciarConfirmacao
+		if (isset($listGerenciarConfirmacao) && $listGerenciarConfirmacao != null && $listGerenciarConfirmacao != "") {
+			$mapuracao->deletarGerenciarConfirmacaoPorApuracao($idApuracao);
+		}
 
 		//Muda o status da tabela apuração excluida para nao mostrar mais
 		//na lista de apuração excluida, mais fica cadastrado para registro
@@ -404,6 +412,9 @@ class CListaApuracao {
 		//Muda o status da apuração para voltar aparecer na lista de
 		//Apuração abertas
 		$mapuracao->updateStatus(1, $idApuracao);
+
+		//Colocar o motivo na tabela reabrirApuracao
+		$mapuracao->cadastrarReabrirApuracao($idApuracao, $_SESSION['User']['idUsuario'], $post);
 	}
 
 }

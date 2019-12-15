@@ -21,7 +21,7 @@
       <!-- /.box-header -->
       <div class="box-body">
 
-        <form action="/apuracao-excluida-detalhe/reabrir/<?php echo htmlspecialchars( $idApuracaoExcluida, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
+        <form action="/apuracao-excluida-detalhe/reabrir/<?php echo htmlspecialchars( $idApuracaoExcluida, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idApuracao, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
           
           <!--Inicio row-->
           <div class="row">

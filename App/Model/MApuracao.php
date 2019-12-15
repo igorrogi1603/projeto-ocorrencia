@@ -175,6 +175,15 @@ class MApuracao {
 		]);
 	}
 
+	public function deletarConfirmacaoApuracao($idApuracao)
+	{
+		$sql = new Conexao;
+
+		$sql->query("DELETE FROM tb_confirmacaoapuracao WHERE idCriarApuracao = :idCriarApuracao", [
+			"idCriarApuracao" => $idApuracao
+		]);
+	}
+
 	//----------------------------------------------------------------
 	//CADASTRAR NA TABELA gerenciarConfirmacao
 	//----------------------------------------------------------------
@@ -201,12 +210,30 @@ class MApuracao {
 		]);
 	}
 
+	public function recuperarGerenciarConfirmacaoTodosUsuarios($idApuracao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("SELECT * FROM tb_gerenciarconfirmacao WHERE idCriarApuracao = :idCriarApuracao", [
+			":idCriarApuracao" => $idApuracao
+		]);
+	}
+
 	public function deletarGerenciarConfirmacao($idUsuario)
 	{
 		$sql = new Conexao;
 
 		$sql->query("DELETE FROM tb_gerenciarconfirmacao WHERE idUsuario = :idUsuario", [
 			"idUsuario" => $idUsuario
+		]);
+	}
+
+	public function deletarGerenciarConfirmacaoPorApuracao($idApuracao)
+	{
+		$sql = new Conexao;
+
+		$sql->query("DELETE FROM tb_gerenciarconfirmacao WHERE idCriarApuracao = :idCriarApuracao", [
+			"idCriarApuracao" => $idApuracao
 		]);
 	}
 	
@@ -267,6 +294,23 @@ class MApuracao {
 			":idConfirmacaoApuracao" => $idConfirmacao
 		]);
 	}	
+
+	public function cadastrarReabrirApuracao($idApuracao, $idUsuario, $post)
+	{
+		$sql = new Conexao;
+		$apuracao = new Apuracao;
+
+		$apuracao->setData($post);
+
+		$sql->query("
+			INSERT INTO tb_reabrirapuracao (idCriarApuracao, idUsuario, motivo) 
+			VALUES(:idCriarApuracao, :idUsuario, :motivo)
+		", [
+			":idCriarApuracao" => $idApuracao,
+			":idUsuario" => $idUsuario,
+			":motivo" => $apuracao->getdescricaoApuracao()
+		]);
+	}
 
 	//---------------------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------------------

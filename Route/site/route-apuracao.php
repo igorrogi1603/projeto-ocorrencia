@@ -308,7 +308,7 @@ $app->post("/apuracao-excluida-detalhe/reabrir/:idApuracaoExcluida/:idApuracao",
 		$_SESSION['User']['nivelAcesso'] == "2210" ||
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
-		CListaApuracao::postReabrirApuracao($idApuracaoExcluida, $idApuracao);
+		CListaApuracao::postReabrirApuracao($idApuracaoExcluida, $idApuracao, $_POST);
 
 		header("Location: /lista-apuracoes");
 		exit;

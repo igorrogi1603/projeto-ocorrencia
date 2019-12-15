@@ -27,7 +27,7 @@
         <div class="row">
           <!--Detalhes-->
           <div class="col-md-12">
-            <p class="sem-espacamento"><strong>N° da Ocorrência: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+            <p class="sem-espacamento"><strong>N° da Apuração: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Data: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["dataCriacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Usuário que criou apuração: </strong><?php echo htmlspecialchars( $detalheApuracao["0"]["quemCriouApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
           </div>
