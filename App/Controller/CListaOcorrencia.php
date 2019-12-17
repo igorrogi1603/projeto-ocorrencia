@@ -92,6 +92,13 @@ class CListaOcorrencia {
 		return $mocorrencia->listaBloquearOcorrenciaApuracao($idApuracao);
 	}
 
+	public static function listaBloquearOcorrencia($idOcorrencia)
+	{	
+		$mocorrencia = new MOcorrencia;
+
+		return $mocorrencia->listaBloquearOcorrencia($idOcorrencia);
+	}
+
 }
 
 ?>

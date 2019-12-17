@@ -56,6 +56,15 @@ class CListaConfirmacao {
 			//Buscar a ocorrencia que foi cadastrada agora
 			$idOcorrencia = $mocorrencia->ultimoRegistro();
 
+			//Recuperar lista de apuracoes bloqueadas por usuario
+			$listaBlokApuracao = $mocorrencia->listaBloquearOcorrenciaApuracao($idApuracao);
+
+			foreach ($listaBlokApuracao as $value) {
+				if ($value['idCriarApuracao'] == $idApuracao) {
+					$mocorrencia->cadastrarBloquearOcorrencia($idOcorrencia[0]["MAX(idOcorrencia)"], $idApuracao);
+				}
+			}
+
 			//Notificacao
 			$mnotificacao->cadastrar("Nova Ocorrência", "/ocorrencia-detalhe/".$idOcorrencia[0]["MAX(idOcorrencia)"]);
 

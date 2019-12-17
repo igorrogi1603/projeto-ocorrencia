@@ -15,11 +15,45 @@ $app->get("/ocorrencias-abertas", function(){
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaOcorrencia = CListaOcorrencia::getListaOcorrencia();
+		$listaBloquearOcorrenciaUsuario = CListaOcorrencia::listaBloquearOcorrenciaUsuario($_SESSION['User']['idUsuario']);
+
+		if (isset($listaBloquearOcorrenciaUsuario) && $listaBloquearOcorrenciaUsuario != null && $listaBloquearOcorrenciaUsuario != "") {
+			//Pega o tamanho do arry para usar no for
+			$tamanhoArray = count($listaOcorrencia);
+			$tamanhoArrayUsuario = count($listaBloquearOcorrenciaUsuario);
+
+			for ($i = 0; $i < $tamanhoArray; $i++) {
+				//Verifica sea posicao que queremos guardar existe
+				if (isset($listaOcorrencia[$i])) {
+					//se existe guarda em id
+					$id = $listaOcorrencia[$i]['idCriarApuracao'];
+				}
+				
+				//Compara com outro array
+				for ($a = 0; $a < $tamanhoArrayUsuario; $a++) {
+					//Se os id forem iguais entao exclui para nao duplicar
+					if ($id == $listaBloquearOcorrenciaUsuario[$a]['idCriarApuracao']) {
+						$arrayPosicaoExcluir[] = $i;
+					}
+				}
+			}
+
+			if (isset($arrayPosicaoExcluir)) {
+				//exclui posissoes iguais
+				foreach ($arrayPosicaoExcluir as $value) {
+					unset($listaOcorrencia[$value]);
+				}
+			}
+
+			$listaFinal = $listaOcorrencia;
+		} else {
+			$listaFinal = $listaOcorrencia;
+		}
 
 		$page = new Page();
 
 		$page->setTpl("ocorrencias-abertas", [
-			"listaOcorrencia" => $listaOcorrencia
+			"listaOcorrencia" => $listaFinal
 		]);
 	} else {
 		$page = new Page([
@@ -39,11 +73,45 @@ $app->get("/ocorrencias-reabertas", function(){
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaOcorrencia = CListaOcorrencia::getListaOcorrencia();
+		$listaBloquearOcorrenciaUsuario = CListaOcorrencia::listaBloquearOcorrenciaUsuario($_SESSION['User']['idUsuario']);
+
+		if (isset($listaBloquearOcorrenciaUsuario) && $listaBloquearOcorrenciaUsuario != null && $listaBloquearOcorrenciaUsuario != "") {
+			//Pega o tamanho do arry para usar no for
+			$tamanhoArray = count($listaOcorrencia);
+			$tamanhoArrayUsuario = count($listaBloquearOcorrenciaUsuario);
+
+			for ($i = 0; $i < $tamanhoArray; $i++) {
+				//Verifica sea posicao que queremos guardar existe
+				if (isset($listaOcorrencia[$i])) {
+					//se existe guarda em id
+					$id = $listaOcorrencia[$i]['idCriarApuracao'];
+				}
+				
+				//Compara com outro array
+				for ($a = 0; $a < $tamanhoArrayUsuario; $a++) {
+					//Se os id forem iguais entao exclui para nao duplicar
+					if ($id == $listaBloquearOcorrenciaUsuario[$a]['idCriarApuracao']) {
+						$arrayPosicaoExcluir[] = $i;
+					}
+				}
+			}
+
+			if (isset($arrayPosicaoExcluir)) {
+				//exclui posissoes iguais
+				foreach ($arrayPosicaoExcluir as $value) {
+					unset($listaOcorrencia[$value]);
+				}
+			}
+
+			$listaFinal = $listaOcorrencia;
+		} else {
+			$listaFinal = $listaOcorrencia;
+		}
 
 		$page = new Page();
 
 		$page->setTpl("ocorrencias-reabertas", [
-			"listaOcorrencia" => $listaOcorrencia
+			"listaOcorrencia" => $listaFinal
 		]);
 	} else {
 		$page = new Page([
@@ -63,11 +131,45 @@ $app->get("/ocorrencias-arquivadas", function(){
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaOcorrencia = CListaOcorrencia::getListaOcorrencia();
+		$listaBloquearOcorrenciaUsuario = CListaOcorrencia::listaBloquearOcorrenciaUsuario($_SESSION['User']['idUsuario']);
+
+		if (isset($listaBloquearOcorrenciaUsuario) && $listaBloquearOcorrenciaUsuario != null && $listaBloquearOcorrenciaUsuario != "") {
+			//Pega o tamanho do arry para usar no for
+			$tamanhoArray = count($listaOcorrencia);
+			$tamanhoArrayUsuario = count($listaBloquearOcorrenciaUsuario);
+
+			for ($i = 0; $i < $tamanhoArray; $i++) {
+				//Verifica sea posicao que queremos guardar existe
+				if (isset($listaOcorrencia[$i])) {
+					//se existe guarda em id
+					$id = $listaOcorrencia[$i]['idCriarApuracao'];
+				}
+				
+				//Compara com outro array
+				for ($a = 0; $a < $tamanhoArrayUsuario; $a++) {
+					//Se os id forem iguais entao exclui para nao duplicar
+					if ($id == $listaBloquearOcorrenciaUsuario[$a]['idCriarApuracao']) {
+						$arrayPosicaoExcluir[] = $i;
+					}
+				}
+			}
+
+			if (isset($arrayPosicaoExcluir)) {
+				//exclui posissoes iguais
+				foreach ($arrayPosicaoExcluir as $value) {
+					unset($listaOcorrencia[$value]);
+				}
+			}
+
+			$listaFinal = $listaOcorrencia;
+		} else {
+			$listaFinal = $listaOcorrencia;
+		}
 
 		$page = new Page();
 
 		$page->setTpl("ocorrencias-arquivadas", [
-			"listaOcorrencia" => $listaOcorrencia
+			"listaOcorrencia" => $listaFinal
 		]);
 	} else {
 		$page = new Page([
@@ -87,11 +189,45 @@ $app->get("/ocorrencias-encerradas", function(){
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaOcorrencia = CListaOcorrencia::getListaOcorrencia();
+		$listaBloquearOcorrenciaUsuario = CListaOcorrencia::listaBloquearOcorrenciaUsuario($_SESSION['User']['idUsuario']);
+
+		if (isset($listaBloquearOcorrenciaUsuario) && $listaBloquearOcorrenciaUsuario != null && $listaBloquearOcorrenciaUsuario != "") {
+			//Pega o tamanho do arry para usar no for
+			$tamanhoArray = count($listaOcorrencia);
+			$tamanhoArrayUsuario = count($listaBloquearOcorrenciaUsuario);
+
+			for ($i = 0; $i < $tamanhoArray; $i++) {
+				//Verifica sea posicao que queremos guardar existe
+				if (isset($listaOcorrencia[$i])) {
+					//se existe guarda em id
+					$id = $listaOcorrencia[$i]['idCriarApuracao'];
+				}
+				
+				//Compara com outro array
+				for ($a = 0; $a < $tamanhoArrayUsuario; $a++) {
+					//Se os id forem iguais entao exclui para nao duplicar
+					if ($id == $listaBloquearOcorrenciaUsuario[$a]['idCriarApuracao']) {
+						$arrayPosicaoExcluir[] = $i;
+					}
+				}
+			}
+
+			if (isset($arrayPosicaoExcluir)) {
+				//exclui posissoes iguais
+				foreach ($arrayPosicaoExcluir as $value) {
+					unset($listaOcorrencia[$value]);
+				}
+			}
+
+			$listaFinal = $listaOcorrencia;
+		} else {
+			$listaFinal = $listaOcorrencia;
+		}
 
 		$page = new Page();
 
 		$page->setTpl("ocorrencias-encerradas", [
-			"listaOcorrencia" => $listaOcorrencia
+			"listaOcorrencia" => $listaFinal
 		]);
 	} else {
 		$page = new Page([
