@@ -28,11 +28,33 @@ $app->get("/ocorrencia-detalhe/arquivar/:idOcorrencia", function($idOcorrencia){
 		$_SESSION['User']['nivelAcesso'] == "2210" ||
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
-		$page = new Page();
+		$listaBlokOcorrencia = CListaOcorrencia::listaBloquearOcorrencia($idOcorrencia);
 
-		$page->setTpl("arquivar-ocorrencia", [
-			"idOcorrencia" => $idOcorrencia
-		]);
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokOcorrencia) && $listaBlokOcorrencia != "" && $listaBlokOcorrencia != null) {
+			foreach ($listaBlokOcorrencia as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					$page = new Page();
+
+					$page->setTpl("arquivar-ocorrencia", [
+						"idOcorrencia" => $idOcorrencia
+					]);
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			$page = new Page();
+
+			$page->setTpl("arquivar-ocorrencia", [
+				"idOcorrencia" => $idOcorrencia
+			]);
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -50,10 +72,31 @@ $app->post("/ocorrencia-detalhe/arquivar/:idOcorrencia", function($idOcorrencia)
 		$_SESSION['User']['nivelAcesso'] == "2210" ||
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
-		COcorrenciaStatus::getArquivar($idOcorrencia, $_POST);
+		$listaBlokOcorrencia = CListaOcorrencia::listaBloquearOcorrencia($idOcorrencia);
 
-		header("Location: /ocorrencias-arquivadas");
-		exit;
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokOcorrencia) && $listaBlokOcorrencia != "" && $listaBlokOcorrencia != null) {
+			foreach ($listaBlokOcorrencia as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					COcorrenciaStatus::getArquivar($idOcorrencia, $_POST);
+
+					header("Location: /ocorrencias-arquivadas");
+					exit;
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			COcorrenciaStatus::getArquivar($idOcorrencia, $_POST);
+
+			header("Location: /ocorrencias-arquivadas");
+			exit;
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -71,11 +114,33 @@ $app->get("/ocorrencia-detalhe/encerrar/:idOcorrencia", function($idOcorrencia){
 		$_SESSION['User']['nivelAcesso'] == "2210" ||
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
-		$page = new Page();
+		$listaBlokOcorrencia = CListaOcorrencia::listaBloquearOcorrencia($idOcorrencia);
 
-		$page->setTpl("encerrar-ocorrencia", [
-			"idOcorrencia" => $idOcorrencia
-		]);
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokOcorrencia) && $listaBlokOcorrencia != "" && $listaBlokOcorrencia != null) {
+			foreach ($listaBlokOcorrencia as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					$page = new Page();
+
+					$page->setTpl("encerrar-ocorrencia", [
+						"idOcorrencia" => $idOcorrencia
+					]);
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			$page = new Page();
+
+			$page->setTpl("encerrar-ocorrencia", [
+				"idOcorrencia" => $idOcorrencia
+			]);
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -93,10 +158,31 @@ $app->post("/ocorrencia-detalhe/encerrar/:idOcorrencia", function($idOcorrencia)
 		$_SESSION['User']['nivelAcesso'] == "2210" ||
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
-		COcorrenciaStatus::getEncerrar($idOcorrencia, $_POST);
+		$listaBlokOcorrencia = CListaOcorrencia::listaBloquearOcorrencia($idOcorrencia);
 
-		header("Location: /ocorrencias-encerradas");
-		exit;
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokOcorrencia) && $listaBlokOcorrencia != "" && $listaBlokOcorrencia != null) {
+			foreach ($listaBlokOcorrencia as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					COcorrenciaStatus::getEncerrar($idOcorrencia, $_POST);
+
+					header("Location: /ocorrencias-encerradas");
+					exit;
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			COcorrenciaStatus::getEncerrar($idOcorrencia, $_POST);
+
+			header("Location: /ocorrencias-encerradas");
+			exit;
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -114,11 +200,33 @@ $app->get("/ocorrencia-detalhe/reabrir/:idOcorrencia", function($idOcorrencia){
 		$_SESSION['User']['nivelAcesso'] == "2210" ||
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
-		$page = new Page();
+		$listaBlokOcorrencia = CListaOcorrencia::listaBloquearOcorrencia($idOcorrencia);
 
-		$page->setTpl("reabrir-ocorrencia", [
-			"idOcorrencia" => $idOcorrencia
-		]);	
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokOcorrencia) && $listaBlokOcorrencia != "" && $listaBlokOcorrencia != null) {
+			foreach ($listaBlokOcorrencia as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					$page = new Page();
+
+					$page->setTpl("reabrir-ocorrencia", [
+						"idOcorrencia" => $idOcorrencia
+					]);	
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			$page = new Page();
+
+			$page->setTpl("reabrir-ocorrencia", [
+				"idOcorrencia" => $idOcorrencia
+			]);	
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
@@ -136,10 +244,31 @@ $app->post("/ocorrencia-detalhe/reabrir/:idOcorrencia", function($idOcorrencia){
 		$_SESSION['User']['nivelAcesso'] == "2210" ||
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
-		COcorrenciaStatus::getReabrir($idOcorrencia, $_POST);
+		$listaBlokOcorrencia = CListaOcorrencia::listaBloquearOcorrencia($idOcorrencia);
 
-		header("Location: /ocorrencias-reabertas");
-		exit;
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokOcorrencia) && $listaBlokOcorrencia != "" && $listaBlokOcorrencia != null) {
+			foreach ($listaBlokOcorrencia as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					COcorrenciaStatus::getReabrir($idOcorrencia, $_POST);
+
+					header("Location: /ocorrencias-reabertas");
+					exit;
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			COcorrenciaStatus::getReabrir($idOcorrencia, $_POST);
+
+			header("Location: /ocorrencias-reabertas");
+			exit;
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,

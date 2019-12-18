@@ -28,15 +28,39 @@ $app->get("/ocorrencia-arquivos/:idOcorrencia", function($idOcorrencia){
 		$_SESSION['User']['nivelAcesso'] == "3748"
 	) {
 		$listaArquivos = COcorrenciaArquivos::getArquivos($idOcorrencia);
+		$listaBlokOcorrencia = CListaOcorrencia::listaBloquearOcorrencia($idOcorrencia);
 
-		$page = new Page([
-			"header"=>false,
-			"footer"=>false
-		]);
+		//Caso o usuario tenha aparecido em alguam apuracao ele nao podera ver
+		//validacao para nao deixar o usuario acessar a rota onde seu nome aparece na apuracao
+		if (isset($listaBlokOcorrencia) && $listaBlokOcorrencia != "" && $listaBlokOcorrencia != null) {
+			foreach ($listaBlokOcorrencia as $value) {	
+				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
 
-		$page->setTpl("ocorrencia-arquivos", [
-			"arquivos" => $listaArquivos
-		]);
+					$page->setTpl("ocorrencia-arquivos", [
+						"arquivos" => $listaArquivos
+					]);
+				} else {
+					$page = new Page([
+						"header"=>false,
+						"footer"=>false
+					]);
+					$page->setTpl("404");
+				}
+			}
+		} else {
+			$page = new Page([
+				"header"=>false,
+				"footer"=>false
+			]);
+
+			$page->setTpl("ocorrencia-arquivos", [
+				"arquivos" => $listaArquivos
+			]);
+		}
 	} else {
 		$page = new Page([
 			"header"=>false,
