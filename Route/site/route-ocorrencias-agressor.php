@@ -542,7 +542,7 @@ $app->post("/ocorrencia-agressor-enviar-arquivo-cadastrar/:idOcorrencia", functi
 	}
 });
 
-$app->get("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrencia/:idPessoa/:idArquivo", function($idOcorrencia, $idPessoa, $idArquivo){
+$app->get("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrencia/:idPessoa/:idArquivo/:tipo", function($idOcorrencia, $idPessoa, $idArquivo, $tipo){
 
 	Usuario::verifyLogin();
 
@@ -563,6 +563,7 @@ $app->get("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrencia
 						"selecionaPessoa" => $listaAgressor,
 						"idOcorrencia" => $idOcorrencia,
 						"idArquivo" => $idArquivo,
+						"tipo" => $tipo,
 						"error"=>Validacao::getMsgError()
 					]);
 				} else {
@@ -580,6 +581,7 @@ $app->get("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrencia
 				"selecionaPessoa" => $listaAgressor,
 				"idOcorrencia" => $idOcorrencia,
 				"idArquivo" => $idArquivo,
+				"tipo" => $tipo,
 				"error"=>Validacao::getMsgError()
 			]);
 		}
@@ -592,7 +594,7 @@ $app->get("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrencia
 	}
 });
 
-$app->post("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrencia/:idArquivo", function($idOcorrencia, $idArquivo){
+$app->post("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrencia/:idArquivo/:isInstituicao", function($idOcorrencia, $idArquivo, $isInstituicao){
 
 	Usuario::verifyLogin();
 
@@ -608,7 +610,7 @@ $app->post("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrenci
 				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
 					//if serve para nao dar erro na variavel sendo passada como parametro caso ela nao exista dará erro
 					if($_FILES["upDocumento"]["name"] !== ""){
-						COcorrenciaAgressorEnviarArquivo::postEnviarArquivoCadastrarAtualizar($idOcorrencia, $_POST, $_FILES["upDocumento"], $idArquivo);
+						COcorrenciaAgressorEnviarArquivo::postEnviarArquivoCadastrarAtualizar($idOcorrencia, $_POST, $_FILES["upDocumento"], $idArquivo, $isInstituicao);
 					} else {
 						Validacao::setMsgError("Selecione um arquivo PDF");
 				        header('Location: /ocorrencia-agressor-enviar-arquivo-cadastrar/'.$idOcorrencia);
@@ -628,7 +630,7 @@ $app->post("/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/:idOcorrenci
 		} else {
 			//if serve para nao dar erro na variavel sendo passada como parametro caso ela nao exista dará erro
 			if($_FILES["upDocumento"]["name"] !== ""){
-				COcorrenciaAgressorEnviarArquivo::postEnviarArquivoCadastrarAtualizar($idOcorrencia, $_POST, $_FILES["upDocumento"], $idArquivo);
+				COcorrenciaAgressorEnviarArquivo::postEnviarArquivoCadastrarAtualizar($idOcorrencia, $_POST, $_FILES["upDocumento"], $idArquivo, $isInstituicao);
 			} else {
 				Validacao::setMsgError("Selecione um arquivo PDF");
 		        header('Location: /ocorrencia-agressor-enviar-arquivo-cadastrar/'.$idOcorrencia);

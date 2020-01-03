@@ -22,7 +22,7 @@ class MArquivo {
 		]);
 	}
 
-	//Cadastrando na tb_arquivo
+	//Cadastrando na tb_arquivosPessoa
 	public function cadastrarArquivosPessoa($idPessoa, $tipo, $url)
 	{
 		$sql = new Conexao;
@@ -32,6 +32,22 @@ class MArquivo {
 			VALUES(:idPessoa, :tipo, :url, :status)
 		", [
 			":idPessoa" => $idPessoa,
+			":tipo" => utf8_decode($tipo),
+			":url" => $url,
+			":status" => 0
+		]);
+	}
+
+	//Cadastrando na tb_arquivosInstituicao
+	public function cadastrarArquivosInstituicao($idInstituicao, $tipo, $url)
+	{
+		$sql = new Conexao;
+
+		$sql->query("
+			INSERT INTO tb_arquivosinstituicao (idInstituicao, tipo, url, status) 
+			VALUES(:idInstituicao, :tipo, :url, :status)
+		", [
+			":idInstituicao" => $idInstituicao,
 			":tipo" => utf8_decode($tipo),
 			":url" => $url,
 			":status" => 0
@@ -83,6 +99,22 @@ class MArquivo {
 		}
 	}
 
+	//Buscando ultimo registro na tabela tb_arquivosinstituicao
+	public function ultimoRegistroArquivosInstituicao()
+	{
+		$sql = new Conexao;
+
+		$qtd = $sql->select("SELECT MAX(idArquivosInstituicao) FROM tb_arquivosinstituicao");
+
+		if ($qtd != null) {
+
+			return $qtd;
+
+		} else {
+			return false;
+		}
+	}
+
 	public function pesquisarArquivo($url)
 	{
 		$sql = new Conexao;
@@ -103,6 +135,20 @@ class MArquivo {
 			WHERE a.idPessoa = :idPessoa
 		", [
 			":idPessoa" => $idPessoa
+		]);	
+	}
+
+	public function listaArquivosInstituicao($idInstituicao)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT * 
+			FROM tb_arquivosinstituicao a
+			INNER JOIN tb_instituicao b ON a.idInstituicao = b.idInstituicao
+			WHERE a.idInstituicao = :idInstituicao
+		", [
+			":idInstituicao" => $idInstituicao
 		]);	
 	}
 
@@ -131,6 +177,20 @@ class MArquivo {
 		", [
 			":status" => $status,
 			":idArquivosPessoa" => $idArquivosPessoa
+		]);
+	}
+
+	public function atualizarStatusArquivosInstituicao($idArquivosInstituicao, $status)
+	{
+		$sql = new Conexao;
+		
+		$sql->query("
+			UPDATE tb_arquivosinstituicao
+			SET status = :status
+			WHERE idArquivosInstituicao = :idArquivosInstituicao
+		", [
+			":status" => $status,
+			":idArquivosInstituicao" => $idArquivosInstituicao
 		]);
 	}
 

@@ -37,27 +37,63 @@
             <tr>
               <th>ID</th>
               <th>Nome</th>
-              <th>Arquivo</th>
               <th>Tipo</th>
+              <th>Pessoa Física / Instituição</th>
               <th>Opções</th>
             </tr>
             {loop="$documento"}
             {if="$value.status == 0"}
+
+            {if="$value.tipo == 'cpf'"}
+              {$varTipo = 1}
+            {/if}
+            {if="$value.tipo == 'rg'"}
+              {$varTipo = 2}
+            {/if}
+            {if="$value.tipo == 'cnh'"}
+              {$varTipo = 3}
+            {/if}
+            {if="$value.tipo == 'cn'"}
+              {$varTipo = 4}
+            {/if}
+            {if="$value.tipo == 'cnpj'"}
+              {$varTipo = 5}
+            {/if}
+
+            {if="$value.isInstituicao == 0"}
             <tr>
-              <td>{$value.idArquivo}</td>
+              <td>{$value.idArquivosPessoa}</td>
               <td>{$value.nome}</td>
-              <td>{$value.arquivo}</td>
+              {if="$value.tipo == 'cn'"}
+              <td>Certidão de Nascimento</td>
+              {else}
               <td>{$value.tipo}</td>
+              {/if}
+              <td>Pessoa Física</td>
               <td>
                 <a href="{$value.url}" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                {if="$value.idPessoa != 'null'"}
-                <a href="/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/{$idOcorrencia}/{$value.idPessoa}/{$value.idArquivo}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
-                {/if}
-                {if="$value.idInstituicao != 'null'"}
-                <a href="/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/{$idOcorrencia}/{$value.idInstituicao}/{$value.idArquivo}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
-                {/if}
+                <a href="/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/{$idOcorrencia}/{$value.idPessoa}/{$value.idArquivosPessoa}/{$varTipo}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
               </td>
             </tr>
+            {/if}
+
+            {if="$value.isInstituicao == 1"}
+            <tr>
+              <td>{$value.idArquivosInstituicao}</td>
+              <td>{$value.nome}</td>
+              {if="$value.tipo == 'cn'"}
+              <td>Certidão de Nascimento</td>
+              {else}
+              <td>{$value.tipo}</td>
+              {/if}
+              <td>Instituição</td>
+              <td>
+                <a href="{$value.url}" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                <a href="/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/{$idOcorrencia}/{$value.idInstituicao}/{$value.idArquivosInstituicao}/{$varTipo}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
+              </td>
+            </tr>
+            {/if}
+
             {/if}
             {/loop}
           </table>

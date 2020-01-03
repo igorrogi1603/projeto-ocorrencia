@@ -17,6 +17,7 @@ class COcorrenciaEnviarArquivo {
 		//Recuperando as pessoas relacionado a vitima especifica
 		$listaPessoasArrumar = COcorrenciaEnviarArquivo::getEnviarArquivoCadastrar($idVitima, $idOcorrencia);
 
+		//Arrumar a ordem dos indices do array 0-1-2...
 		foreach ($listaPessoasArrumar as $value) {
 			$listaPessoas[] = $value;
 		}
@@ -24,6 +25,7 @@ class COcorrenciaEnviarArquivo {
 		//Resgatando os arquivos relacionado essas pessoas da vitima especifica
 		for ($i = 0; $i < count($listaPessoas); $i++) {
 			$array = $marquivo->listaArquivosPessoa($listaPessoas[$i]['id']);
+
 			foreach ($array as $value) {
 				if ($value['status'] == 0) {
 					$listaArquivosPessoa[] = $value;
@@ -48,7 +50,7 @@ class COcorrenciaEnviarArquivo {
 		    $arquivo_tmp = $documento['tmp_name'];
 		    $nome = $documento['name'];
 		 	
-		 	//recuperando o ultimo id da tabela arquivo
+		 	//recuperando o ultimo id da tabela arquivosPessoa
 		    $ultimoIdArquivosPessoa = $marquivo->ultimoRegistroArquivosPessoa();
 
 		    // Pega a extensão

@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <form action="/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idArquivo, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post" enctype="multipart/form-data">          
+        <form action="/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idArquivo, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $selecionaPessoa["isInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post" enctype="multipart/form-data">          
           <!--Inicio Selecione Pessoa-->
           <div class="row">
             <div class="col-md-12">
@@ -55,11 +55,21 @@
                 <input type="hidden" id="id-selecione-documento-hidden" value="">
                 <label for="id-selecione-documento">Selecione o documento</label>
                 <select class="form-control select2" name="selecioneDocumento" id="id-selecione-documento">
+                  <?php if( $tipo == 1 ){ ?>
                   <option value="cpf">CPF</option>
+                  <?php } ?>
+                  <?php if( $tipo == 2 ){ ?>
                   <option value="rg">RG</option>
+                  <?php } ?>
+                  <?php if( $tipo == 3 ){ ?>
                   <option value="cnh">CNH</option>
+                  <?php } ?>
+                  <?php if( $tipo == 4 ){ ?>
                   <option value="cn">Certidão de Nascimento</option>
+                  <?php } ?>
+                  <?php if( $tipo == 5 ){ ?>
                   <option value="cnpj">CNPJ</option>
+                  <?php } ?>
                 </select>
               </div>
             </div>
