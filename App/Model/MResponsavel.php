@@ -173,6 +173,21 @@ class MResponsavel {
 		]);	
 	}
 
+	public function listaResponsavelExcluido($idResponsavelApuracao)
+	{
+		$sql = new Conexao;
+
+		$qtd = $sql->select("SELECT * FROM tb_responsavelexcluido WHERE idResponsavelApuracao = :idResponsavelApuracao", [
+			":idResponsavelApuracao" => $idResponsavelApuracao
+		]);
+
+		if ($qtd != null) {
+			return $qtd;
+		} else {
+			return false;
+		}
+	}
+
 	public function responsavelEspecifico($idResponsavelApuracao)
 	{
 		$sql = new Conexao;

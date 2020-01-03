@@ -54,10 +54,18 @@
               <div class="form-group">
                 <label for="id-selecione-documento">Selecione o documento</label>
                 <select class="form-control select2" name="selecioneDocumento" id="id-selecione-documento">
+                  <?php if( $tipo == 1 ){ ?>
                   <option value="cpf">CPF</option>
+                  <?php } ?>
+                  <?php if( $tipo == 2 ){ ?>
                   <option value="rg">RG</option>
+                  <?php } ?>
+                  <?php if( $tipo == 3 ){ ?>
                   <option value="cnh">CNH</option>
+                  <?php } ?>
+                  <?php if( $tipo == 4 ){ ?>
                   <option value="cn">Certidão de Nascimento</option>
+                  <?php } ?>
                 </select>
               </div>
             </div>

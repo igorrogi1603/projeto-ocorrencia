@@ -38,6 +38,7 @@
               <th>ID</th>
               <th>Nome</th>
               <th>CPF</th>
+              <th>Status</th>
               <th>Opções</th>
             </tr>
             <?php $counter1=-1;  if( isset($responsavel) && ( is_array($responsavel) || $responsavel instanceof Traversable ) && sizeof($responsavel) ) foreach( $responsavel as $key1 => $value1 ){ $counter1++; ?>
@@ -46,10 +47,22 @@
               <td><?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td><?php echo htmlspecialchars( $value1["nomeResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td><?php echo htmlspecialchars( $value1["cpfResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td>Ativo</td>
               <td>
-                <a href="/ocorrencia-responsavel-vitima-detalhe/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
+                <a href="/ocorrencia-responsavel-vitima-detalhe/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idResponsavelApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
                 <a href="/ocorrencia-responsavel-vitima-editar/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                 <a href="/ocorrencia-responsavel-vitima-excluir/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idResponsavelApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idCriarApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+            <?php } ?>
+            <?php if( $value1["isAindaResponsavel"] == 0 ){ ?>
+            <tr>
+              <td><?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["nomeResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["cpfResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td>Excluido</td>
+              <td>
+                <a href="/ocorrencia-responsavel-vitima-detalhe/<?php echo htmlspecialchars( $value1["idVitimasApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idOcorrencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoaResponsavel"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idResponsavelApuracao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-default"><i class="fa fa-bars"></i></a>
               </td>
             </tr>
             <?php } ?>

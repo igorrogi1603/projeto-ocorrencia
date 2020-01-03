@@ -14,115 +14,25 @@ class COcorrenciaEnviarArquivo {
 		$marquivo = new MArquivo;
 		$mpessoa = new MPessoa;
 
-		$pastaOcorrencia = 'ocorrencia' . $idOcorrencia;
+		//Recuperando as pessoas relacionado a vitima especifica
+		$listaPessoasArrumar = COcorrenciaEnviarArquivo::getEnviarArquivoCadastrar($idVitima, $idOcorrencia);
 
-		$novoDiretorio = '.'.DIRECTORY_SEPARATOR.'ocorrencias'.DIRECTORY_SEPARATOR.$pastaOcorrencia.DIRECTORY_SEPARATOR.'identidades';
+		foreach ($listaPessoasArrumar as $value) {
+			$listaPessoas[] = $value;
+		}
 
-        if (is_dir($novoDiretorio)) {
-
-			//informando o local onde os arquivos estao
-			$path = "ocorrencias".DIRECTORY_SEPARATOR.$pastaOcorrencia.DIRECTORY_SEPARATOR."identidades";
-			$diretorio = dir($path);
-
-			//contador
-			$aux = 0;
-
-			//pegando os arquivos da pasta
-			while($arquivo = $diretorio -> read()){
-				$documento[$aux]['url'] = DIRECTORY_SEPARATOR . $path. DIRECTORY_SEPARATOR .$arquivo;
-
-				//Todos os arquivos sao pdf
-				//so pode enviar arquivo pdf para o sistema
-				$documento[$aux]['tipo'] = 'PDF';
-
-				$documento[$aux]['arquivo'] = str_replace('.pdf', '', $arquivo);
-
-				$idArquivo = $marquivo->pesquisarArquivo($documento[$aux]['url']);
-
-				foreach ($idArquivo as $value) {
-					$documento[$aux]['idArquivo'] = $value['idArquivo'];
-					$documento[$aux]['status'] = $value['status'];
-
-					//Verifica se tem cpf ou rg ... no nome do arquivo
-					$posCpf = strpos($documento[$aux]['arquivo'], $documento[$aux]['idArquivo'].'cpf');
-					$posRg = strpos($documento[$aux]['arquivo'], $documento[$aux]['idArquivo'].'rg');
-					$posCnh = strpos($documento[$aux]['arquivo'], $documento[$aux]['idArquivo'].'cnh');
-					$posCn = strpos($documento[$aux]['arquivo'], $documento[$aux]['idArquivo'].'cn');
-
-					//caso tenha, entao da o replace e deixa apenas o id da Pessoa
-					if ($posCpf !== false) {
-						$documento[$aux]['idPessoa'] = str_replace($documento[$aux]['idArquivo'].'cpf', '', $documento[$aux]['arquivo']);	
-					}
-
-					if ($posRg !== false) {
-						$documento[$aux]['idPessoa'] = str_replace($documento[$aux]['idArquivo'].'rg', '', $documento[$aux]['arquivo']);	
-					}
-					
-					if ($posCn !== false) {
-						$documento[$aux]['idPessoa'] = str_replace($documento[$aux]['idArquivo'].'cn', '', $documento[$aux]['arquivo']);	
-					}
-
-					if ($posCnh !== false) {
-						$documento[$aux]['idPessoa'] = str_replace($documento[$aux]['idArquivo'].'cnh', '', $documento[$aux]['arquivo']);	
-					}
-
-					//Recuperando a pessoa para exibicao
-					$listPessoa = $mpessoa->pessoaEspecifica($documento[$aux]['idPessoa']);
-
-					//colocando o nome da pessoa na variavel
-					foreach ($listPessoa as $value) {
-						$documento[$aux]['nome'] = utf8_encode($value['nome']);
-					}
-				}
-				$aux++;
-			}
-
-			$diretorio -> close();
-
-			//Pega o tamanho do arry para usar no for
-			$tamanhoArray = count($documento);
-
-			//O que pesquisar no nome do arquivo
-			$pesquisarDocumento = array("/Apuracao/");
-
-			//deixando apenas o arquivo correto no array
-			for ($i = 0; $i < $tamanhoArray; $i++) {
-				//Se os nome forem (.) ou (..) entao exclui
-				if ($documento[$i]['arquivo'] == '.' || $documento[$i]['arquivo'] == '..') {
-					$arrayPosicaoExcluir[] = $i;	
-				}
-
-				foreach ($pesquisarDocumento as $value) {
-					if (preg_match($value, $documento[$i]['arquivo'])) {
-						$arrayPosicaoExcluir[] = $i;
-					} else {
-						//nao achou
-					}
+		//Resgatando os arquivos relacionado essas pessoas da vitima especifica
+		for ($i = 0; $i < count($listaPessoas); $i++) {
+			$array = $marquivo->listaArquivosPessoa($listaPessoas[$i]['id']);
+			foreach ($array as $value) {
+				if ($value['status'] == 0) {
+					$listaArquivosPessoa[] = $value;
 				}
 			}
+		}
 
-			if (isset($arrayPosicaoExcluir)) {
-				//exclui posissoes iguais
-				foreach ($arrayPosicaoExcluir as $value) {
-					unset($documento[$value]);
-				}
-			}
-
-			//recupera a lista de nomes de vitima e responsaveis dessa unica vitima
-			$listaPessoas = COcorrenciaEnviarArquivo::getEnviarArquivoCadastrar($idVitima, $idOcorrencia);
-
-			//verifica se o array dessa vitima com os seus reponsaveis
-			//sao iguais o array dos documentos, caso seja igual exibi se nao exibi
-			foreach ($documento as $doc) {
-				foreach ($listaPessoas as $value) {
-					if ($doc['nome'] == $value['nome']) {
-						return $documento;
-					} else {
-						return false;
-					}
-				}	
-			}
-			
+		if (isset($listaArquivosPessoa) && $listaArquivosPessoa != null && $listaArquivosPessoa != "") {
+			return $listaArquivosPessoa;
 		} else {
 			return false;
 		}
@@ -139,7 +49,7 @@ class COcorrenciaEnviarArquivo {
 		    $nome = $documento['name'];
 		 	
 		 	//recuperando o ultimo id da tabela arquivo
-		    $ultimoIdArquivo = $marquivo->ultimoRegistroArquivo();
+		    $ultimoIdArquivosPessoa = $marquivo->ultimoRegistroArquivosPessoa();
 
 		    // Pega a extensão
 		    $extensao = pathinfo ( $nome, PATHINFO_EXTENSION );
@@ -152,11 +62,11 @@ class COcorrenciaEnviarArquivo {
 		        // Cria um nome único para esta imagem
 		        // Evita que duplique as imagens no servidor.
 		        // Evita nomes com acentos, espaços e caracteres não alfanuméricos
-		        $novoNome = ((int)$ultimoIdArquivo[0]['MAX(idArquivo)'] + 1) . $post['selecioneDocumento'] . $post['selecionePessoa'] . '.' . $extensao;
+		        $novoNome = ((int)$ultimoIdArquivosPessoa[0]['MAX(idArquivosPessoa)'] + 1) . $post['selecioneDocumento'] . $post['selecionePessoa'] . '.' . $extensao;
 		 	
-		        $pastaOcorrencia = "ocorrencia" . $idOcorrencia;
+		        $pastaPessoa = "pessoa" . $post['selecionePessoa'];
 
-		        $novoDiretorio = '.'.DIRECTORY_SEPARATOR.'ocorrencias'.DIRECTORY_SEPARATOR.$pastaOcorrencia.DIRECTORY_SEPARATOR.'identidades';
+		        $novoDiretorio = '.'.DIRECTORY_SEPARATOR.'documentoPessoa'.DIRECTORY_SEPARATOR.$pastaPessoa;
 
 		        if (!is_dir($novoDiretorio)) {
 		        	//criar pasta identidades
@@ -165,13 +75,15 @@ class COcorrenciaEnviarArquivo {
 
 		        // Concatena a pasta com o nome
 	        	$destino = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
-							"ocorrencias" . DIRECTORY_SEPARATOR . 
-							$pastaOcorrencia . DIRECTORY_SEPARATOR . 
-							"identidades" . DIRECTORY_SEPARATOR . $novoNome;
+							"documentoPessoa" . DIRECTORY_SEPARATOR . 
+							$pastaPessoa . DIRECTORY_SEPARATOR . $novoNome;
 
 		        // tenta mover o arquivo para o destino
 		        if ( move_uploaded_file ( $arquivo_tmp, $destino ) ) {
 		        	$destino_final = str_replace($_SERVER['DOCUMENT_ROOT'], '', $destino);
+
+					//Cadastrando na tabela tb_arquivosPessoa
+					$marquivo->cadastrarArquivosPessoa($post['selecionePessoa'], $post['selecioneDocumento'], $destino_final);
 
 					//Cadastrando na tabela tb_arquivos
 					$marquivo->cadastrarArquivo($post['selecioneDocumento'], $destino_final);
@@ -181,7 +93,6 @@ class COcorrenciaEnviarArquivo {
 
 					//registra na tabela tb_arquivosProcessoOcorrencia
 					$marquivo->cadastrarArquivoOcorrencia($idOcorrencia, $idArquivoNovo[0]["MAX(idArquivo)"]);
-
 		        } else {
 		            Validacao::setMsgError("Erro ao salvar o arquivo. Aparentemente você não tem permissão de escrita.");
 			        header('Location: /ocorrencia-vitima-enviar-arquivo-cadastrar/'.$idVitima.'/'.$idOcorrencia);
@@ -203,7 +114,7 @@ class COcorrenciaEnviarArquivo {
 	{	
 		$marquivo = new MArquivo;
 
-		$marquivo->atualizarStatus($idArquivo, 1);
+		$marquivo->atualizarStatusArquivosPessoa($idArquivo, 1);
 
 		COcorrenciaEnviarArquivo::postEnviarArquivoCadastrar($documento, $post, $idVitima, $idOcorrencia);
 	}

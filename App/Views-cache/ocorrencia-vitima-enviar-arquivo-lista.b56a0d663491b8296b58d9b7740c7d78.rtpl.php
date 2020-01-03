@@ -37,20 +37,36 @@
             <tr>
               <th>ID</th>
               <th>Nome</th>
-              <th>Arquivo</th>
               <th>Tipo</th>
               <th>Opções</th>
             </tr>
             <?php $counter1=-1;  if( isset($documento) && ( is_array($documento) || $documento instanceof Traversable ) && sizeof($documento) ) foreach( $documento as $key1 => $value1 ){ $counter1++; ?>
             <?php if( $value1["status"] == 0 ){ ?>
             <tr>
-              <td><?php echo htmlspecialchars( $value1["idArquivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["idArquivosPessoa"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-              <td><?php echo htmlspecialchars( $value1["arquivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <?php if( $value1["tipo"] == 'cn' ){ ?>
+              <td>Certidão de Nascimento</td>
+              <?php }else{ ?>
               <td><?php echo htmlspecialchars( $value1["tipo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <?php } ?>
+
+              <?php if( $value1["tipo"] == 'cpf' ){ ?>
+              <?php $varTipo = 1; ?>
+              <?php } ?>
+              <?php if( $value1["tipo"] == 'rg' ){ ?>
+              <?php $varTipo = 2; ?>
+              <?php } ?>
+              <?php if( $value1["tipo"] == 'cnh' ){ ?>
+              <?php $varTipo = 3; ?>
+              <?php } ?>
+              <?php if( $value1["tipo"] == 'cn' ){ ?>
+              <?php $varTipo = 4; ?>
+              <?php } ?>
+
               <td>
                 <a href="<?php echo htmlspecialchars( $value1["url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                <a href="/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/<?php echo htmlspecialchars( $idVitima, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idArquivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-success"><i class="fa fa-refresh"></i></a>
+                <a href="/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/<?php echo htmlspecialchars( $idVitima, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idArquivosPessoa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idPessoa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $varTipo, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-success"><i class="fa fa-refresh"></i></a>
               </td>
             </tr>
             <?php } ?>

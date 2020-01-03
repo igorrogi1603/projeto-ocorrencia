@@ -304,7 +304,7 @@ $app->post("/ocorrencia-vitima-enviar-arquivo-cadastrar/:idVitima/:idOcorrencia"
 	}
 });
 
-$app->get("/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/:idVitima/:idOcorrencia/:idArquivo/:idPessoa", function($idVitima, $idOcorrencia, $idArquivo, $idPessoa){
+$app->get("/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/:idVitima/:idOcorrencia/:idArquivo/:idPessoa/:tipo", function($idVitima, $idOcorrencia, $idArquivo, $idPessoa, $tipo){
 
 	Usuario::verifyLogin();
 
@@ -326,6 +326,7 @@ $app->get("/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/:idVitima/:idOc
 						"idVitima" => $idVitima,
 						"idOcorrencia" => $idOcorrencia,
 						"idArquivo" => $idArquivo,
+						"tipo" => $tipo,
 						"error"=>Validacao::getMsgError()
 					]);
 				} else {
@@ -344,6 +345,7 @@ $app->get("/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/:idVitima/:idOc
 				"idVitima" => $idVitima,
 				"idOcorrencia" => $idOcorrencia,
 				"idArquivo" => $idArquivo,
+				"tipo" => $tipo,
 				"error"=>Validacao::getMsgError()
 			]);
 		}

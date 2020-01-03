@@ -273,7 +273,7 @@ class COcorrenciaAgressorEnviarArquivo extends COcorrenciaAgressor {
 	{
 		//Instancia
 		$marquivo = new MArquivo;
-
+		
 		// verifica se foi enviado um arquivo
 		if ( isset( $documento['name'] ) && $documento['error'] == 0 ) {
 		    $arquivo_tmp = $documento['tmp_name'];

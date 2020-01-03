@@ -54,10 +54,18 @@
               <div class="form-group">
                 <label for="id-selecione-documento">Selecione o documento</label>
                 <select class="form-control select2" name="selecioneDocumento" id="id-selecione-documento">
+                  {if="$tipo == 1"}
                   <option value="cpf">CPF</option>
+                  {/if}
+                  {if="$tipo == 2"}
                   <option value="rg">RG</option>
+                  {/if}
+                  {if="$tipo == 3"}
                   <option value="cnh">CNH</option>
+                  {/if}
+                  {if="$tipo == 4"}
                   <option value="cn">Certidão de Nascimento</option>
+                  {/if}
                 </select>
               </div>
             </div>

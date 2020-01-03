@@ -57,6 +57,24 @@
         <hr>
         <br>
 
+        {if="$motivo != false"}
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Motivo da Exclusão</h4>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <p class="sem-espacamento"><strong>Motivo: </strong>{$motivo.0.motivo}</p>
+          </div>
+        </div>
+
+        <br>
+        <hr>
+        <br>
+        {/if}
+
         <!--Row-->
         <div class="row">
           <div class="col-md-12">

@@ -38,6 +38,7 @@
               <th>ID</th>
               <th>Nome</th>
               <th>CPF</th>
+              <th>Status</th>
               <th>Opções</th>
             </tr>
             {loop="$responsavel"}
@@ -46,10 +47,22 @@
               <td>{$value.idPessoaResponsavel}</td>
               <td>{$value.nomeResponsavel}</td>
               <td>{$value.cpfResponsavel}</td>
+              <td>Ativo</td>
               <td>
-                <a href="/ocorrencia-responsavel-vitima-detalhe/{$value.idVitimasApuracao}/{$value.idOcorrencia}/{$value.idPessoaResponsavel}" class="btn btn-default"><i class="fa fa-bars"></i></a>
+                <a href="/ocorrencia-responsavel-vitima-detalhe/{$value.idVitimasApuracao}/{$value.idOcorrencia}/{$value.idPessoaResponsavel}/{$value.idResponsavelApuracao}" class="btn btn-default"><i class="fa fa-bars"></i></a>
                 <a href="/ocorrencia-responsavel-vitima-editar/{$value.idVitimasApuracao}/{$value.idOcorrencia}/{$value.idPessoaResponsavel}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                 <a href="/ocorrencia-responsavel-vitima-excluir/{$value.idVitimasApuracao}/{$value.idOcorrencia}/{$value.idPessoaResponsavel}/{$value.idResponsavelApuracao}/{$value.idCriarApuracao}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+            {/if}
+            {if="$value.isAindaResponsavel == 0"}
+            <tr>
+              <td>{$value.idPessoaResponsavel}</td>
+              <td>{$value.nomeResponsavel}</td>
+              <td>{$value.cpfResponsavel}</td>
+              <td>Excluido</td>
+              <td>
+                <a href="/ocorrencia-responsavel-vitima-detalhe/{$value.idVitimasApuracao}/{$value.idOcorrencia}/{$value.idPessoaResponsavel}/{$value.idResponsavelApuracao}" class="btn btn-default"><i class="fa fa-bars"></i></a>
               </td>
             </tr>
             {/if}

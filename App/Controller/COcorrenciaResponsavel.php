@@ -24,9 +24,16 @@ class COcorrenciaResponsavel {
 		return COcorrenciaResponsavel::validacaoResponsavelCompleto($idPessoaResponsavel);
 	}
 
+	public static function getDetalheResponsavelVitimaExclusao($idResponsavelApuracao)
+	{	
+		$mresponsavel = new MResponsavel;
+
+		return $mresponsavel->listaResponsavelExcluido($idResponsavelApuracao);
+	}
+
 	public static function getListaResponsavelVitima($idVitima, $idOcorrencia)
 	{
-		return COcorrenciaResponsavel::validacaoVitimasEditar($idVitima, $idOcorrencia);	
+		return COcorrenciaResponsavel::validacaoVitimasEditar($idVitima, $idOcorrencia);
 	}
 
 	public static function getOcorrenciaResponsavelVitimaEditar($idVitima, $idOcorrencia, $idPessoaResponsavel)

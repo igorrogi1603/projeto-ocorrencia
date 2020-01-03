@@ -108,7 +108,7 @@ $app->post("/ocorrencia-responsavel-vitima-cadastrar/:idVitima/:idOcorrencia", f
 	}
 });
 
-$app->get("/ocorrencia-responsavel-vitima-detalhe/:idVitima/:idOcorrencia/:idPessoaResponsavel", function($idVitima, $idOcorrencia, $idPessoaResponsavel){
+$app->get("/ocorrencia-responsavel-vitima-detalhe/:idVitima/:idOcorrencia/:idPessoaResponsavel/:idResponsavelApuracao", function($idVitima, $idOcorrencia, $idPessoaResponsavel, $idResponsavelApuracao){
 
 	Usuario::verifyLogin();
 
@@ -123,12 +123,14 @@ $app->get("/ocorrencia-responsavel-vitima-detalhe/:idVitima/:idOcorrencia/:idPes
 			foreach ($listaBlokOcorrencia as $value) {	
 				if ($_SESSION['User']['idUsuario'] != $value['idUsuario']) {
 					$responsavel = COcorrenciaResponsavel::getDetalheResponsavelVitima($idPessoaResponsavel);
+					$motivoExclusao = COcorrenciaResponsavel::getDetalheResponsavelVitimaExclusao($idResponsavelApuracao);
 
 					$page = new Page();
 
 					$page->setTpl("ocorrencia-responsavel-vitima-detalhe", [
 						"responsavel" => $responsavel,
 						"idVitima" => $idVitima,
+						"motivo" => $motivoExclusao,
 						"idOcorrencia" => $idOcorrencia
 					]);
 				} else {
@@ -141,12 +143,14 @@ $app->get("/ocorrencia-responsavel-vitima-detalhe/:idVitima/:idOcorrencia/:idPes
 			}
 		} else {
 			$responsavel = COcorrenciaResponsavel::getDetalheResponsavelVitima($idPessoaResponsavel);
+			$motivoExclusao = COcorrenciaResponsavel::getDetalheResponsavelVitimaExclusao($idResponsavelApuracao);
 
 			$page = new Page();
 
 			$page->setTpl("ocorrencia-responsavel-vitima-detalhe", [
 				"responsavel" => $responsavel,
 				"idVitima" => $idVitima,
+				"motivo" => $motivoExclusao,
 				"idOcorrencia" => $idOcorrencia
 			]);
 		}
@@ -191,7 +195,7 @@ $app->get("/ocorrencia-responsavel-vitima-lista/:idVitima/:idOcorrencia", functi
 			}
 		} else {
 			$responsavel = COcorrenciaResponsavel::getListaResponsavelVitima($idVitima, $idOcorrencia);
-
+			
 			$page = new Page();
 
 			$page->setTpl("ocorrencia-responsavel-vitima-lista", [

@@ -22,6 +22,22 @@ class MArquivo {
 		]);
 	}
 
+	//Cadastrando na tb_arquivo
+	public function cadastrarArquivosPessoa($idPessoa, $tipo, $url)
+	{
+		$sql = new Conexao;
+
+		$sql->query("
+			INSERT INTO tb_arquivospessoa (idPessoa, tipo, url, status) 
+			VALUES(:idPessoa, :tipo, :url, :status)
+		", [
+			":idPessoa" => $idPessoa,
+			":tipo" => utf8_decode($tipo),
+			":url" => $url,
+			":status" => 0
+		]);
+	}
+
 	public function cadastrarArquivoOcorrencia($idOcorrencia, $idArquivo)
 	{
 		$sql = new Conexao;
@@ -51,6 +67,22 @@ class MArquivo {
 		}
 	}
 
+	//Buscando ultimo registro na tabela tb_arquivospessoa
+	public function ultimoRegistroArquivosPessoa()
+	{
+		$sql = new Conexao;
+
+		$qtd = $sql->select("SELECT MAX(idArquivosPessoa) FROM tb_arquivospessoa");
+
+		if ($qtd != null) {
+
+			return $qtd;
+
+		} else {
+			return false;
+		}
+	}
+
 	public function pesquisarArquivo($url)
 	{
 		$sql = new Conexao;
@@ -58,6 +90,20 @@ class MArquivo {
 		return $sql->select("SELECT * FROM tb_arquivo WHERE url = :url", [
 			":url" => $url
 		]);
+	}
+
+	public function listaArquivosPessoa($idPessoa)
+	{
+		$sql = new Conexao;
+
+		return $sql->select("
+			SELECT * 
+			FROM tb_arquivospessoa a
+			INNER JOIN tb_pessoa b ON a.idPessoa = b.idPessoa
+			WHERE a.idPessoa = :idPessoa
+		", [
+			":idPessoa" => $idPessoa
+		]);	
 	}
 
 	public function atualizarStatus($idArquivo, $status)
@@ -71,6 +117,20 @@ class MArquivo {
 		", [
 			":status" => $status,
 			":idArquivo" => $idArquivo
+		]);
+	}
+
+	public function atualizarStatusArquivosPessoa($idArquivosPessoa, $status)
+	{
+		$sql = new Conexao;
+		
+		$sql->query("
+			UPDATE tb_arquivospessoa 
+			SET status = :status
+			WHERE idArquivosPessoa = :idArquivosPessoa
+		", [
+			":status" => $status,
+			":idArquivosPessoa" => $idArquivosPessoa
 		]);
 	}
 

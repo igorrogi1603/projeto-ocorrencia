@@ -57,6 +57,24 @@
         <hr>
         <br>
 
+        <?php if( $motivo != false ){ ?>
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Motivo da Exclusão</h4>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <p class="sem-espacamento"><strong>Motivo: </strong><?php echo htmlspecialchars( $motivo["0"]["motivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+          </div>
+        </div>
+
+        <br>
+        <hr>
+        <br>
+        <?php } ?>
+
         <!--Row-->
         <div class="row">
           <div class="col-md-12">

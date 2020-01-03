@@ -37,20 +37,36 @@
             <tr>
               <th>ID</th>
               <th>Nome</th>
-              <th>Arquivo</th>
               <th>Tipo</th>
               <th>Opções</th>
             </tr>
             {loop="$documento"}
             {if="$value.status == 0"}
             <tr>
-              <td>{$value.idArquivo}</td>
+              <td>{$value.idArquivosPessoa}</td>
               <td>{$value.nome}</td>
-              <td>{$value.arquivo}</td>
+              {if="$value.tipo == 'cn'"}
+              <td>Certidão de Nascimento</td>
+              {else}
               <td>{$value.tipo}</td>
+              {/if}
+
+              {if="$value.tipo == 'cpf'"}
+              {$varTipo = 1}
+              {/if}
+              {if="$value.tipo == 'rg'"}
+              {$varTipo = 2}
+              {/if}
+              {if="$value.tipo == 'cnh'"}
+              {$varTipo = 3}
+              {/if}
+              {if="$value.tipo == 'cn'"}
+              {$varTipo = 4}
+              {/if}
+
               <td>
                 <a href="{$value.url}" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                <a href="/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/{$idVitima}/{$idOcorrencia}/{$value.idArquivo}/{$value.idPessoa}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
+                <a href="/ocorrencia-vitima-enviar-arquivo-cadastrar-atualizar/{$idVitima}/{$idOcorrencia}/{$value.idArquivosPessoa}/{$value.idPessoa}/{$varTipo}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
               </td>
             </tr>
             {/if}
