@@ -215,7 +215,7 @@ class MUsuario {
 		$sql = new Conexao;
 
 		return $sql->select(
-			"SELECT a.idUsuario, a.funcao, a.setor, a.isBloqueado, a.nivelAcesso, b.nome, b.cnpj
+			"SELECT a.idUsuario, a.funcao, a.setor, a.isBloqueado, a.nivelAcesso, b.nome, b.cnpj, b.status, b.subnome
 			FROM tb_usuario a
 			INNER JOIN tb_instituicao b ON a.idInstituicao = b.idInstituicao"
 		);

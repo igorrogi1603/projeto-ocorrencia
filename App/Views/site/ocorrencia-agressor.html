@@ -38,8 +38,9 @@
             <tr>
               <th>ID</th>
               <th>Nome</th>
+              <th>Subnome</th>
               <th>CPF / CNPJ</th>
-              <th>Tipo</th>
+              <th>Pessoa / Instituição</th>
               <th>Status</th>
               <th>Opções</th>
             </tr>
@@ -47,18 +48,25 @@
             <tr>
               <td>{$value.idOcorrenciaAgressor}</td>
               <td>{$value.nome}</td>
+              <td>{$value.subnome}</td>
+              
               {if="$value.isCpf == '1'"}
               <td>{$value.cpf}</td>
               {/if}
               {if="$value.isCpf == '0'"}
               <td>{$value.cnpj}</td>
               {/if}
-              {if="$value.isInstituicao == '0'"}
+              
+              {if="$value.status == 1"}
+              <td>Instituição Pública</td>
+              {/if}
+              {if="$value.status == 2"}
+              <td>Pessoa Jurídica</td>
+              {/if}
+              {if="$value.status == 3"}
               <td>Pessoa Física</td>
               {/if}
-              {if="$value.isInstituicao == '1'"}
-              <td>Instituição</td>
-              {/if}
+
               {if="$value.isExcluido == '0'"}
               <td>Ativo</td>
               {/if}

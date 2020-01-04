@@ -42,35 +42,70 @@ class COcorrenciaAgressorCadastrar {
 		        exit;
 			}
 
-			//Validar se o responsavel da vitima ja existe no banco de dados
+			//Validar se ja existe no banco de dados
 			//Caso ele ja exista não precisara cadsatrar novamente
-			//Apenas associar ele a vitima
 			$listAllInstituicao = $minstituicao->listAll();
 
 			//setando a variavel como false
 			$instituicaoBloqueou = false;
 
-			//Rodando pelo array de pessoas trazidas do banco de dados
+			//Rodando pelo array de instituicao trazidas do banco de dados
 			foreach ($listAllInstituicao as $value) {
-				//Verificar se o cpf ja existe
+				//Verificar se o cnpj ja existe
 				//Retira os pontos e tracos do cpf
-				$cnpjInstituicaoBd = $validacao->replaceCpfBd($post['cnpjInstituicao']);
+				$cnpjInstituicaoBd = $validacao->replaceCnpjBd($post['cnpjInstituicao']);
 
-				if ($cnpjInstituicaoBd == $value['cnpj']) {
-					//id da pessoa ja existente
-					$idInstituicao[0]["MAX(idInstituicao)"] = $value['idInstituicao'];
+				//radioQualInstituicao
+				//1 = Instituicao Publica
+				//2 = Pessoa Juridica				
 
-					//caso ele ache um cpf igual seta como true a variavel
-					//e no if de baixo nao deixa rodar
-					$instituicaoBloqueou = true;
+				//Pessoa juridica nao pode repetir o cnpj
+				if (isset($post['radioQualInstituicao']) && $post['radioQualInstituicao'] == 2) {
+					if ($cnpjInstituicaoBd == $value['cnpj']) {
+						//id da instituicao ja existente
+						$idInstituicao[0]["MAX(idInstituicao)"] = $value['idInstituicao'];
 
-					//Encerra o loop
-					break;
+						//caso ele ache um cnpj igual seta como true a variavel
+						//e no if de baixo nao deixa rodar
+						$instituicaoBloqueou = true;
+
+						//Encerra o loop
+						break;
+					}
+				}
+
+				//Instituicao Publica usa o mesmo cnpj mas com o subnome diferente
+				if (isset($post['radioQualInstituicao']) && $post['radioQualInstituicao'] == 1) {
+					if ($cnpjInstituicaoBd == $value['cnpj']) {
+						//Verifica se o post subnome existe
+						if (!isset($post['subnomeInstituicao']) || $post['subnomeInstituicao'] === '') {
+							Validacao::setMsgError("Informe o subnome da Instituição Pública.");
+					        header('Location: /ocorrencia-agressor-cadastrar/'.$idOcorrencia);
+					        exit;
+						}
+
+						//Se achou um cnpj de uma Instituicao Pulbica que pode se repetir
+						//Verificar se o subnome é igual
+						//strtolower para nao ter problema de verificar a string com 
+						//alguma diferenca de letra maiuscula e minuscula
+						if (strtolower($post['subnomeInstituicao']) == strtolower($value['subnome'])) {
+							//Entao se o cnpj for igual e subnome for igual entao ja esta cadastrado
+							//id da instituicao ja existente
+							$idInstituicao[0]["MAX(idInstituicao)"] = $value['idInstituicao'];
+
+							//caso ele ache um cnpj igual seta como true a variavel
+							//e no if de baixo nao deixa rodar
+							$instituicaoBloqueou = true;
+
+							//Encerra o loop
+							break;
+						}
+					}
 				}
 			}
 
-			//caso nao tenha acha um cpf igual em cima
-			//entao criar uma nova pessoa
+			//caso nao tenha acha um cnpj igual em cima
+			//entao criar uma nova instituicao
 			if ($instituicaoBloqueou != true) {
 				//Cadastrando o contato e endereco do responsavel
 				$mcontato->cadastrar($post, "instituicao");

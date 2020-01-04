@@ -19,13 +19,15 @@ class MInstituicao {
 		$instituicao->setData($post);
 		
 		$sql->query("
-			INSERT INTO tb_instituicao (idEndereco, idContato, nome, cnpj) 
-			VALUES(:idEndereco, :idContato, :nome, :cnpj)
+			INSERT INTO tb_instituicao (idEndereco, idContato, nome, cnpj, status, subnome) 
+			VALUES(:idEndereco, :idContato, :nome, :cnpj, :status, :subnome)
 		", [
 			":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 			":idContato" => (int)$idContato[0]["MAX(idContato)"],
 			":nome" => utf8_decode($validacao->validarString($instituicao->getnomeInstituicao(), 1)),
-			":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjInstituicao())
+			":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjInstituicao()),
+			":status" => $instituicao->getradioQualInstituicao(),
+			":subnome" => utf8_decode($validacao->validarString($instituicao->getsubnomeInstituicao(), 1))
 		]);
 	}
 

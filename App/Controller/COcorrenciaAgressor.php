@@ -254,6 +254,16 @@ class COcorrenciaAgressor {
 			$listaCompleta[] = $listaInstituicao[$i];
 		}
 
+		for ($i = 0; $i < count($listaCompleta); $i++) {
+			if (!isset($listaCompleta[$i]['subnome']) || $listaCompleta[$i]['subnome'] == null || $listaCompleta[$i]['subnome'] == "") {
+				$listaCompleta[$i]['subnome'] = "Null";
+			}
+
+			if (!isset($listaCompleta[$i]['status'])) {
+				$listaCompleta[$i]['status'] = 3;
+			}			
+		}
+
 		if (isset($listaCompleta) && $listaCompleta != null && $listaCompleta != "") {
 			return $listaCompleta;
 		} else {

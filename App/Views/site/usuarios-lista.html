@@ -22,6 +22,8 @@
               <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Subnome</th>
+                <th>Pessoa / Instituição</th>
                 <th>CPF</th>
                 <th>Cargo</th>
                 <th>Setor</th>
@@ -34,6 +36,16 @@
               <tr>
                 <td>{$value.idUsuario}</td>
                 <td>{$value.nome}</td>
+                <td>{$value.subnome}</td>
+                {if="$value.status == 1"}
+                <td>Instituição Pública</td>
+                {/if}
+                {if="$value.status == 2"}
+                <td>Pessoa Jurídica</td>
+                {/if}
+                {if="$value.status == 3"}
+                <td>Pessoa Física</td>
+                {/if}
                 {if="$value.isCpf == '1'"}
                 <td>{$value.cpf}</td>
                 {/if}

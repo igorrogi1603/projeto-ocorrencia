@@ -39,7 +39,21 @@ class CListaUsuario {
 			$arrayNovo[] = $value;
 		}
 
-		return $arrayNovo;
+		for ($i = 0; $i < count($arrayNovo); $i++) {
+			if (!isset($arrayNovo[$i]['subnome']) || $arrayNovo[$i]['subnome'] == null || $arrayNovo[$i]['subnome'] == "") {
+				$arrayNovo[$i]['subnome'] = "Null";
+			}
+
+			if (!isset($arrayNovo[$i]['status'])) {
+				$arrayNovo[$i]['status'] = 3;
+			}			
+		}
+
+		if (isset($arrayNovo) && $arrayNovo != null && $arrayNovo != "") {
+			return $arrayNovo;
+		} else {
+			return false;
+		}
 	}
 
 }

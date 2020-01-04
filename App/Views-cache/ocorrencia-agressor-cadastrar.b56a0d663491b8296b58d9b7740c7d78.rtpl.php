@@ -274,6 +274,28 @@
           <div id="id-div-agressor-instituicao">
             <!--Row-->
             <div class="row">
+              <!--Instituicao publica-->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Qual o tipo da instituição?</label><br>
+                  <label class="container-radio">Instituição Pública
+                    <input type="radio" name="radioQualInstituicao" id="id-instituicao-publica" class="minimal" value="1">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container-radio">Pessoa Jurídica
+                    <input type="radio" name="radioQualInstituicao" id="id-pessoa-juridica" class="minimal" value="2" checked>
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+              <!--Fim Instituicao publica-->
+            </div>
+            <!--Fim Row-->
+
+            <hr><br>
+
+            <!--Row-->
+            <div class="row">
               <!--Nome do agressor-->
               <div class="col-md-6">
                 <div class="form-group">
@@ -293,6 +315,21 @@
               <!--Fim CNPJ-->
             </div>
             <!--Fim Row-->
+
+            <div id="id-div-subnome-intituicao-publica">
+              <!--Row-->
+              <div class="row">
+                <!--Nome do agressor-->
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="id-subnome-instituicao">Subnome da Instituição Pública</label>
+                    <input type="text" name="subnomeInstituicao" id="id-subnome-instituicao" class="form-control" placeholder="Digite o subnome aqui" maxlength="70" onkeyup="validarCaracter(this, 1)">
+                  </div>
+                </div>
+                <!--Fim Nome do vitima-->
+              </div>
+              <!--Fim Row-->
+            </div>
 
             <!--Email do vitima-->
             <div class="row">
@@ -459,11 +496,15 @@
 
 let divAgressorInstituicao = document.getElementById('id-div-agressor-instituicao');
 let divAgressorPessoa = document.getElementById('id-div-agressor-pessoa');
+let divSubNomeInstituicaoPublica = document.getElementById('id-div-subnome-intituicao-publica');
 
 window.onload = function()
 {
   let agressorInstituicao = document.getElementById('id-agressor-instituicao');
   let agressorPessoa = document.getElementById('id-agressor-pessoa');
+
+  let instituicaoPublica = document.getElementById('id-instituicao-publica');
+  let pessoaJuridica = document.getElementById('id-pessoa-juridica');
 
   //isAgressor
   //1 = instituicao
@@ -475,6 +516,11 @@ window.onload = function()
 
   divAgressorInstituicao.classList.add("escondido");
   divAgressorPessoa.classList.add("escondido");
+
+  instituicaoPublica.onclick = mostrarInstituicaoPublica;
+  pessoaJuridica.onclick = mostrarPessoaJuridica;
+
+  divSubNomeInstituicaoPublica.classList.add("escondido");
 }
 
 function digitoRg()
@@ -506,6 +552,16 @@ function mostra2()
 {
   divAgressorInstituicao.classList.add("escondido");
   divAgressorPessoa.classList.remove("escondido");
+}
+
+function mostrarPessoaJuridica()
+{
+  divSubNomeInstituicaoPublica.classList.add("escondido");
+}
+
+function mostrarInstituicaoPublica()
+{
+  divSubNomeInstituicaoPublica.classList.remove("escondido");
 }
 
 </script>

@@ -38,8 +38,9 @@
             <tr>
               <th>ID</th>
               <th>Nome</th>
+              <th>Subnome</th>
               <th>CPF / CNPJ</th>
-              <th>Tipo</th>
+              <th>Pessoa / Instituição</th>
               <th>Status</th>
               <th>Opções</th>
             </tr>
@@ -47,18 +48,25 @@
             <tr>
               <td><?php echo htmlspecialchars( $value1["idOcorrenciaAgressor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              <td><?php echo htmlspecialchars( $value1["subnome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+              
               <?php if( $value1["isCpf"] == '1' ){ ?>
               <td><?php echo htmlspecialchars( $value1["cpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <?php } ?>
               <?php if( $value1["isCpf"] == '0' ){ ?>
               <td><?php echo htmlspecialchars( $value1["cnpj"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <?php } ?>
-              <?php if( $value1["isInstituicao"] == '0' ){ ?>
+              
+              <?php if( $value1["status"] == 1 ){ ?>
+              <td>Instituição Pública</td>
+              <?php } ?>
+              <?php if( $value1["status"] == 2 ){ ?>
+              <td>Pessoa Jurídica</td>
+              <?php } ?>
+              <?php if( $value1["status"] == 3 ){ ?>
               <td>Pessoa Física</td>
               <?php } ?>
-              <?php if( $value1["isInstituicao"] == '1' ){ ?>
-              <td>Instituição</td>
-              <?php } ?>
+
               <?php if( $value1["isExcluido"] == '0' ){ ?>
               <td>Ativo</td>
               <?php } ?>

@@ -123,13 +123,29 @@ class CCadastrarUsuario {
 		        exit;
 			}
 
-			//Nao pode cadastrar usuarios com cpf iguais
-			//Pelo cpf da para saber se tem duas pessoas com mais de uma conta
-			$cnpjIgual = $minstituicao->cnpjIgual();
+			//radioQualInstituicao
+			//1 = Instituicao Publica
+			//2 = Pessoa Juridica
 
-			foreach ($cnpjIgual as $cnpj) {
-				if ($validacao->replaceCnpjBd($post['cnpjInstituicao']) == $cnpj['cnpj']) {
-					Validacao::setMsgError("Este cnpj já está cadastrado.");
+			//Pessoa juridica nao pode repetir o cnpj
+			if (isset($post['radioQualInstituicao']) && $post['radioQualInstituicao'] == 2) {
+				//Nao pode cadastrar usuarios com cnpj iguais
+				//Pelo cnpj da para saber se tem duas pessoas com mais de uma conta
+				$cnpjIgual = $minstituicao->cnpjIgual();
+
+				foreach ($cnpjIgual as $cnpj) {
+					if ($validacao->replaceCnpjBd($post['cnpjInstituicao']) == $cnpj['cnpj']) {
+						Validacao::setMsgError("Este cnpj já está cadastrado.");
+				        header('Location: /usuarios-cadastrar');
+				        exit;
+					}
+				}
+			}
+
+			//Instituicao Publica usa o mesmo cnpj mas com o subnome diferente
+			if (isset($post['radioQualInstituicao']) && $post['radioQualInstituicao'] == 1) {
+				if (!isset($post['subnomeInstituicao']) || $post['subnomeInstituicao'] === '') {
+					Validacao::setMsgError("Informe o subnome da Instituição Pública.");
 			        header('Location: /usuarios-cadastrar');
 			        exit;
 				}
