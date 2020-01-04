@@ -60,7 +60,12 @@
                   <label for="ocorrencia-solicitacao-para">Para:</label>
                   <select id="ocorrencia-solicitacao-para" class="form-control" name="para">
                     <?php $counter1=-1;  if( isset($usuarios) && ( is_array($usuarios) || $usuarios instanceof Traversable ) && sizeof($usuarios) ) foreach( $usuarios as $key1 => $value1 ){ $counter1++; ?>
+                    <?php if( $value1["subnome"] != 'Null' ){ ?>
+                    <option value="<?php echo htmlspecialchars( $value1["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Para: <?php echo htmlspecialchars( $value1["subnome"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $value1["funcao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                    <?php } ?>
+                    <?php if( $value1["subnome"] == 'Null' ){ ?>
                     <option value="<?php echo htmlspecialchars( $value1["idUsuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Para: <?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $value1["funcao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                    <?php } ?>
                     <?php } ?>
                   </select>
                 </div>

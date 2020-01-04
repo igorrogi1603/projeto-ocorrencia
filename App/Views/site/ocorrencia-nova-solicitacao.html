@@ -60,7 +60,12 @@
                   <label for="ocorrencia-solicitacao-para">Para:</label>
                   <select id="ocorrencia-solicitacao-para" class="form-control" name="para">
                     {loop="$usuarios"}
+                    {if="$value.subnome != 'Null'"}
+                    <option value="{$value.idUsuario}">Para: {$value.subnome} - {$value.funcao}</option>
+                    {/if}
+                    {if="$value.subnome == 'Null'"}
                     <option value="{$value.idUsuario}">Para: {$value.nome} - {$value.funcao}</option>
+                    {/if}
                     {/loop}
                   </select>
                 </div>

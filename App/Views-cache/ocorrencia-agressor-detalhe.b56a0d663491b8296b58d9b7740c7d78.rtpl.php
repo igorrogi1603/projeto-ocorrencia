@@ -36,6 +36,9 @@
             <p class="sem-espacamento"><strong>RG: </strong><?php echo htmlspecialchars( $value1["rg"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <?php } ?>
             <?php if( $isInstituicao == '1' ){ ?>
+              <?php if( $value1["subnome"] != '' ){ ?>
+              <p class="sem-espacamento"><strong>Subnome: </strong><?php echo htmlspecialchars( $value1["subnome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+              <?php } ?>
               <p class="sem-espacamento"><strong>CNPJ: </strong><?php echo htmlspecialchars( $value1["cnpj"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <?php } ?>
             <p class="sem-espacamento"><strong>Celular: </strong><?php echo htmlspecialchars( $value1["celular"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>

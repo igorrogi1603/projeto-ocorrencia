@@ -129,7 +129,9 @@ class MArquivo {
 		$sql = new Conexao;
 
 		return $sql->select("
-			SELECT * 
+			SELECT 
+			a.idArquivosPessoa, a.idPessoa, a.tipo, a.url, a.status statusArquivos,
+			b.idPessoa, b.idEndereco, b.idContato, b.nome, b.dataNasc, b.cpf, b.rg, b.sexo
 			FROM tb_arquivospessoa a
 			INNER JOIN tb_pessoa b ON a.idPessoa = b.idPessoa
 			WHERE a.idPessoa = :idPessoa
@@ -143,7 +145,9 @@ class MArquivo {
 		$sql = new Conexao;
 
 		return $sql->select("
-			SELECT * 
+			SELECT 
+			a.idArquivosInstituicao, a.idInstituicao, a.tipo, a.url, a.status statusArquivos,
+			b.idEndereco, b.idContato, b.nome, b.cnpj, b.status statusInstituicao, b.subnome
 			FROM tb_arquivosinstituicao a
 			INNER JOIN tb_instituicao b ON a.idInstituicao = b.idInstituicao
 			WHERE a.idInstituicao = :idInstituicao

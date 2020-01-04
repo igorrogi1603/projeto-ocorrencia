@@ -38,8 +38,15 @@ class Page {
 		//O segundo parametro e o unico jeito de mandar uma variavel para o header
 
 		if ($this->options["header"] === true) {
+
+			if (isset($_SESSION['User']['status']) && $_SESSION['User']['status'] == 1) {
+				$nomeUsuario = $_SESSION['User']['subnome'];
+			} else {
+				$nomeUsuario = $_SESSION['User']['nome'];
+			}
+
 			$this->setTpl("header", [
-				'user' => $_SESSION['User']['nome'],
+				'user' => $nomeUsuario,
 				'notificacao' => CHeader::getNotificacao(),
 				'nivelAcesso' => $_SESSION['User']['nivelAcesso'],
 				'idUser' => $_SESSION['User']['idUsuario']

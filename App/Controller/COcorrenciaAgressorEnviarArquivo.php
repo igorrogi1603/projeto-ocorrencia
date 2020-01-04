@@ -45,7 +45,7 @@ class COcorrenciaAgressorEnviarArquivo extends COcorrenciaAgressor {
 		//Separando os arrays para uma unica sequencia
 		for ($i = 0; $i < count($arrayCompleto); $i++) {
 			foreach ($arrayCompleto[$i] as $value) {
-				if ($value['status'] == 0) {
+				if ($value['statusArquivos'] == 0) {
 					$listaArquivos[] = $value;
 				}
 			}
@@ -210,6 +210,12 @@ class COcorrenciaAgressorEnviarArquivo extends COcorrenciaAgressor {
 			foreach ($dados as $key => $value) {
 				$arrayNome[]['nome'] = $value['nome'];
 
+				if (isset($value['subnome']) && $value['subnome'] != "") {
+					$arraySubnome[]['subnome'] = $value['subnome'];
+				} else {
+					$arraySubnome[]['subnome'] = "";
+				}
+
 				if ($value['idPessoa'] != null) {
 					$arrayId[]['id'] = $value['idPessoa'];
 					$arrayIsInstituicao[]['isInstituicao'] = "0";
@@ -224,6 +230,7 @@ class COcorrenciaAgressorEnviarArquivo extends COcorrenciaAgressor {
 			//Junta o nome e o id de cada pessoa em um unico array
 			for ($a = 0; $a < $tamanhoArrayDados; $a++) {
 				$arrayPessoas[$a]['nome'] = $arrayNome[$a]['nome'];
+				$arrayPessoas[$a]['subnome'] = $arraySubnome[$a]['subnome'];
 				$arrayPessoas[$a]['id'] = $arrayId[$a]['id'];
 				$arrayPessoas[$a]['isInstituicao'] = $arrayIsInstituicao[$a]['isInstituicao'];
 			}

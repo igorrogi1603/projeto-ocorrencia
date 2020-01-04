@@ -208,11 +208,17 @@ desired effect
         <!--Inicio-->
         <li><a href="/"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
 
+        <!--Criar averiguacao-->
+        <li><a href="#"><i class="fa fa-file-o"></i> <span>Criar Averiguação</span></a></li>
+
         <!--Criar Apuracao-->
         <li><a href="/criar-apuracao"><i class="fa fa-file"></i> <span>Criar Apuração</span></a></li>
 
         {if="$nivelAcesso == 4 OR $nivelAcesso == 2210 OR $nivelAcesso == 3748"}
-        <!--Criar Apuracao-->
+        <!--Averiguacao-->
+        <li><a href="#"><i class="fa fa-file-text-o"></i> <span>Averiguação</span></a></li>
+
+        <!--Apuracao-->
         <li class="treeview">
           <a href="#"><i class="fa fa-file-text"></i> <span>Apurações</span>
             <span class="pull-right-container">

@@ -42,7 +42,12 @@
                 <label for="id-selecione-pessoa">Selecione a pessoa</label>
                 <select class="form-control select2" name="selecionePessoa" id="id-selecione-pessoa" required>
                   {loop="$selecionaPessoa"}
+                  {if="$value.subnome != ''"}
+                  <option value="{$value.isInstituicao}-{$value.id}">{$value.subnome}</option>
+                  {/if}
+                  {if="$value.subnome == ''"}
                   <option value="{$value.isInstituicao}-{$value.id}">{$value.nome}</option>
+                  {/if}
                   {/loop}
                 </select>
               </div>

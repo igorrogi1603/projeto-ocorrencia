@@ -42,7 +42,7 @@
               <th>Opções</th>
             </tr>
             {loop="$documento"}
-            {if="$value.status == 0"}
+            {if="$value.statusArquivos == 0"}
 
             {if="$value.tipo == 'cpf'"}
               {$varTipo = 1}
@@ -86,7 +86,14 @@
               {else}
               <td>{$value.tipo}</td>
               {/if}
-              <td>Instituição</td>
+
+              {if="$value.statusInstituicao == 1"}
+              <td>Instituição Pública</td>
+              {/if}
+              {if="$value.statusInstituicao == 2"}
+              <td>Pessoa Júridica</td>
+              {/if}
+
               <td>
                 <a href="{$value.url}" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                 <a href="/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/{$idOcorrencia}/{$value.idInstituicao}/{$value.idArquivosInstituicao}/{$varTipo}" class="btn btn-success"><i class="fa fa-refresh"></i></a>

@@ -36,6 +36,9 @@
             <p class="sem-espacamento"><strong>RG: </strong>{$value.rg}</p>
             {/if}
             {if="$isInstituicao == '1'"}
+              {if="$value.subnome != ''"}
+              <p class="sem-espacamento"><strong>Subnome: </strong>{$value.subnome}</p>
+              {/if}
               <p class="sem-espacamento"><strong>CNPJ: </strong>{$value.cnpj}</p>
             {/if}
             <p class="sem-espacamento"><strong>Celular: </strong>{$value.celular}</p>

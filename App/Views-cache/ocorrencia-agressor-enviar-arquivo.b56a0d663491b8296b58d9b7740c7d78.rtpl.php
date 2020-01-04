@@ -42,7 +42,7 @@
               <th>Opções</th>
             </tr>
             <?php $counter1=-1;  if( isset($documento) && ( is_array($documento) || $documento instanceof Traversable ) && sizeof($documento) ) foreach( $documento as $key1 => $value1 ){ $counter1++; ?>
-            <?php if( $value1["status"] == 0 ){ ?>
+            <?php if( $value1["statusArquivos"] == 0 ){ ?>
 
             <?php if( $value1["tipo"] == 'cpf' ){ ?>
               <?php $varTipo = 1; ?>
@@ -86,7 +86,14 @@
               <?php }else{ ?>
               <td><?php echo htmlspecialchars( $value1["tipo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
               <?php } ?>
-              <td>Instituição</td>
+
+              <?php if( $value1["statusInstituicao"] == 1 ){ ?>
+              <td>Instituição Pública</td>
+              <?php } ?>
+              <?php if( $value1["statusInstituicao"] == 2 ){ ?>
+              <td>Pessoa Júridica</td>
+              <?php } ?>
+
               <td>
                 <a href="<?php echo htmlspecialchars( $value1["url"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                 <a href="/ocorrencia-agressor-enviar-arquivo-cadastrar-atualizar/<?php echo htmlspecialchars( $idOcorrencia, ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $value1["idArquivosInstituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $varTipo, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-success"><i class="fa fa-refresh"></i></a>
