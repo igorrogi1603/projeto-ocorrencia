@@ -144,7 +144,7 @@ class CCadastrarUsuario {
 
 			//Instituicao Publica usa o mesmo cnpj mas com o subnome diferente
 			if (isset($post['radioQualInstituicao']) && $post['radioQualInstituicao'] == 1) {
-				if (!isset($post['subnomeInstituicao']) || $post['subnomeInstituicao'] === '') {
+				if (!isset($post['subnomeInstituicao']) || $post['subnomeInstituicao'] == '') {
 					Validacao::setMsgError("Informe o subnome da Instituição Pública.");
 			        header('Location: /usuarios-cadastrar');
 			        exit;

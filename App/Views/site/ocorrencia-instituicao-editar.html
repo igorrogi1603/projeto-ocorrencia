@@ -53,6 +53,24 @@
           </div>
           <!--Fim Row-->
 
+          {if="$agressor.0.status == 1"}
+          <!--Row-->
+          <div class="row">
+            <!--Subnome-->
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="id-subnome-agressor">Subnome da Instituição Pública</label>
+                <input type="text" name="subnomeAgressor" id="id-subnome-agressor" class="form-control" placeholder="Digite o subnome aqui" maxlength="70" value="{$agressor.0.subnome}" onkeyup="validarCaracter(this, 1)">
+              </div>
+            </div>
+            <!--Fim subnome-->
+          </div>
+          <!--Fim Row-->
+          {/if}
+
+          <!--Se e instituicao publica ou pessoa juridica-->
+          <input type="hidden" name="hiddenStatusAgressor" value="{$agressor.0.status}">
+
           <!--Inicio row-->
           <div class="row">
             <!--Email do Agressor-->

@@ -53,6 +53,24 @@
           </div>
           <!--Fim Row-->
 
+          <?php if( $agressor["0"]["status"] == 1 ){ ?>
+          <!--Row-->
+          <div class="row">
+            <!--Subnome-->
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="id-subnome-agressor">Subnome da Instituição Pública</label>
+                <input type="text" name="subnomeAgressor" id="id-subnome-agressor" class="form-control" placeholder="Digite o subnome aqui" maxlength="70" value="<?php echo htmlspecialchars( $agressor["0"]["subnome"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onkeyup="validarCaracter(this, 1)">
+              </div>
+            </div>
+            <!--Fim subnome-->
+          </div>
+          <!--Fim Row-->
+          <?php } ?>
+
+          <!--Se e instituicao publica ou pessoa juridica-->
+          <input type="hidden" name="hiddenStatusAgressor" value="<?php echo htmlspecialchars( $agressor["0"]["status"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
           <!--Inicio row-->
           <div class="row">
             <!--Email do Agressor-->

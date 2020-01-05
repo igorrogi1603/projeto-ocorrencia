@@ -83,11 +83,33 @@
                 </div>
               </div>
               <!--Fim Sexo-->
+              <?php } ?>
           </div>
           <!--Fim Row-->
 
+          <?php if( $dadosUsuario["isPessoa"] == 0 ){ ?>
+            <?php if( $dadosUsuario["status"] == 1 ){ ?>
+            <!--Row-->
+            <div class="row">
+              <!--Subnome-->
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="id-subnome-usuario">Subnome da Instituição Pública</label>
+                  <input type="text" name="subnomeUsuario" id="id-subnome-usuario" class="form-control" placeholder="Digite o subnome aqui" maxlength="70" value="<?php echo htmlspecialchars( $dadosUsuario["subnome"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onkeyup="validarCaracter(this, 1)">
+                </div>
+              </div>
+              <!--Fim subnome-->
+            </div>
+            <!--Fim Row-->
+            <?php } ?>
+          <?php } ?>
+
+          <!--Se e instituicao publica ou pessoa juridica-->
+          <input type="hidden" name="hiddenStatusUsuario" value="<?php echo htmlspecialchars( $dadosUsuario["status"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+          
           <!--Inicio row-->
             <div class="row">
+            <?php if( $dadosUsuario["isPessoa"] == 1 ){ ?>
               <!--CPF-->
               <div class="col-md-3">
                 <div class="form-group">

@@ -163,16 +163,34 @@ class COcorrenciaAgressor {
 		        exit;
 			}
 
-			//Nao pode cadastrar pessoas com cpf iguais
-			//Pelo cpf da para saber se tem duas pessoas com mais de um registro
-			$cnpjIgual = $minstituicao->cnpjIgualUpdate($idInstituicao);
+			//HiddenStatusAgressor
+			//1 = Instituicao Publica
+			//2 = Pessoa Juridica
 
-			foreach ($cnpjIgual as $cnpj) {
-				if ($validacao->replaceCnpjBd($post['cnpjAgressor']) == $cnpj['cnpj']) {
-					Validacao::setMsgError("Este cnpj já está cadastrado.");
+			//Pessoa juridica nao pode repetir o cnpj
+			if (isset($post['hiddenStatusAgressor']) && $post['hiddenStatusAgressor'] == 2) {
+				//Nao pode cadastrar instituicao com cnpj iguais
+				//Pelo cnpj da para saber se tem duas instituicao com mais de um registro
+				$cnpjIgual = $minstituicao->cnpjIgualUpdate($idInstituicao);
+
+				foreach ($cnpjIgual as $cnpj) {
+					if ($validacao->replaceCnpjBd($post['cnpjAgressor']) == $cnpj['cnpj']) {
+						Validacao::setMsgError("Este cnpj já está cadastrado.");
+				        header('Location: /ocorrencia-agressor-editar/'.$idOcorrencia.'/'.$isInstituicao.'/'.$idOcorrenciaAgressor);
+				        exit;
+					}
+				}
+			}
+
+			//Instituicao Publica usa o mesmo cnpj mas com o subnome diferente
+			if (isset($post['hiddenStatusAgressor']) && $post['hiddenStatusAgressor'] == 1) {
+				if (!isset($post['subnomeAgressor']) || $post['subnomeAgressor'] == '') {
+					Validacao::setMsgError("Informe o subnome da Instituição Pública.");
 			        header('Location: /ocorrencia-agressor-editar/'.$idOcorrencia.'/'.$isInstituicao.'/'.$idOcorrenciaAgressor);
 			        exit;
 				}
+
+				$post['subnomeAgressor'] = $validacao->validarString($post['subnomeAgressor'], 1);
 			}
 
 			//Atualizando os dados
@@ -281,7 +299,7 @@ class COcorrenciaAgressor {
 		if ($isInstituicao == "1") {
 			$listaAgressor = COcorrenciaAgressor::listaInstituicao($idOcorrencia, "unico", $idOcorrenciaAgressor);
 		}
-		
+
 		return $listaAgressor;
 	}
 

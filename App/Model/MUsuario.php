@@ -249,7 +249,7 @@ class MUsuario {
 		return $sql->select("
 			SELECT 
 			a.idUsuario, a.nivelAcesso, a.user, a.funcao, a.setor, a.isBloqueado, a.dataRegistro, 
-			b.idInstituicao, b.nome, b.cnpj,
+			b.idInstituicao, b.nome, b.cnpj, b.status, b.subnome,
 			c.idContato, c.celular, c.fixo, c.email, 
 			d.idEndereco, d.cep, d.rua, d.numero, d.bairro, d.cidade, d.estado, d.complemento
 			FROM tb_usuario a

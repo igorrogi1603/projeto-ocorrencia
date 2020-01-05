@@ -44,11 +44,13 @@ class MInstituicao {
 			case 'agressor':
 				$sql->query("
 					UPDATE tb_instituicao
-					SET nome = :nome, cnpj = :cnpj
+					SET nome = :nome, cnpj = :cnpj, status = :status, subnome = :subnome
 					WHERE idInstituicao = :idInstituicao
 				", [
 					":nome" => utf8_decode($validacao->validarString($instituicao->getnomeAgressor(), 1)),
 					":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjAgressor()),
+					":status" => $instituicao->gethiddenStatusAgressor(),
+					":subnome" => utf8_decode($validacao->validarString($instituicao->getsubnomeAgressor(), 1)),
 					":idInstituicao" => $idInstituicao
 				]);
 				break;
@@ -56,11 +58,13 @@ class MInstituicao {
 			case 'usuario':
 				$sql->query("
 					UPDATE tb_instituicao
-					SET nome = :nome, cnpj = :cnpj
+					SET nome = :nome, cnpj = :cnpj, status = :status, subnome = :subnome
 					WHERE idInstituicao = :idInstituicao
 				", [
 					":nome" => utf8_decode($validacao->validarString($instituicao->getnomeUsuario(), 1)),
 					":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjInstituicao()),
+					":status" => $instituicao->gethiddenStatusUsuario(),
+					":subnome" => utf8_decode($validacao->validarString($instituicao->getsubnomeUsuario(), 1)),
 					":idInstituicao" => $idInstituicao
 				]);
 				break;

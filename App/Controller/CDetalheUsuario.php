@@ -38,6 +38,7 @@ class CDetalheUsuario {
 			$dados[0]['fixo'] = $validacao->replaceTelefoneFixoView($dados[0]['fixo']);
 			$dados[0]['cep'] = $validacao->replaceCepView($dados[0]['cep']);
 			$dados[0]['estado'] = strtoupper($dados[0]['estado']);
+			$dados[0]['status'] = "";
 			$dados[0]['isPessoa'] = '1';
 
 			if ($dados[0]['sexo'] == 'm') {
@@ -51,6 +52,7 @@ class CDetalheUsuario {
 
 		if (count($dadosInstituicao) != 0 || count($dadosInstituicao) != "" || count($dadosInstituicao) != null) {
 			$dadosInstituicao[0]['nome'] = utf8_encode($dadosInstituicao[0]['nome']);
+			$dadosInstituicao[0]['subnome'] = utf8_encode($dadosInstituicao[0]['subnome']);
 			$dadosInstituicao[0]['rua'] = utf8_encode($dadosInstituicao[0]['rua']);
 			$dadosInstituicao[0]['bairro'] = utf8_encode($dadosInstituicao[0]['bairro']);
 			$dadosInstituicao[0]['cidade'] = utf8_encode($dadosInstituicao[0]['cidade']);
@@ -168,16 +170,34 @@ class CDetalheUsuario {
 		        exit;
 			}
 
-			//Nao pode cadastrar usuarios com cpf iguais
-			//Pelo cpf da para saber se tem duas pessoas com mais de uma conta
-			$cnpjIgual = $minstituicao->cnpjIgualUpdate($idInstituicao);
+			//HiddenStatusAgressor
+			//1 = Instituicao Publica
+			//2 = Pessoa Juridica
 
-			foreach ($cnpjIgual as $cnpj) {
-				if ($validacao->replaceCnpjBd($post['cnpjInstituicao']) == $cnpj['cnpj']) {
-					Validacao::setMsgError("Este cnpj já está cadastrado.");
+			//Pessoa juridica nao pode repetir o cnpj
+			if (isset($post['hiddenStatusUsuario']) && $post['hiddenStatusUsuario'] == 2) {
+				//Nao pode cadastrar usuarios com cpf iguais
+				//Pelo cpf da para saber se tem duas pessoas com mais de uma conta
+				$cnpjIgual = $minstituicao->cnpjIgualUpdate($idInstituicao);
+
+				foreach ($cnpjIgual as $cnpj) {
+					if ($validacao->replaceCnpjBd($post['cnpjInstituicao']) == $cnpj['cnpj']) {
+						Validacao::setMsgError("Este cnpj já está cadastrado.");
+				        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
+				        exit;
+					}
+				}
+			}
+
+			//Instituicao Publica usa o mesmo cnpj mas com o subnome diferente
+			if (isset($post['hiddenStatusUsuario']) && $post['hiddenStatusUsuario'] == 1) {
+				if (!isset($post['subnomeUsuario']) || $post['subnomeUsuario'] == '') {
+					Validacao::setMsgError("Informe o subnome da Instituição Pública.");
 			        header('Location: /usuarios-detalhe/editar/'.$idUsuario);
 			        exit;
 				}
+
+				$post['subnomeUsuario'] = $validacao->validarString($post['subnomeUsuario'], 1);
 			}
 		}
 

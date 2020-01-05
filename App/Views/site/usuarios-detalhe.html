@@ -29,6 +29,9 @@
           <div class="col-md-4">
             <p class="sem-espacamento"><strong>Nome: </strong>{$detalheUsuario.nome}</p>
             {if="$detalheUsuario.isPessoa == 0"}
+              {if="$detalheUsuario.status == 1"}
+              <p class="sem-espacamento"><strong>Subnome: </strong>{$detalheUsuario.subnome}</p>
+              {/if}
             <p class="sem-espacamento"><strong>CNPJ: </strong>{$detalheUsuario.cnpj}</p>
             <p class="sem-espacamento"><strong>Instituição</strong></p>
             {/if}

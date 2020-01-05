@@ -29,6 +29,9 @@
           <div class="col-md-4">
             <p class="sem-espacamento"><strong>Nome: </strong><?php echo htmlspecialchars( $detalheUsuario["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <?php if( $detalheUsuario["isPessoa"] == 0 ){ ?>
+              <?php if( $detalheUsuario["status"] == 1 ){ ?>
+              <p class="sem-espacamento"><strong>Subnome: </strong><?php echo htmlspecialchars( $detalheUsuario["subnome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+              <?php } ?>
             <p class="sem-espacamento"><strong>CNPJ: </strong><?php echo htmlspecialchars( $detalheUsuario["cnpj"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
             <p class="sem-espacamento"><strong>Instituição</strong></p>
             <?php } ?>
