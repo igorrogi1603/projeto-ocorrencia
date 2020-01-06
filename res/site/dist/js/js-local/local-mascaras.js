@@ -12,6 +12,7 @@ $('#id-cep-vitima').mask('00000-000', {reverse: true});
 for (let i = 0; i <= 100; i++) {
 	$('#id-cep-vitima-'+i).mask('00000-000', {reverse: true});
 	$('#id-cpf-vitima-'+i).mask('000.000.000-00', {reverse: true});
+	$('#id-data-nasc-vitima-'+i).mask('00/00/0000', {reverse: true});
 	$('#id-cpf-responsavel-vitima-'+i).mask('000.000.000-00', {reverse: true});
 	$('#id-celular-responsavel-vitima-'+i).mask('00 - 00000-0000', {reverse: true});
 	$('#id-celular-vitima-'+i).mask('00 - 00000-0000', {reverse: true});

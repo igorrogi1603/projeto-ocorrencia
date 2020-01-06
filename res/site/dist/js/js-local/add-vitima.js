@@ -32,13 +32,24 @@ $(function () {
             '</div>'+
             '<div class="box-body">'+
               '<div class="row">'+
-                '<div class="col-md-8">'+
+                '<div class="col-md-6">'+
                   '<div class="form-group">'+
                     '<label for="id-nome-vitima">Nome Completo da Vítima *</label>'+
                     '<input type="text" name="nomeVitima'+proximoNum+'" id="id-nome-vitima-'+proximoNum+'" class="form-control" placeholder="Digite o nome aqui" maxlength="70" onkeyup="validarCaracter(this, 1)" required>'+
                   '</div>'+
                 '</div>'+
-                '<div class="col-md-4">'+
+                '<div class="col-md-3">'+
+                  '<div class="form-group">'+
+                    '<label>Data de Nascimento *</label>'+
+                    '<div class="input-group">'+
+                      '<div class="input-group-addon">'+
+                        '<i class="fa fa-calendar"></i>'+
+                      '</div>'+
+                      '<input type="text" name="dataNascVitima'+proximoNum+'" id="id-data-nasc-vitima-'+proximoNum+'" class="form-control" placeholder="__/__/____" required>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>'+
+                '<div class="col-md-3">'+
 	              '<div class="form-group">'+
 	                '<label for="id-qual-familia-vitima">Qual família?</label>'+
 	                '<select class="form-control select2" name="qualFamiliaVitima'+proximoNum+'" id="id-qual-familia-vitima-'+proximoNum+'">'+
@@ -58,13 +69,13 @@ $(function () {
                 '</div>'+
                 '<div class="col-md-4">'+
                   '<div class="form-group">'+
-                    '<label for="id-cpf-vitima">CPF *</label>'+
-                    '<input type="text" name="cpfVitima'+proximoNum+'" id="id-cpf-vitima-'+proximoNum+'" class="form-control" placeholder="___.___.___-__" required>'+
+                    '<label for="id-cpf-vitima">CPF da Vítima</label>'+
+                    '<input type="text" name="cpfVitima'+proximoNum+'" id="id-cpf-vitima-'+proximoNum+'" class="form-control" placeholder="___.___.___-__">'+
                   '</div>'+
                 '</div>'+
                 '<div class="col-md-4">'+
                   '<div class="form-group">'+
-                    '<label for="id-celular-vitima">Celular</label>'+
+                    '<label for="id-celular-vitima">Celular da Vítima</label>'+
                     '<input type="text" name="celularVitima'+proximoNum+'" id="id-celular-vitima-'+proximoNum+'" class="form-control" placeholder="_____-____">'+
                   '</div>'+
                 '</div>'+
@@ -79,13 +90,13 @@ $(function () {
                 '</div>'+
                 '<div class="col-md-3">'+
                   '<div class="form-group">'+
-                    '<label for="id-cpf-responsavel-vitima">CPF *</label>'+
+                    '<label for="id-cpf-responsavel-vitima">CPF do Responsável *</label>'+
                     '<input type="text" name="cpfResponsavelVitima'+proximoNum+'" id="id-cpf-responsavel-vitima-'+proximoNum+'" class="form-control" placeholder="___.___.___-__" required>'+
                   '</div>'+
                 '</div>'+
                 '<div class="col-md-3">'+
                   '<div class="form-group">'+
-                    '<label for="id-celular-responsavel-vitima">Celular</label>'+
+                    '<label for="id-celular-responsavel-vitima">Celular do Responsável</label>'+
                     '<input type="text" name="celularResponsavelVitima'+proximoNum+'" id="id-celular-responsavel-vitima-'+proximoNum+'" class="form-control" placeholder="_____-____">'+
                   '</div>'+
                 '</div>'+

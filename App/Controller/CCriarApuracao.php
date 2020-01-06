@@ -115,16 +115,23 @@ class CCriarApuracao {
 			if (!isset($post['cpfVitima'.$i])) {
 				//caso não exista continua rodando normalmente o programa
 			} else {
-				$validaCPF = $validacao->validaCPF($post['cpfVitima'.$i]);
+				//Vai validar se o cpf da vitima nao estiver fazio
+				if ($post['cpfVitima'.$i] != "" && $post['cpfVitima'.$i] != null) {
+					$validaCPF = $validacao->validaCPF($post['cpfVitima'.$i]);
 
-				if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
-					Validacao::setMsgError("CPF da Vitima ".$i." Inválido.");
-			        header('Location: /criar-apuracao');
-			        exit;
+					if ($validaCPF === false || !isset($validaCPF) || $validaCPF === '') {
+						Validacao::setMsgError("CPF da Vitima ".$i." Inválido.");
+				        header('Location: /criar-apuracao');
+				        exit;
+					}
 				}
+			}
 
-				if ($post['cpfVitima'.$i] == "") {
-					Validacao::setMsgError("Informe o CPF da vitima ".$i." que está vazio.");
+			if (!isset($post['dataNascVitima'.$i])) {
+				//caso não exista continua rodando normalmente o programa
+			} else {
+				if ($post['dataNascVitima'.$i] == "") {
+					Validacao::setMsgError("Informe a data de nascimento da vitima ".$i." que está vazio.");
 			        header('Location: /criar-apuracao');
 			        exit;			
 				}
@@ -179,11 +186,12 @@ class CCriarApuracao {
 			} else {
 
 				//Mudando o nome da variavel do array 
-				//para quando chamar o get e set ñao dar problema 
+				//para quando chamar o get e set nao dar problema 
 				//por causa do numero que separa um vitima da outra
 				$post['nomeVitima'] = $post['nomeVitima'.$i];
 				$post['sexoVitima'] = $post['sexoVitima'.$i];
 				$post['cpfVitima'] = $post['cpfVitima'.$i];
+				$post['dataNascVitima'] = $post['dataNascVitima'.$i];
 				$post['celularVitima'] = $post['celularVitima'.$i];
 				$post['responsavelVitima'] = $post['responsavelVitima'.$i];
 				$post['cpfResponsavelVitima'] = $post['cpfResponsavelVitima'.$i];
@@ -273,37 +281,71 @@ class CCriarApuracao {
 
 				//Rodando pelo array de pessoas trazidas do banco de dados
 				foreach ($listAllPessoa as $value) {
-					//Verificar se o cpf ja existe
-					//Retira os pontos e tracos do cpf
-					$cpfVitimaBd = $validacao->replaceCpfBd($post['cpfVitima']);
+					//Se o cpf da vitima existir entao verifica pelo cpf 
+					//caso nao exista o cpf entao verificar pelo nome e data de nascimento
+					if (isset($post['cpfVitima']) && $post['cpfVitima'] != "" && $post['cpfVitima'] != null) {
+						//Verificar se o cpf ja existe
+						//Retira os pontos e tracos do cpf
+						$cpfVitimaBd = $validacao->replaceCpfBd($post['cpfVitima']);
 
-					if ($cpfVitimaBd == $value['cpf']) {
-						//id da pessoa ja existente
-						$idPessoa[0]["MAX(idPessoa)"] = $value['idPessoa'];
+						if ($cpfVitimaBd == $value['cpf']) {
+							//id da pessoa ja existente
+							$idPessoa[0]["MAX(idPessoa)"] = $value['idPessoa'];
 
-						//Caso for um usuario bloquear o usuario
-						//Pesquisar todos os usuarios no banco para comparar
-						$listAllUsuario = $musuario->listAll();
+							//Caso for um usuario bloquear o usuario
+							//Pesquisar todos os usuarios no banco para comparar
+							$listAllUsuario = $musuario->listAll();
 
-						//percorrer o array usuario
-						foreach ($listAllUsuario as $valueUser) {
-							//verificar se a pessoa e um usuario
-							if ($idPessoa[0]["MAX(idPessoa)"] == $valueUser['idPessoa']) {
-								//e um usuario, entao bloquear o acesso dele
-								$mocorrencia->bloquearOcorrenciaUsuario($idApuracao[0]["MAX(idCriarApuracao)"], $valueUser['idUsuario']);
+							//percorrer o array usuario
+							foreach ($listAllUsuario as $valueUser) {
+								//verificar se a pessoa e um usuario
+								if ($idPessoa[0]["MAX(idPessoa)"] == $valueUser['idPessoa']) {
+									//e um usuario, entao bloquear o acesso dele
+									$mocorrencia->bloquearOcorrenciaUsuario($idApuracao[0]["MAX(idCriarApuracao)"], $valueUser['idUsuario']);
+								}
 							}
+
+							//caso ele ache um cpf igual seta como true a variavel
+							//e no if de baixo nao deixa rodar
+							$usuarioVitimaBloqueou = true;
+
+							//Encerra o loop
+							break;
+						}
+					} else {
+						//Transforma a data de nascimento igual ao do banco de dados para comparar igual
+						$dataNascVitimaBd = $validacao->replaceDataBd($post['dataNascVitima']);
+
+						if ($dataNascVitimaBd == $value['dataNasc'] && strtolower($post['nomeVitima']) == strtolower($value['nome'])) {
+							//id da pessoa ja existente
+							$idPessoa[0]["MAX(idPessoa)"] = $value['idPessoa'];
+
+							//Caso for um usuario bloquear o usuario
+							//Pesquisar todos os usuarios no banco para comparar
+							$listAllUsuario = $musuario->listAll();
+
+							//percorrer o array usuario
+							foreach ($listAllUsuario as $valueUser) {
+								//verificar se a pessoa e um usuario
+								if ($idPessoa[0]["MAX(idPessoa)"] == $valueUser['idPessoa']) {
+									//e um usuario, entao bloquear o acesso dele
+									$mocorrencia->bloquearOcorrenciaUsuario($idApuracao[0]["MAX(idCriarApuracao)"], $valueUser['idUsuario']);
+								}
+							}
+
+							//caso ele ache um cpf igual seta como true a variavel
+							//e no if de baixo nao deixa rodar
+							$usuarioVitimaBloqueou = true;
+
+							//Encerra o loop
+							break;
 						}
 
-						//caso ele ache um cpf igual seta como true a variavel
-						//e no if de baixo nao deixa rodar
-						$usuarioVitimaBloqueou = true;
-
-						//Encerra o loop
-						break;
-					}
-				}
+					} //Fim if se cpf existe
+				} //fim foreach
 
 				//caso nao tenha acha um cpf igual em cima
+				//Ou nome da vitima e a data de nascimento nao tenha achado
 				//entao criar uma nova pessoa
 				if($usuarioVitimaBloqueou != true) {
 					//Cadastrando o endereco e o contato da vitima
