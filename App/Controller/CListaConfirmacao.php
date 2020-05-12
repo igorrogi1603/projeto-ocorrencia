@@ -72,7 +72,7 @@ class CListaConfirmacao {
 			$nomePasta = "ocorrencia".$idOcorrencia[0]["MAX(idOcorrencia)"];
 
 			//Criar a pasta da ocorrencia
-			mkdir('.'.DIRECTORY_SEPARATOR.'ocorrencias'.DIRECTORY_SEPARATOR.$nomePasta);
+			mkdir('.'.DIRECTORY_SEPARATOR."Arquivos".DIRECTORY_SEPARATOR.'ocorrencias'.DIRECTORY_SEPARATOR.$nomePasta);
 
 			//--------------------------------------------------------
 			//Gerar o PDF
@@ -83,7 +83,7 @@ class CListaConfirmacao {
 			$arquivo = "Apuracao".$idApuracao.".pdf";
 
 			//Para onde vai o pdf
-			$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+			$destino = ".".DIRECTORY_SEPARATOR."Arquivos".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
 
 			//Instancia o mpdf
 			$mpdf = new Mpdf();

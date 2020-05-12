@@ -77,6 +77,7 @@ class COcorrenciaEnviarArquivo {
 
 		        // Concatena a pasta com o nome
 	        	$destino = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
+	        				"Arquivos" . DIRECTORY_SEPARATOR .
 							"documentoPessoa" . DIRECTORY_SEPARATOR . 
 							$pastaPessoa . DIRECTORY_SEPARATOR . $novoNome;
 

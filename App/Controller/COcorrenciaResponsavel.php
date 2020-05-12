@@ -63,7 +63,7 @@ class COcorrenciaResponsavel {
 		$nomePasta = "ocorrencia".$idOcorrencia;
 
 		//Para onde vai o pdf
-		$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+		$destino = ".".DIRECTORY_SEPARATOR."Arquivos".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
 
 		//Instancia o mpdf
 		$mpdf = new Mpdf();
@@ -185,7 +185,7 @@ class COcorrenciaResponsavel {
 		$nomePasta = "ocorrencia".$idOcorrencia;
 
 		//Para onde vai o pdf
-		$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+		$destino = ".".DIRECTORY_SEPARATOR."Arquivos".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
 
 		//Instancia o mpdf
 		$mpdf = new Mpdf();	
@@ -327,7 +327,7 @@ class COcorrenciaResponsavel {
 		$nomePasta = "ocorrencia".$idOcorrencia;
 
 		//Para onde vai o pdf
-		$destino = ".".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
+		$destino = ".".DIRECTORY_SEPARATOR."Arquivos".DIRECTORY_SEPARATOR."ocorrencias".DIRECTORY_SEPARATOR.$nomePasta.DIRECTORY_SEPARATOR;
 
 		//Instancia o mpdf
 		$mpdf = new Mpdf();

@@ -45,6 +45,7 @@ class COcorrenciaArquivoExterno {
 
 		        // Concatena a pasta com o nome
 	        	$destino = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
+	        				"Arquivos" . DIRECTORY_SEPARATOR .
 							"ocorrencias" . DIRECTORY_SEPARATOR . 
 							$nomePasta . DIRECTORY_SEPARATOR . $novoNome;
 		        

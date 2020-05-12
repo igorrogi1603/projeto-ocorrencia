@@ -18,4 +18,5 @@ require_once("route-ocorrencias-status.php");
 require_once("route-solicitacoes.php");
 require_once("route-usuarios.php");
 require_once("route-notificacao.php");
+require_once("route-averiguacao.php");
 ?>
