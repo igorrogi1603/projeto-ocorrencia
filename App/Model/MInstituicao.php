@@ -24,10 +24,10 @@ class MInstituicao {
 		", [
 			":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 			":idContato" => (int)$idContato[0]["MAX(idContato)"],
-			":nome" => utf8_decode($validacao->validarString($instituicao->getnomeInstituicao(), 1)),
+			":nome" => $validacao->validarString($instituicao->getnomeInstituicao(), 1),
 			":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjInstituicao()),
 			":status" => $instituicao->getradioQualInstituicao(),
-			":subnome" => utf8_decode($validacao->validarString($instituicao->getsubnomeInstituicao(), 1))
+			":subnome" => $validacao->validarString($instituicao->getsubnomeInstituicao(), 1)
 		]);
 	}
 
@@ -47,10 +47,10 @@ class MInstituicao {
 					SET nome = :nome, cnpj = :cnpj, status = :status, subnome = :subnome
 					WHERE idInstituicao = :idInstituicao
 				", [
-					":nome" => utf8_decode($validacao->validarString($instituicao->getnomeAgressor(), 1)),
+					":nome" => $validacao->validarString($instituicao->getnomeAgressor(), 1),
 					":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjAgressor()),
 					":status" => $instituicao->gethiddenStatusAgressor(),
-					":subnome" => utf8_decode($validacao->validarString($instituicao->getsubnomeAgressor(), 1)),
+					":subnome" => $validacao->validarString($instituicao->getsubnomeAgressor(), 1),
 					":idInstituicao" => $idInstituicao
 				]);
 				break;
@@ -61,10 +61,10 @@ class MInstituicao {
 					SET nome = :nome, cnpj = :cnpj, status = :status, subnome = :subnome
 					WHERE idInstituicao = :idInstituicao
 				", [
-					":nome" => utf8_decode($validacao->validarString($instituicao->getnomeUsuario(), 1)),
+					":nome" => $validacao->validarString($instituicao->getnomeUsuario(), 1),
 					":cnpj" => $validacao->replaceCnpjBd($instituicao->getcnpjInstituicao()),
 					":status" => $instituicao->gethiddenStatusUsuario(),
-					":subnome" => utf8_decode($validacao->validarString($instituicao->getsubnomeUsuario(), 1)),
+					":subnome" => $validacao->validarString($instituicao->getsubnomeUsuario(), 1),
 					":idInstituicao" => $idInstituicao
 				]);
 				break;

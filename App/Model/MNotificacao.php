@@ -17,7 +17,7 @@ class MNotificacao {
 			VALUES(:idUsuario, :tipo, :url)
 		", [
 			":idUsuario" => $para,
-			":tipo" => utf8_decode($tipo),
+			":tipo" => $tipo,
 			":url" => $url
 		]);
 	}

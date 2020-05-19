@@ -23,8 +23,8 @@ class CCriarAveriguacao {
 		$lista = $maveriguacao->listNaoLidas();
 
 		foreach ($lista as $value) {
-			$value['titulo'] = utf8_encode($value['titulo']);
-			$value['mensagem'] = utf8_encode($value['mensagem']);
+			$value['titulo'] = $value['titulo'];
+			$value['mensagem'] = $value['mensagem'];
 		}
 
 		return $lista;
@@ -39,8 +39,8 @@ class CCriarAveriguacao {
 		$lista = $maveriguacao->listLidas();
 
 		foreach ($lista as $value) {
-			$value['titulo'] = utf8_encode($value['titulo']);
-			$value['mensagem'] = utf8_encode($value['mensagem']);
+			$value['titulo'] = $value['titulo'];
+			$value['mensagem'] = $value['mensagem'];
 		}
 
 		return $lista;
@@ -55,8 +55,8 @@ class CCriarAveriguacao {
 		$lista = $maveriguacao->listEspecifico($idAveriguacao);
 
 		foreach ($lista as $value) {
-			$value['titulo'] = utf8_encode($value['titulo']);
-			$value['mensagem'] = utf8_encode($value['mensagem']);
+			$value['titulo'] = $value['titulo'];
+			$value['mensagem'] = $value['mensagem'];
 		}
 
 		foreach ($lista as $value) {

@@ -52,8 +52,8 @@ class MSolicitacao {
 			":idOcorrencia" => (int)$idOcorrencia,
 			":idRemetente" => (int)$idRemetente,
 			":idDestinatario" => (int)$idDestinatario,
-			":assunto" => utf8_decode($solicitacao->getassunto()),
-			":mensagem" => utf8_decode($solicitacao->getmensagem()),
+			":assunto" => $solicitacao->getassunto(),
+			":mensagem" => $solicitacao->getmensagem(),
 			":dataCriacao" => date("Y-m-d H:i:s"),
 			":isResposta" => 0,
 			":isLixeira" => 0
@@ -73,7 +73,7 @@ class MSolicitacao {
 			VALUES(:idSolicitacao, :resposta)
 		", [
 			":idSolicitacao" => (int)$idSolicitacao,
-			":resposta" => utf8_decode($solicitacao->getmensagem())
+			":resposta" => $solicitacao->getmensagem()
 		]);
 	}
 

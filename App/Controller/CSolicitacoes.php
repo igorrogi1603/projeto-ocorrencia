@@ -22,20 +22,20 @@ class CSolicitacoes {
 
 		//Validando os dados da Instituicao
 		for ($i = 0; $i < count($instituicao); $i++) {
-			$instituicao[$i]['assunto'] = utf8_encode($instituicao[$i]['assunto']);
-			$instituicao[$i]['mensagem'] = utf8_encode($instituicao[$i]['mensagem']);
-			$instituicao[$i]['nomeVitima'] = utf8_encode($instituicao[$i]['nomeVitima']);
-			$instituicao[$i]['nomeDestinatario'] = utf8_encode($instituicao[$i]['nomeDestinatario']);
+			$instituicao[$i]['assunto'] = $instituicao[$i]['assunto'];
+			$instituicao[$i]['mensagem'] = $instituicao[$i]['mensagem'];
+			$instituicao[$i]['nomeVitima'] = $instituicao[$i]['nomeVitima'];
+			$instituicao[$i]['nomeDestinatario'] = $instituicao[$i]['nomeDestinatario'];
 			$instituicao[$i]['dataCriacao'] = $validacao->replaceDataView($instituicao[$i]['dataCriacao']);
 			$instituicao[$i]['isInstituicao'] = '1';
 		}
 
 		//Validando os dados da Pessoa
 		for ($i = 0; $i < count($pessoa); $i++) {
-			$pessoa[$i]['assunto'] = utf8_encode($pessoa[$i]['assunto']);
-			$pessoa[$i]['mensagem'] = utf8_encode($pessoa[$i]['mensagem']);
-			$pessoa[$i]['nomeVitima'] = utf8_encode($pessoa[$i]['nomeVitima']);
-			$pessoa[$i]['nomeDestinatario'] = utf8_encode($pessoa[$i]['nomeDestinatario']);
+			$pessoa[$i]['assunto'] = $pessoa[$i]['assunto'];
+			$pessoa[$i]['mensagem'] = $pessoa[$i]['mensagem'];
+			$pessoa[$i]['nomeVitima'] = $pessoa[$i]['nomeVitima'];
+			$pessoa[$i]['nomeDestinatario'] = $pessoa[$i]['nomeDestinatario'];
 			$pessoa[$i]['dataCriacao'] = $validacao->replaceDataView($pessoa[$i]['dataCriacao']);
 			$pessoa[$i]['isInstituicao'] = '0';
 		}
@@ -76,15 +76,15 @@ class CSolicitacoes {
 
 			//Validando os dados da Instituicao
 			for ($i = 0; $i < count($instituicao); $i++) {
-				$instituicao[$i]['assunto'] = utf8_encode($instituicao[$i]['assunto']);
-				$instituicao[$i]['mensagem'] = utf8_encode($instituicao[$i]['mensagem']);
-				$instituicao[$i]['nomeVitima'] = utf8_encode($instituicao[$i]['nomeVitima']);
-				$instituicao[$i]['nomeDestinatario'] = utf8_encode($instituicao[$i]['nomeDestinatario']);
+				$instituicao[$i]['assunto'] = $instituicao[$i]['assunto'];
+				$instituicao[$i]['mensagem'] = $instituicao[$i]['mensagem'];
+				$instituicao[$i]['nomeVitima'] = $instituicao[$i]['nomeVitima'];
+				$instituicao[$i]['nomeDestinatario'] = $instituicao[$i]['nomeDestinatario'];
 				$instituicao[$i]['dataCriacao'] = $validacao->replaceDataView($instituicao[$i]['dataCriacao']);
 				$instituicao[$i]['isInstituicao'] = '1';
 				
 				if (isset($listaResposta) && $listaResposta != "" && $listaResposta != null) {
-					$instituicao[$i]['resposta'] = utf8_encode($listaResposta[$i]['resposta']);
+					$instituicao[$i]['resposta'] = $listaResposta[$i]['resposta'];
 				} else {
 					$instituicao[$i]['resposta'] = "";
 				}
@@ -99,15 +99,15 @@ class CSolicitacoes {
 
 			//Validando os dados da Pessoa
 			for ($i = 0; $i < count($pessoa); $i++) {
-				$pessoa[$i]['assunto'] = utf8_encode($pessoa[$i]['assunto']);
-				$pessoa[$i]['mensagem'] = utf8_encode($pessoa[$i]['mensagem']);
-				$pessoa[$i]['nomeVitima'] = utf8_encode($pessoa[$i]['nomeVitima']);
-				$pessoa[$i]['nomeDestinatario'] = utf8_encode($pessoa[$i]['nomeDestinatario']);
+				$pessoa[$i]['assunto'] = $pessoa[$i]['assunto'];
+				$pessoa[$i]['mensagem'] = $pessoa[$i]['mensagem'];
+				$pessoa[$i]['nomeVitima'] = $pessoa[$i]['nomeVitima'];
+				$pessoa[$i]['nomeDestinatario'] = $pessoa[$i]['nomeDestinatario'];
 				$pessoa[$i]['dataCriacao'] = $validacao->replaceDataView($pessoa[$i]['dataCriacao']);
 				$pessoa[$i]['isInstituicao'] = '0';
 				
 				if (isset($listaResposta) && $listaResposta != "" && $listaResposta != null) {
-					$pessoa[$i]['resposta'] = utf8_encode($listaResposta[$i]['resposta']);
+					$pessoa[$i]['resposta'] = $listaResposta[$i]['resposta'];
 				} else {
 					$pessoa[$i]['resposta'] = "";
 				}

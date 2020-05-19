@@ -19,12 +19,12 @@ class COcorrenciaAcompanhamento {
 
 		//Validacao dos campos com acentos do banco de dados
 		for ($i = 0; $i < $tamanhoArray; $i++) {
-			$listaAcompanhamentoGeral[$i]['rua'] = utf8_encode($listaAcompanhamentoGeral[$i]['rua']);
-			$listaAcompanhamentoGeral[$i]['bairro'] = utf8_encode($listaAcompanhamentoGeral[$i]['bairro']);
-			$listaAcompanhamentoGeral[$i]['cidade'] = utf8_encode($listaAcompanhamentoGeral[$i]['cidade']);
-			$listaAcompanhamentoGeral[$i]['estado'] = strtoupper(utf8_encode($listaAcompanhamentoGeral[$i]['estado']));
-			$listaAcompanhamentoGeral[$i]['complemento'] = utf8_encode($listaAcompanhamentoGeral[$i]['complemento']);
-			$listaAcompanhamentoGeral[$i]['cep'] = $validacao->replaceCepView(utf8_encode($listaAcompanhamentoGeral[$i]['cep']));
+			$listaAcompanhamentoGeral[$i]['rua'] = $listaAcompanhamentoGeral[$i]['rua'];
+			$listaAcompanhamentoGeral[$i]['bairro'] = $listaAcompanhamentoGeral[$i]['bairro'];
+			$listaAcompanhamentoGeral[$i]['cidade'] = $listaAcompanhamentoGeral[$i]['cidade'];
+			$listaAcompanhamentoGeral[$i]['estado'] = strtoupper($listaAcompanhamentoGeral[$i]['estado']);
+			$listaAcompanhamentoGeral[$i]['complemento'] = $listaAcompanhamentoGeral[$i]['complemento'];
+			$listaAcompanhamentoGeral[$i]['cep'] = $validacao->replaceCepView($listaAcompanhamentoGeral[$i]['cep']);
 			$listaAcompanhamentoGeral[$i]['data'] = $validacao->replaceDataView($listaAcompanhamentoGeral[$i]['dataRegistro']);
 			$listaAcompanhamentoGeral[$i]['hora'] = $validacao->replaceHoraView($listaAcompanhamentoGeral[$i]['dataRegistro']);
 		}

@@ -25,7 +25,7 @@ class MPessoa {
 				", [
 					":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 					":idContato" => (int)$idContato[0]["MAX(idContato)"],
-					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeUsuario(), 1)),
+					":nome" => $validacao->validarString($pessoa->getnomeUsuario(), 1),
 					":dataNasc" => $validacao->replaceDataBd($pessoa->getdataNascUsuario()),
 					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
 					":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
@@ -40,7 +40,7 @@ class MPessoa {
 				", [
 					":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 					":idContato" => (int)$idContato[0]["MAX(idContato)"],
-					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeVitima(), 1)),
+					":nome" => $validacao->validarString($pessoa->getnomeVitima(), 1),
 					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfVitima()),
 					":sexo" => $pessoa->getsexoVitima()
 				]);
@@ -53,7 +53,7 @@ class MPessoa {
 				", [
 					":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 					":idContato" => (int)$idContato[0]["MAX(idContato)"],
-					":nome" => utf8_decode($validacao->validarString($pessoa->getresponsavelVitima(), 1)),
+					":nome" => $validacao->validarString($pessoa->getresponsavelVitima(), 1),
 					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfResponsavelVitima()),
 				]);
 				break;
@@ -65,7 +65,7 @@ class MPessoa {
 				", [
 					":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 					":idContato" => (int)$idContato[0]["MAX(idContato)"],
-					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeResponsavel(), 1)),
+					":nome" => $validacao->validarString($pessoa->getnomeResponsavel(), 1),
 					":dataNasc" => $validacao->replaceDataBd($pessoa->getdataNascResponsavel()),
 					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfResponsavel()),
 					":rg" => $validacao->replaceRgBd($pessoa->getrgResponsavel(), $pessoa->getrgDigitoResponsavel()),
@@ -80,7 +80,7 @@ class MPessoa {
 				", [
 					":idEndereco" => (int)$idEndereco[0]["MAX(idEndereco)"],
 					":idContato" => (int)$idContato[0]["MAX(idContato)"],
-					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeAgressor(), 1)),
+					":nome" => $validacao->validarString($pessoa->getnomeAgressor(), 1),
 					":dataNasc" => $validacao->replaceDataBd($pessoa->getdataNascAgressor()),
 					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfAgressor()),
 					":rg" => $validacao->replaceRgBd($pessoa->getrgAgressor(), $pessoa->getrgDigitoAgressor()),
@@ -120,7 +120,7 @@ class MPessoa {
 					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
 					WHERE idPessoa = :idPessoa
 				", [
-					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeUsuario(), 1)),
+					":nome" => $validacao->validarString($pessoa->getnomeUsuario(), 1),
 					":dataNasc" => $dataNasc,
 					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfUsuario()),
 					":rg" => $validacao->replaceRgBd($pessoa->getrgUsuario(), $pessoa->getrgDigitoUsuario()),
@@ -141,7 +141,7 @@ class MPessoa {
 					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
 					WHERE idPessoa = :idPessoa
 				", [
-					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeVitima(), 1)),
+					":nome" => $validacao->validarString($pessoa->getnomeVitima(), 1),
 					":dataNasc" => $dataNasc,
 					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfVitima()),
 					":rg" => $validacao->replaceRgBd($pessoa->getrgVitima(), $pessoa->getrgDigitoVitima()),
@@ -162,7 +162,7 @@ class MPessoa {
 					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
 					WHERE idPessoa = :idPessoa
 				", [
-					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeResponsavel(), 1)),
+					":nome" => $validacao->validarString($pessoa->getnomeResponsavel(), 1),
 					":dataNasc" => $dataNasc,
 					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfResponsavel()),
 					":rg" => $validacao->replaceRgBd($pessoa->getrgResponsavel(), $pessoa->getrgDigitoResponsavel()),
@@ -183,7 +183,7 @@ class MPessoa {
 					SET nome = :nome, dataNasc = :dataNasc, cpf = :cpf, rg = :rg, sexo = :sexo
 					WHERE idPessoa = :idPessoa
 				", [
-					":nome" => utf8_decode($validacao->validarString($pessoa->getnomeAgressor(), 1)),
+					":nome" => $validacao->validarString($pessoa->getnomeAgressor(), 1),
 					":dataNasc" => $dataNasc,
 					":cpf" => $validacao->replaceCpfBd($pessoa->getcpfAgressor()),
 					":rg" => $validacao->replaceRgBd($pessoa->getrgAgressor(), $pessoa->getrgDigitoAgressor()),

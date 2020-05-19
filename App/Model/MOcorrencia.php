@@ -78,7 +78,7 @@ class MOcorrencia {
 		", [
 			":idOcorrencia" => $idOcorrencia,
 			":idUsuario" => $idUsuario,
-			":motivo" => utf8_decode($ocorrencia->getdescricao())
+			":motivo" => $ocorrencia->getdescricao()
 		]);
 	}
 
@@ -110,7 +110,7 @@ class MOcorrencia {
 		", [
 			":idOcorrencia" => $idOcorrencia,
 			":idUsuario" => $idUsuario,
-			":motivo" => utf8_decode($ocorrencia->getdescricao())
+			":motivo" => $ocorrencia->getdescricao()
 		]);
 	}
 
@@ -142,7 +142,7 @@ class MOcorrencia {
 		", [
 			":idOcorrencia" => $idOcorrencia,
 			":idUsuario" => $idUsuario,
-			":motivo" => utf8_decode($ocorrencia->getdescricao())
+			":motivo" => $ocorrencia->getdescricao()
 		]);
 	}
 

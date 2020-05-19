@@ -31,8 +31,8 @@ class MUsuario {
 					":nivelAcesso" => $usuario->getnivelUsuario(),
 					":user" => Validacao::tirarAcentos($usuario->getusernameUsuario()),
 					":senha" => Usuario::getPasswordHash($usuario->getsenhaUsuario()),
-					":funcao" => utf8_decode($usuario->getfuncaoUsuario()),
-					":setor" => utf8_decode($usuario->getsetorUsuario()),
+					":funcao" => $usuario->getfuncaoUsuario(),
+					":setor" => $usuario->getsetorUsuario(),
 					":isBloqueado" => 0
 				]);	
 				break;
@@ -72,8 +72,8 @@ class MUsuario {
 		", [
 			":nivelAcesso" => $usuario->getnivelUsuario(),
 			":user" => Validacao::tirarAcentos($usuario->getusernameUsuario()),
-			":funcao" => utf8_decode($usuario->getfuncaoUsuario()),
-			":setor" => utf8_decode($usuario->getsetorUsuario()),
+			":funcao" => $usuario->getfuncaoUsuario(),
+			":setor" => $usuario->getsetorUsuario(),
 			":idUsuario" => $idUsuario
 		]);
 	}

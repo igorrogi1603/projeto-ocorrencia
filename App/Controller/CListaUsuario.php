@@ -17,15 +17,15 @@ class CListaUsuario {
 
 		//corrigindo caracteres
 		for ($i = 0; $i < count($dados); $i++) {
-			$dados[$i]['nome'] = utf8_encode($dados[$i]['nome']);
-			$dados[$i]['setor'] = utf8_encode($dados[$i]['setor']);
-			$dados[$i]['funcao'] = utf8_encode($dados[$i]['funcao']);
+			$dados[$i]['nome'] = $dados[$i]['nome'];
+			$dados[$i]['setor'] = $dados[$i]['setor'];
+			$dados[$i]['funcao'] = $dados[$i]['funcao'];
 			$dados[$i]['isCpf'] = '1';
 		}
 
 		//corrigindo caracteres
 		for ($i = 0; $i < count($dadosInstituicao); $i++) {
-			$dadosInstituicao[$i]['nome'] = utf8_encode($dadosInstituicao[$i]['nome']);
+			$dadosInstituicao[$i]['nome'] = $dadosInstituicao[$i]['nome'];
 			$dadosInstituicao[$i]['isCpf'] = '0';
 		}
 

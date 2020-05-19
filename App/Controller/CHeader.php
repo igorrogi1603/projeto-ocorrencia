@@ -15,7 +15,7 @@ class CHeader {
 		$lista = $mnotificacao->listAll();
 
 		for ($i = 0; $i < count($lista); $i++) {
-			$lista[$i]['tipo'] = utf8_encode($lista[$i]['tipo']);
+			$lista[$i]['tipo'] = $lista[$i]['tipo'];
 			$lista[$i]['dataRegistro'] = $validacao->replaceDataView($lista[$i]['dataRegistro']);
 
 			$lista[$i]['url'] = str_replace("/", "!!", $lista[$i]['url']);

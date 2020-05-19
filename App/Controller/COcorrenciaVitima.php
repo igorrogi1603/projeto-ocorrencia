@@ -238,40 +238,40 @@ class COcorrenciaVitima {
 
 		//Validacao dos campos com acentos do banco de dados
 		for ($i = 0; $i < $tamanhoArray; $i++) {
-			$vitimaOcorrencia[$i]['descricao'] = utf8_encode($vitimaOcorrencia[$i]['descricao']);
-			$vitimaOcorrencia[$i]['tipoApuracao'] = utf8_encode($vitimaOcorrencia[$i]['tipoApuracao']);
-			$vitimaOcorrencia[$i]['qualFamilia'] = utf8_encode($vitimaOcorrencia[$i]['qualFamilia']);
-			$vitimaOcorrencia[$i]['nomeVitima'] = utf8_encode($vitimaOcorrencia[$i]['nomeVitima']);
-			$vitimaOcorrencia[$i]['nomeResponsavel'] = utf8_encode($vitimaOcorrencia[$i]['nomeResponsavel']);
-			$vitimaOcorrencia[$i]['ruaVitima'] = utf8_encode($vitimaOcorrencia[$i]['ruaVitima']);
-			$vitimaOcorrencia[$i]['bairroVitima'] = utf8_encode($vitimaOcorrencia[$i]['bairroVitima']);
-			$vitimaOcorrencia[$i]['cidadeVitima'] = utf8_encode($vitimaOcorrencia[$i]['cidadeVitima']);
-			$vitimaOcorrencia[$i]['estadoVitima'] = strtoupper(utf8_encode($vitimaOcorrencia[$i]['estadoVitima']));
-			$vitimaOcorrencia[$i]['complementoVitima'] = utf8_encode($vitimaOcorrencia[$i]['complementoVitima']);
-			$vitimaOcorrencia[$i]['ruaResponsavel'] = utf8_encode($vitimaOcorrencia[$i]['ruaResponsavel']);
-			$vitimaOcorrencia[$i]['bairroResponsavel'] = utf8_encode($vitimaOcorrencia[$i]['bairroResponsavel']);
-			$vitimaOcorrencia[$i]['cidadeResponsavel'] = utf8_encode($vitimaOcorrencia[$i]['cidadeResponsavel']);
-			$vitimaOcorrencia[$i]['estadoResponsavel'] = strtoupper(utf8_encode($vitimaOcorrencia[$i]['estadoResponsavel']));
-			$vitimaOcorrencia[$i]['complementoResponsavel'] = utf8_encode($vitimaOcorrencia[$i]['complementoResponsavel']);
-			$vitimaOcorrencia[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($vitimaOcorrencia[$i]['cpfVitima']));
-			$vitimaOcorrencia[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($vitimaOcorrencia[$i]['celularVitima']));
-			$vitimaOcorrencia[$i]['fixoVitima'] = $validacao->replaceTelefoneFixoView(utf8_encode($vitimaOcorrencia[$i]['fixoVitima']));
-			$vitimaOcorrencia[$i]['fixoResponsavel'] = $validacao->replaceTelefoneFixoView(utf8_encode($vitimaOcorrencia[$i]['fixoResponsavel']));
-			$vitimaOcorrencia[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($vitimaOcorrencia[$i]['cpfResponsavel']));
-			$vitimaOcorrencia[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($vitimaOcorrencia[$i]['celularResponsavel']));
-			$vitimaOcorrencia[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($vitimaOcorrencia[$i]['cepVitima']));
-			$vitimaOcorrencia[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($vitimaOcorrencia[$i]['cepResponsavel']));
+			$vitimaOcorrencia[$i]['descricao'] = $vitimaOcorrencia[$i]['descricao'];
+			$vitimaOcorrencia[$i]['tipoApuracao'] = $vitimaOcorrencia[$i]['tipoApuracao'];
+			$vitimaOcorrencia[$i]['qualFamilia'] = $vitimaOcorrencia[$i]['qualFamilia'];
+			$vitimaOcorrencia[$i]['nomeVitima'] = $vitimaOcorrencia[$i]['nomeVitima'];
+			$vitimaOcorrencia[$i]['nomeResponsavel'] = $vitimaOcorrencia[$i]['nomeResponsavel'];
+			$vitimaOcorrencia[$i]['ruaVitima'] = $vitimaOcorrencia[$i]['ruaVitima'];
+			$vitimaOcorrencia[$i]['bairroVitima'] = $vitimaOcorrencia[$i]['bairroVitima'];
+			$vitimaOcorrencia[$i]['cidadeVitima'] = $vitimaOcorrencia[$i]['cidadeVitima'];
+			$vitimaOcorrencia[$i]['estadoVitima'] = strtoupper($vitimaOcorrencia[$i]['estadoVitima']);
+			$vitimaOcorrencia[$i]['complementoVitima'] = $vitimaOcorrencia[$i]['complementoVitima'];
+			$vitimaOcorrencia[$i]['ruaResponsavel'] = $vitimaOcorrencia[$i]['ruaResponsavel'];
+			$vitimaOcorrencia[$i]['bairroResponsavel'] = $vitimaOcorrencia[$i]['bairroResponsavel'];
+			$vitimaOcorrencia[$i]['cidadeResponsavel'] = $vitimaOcorrencia[$i]['cidadeResponsavel'];
+			$vitimaOcorrencia[$i]['estadoResponsavel'] = strtoupper($vitimaOcorrencia[$i]['estadoResponsavel']);
+			$vitimaOcorrencia[$i]['complementoResponsavel'] = $vitimaOcorrencia[$i]['complementoResponsavel'];
+			$vitimaOcorrencia[$i]['cpfVitima'] = $validacao->replaceCpfView($vitimaOcorrencia[$i]['cpfVitima']);
+			$vitimaOcorrencia[$i]['celularVitima'] = $validacao->replaceCelularView($vitimaOcorrencia[$i]['celularVitima']);
+			$vitimaOcorrencia[$i]['fixoVitima'] = $validacao->replaceTelefoneFixoView($vitimaOcorrencia[$i]['fixoVitima']);
+			$vitimaOcorrencia[$i]['fixoResponsavel'] = $validacao->replaceTelefoneFixoView($vitimaOcorrencia[$i]['fixoResponsavel']);
+			$vitimaOcorrencia[$i]['cpfResponsavel'] = $validacao->replaceCpfView($vitimaOcorrencia[$i]['cpfResponsavel']);
+			$vitimaOcorrencia[$i]['celularResponsavel'] = $validacao->replaceCelularView($vitimaOcorrencia[$i]['celularResponsavel']);
+			$vitimaOcorrencia[$i]['cepVitima'] = $validacao->replaceCepView($vitimaOcorrencia[$i]['cepVitima']);
+			$vitimaOcorrencia[$i]['cepResponsavel'] = $validacao->replaceCepView($vitimaOcorrencia[$i]['cepResponsavel']);
 			$vitimaOcorrencia[$i]['rgVitimaDigito'] = $validacao->replaceDigitoRg($vitimaOcorrencia[$i]['rgVitima']);
 			$vitimaOcorrencia[$i]['rgVitima'] = $validacao->replaceSemDigitoRg($vitimaOcorrencia[$i]['rgVitima']);
 			$vitimaOcorrencia[$i]['rgResponsavelDigito'] = $validacao->replaceDigitoRg($vitimaOcorrencia[$i]['rgResponsavel']);
 			$vitimaOcorrencia[$i]['rgResponsavel'] = $validacao->replaceSemDigitoRg($vitimaOcorrencia[$i]['rgResponsavel']);
-			$vitimaOcorrencia[$i]['dataRegistroOcorrencia'] = $validacao->replaceDataView(utf8_encode($vitimaOcorrencia[$i]['dataRegistroOcorrencia']));
-			$vitimaOcorrencia[$i]['dataCriacaoOcorrencia'] = $validacao->replaceDataView(utf8_encode($vitimaOcorrencia[$i]['dataCriacaoOcorrencia']));
+			$vitimaOcorrencia[$i]['dataRegistroOcorrencia'] = $validacao->replaceDataView($vitimaOcorrencia[$i]['dataRegistroOcorrencia']);
+			$vitimaOcorrencia[$i]['dataCriacaoOcorrencia'] = $validacao->replaceDataView($vitimaOcorrencia[$i]['dataCriacaoOcorrencia']);
 
 			if ($vitimaOcorrencia[$i]['dataNascVitima'] == null) {
 				//mostra nada
 			} else {
-				$vitimaOcorrencia[$i]['dataNascVitima'] = $validacao->replaceDataView(utf8_encode($vitimaOcorrencia[$i]['dataNascVitima']));
+				$vitimaOcorrencia[$i]['dataNascVitima'] = $validacao->replaceDataView($vitimaOcorrencia[$i]['dataNascVitima']);
 			}
 		}
 		return $vitimaOcorrencia;
@@ -291,37 +291,37 @@ class COcorrenciaVitima {
 
 		//Validacao dos campos com acentos do banco de dados
 		for ($i = 0; $i < $tamanhoArray; $i++) {
-			$vitimasOcorrencia[$i]['descricao'] = utf8_encode($vitimasOcorrencia[$i]['descricao']);
-			$vitimasOcorrencia[$i]['tipoApuracao'] = utf8_encode($vitimasOcorrencia[$i]['tipoApuracao']);
-			$vitimasOcorrencia[$i]['qualFamilia'] = utf8_encode($vitimasOcorrencia[$i]['qualFamilia']);
-			$vitimasOcorrencia[$i]['nomeVitima'] = utf8_encode($vitimasOcorrencia[$i]['nomeVitima']);
-			$vitimasOcorrencia[$i]['nomeResponsavel'] = utf8_encode($vitimasOcorrencia[$i]['nomeResponsavel']);
-			$vitimasOcorrencia[$i]['ruaVitima'] = utf8_encode($vitimasOcorrencia[$i]['ruaVitima']);
-			$vitimasOcorrencia[$i]['bairroVitima'] = utf8_encode($vitimasOcorrencia[$i]['bairroVitima']);
-			$vitimasOcorrencia[$i]['cidadeVitima'] = utf8_encode($vitimasOcorrencia[$i]['cidadeVitima']);
-			$vitimasOcorrencia[$i]['estadoVitima'] = strtoupper(utf8_encode($vitimasOcorrencia[$i]['estadoVitima']));
-			$vitimasOcorrencia[$i]['complementoVitima'] = utf8_encode($vitimasOcorrencia[$i]['complementoVitima']);
-			$vitimasOcorrencia[$i]['ruaResponsavel'] = utf8_encode($vitimasOcorrencia[$i]['ruaResponsavel']);
-			$vitimasOcorrencia[$i]['bairroResponsavel'] = utf8_encode($vitimasOcorrencia[$i]['bairroResponsavel']);
-			$vitimasOcorrencia[$i]['cidadeResponsavel'] = utf8_encode($vitimasOcorrencia[$i]['cidadeResponsavel']);
-			$vitimasOcorrencia[$i]['estadoResponsavel'] = strtoupper(utf8_encode($vitimasOcorrencia[$i]['estadoResponsavel']));
-			$vitimasOcorrencia[$i]['complementoResponsavel'] = utf8_encode($vitimasOcorrencia[$i]['complementoResponsavel']);
-			$vitimasOcorrencia[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($vitimasOcorrencia[$i]['cpfVitima']));
-			$vitimasOcorrencia[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($vitimasOcorrencia[$i]['celularVitima']));
-			$vitimasOcorrencia[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($vitimasOcorrencia[$i]['cpfResponsavel']));
-			$vitimasOcorrencia[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($vitimasOcorrencia[$i]['celularResponsavel']));
-			$vitimasOcorrencia[$i]['fixoVitima'] = $validacao->replaceTelefoneFixoView(utf8_encode($vitimasOcorrencia[$i]['fixoVitima']));
-			$vitimasOcorrencia[$i]['fixoResponsavel'] = $validacao->replaceTelefoneFixoView(utf8_encode($vitimasOcorrencia[$i]['fixoResponsavel']));
-			$vitimasOcorrencia[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($vitimasOcorrencia[$i]['cepVitima']));
-			$vitimasOcorrencia[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($vitimasOcorrencia[$i]['cepResponsavel']));
+			$vitimasOcorrencia[$i]['descricao'] = $vitimasOcorrencia[$i]['descricao'];
+			$vitimasOcorrencia[$i]['tipoApuracao'] = $vitimasOcorrencia[$i]['tipoApuracao'];
+			$vitimasOcorrencia[$i]['qualFamilia'] = $vitimasOcorrencia[$i]['qualFamilia'];
+			$vitimasOcorrencia[$i]['nomeVitima'] = $vitimasOcorrencia[$i]['nomeVitima'];
+			$vitimasOcorrencia[$i]['nomeResponsavel'] = $vitimasOcorrencia[$i]['nomeResponsavel'];
+			$vitimasOcorrencia[$i]['ruaVitima'] = $vitimasOcorrencia[$i]['ruaVitima'];
+			$vitimasOcorrencia[$i]['bairroVitima'] = $vitimasOcorrencia[$i]['bairroVitima'];
+			$vitimasOcorrencia[$i]['cidadeVitima'] = $vitimasOcorrencia[$i]['cidadeVitima'];
+			$vitimasOcorrencia[$i]['estadoVitima'] = strtoupper($vitimasOcorrencia[$i]['estadoVitima']);
+			$vitimasOcorrencia[$i]['complementoVitima'] = $vitimasOcorrencia[$i]['complementoVitima'];
+			$vitimasOcorrencia[$i]['ruaResponsavel'] = $vitimasOcorrencia[$i]['ruaResponsavel'];
+			$vitimasOcorrencia[$i]['bairroResponsavel'] = $vitimasOcorrencia[$i]['bairroResponsavel'];
+			$vitimasOcorrencia[$i]['cidadeResponsavel'] = $vitimasOcorrencia[$i]['cidadeResponsavel'];
+			$vitimasOcorrencia[$i]['estadoResponsavel'] = strtoupper($vitimasOcorrencia[$i]['estadoResponsavel']);
+			$vitimasOcorrencia[$i]['complementoResponsavel'] = $vitimasOcorrencia[$i]['complementoResponsavel'];
+			$vitimasOcorrencia[$i]['cpfVitima'] = $validacao->replaceCpfView($vitimasOcorrencia[$i]['cpfVitima']);
+			$vitimasOcorrencia[$i]['celularVitima'] = $validacao->replaceCelularView($vitimasOcorrencia[$i]['celularVitima']);
+			$vitimasOcorrencia[$i]['cpfResponsavel'] = $validacao->replaceCpfView($vitimasOcorrencia[$i]['cpfResponsavel']);
+			$vitimasOcorrencia[$i]['celularResponsavel'] = $validacao->replaceCelularView($vitimasOcorrencia[$i]['celularResponsavel']);
+			$vitimasOcorrencia[$i]['fixoVitima'] = $validacao->replaceTelefoneFixoView($vitimasOcorrencia[$i]['fixoVitima']);
+			$vitimasOcorrencia[$i]['fixoResponsavel'] = $validacao->replaceTelefoneFixoView($vitimasOcorrencia[$i]['fixoResponsavel']);
+			$vitimasOcorrencia[$i]['cepVitima'] = $validacao->replaceCepView($vitimasOcorrencia[$i]['cepVitima']);
+			$vitimasOcorrencia[$i]['cepResponsavel'] = $validacao->replaceCepView($vitimasOcorrencia[$i]['cepResponsavel']);
 			$vitimasOcorrencia[$i]['rgVitima'] = $validacao->replaceRgView($vitimasOcorrencia[$i]['rgVitima']);
-			$vitimasOcorrencia[$i]['dataRegistroOcorrencia'] = $validacao->replaceDataView(utf8_encode($vitimasOcorrencia[$i]['dataRegistroOcorrencia']));
-			$vitimasOcorrencia[$i]['dataCriacaoOcorrencia'] = $validacao->replaceDataView(utf8_encode($vitimasOcorrencia[$i]['dataCriacaoOcorrencia']));
+			$vitimasOcorrencia[$i]['dataRegistroOcorrencia'] = $validacao->replaceDataView($vitimasOcorrencia[$i]['dataRegistroOcorrencia']);
+			$vitimasOcorrencia[$i]['dataCriacaoOcorrencia'] = $validacao->replaceDataView($vitimasOcorrencia[$i]['dataCriacaoOcorrencia']);
 
 			if ($vitimasOcorrencia[$i]['dataNascVitima'] == null) {
 				//mostra nada
 			} else {
-				$vitimasOcorrencia[$i]['dataNascVitima'] = $validacao->replaceDataView(utf8_encode($vitimasOcorrencia[$i]['dataNascVitima']));
+				$vitimasOcorrencia[$i]['dataNascVitima'] = $validacao->replaceDataView($vitimasOcorrencia[$i]['dataNascVitima']);
 			}
 		}
 		return $vitimasOcorrencia;

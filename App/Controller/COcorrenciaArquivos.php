@@ -18,7 +18,7 @@ class COcorrenciaArquivos {
 
 		//Corrigindo acentuacao
 		for ($i = 0; $i < count($listaArquivos); $i++) {
-			$listaArquivos[$i]['tipo'] = utf8_encode($listaArquivos[$i]['tipo']);
+			$listaArquivos[$i]['tipo'] = $listaArquivos[$i]['tipo'];
 		}
 
 		return $listaArquivos;

@@ -25,12 +25,12 @@ class MEndereco {
 					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 				", [
 					":cep" => $validacao->replaceCepBd($endereco->getcepUsuario()),
-					":rua" => utf8_decode($endereco->getruaUsuario()),
+					":rua" => $endereco->getruaUsuario(),
 					":numero" => $endereco->getnumeroUsuario(),
-					":bairro" => utf8_decode($endereco->getbairroUsuario()),
-					":cidade" => utf8_decode($endereco->getcidadeUsuario()),
+					":bairro" => $endereco->getbairroUsuario(),
+					":cidade" => $endereco->getcidadeUsuario(),
 					":estado" => $endereco->getestadoUsuario(),
-					":complemento" => utf8_decode($endereco->getcomplementoUsuario())
+					":complemento" => $endereco->getcomplementoUsuario()
 				]);		
 				break;
 
@@ -40,12 +40,12 @@ class MEndereco {
 					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 				", [
 					":cep" => $validacao->replaceCepBd($endereco->getcepVitima()),
-					":rua" => utf8_decode($endereco->getruaVitima()),
+					":rua" => $endereco->getruaVitima(),
 					":numero" => $endereco->getnumeroVitima(),
-					":bairro" => utf8_decode($endereco->getbairroVitima()),
-					":cidade" => utf8_decode($endereco->getcidadeVitima()),
+					":bairro" => $endereco->getbairroVitima(),
+					":cidade" => $endereco->getcidadeVitima(),
 					":estado" => $endereco->getestadoVitima(),
-					":complemento" => utf8_decode($endereco->getcomplementoVitima())
+					":complemento" => $endereco->getcomplementoVitima()
 				]);		
 				break;
 
@@ -58,12 +58,12 @@ class MEndereco {
 						VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 					", [
 						":cep" => $validacao->replaceCepBd($post['cepVitima'.$aux]),
-						":rua" => utf8_decode($post['ruaVitima'.$aux]),
+						":rua" => $post['ruaVitima'.$aux],
 						":numero" => $post['numeroVitima'.$aux],
-						":bairro" => utf8_decode($post['bairroVitima'.$aux]),
-						":cidade" => utf8_decode($post['cidadeVitima'.$aux]),
+						":bairro" => $post['bairroVitima'.$aux],
+						":cidade" => $post['cidadeVitima'.$aux],
 						":estado" => $post['estadoVitima'.$aux],
-						":complemento" => utf8_decode($post['complementoVitima'.$aux])
+						":complemento" => $post['complementoVitima'.$aux]
 					]);
 					}
 				}		
@@ -75,12 +75,12 @@ class MEndereco {
 					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 				", [
 					":cep" => $validacao->replaceCepBd($endereco->getcepResponsavel()),
-					":rua" => utf8_decode($endereco->getruaResponsavel()),
+					":rua" => $endereco->getruaResponsavel(),
 					":numero" => $endereco->getnumeroResponsavel(),
-					":bairro" => utf8_decode($endereco->getbairroResponsavel()),
-					":cidade" => utf8_decode($endereco->getcidadeResponsavel()),
+					":bairro" => $endereco->getbairroResponsavel(),
+					":cidade" => $endereco->getcidadeResponsavel(),
 					":estado" => $endereco->getestadoResponsavel(),
-					":complemento" => utf8_decode($endereco->getcomplementoResponsavel())
+					":complemento" => $endereco->getcomplementoResponsavel()
 				]);		
 				break;
 
@@ -90,12 +90,12 @@ class MEndereco {
 					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 				", [
 					":cep" => $validacao->replaceCepBd($endereco->getcepAgressor()),
-					":rua" => utf8_decode($endereco->getruaAgressor()),
+					":rua" => $endereco->getruaAgressor(),
 					":numero" => $endereco->getnumeroAgressor(),
-					":bairro" => utf8_decode($endereco->getbairroAgressor()),
-					":cidade" => utf8_decode($endereco->getcidadeAgressor()),
+					":bairro" => $endereco->getbairroAgressor(),
+					":cidade" => $endereco->getcidadeAgressor(),
 					":estado" => $endereco->getestadoAgressor(),
-					":complemento" => utf8_decode($endereco->getcomplementoAgressor())
+					":complemento" => $endereco->getcomplementoAgressor()
 				]);		
 				break;
 
@@ -105,12 +105,12 @@ class MEndereco {
 					VALUES(:cep, :rua, :numero, :bairro, :cidade, :estado, :complemento)
 				", [
 					":cep" => $validacao->replaceCepBd($endereco->getcepInstituicao()),
-					":rua" => utf8_decode($endereco->getruaInstituicao()),
+					":rua" => $endereco->getruaInstituicao(),
 					":numero" => $endereco->getnumeroInstituicao(),
-					":bairro" => utf8_decode($endereco->getbairroInstituicao()),
-					":cidade" => utf8_decode($endereco->getcidadeInstituicao()),
+					":bairro" => $endereco->getbairroInstituicao(),
+					":cidade" => $endereco->getcidadeInstituicao(),
 					":estado" => $endereco->getestadoInstituicao(),
-					":complemento" => utf8_decode($endereco->getcomplementoInstituicao())
+					":complemento" => $endereco->getcomplementoInstituicao()
 				]);		
 				break;
 
@@ -138,12 +138,12 @@ class MEndereco {
 					WHERE idEndereco = :idEndereco
 				", [
 					":cep" => $validacao->replaceCepBd($endereco->getcepUsuario()),
-					":rua" => utf8_decode($endereco->getruaUsuario()),
+					":rua" => $endereco->getruaUsuario(),
 					":numero" => $endereco->getnumeroUsuario(),
-					":bairro" => utf8_decode($endereco->getbairroUsuario()),
-					":cidade" => utf8_decode($endereco->getcidadeUsuario()),
+					":bairro" => $endereco->getbairroUsuario(),
+					":cidade" => $endereco->getcidadeUsuario(),
 					":estado" => $endereco->getestadoUsuario(),
-					":complemento" => utf8_decode($endereco->getcomplementoUsuario()),
+					":complemento" => $endereco->getcomplementoUsuario(),
 					":idEndereco" => $idEndereco
 				]);
 				break;
@@ -155,12 +155,12 @@ class MEndereco {
 					WHERE idEndereco = :idEndereco
 				", [
 					":cep" => $validacao->replaceCepBd($endereco->getcepVitima()),
-					":rua" => utf8_decode($endereco->getruaVitima()),
+					":rua" => $endereco->getruaVitima(),
 					":numero" => $endereco->getnumeroVitima(),
-					":bairro" => utf8_decode($endereco->getbairroVitima()),
-					":cidade" => utf8_decode($endereco->getcidadeVitima()),
+					":bairro" => $endereco->getbairroVitima(),
+					":cidade" => $endereco->getcidadeVitima(),
 					":estado" => $endereco->getestadoVitima(),
-					":complemento" => utf8_decode($endereco->getcomplementoVitima()),
+					":complemento" => $endereco->getcomplementoVitima(),
 					":idEndereco" => $idEndereco
 				]);		
 				break;
@@ -172,12 +172,12 @@ class MEndereco {
 					WHERE idEndereco = :idEndereco
 				", [
 					":cep" => $validacao->replaceCepBd($endereco->getcepResponsavelVitima()),
-					":rua" => utf8_decode($endereco->getruaResponsavelVitima()),
+					":rua" => $endereco->getruaResponsavelVitima(),
 					":numero" => $endereco->getnumeroResponsavelVitima(),
-					":bairro" => utf8_decode($endereco->getbairroResponsavelVitima()),
-					":cidade" => utf8_decode($endereco->getcidadeResponsavelVitima()),
+					":bairro" => $endereco->getbairroResponsavelVitima(),
+					":cidade" => $endereco->getcidadeResponsavelVitima(),
 					":estado" => $endereco->getestadoResponsavelVitima(),
-					":complemento" => utf8_decode($endereco->getcomplementoResponsavelVitima()),
+					":complemento" => $endereco->getcomplementoResponsavelVitima(),
 					":idEndereco" => $idEndereco
 				]);		
 				break;
@@ -189,12 +189,12 @@ class MEndereco {
 					WHERE idEndereco = :idEndereco
 				", [
 					":cep" => $validacao->replaceCepBd($endereco->getcepResponsavel()),
-					":rua" => utf8_decode($endereco->getruaResponsavel()),
+					":rua" => $endereco->getruaResponsavel(),
 					":numero" => $endereco->getnumeroResponsavel(),
-					":bairro" => utf8_decode($endereco->getbairroResponsavel()),
-					":cidade" => utf8_decode($endereco->getcidadeResponsavel()),
+					":bairro" => $endereco->getbairroResponsavel(),
+					":cidade" => $endereco->getcidadeResponsavel(),
 					":estado" => $endereco->getestadoResponsavel(),
-					":complemento" => utf8_decode($endereco->getcomplementoResponsavel()),
+					":complemento" => $endereco->getcomplementoResponsavel(),
 					":idEndereco" => $idEndereco
 				]);		
 				break;
@@ -206,12 +206,12 @@ class MEndereco {
 					WHERE idEndereco = :idEndereco
 				", [
 					":cep" => $validacao->replaceCepBd($endereco->getcepAgressor()),
-					":rua" => utf8_decode($endereco->getruaAgressor()),
+					":rua" => $endereco->getruaAgressor(),
 					":numero" => $endereco->getnumeroAgressor(),
-					":bairro" => utf8_decode($endereco->getbairroAgressor()),
-					":cidade" => utf8_decode($endereco->getcidadeAgressor()),
+					":bairro" => $endereco->getbairroAgressor(),
+					":cidade" => $endereco->getcidadeAgressor(),
 					":estado" => $endereco->getestadoAgressor(),
-					":complemento" => utf8_decode($endereco->getcomplementoAgressor()),
+					":complemento" => $endereco->getcomplementoAgressor(),
 					":idEndereco" => $idEndereco
 				]);		
 				break;

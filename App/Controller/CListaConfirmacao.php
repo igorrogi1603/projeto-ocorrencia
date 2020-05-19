@@ -179,29 +179,29 @@ class CListaConfirmacao {
 
 		//Validacao dos campos com acentos do banco de dados
 		for ($i = 0; $i < $tamanhoArray; $i++) {
-			$detalheConfirmacao[$i]['descricao'] = utf8_encode($detalheConfirmacao[$i]['descricao']);
-			$detalheConfirmacao[$i]['tipoApuracao'] = utf8_encode($detalheConfirmacao[$i]['tipoApuracao']);
-			$detalheConfirmacao[$i]['qualFamilia'] = utf8_encode($detalheConfirmacao[$i]['qualFamilia']);
-			$detalheConfirmacao[$i]['nomeVitima'] = utf8_encode($detalheConfirmacao[$i]['nomeVitima']);
-			$detalheConfirmacao[$i]['nomeResponsavel'] = utf8_encode($detalheConfirmacao[$i]['nomeResponsavel']);
-			$detalheConfirmacao[$i]['ruaVitima'] = utf8_encode($detalheConfirmacao[$i]['ruaVitima']);
-			$detalheConfirmacao[$i]['bairroVitima'] = utf8_encode($detalheConfirmacao[$i]['bairroVitima']);
-			$detalheConfirmacao[$i]['cidadeVitima'] = utf8_encode($detalheConfirmacao[$i]['cidadeVitima']);
-			$detalheConfirmacao[$i]['estadoVitima'] = strtoupper(utf8_encode($detalheConfirmacao[$i]['estadoVitima']));
-			$detalheConfirmacao[$i]['complementoVitima'] = utf8_encode($detalheConfirmacao[$i]['complementoVitima']);
-			$detalheConfirmacao[$i]['ruaResponsavel'] = utf8_encode($detalheConfirmacao[$i]['ruaResponsavel']);
-			$detalheConfirmacao[$i]['bairroResponsavel'] = utf8_encode($detalheConfirmacao[$i]['bairroResponsavel']);
-			$detalheConfirmacao[$i]['cidadeResponsavel'] = utf8_encode($detalheConfirmacao[$i]['cidadeResponsavel']);
-			$detalheConfirmacao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($detalheConfirmacao[$i]['estadoResponsavel']));
-			$detalheConfirmacao[$i]['complementoResponsavel'] = utf8_encode($detalheConfirmacao[$i]['complementoResponsavel']);
-			$detalheConfirmacao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($detalheConfirmacao[$i]['cpfVitima']));
-			$detalheConfirmacao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($detalheConfirmacao[$i]['celularVitima']));
-			$detalheConfirmacao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($detalheConfirmacao[$i]['cpfResponsavel']));
-			$detalheConfirmacao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($detalheConfirmacao[$i]['celularResponsavel']));
-			$detalheConfirmacao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($detalheConfirmacao[$i]['cepVitima']));
-			$detalheConfirmacao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($detalheConfirmacao[$i]['cepResponsavel']));
-			$detalheConfirmacao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheConfirmacao[$i]['dataRegistro']));
-			$detalheConfirmacao[$i]['quemCriouApuracao'] = utf8_encode($detalheConfirmacao[$i]['quemCriouApuracao']);
+			$detalheConfirmacao[$i]['descricao'] = $detalheConfirmacao[$i]['descricao'];
+			$detalheConfirmacao[$i]['tipoApuracao'] = $detalheConfirmacao[$i]['tipoApuracao'];
+			$detalheConfirmacao[$i]['qualFamilia'] = $detalheConfirmacao[$i]['qualFamilia'];
+			$detalheConfirmacao[$i]['nomeVitima'] = $detalheConfirmacao[$i]['nomeVitima'];
+			$detalheConfirmacao[$i]['nomeResponsavel'] = $detalheConfirmacao[$i]['nomeResponsavel'];
+			$detalheConfirmacao[$i]['ruaVitima'] = $detalheConfirmacao[$i]['ruaVitima'];
+			$detalheConfirmacao[$i]['bairroVitima'] = $detalheConfirmacao[$i]['bairroVitima'];
+			$detalheConfirmacao[$i]['cidadeVitima'] = $detalheConfirmacao[$i]['cidadeVitima'];
+			$detalheConfirmacao[$i]['estadoVitima'] = strtoupper($detalheConfirmacao[$i]['estadoVitima']);
+			$detalheConfirmacao[$i]['complementoVitima'] = $detalheConfirmacao[$i]['complementoVitima'];
+			$detalheConfirmacao[$i]['ruaResponsavel'] = $detalheConfirmacao[$i]['ruaResponsavel'];
+			$detalheConfirmacao[$i]['bairroResponsavel'] = $detalheConfirmacao[$i]['bairroResponsavel'];
+			$detalheConfirmacao[$i]['cidadeResponsavel'] = $detalheConfirmacao[$i]['cidadeResponsavel'];
+			$detalheConfirmacao[$i]['estadoResponsavel'] = strtoupper($detalheConfirmacao[$i]['estadoResponsavel']);
+			$detalheConfirmacao[$i]['complementoResponsavel'] = $detalheConfirmacao[$i]['complementoResponsavel'];
+			$detalheConfirmacao[$i]['cpfVitima'] = $validacao->replaceCpfView($detalheConfirmacao[$i]['cpfVitima']);
+			$detalheConfirmacao[$i]['celularVitima'] = $validacao->replaceCelularView($detalheConfirmacao[$i]['celularVitima']);
+			$detalheConfirmacao[$i]['cpfResponsavel'] = $validacao->replaceCpfView($detalheConfirmacao[$i]['cpfResponsavel']);
+			$detalheConfirmacao[$i]['celularResponsavel'] = $validacao->replaceCelularView($detalheConfirmacao[$i]['celularResponsavel']);
+			$detalheConfirmacao[$i]['cepVitima'] = $validacao->replaceCepView($detalheConfirmacao[$i]['cepVitima']);
+			$detalheConfirmacao[$i]['cepResponsavel'] = $validacao->replaceCepView($detalheConfirmacao[$i]['cepResponsavel']);
+			$detalheConfirmacao[$i]['dataRegistro'] = $validacao->replaceDataView($detalheConfirmacao[$i]['dataRegistro']);
+			$detalheConfirmacao[$i]['quemCriouApuracao'] = $detalheConfirmacao[$i]['quemCriouApuracao'];
 		}
 		
 		return $detalheConfirmacao;
@@ -251,29 +251,29 @@ class CListaConfirmacao {
 		for ($i = 0; $i < $tamanhoArray; $i++) {
 			//Verifica se a posicao existe no array porque excluimos algumas repetidas anteriormente
 			if (isset($listaConfirmacao[$i])) {
-				$listaConfirmacao[$i]['descricao'] = utf8_encode($listaConfirmacao[$i]['descricao']);
-				$listaConfirmacao[$i]['tipoApuracao'] = utf8_encode($listaConfirmacao[$i]['tipoApuracao']);
-				$listaConfirmacao[$i]['qualFamilia'] = utf8_encode($listaConfirmacao[$i]['qualFamilia']);
-				$listaConfirmacao[$i]['nomeVitima'] = utf8_encode($listaConfirmacao[$i]['nomeVitima']);
-				$listaConfirmacao[$i]['nomeResponsavel'] = utf8_encode($listaConfirmacao[$i]['nomeResponsavel']);
-				$listaConfirmacao[$i]['ruaVitima'] = utf8_encode($listaConfirmacao[$i]['ruaVitima']);
-				$listaConfirmacao[$i]['bairroVitima'] = utf8_encode($listaConfirmacao[$i]['bairroVitima']);
-				$listaConfirmacao[$i]['cidadeVitima'] = utf8_encode($listaConfirmacao[$i]['cidadeVitima']);
-				$listaConfirmacao[$i]['estadoVitima'] = strtoupper(utf8_encode($listaConfirmacao[$i]['estadoVitima']));
-				$listaConfirmacao[$i]['complementoVitima'] = utf8_encode($listaConfirmacao[$i]['complementoVitima']);
-				$listaConfirmacao[$i]['ruaResponsavel'] = utf8_encode($listaConfirmacao[$i]['ruaResponsavel']);
-				$listaConfirmacao[$i]['bairroResponsavel'] = utf8_encode($listaConfirmacao[$i]['bairroResponsavel']);
-				$listaConfirmacao[$i]['cidadeResponsavel'] = utf8_encode($listaConfirmacao[$i]['cidadeResponsavel']);
-				$listaConfirmacao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($listaConfirmacao[$i]['estadoResponsavel']));
-				$listaConfirmacao[$i]['complementoResponsavel'] = utf8_encode($listaConfirmacao[$i]['complementoResponsavel']);
-				$listaConfirmacao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($listaConfirmacao[$i]['cpfVitima']));
-				$listaConfirmacao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($listaConfirmacao[$i]['celularVitima']));
-				$listaConfirmacao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($listaConfirmacao[$i]['cpfResponsavel']));
-				$listaConfirmacao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($listaConfirmacao[$i]['celularResponsavel']));
-				$listaConfirmacao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($listaConfirmacao[$i]['cepVitima']));
-				$listaConfirmacao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($listaConfirmacao[$i]['cepResponsavel']));
-				$listaConfirmacao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($listaConfirmacao[$i]['dataRegistro']));
-				$listaConfirmacao[$i]['registroConfirmacao'] = $validacao->replaceDataView(utf8_encode($listaConfirmacao[$i]['registroConfirmacao']));
+				$listaConfirmacao[$i]['descricao'] = $listaConfirmacao[$i]['descricao'];
+				$listaConfirmacao[$i]['tipoApuracao'] = $listaConfirmacao[$i]['tipoApuracao'];
+				$listaConfirmacao[$i]['qualFamilia'] = $listaConfirmacao[$i]['qualFamilia'];
+				$listaConfirmacao[$i]['nomeVitima'] = $listaConfirmacao[$i]['nomeVitima'];
+				$listaConfirmacao[$i]['nomeResponsavel'] = $listaConfirmacao[$i]['nomeResponsavel'];
+				$listaConfirmacao[$i]['ruaVitima'] = $listaConfirmacao[$i]['ruaVitima'];
+				$listaConfirmacao[$i]['bairroVitima'] = $listaConfirmacao[$i]['bairroVitima'];
+				$listaConfirmacao[$i]['cidadeVitima'] = $listaConfirmacao[$i]['cidadeVitima'];
+				$listaConfirmacao[$i]['estadoVitima'] = strtoupper($listaConfirmacao[$i]['estadoVitima']);
+				$listaConfirmacao[$i]['complementoVitima'] = $listaConfirmacao[$i]['complementoVitima'];
+				$listaConfirmacao[$i]['ruaResponsavel'] = $listaConfirmacao[$i]['ruaResponsavel'];
+				$listaConfirmacao[$i]['bairroResponsavel'] = $listaConfirmacao[$i]['bairroResponsavel'];
+				$listaConfirmacao[$i]['cidadeResponsavel'] = $listaConfirmacao[$i]['cidadeResponsavel'];
+				$listaConfirmacao[$i]['estadoResponsavel'] = strtoupper($listaConfirmacao[$i]['estadoResponsavel']);
+				$listaConfirmacao[$i]['complementoResponsavel'] = $listaConfirmacao[$i]['complementoResponsavel'];
+				$listaConfirmacao[$i]['cpfVitima'] = $validacao->replaceCpfView($listaConfirmacao[$i]['cpfVitima']);
+				$listaConfirmacao[$i]['celularVitima'] = $validacao->replaceCelularView($listaConfirmacao[$i]['celularVitima']);
+				$listaConfirmacao[$i]['cpfResponsavel'] = $validacao->replaceCpfView($listaConfirmacao[$i]['cpfResponsavel']);
+				$listaConfirmacao[$i]['celularResponsavel'] = $validacao->replaceCelularView($listaConfirmacao[$i]['celularResponsavel']);
+				$listaConfirmacao[$i]['cepVitima'] = $validacao->replaceCepView($listaConfirmacao[$i]['cepVitima']);
+				$listaConfirmacao[$i]['cepResponsavel'] = $validacao->replaceCepView($listaConfirmacao[$i]['cepResponsavel']);
+				$listaConfirmacao[$i]['dataRegistro'] = $validacao->replaceDataView($listaConfirmacao[$i]['dataRegistro']);
+				$listaConfirmacao[$i]['registroConfirmacao'] = $validacao->replaceDataView($listaConfirmacao[$i]['registroConfirmacao']);
 			}
 		}
 

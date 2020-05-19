@@ -153,7 +153,7 @@ class MAgressor {
 		", [
 			":idOcorrencia" => (int)$idOcorrencia,
 			":idAgressor" => (int)$idAgressor,
-			":motivo" => utf8_decode($agressor->getdescricaoAgressor())
+			":motivo" => $agressor->getdescricaoAgressor()
 		]);
 	}
 

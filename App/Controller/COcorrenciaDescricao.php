@@ -47,8 +47,8 @@ class COcorrenciaDescricao {
 		//formatando as string 
 		for ($i = 0; $i < $tamanhoArray; $i++) {
 			if (isset($listaOcorrencia[$i])) {
-				$listaOcorrencia[$i]['descricao'] = utf8_encode($listaOcorrencia[$i]['descricao']);
-				$listaOcorrencia[$i]['tipoApuracao'] = utf8_encode($listaOcorrencia[$i]['tipoApuracao']);
+				$listaOcorrencia[$i]['descricao'] = $listaOcorrencia[$i]['descricao'];
+				$listaOcorrencia[$i]['tipoApuracao'] = $listaOcorrencia[$i]['tipoApuracao'];
 			}
 		}
 

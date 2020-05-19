@@ -26,7 +26,7 @@ class MContato {
 				", [
 					":celular" => $validacao->replaceCelularBd($contato->getcelularUsuario()),
 					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoUsuario()),
-					":email" => utf8_decode($contato->getemailUsuario())
+					":email" => $contato->getemailUsuario()
 				]);				
 				break;
 
@@ -69,7 +69,7 @@ class MContato {
 				", [
 					":celular" => $validacao->replaceCelularBd($contato->getcelularResponsavel()),
 					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoResponsavel()),
-					":email" => utf8_decode($contato->getemailResponsavel())
+					":email" => $contato->getemailResponsavel()
 				]);				
 				break;
 
@@ -80,7 +80,7 @@ class MContato {
 				", [
 					":celular" => $validacao->replaceCelularBd($contato->getcelularAgressor()),
 					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoAgressor()),
-					":email" => utf8_decode($contato->getemailAgressor())
+					":email" => $contato->getemailAgressor()
 				]);				
 				break;
 
@@ -91,7 +91,7 @@ class MContato {
 				", [
 					":celular" => $validacao->replaceCelularBd($contato->getcelularInstituicao()),
 					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoInstituicao()),
-					":email" => utf8_decode($contato->getemailInstituicao())
+					":email" => $contato->getemailInstituicao()
 				]);				
 				break;
 
@@ -120,7 +120,7 @@ class MContato {
 				", [
 					":celular" => $validacao->replaceCelularBd($contato->getcelularUsuario()),
 					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoUsuario()),
-					":email" => utf8_decode($contato->getemailUsuario()),
+					":email" => $contato->getemailUsuario(),
 					":idContato" => $idContato
 				]);			
 				break;
@@ -133,7 +133,7 @@ class MContato {
 				", [
 					":celular" => $validacao->replaceCelularBd($contato->getcelularVitima()),
 					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoVitima()),
-					":email" => utf8_decode($contato->getemailVitima()),
+					":email" => $contato->getemailVitima(),
 					":idContato" => $idContato
 				]);			
 				break;
@@ -146,7 +146,7 @@ class MContato {
 				", [
 					":celular" => $validacao->replaceCelularBd($contato->getcelularResponsavelVitima()),
 					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoResponsavelVitima()),
-					":email" => utf8_decode($contato->getemailResponsavelVitima()),
+					":email" => $contato->getemailResponsavelVitima(),
 					":idContato" => $idContato
 				]);				
 				break;
@@ -159,7 +159,7 @@ class MContato {
 				", [
 					":celular" => $validacao->replaceCelularBd($contato->getcelularResponsavel()),
 					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoResponsavel()),
-					":email" => utf8_decode($contato->getemailResponsavel()),
+					":email" => $contato->getemailResponsavel(),
 					":idContato" => $idContato
 				]);				
 				break;
@@ -172,7 +172,7 @@ class MContato {
 				", [
 					":celular" => $validacao->replaceCelularBd($contato->getcelularAgressor()),
 					":fixo" => $validacao->replaceTelefoneFixoBd($contato->gettelFixoAgressor()),
-					":email" => utf8_decode($contato->getemailAgressor()),
+					":email" => $contato->getemailAgressor(),
 					":idContato" => $idContato
 				]);				
 				break;

@@ -28,8 +28,8 @@ class MApuracao {
 			VALUES(:idUsuario, :tipoApuracao, :descricao, :status, :dataCriacao)
 		", [
 			":idUsuario" => $idUsuario,
-			":tipoApuracao" => utf8_decode($apuracao->gettipoApuracao()),
-			":descricao" => utf8_decode($apuracao->getdescricaoApuracao()),
+			":tipoApuracao" => $apuracao->gettipoApuracao(),
+			":descricao" => $apuracao->getdescricaoApuracao(),
 			":status" => 1,
 			":dataCriacao" => date('Y-m-d H:i:s')
 		]);
@@ -47,8 +47,8 @@ class MApuracao {
 			SET tipoApuracao = :tipoApuracao, descricao = :descricao
 			WHERE idCriarApuracao = :idCriarApuracao
 		", [
-			":tipoApuracao" => utf8_decode($apuracao->gettipoApuracao()),
-			":descricao" => utf8_decode($apuracao->getdescricaoApuracao()), 
+			":tipoApuracao" => $apuracao->gettipoApuracao(),
+			":descricao" => $apuracao->getdescricaoApuracao(), 
 			":idCriarApuracao" => $idApuracao
 		]);
 	}
@@ -113,7 +113,7 @@ class MApuracao {
 		", [
 			":idCriarApuracao" => $idApuracao,
 			":idUsuario" => $idUsuario,
-			":motivo" => utf8_decode($apuracao->getdescricaoApuracao()),
+			":motivo" => $apuracao->getdescricaoApuracao(),
 			":status" => 0
 		]);
 	}
@@ -153,7 +153,7 @@ class MApuracao {
 			":idCriarApuracao" => (int)$idApuracao[0]["MAX(idCriarApuracao)"],
 			":idVitimasApuracao" => (int)$idVitima[0]["MAX(idVitimasApuracao)"],
 			":idResponsavelApuracao" => (int)$idResponsavel[0]["MAX(idResponsavelApuracao)"],
-			":qualFamilia" => utf8_decode($apuracao->getqualFamiliaVitima())
+			":qualFamilia" => $apuracao->getqualFamiliaVitima()
 		]);	
 	}
 

@@ -27,12 +27,12 @@ class MAcompanhamento {
 		", [
 			":idVitimaApuracao" => (int)$idVitima,
 			":cep" => $endereco->getcepVitima(),
-			":rua" => utf8_decode($endereco->getruaVitima()),
+			":rua" => $endereco->getruaVitima(),
 			":numero" => $endereco->getnumeroVitima(),
-			":bairro" => utf8_decode($endereco->getbairroVitima()),
-			":cidade" => utf8_decode($endereco->getcidadeVitima()),
+			":bairro" => $endereco->getbairroVitima(),
+			":cidade" => $endereco->getcidadeVitima(),
 			":estado" => $endereco->getestadoVitima(),
-			":complemento" => utf8_decode($endereco->getcomplementoVitima()),
+			":complemento" => $endereco->getcomplementoVitima(),
 			":status" => 0,
 			":dataRegistro" => date("Y-m-d H:i:s")
 		]);

@@ -48,30 +48,30 @@ class CListaApuracao {
 
 		//Validacao dos campos com acentos do banco de dados
 		for ($i = 0; $i < $tamanhoArray; $i++) {
-			$detalheApuracao[$i]['descricao'] = utf8_encode($detalheApuracao[$i]['descricao']);
-			$detalheApuracao[$i]['tipoApuracao'] = utf8_encode($detalheApuracao[$i]['tipoApuracao']);
-			$detalheApuracao[$i]['qualFamilia'] = utf8_encode($detalheApuracao[$i]['qualFamilia']);
-			$detalheApuracao[$i]['nomeVitima'] = utf8_encode($detalheApuracao[$i]['nomeVitima']);
-			$detalheApuracao[$i]['nomeResponsavel'] = utf8_encode($detalheApuracao[$i]['nomeResponsavel']);
-			$detalheApuracao[$i]['ruaVitima'] = utf8_encode($detalheApuracao[$i]['ruaVitima']);
-			$detalheApuracao[$i]['bairroVitima'] = utf8_encode($detalheApuracao[$i]['bairroVitima']);
-			$detalheApuracao[$i]['cidadeVitima'] = utf8_encode($detalheApuracao[$i]['cidadeVitima']);
-			$detalheApuracao[$i]['estadoVitima'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoVitima']));
-			$detalheApuracao[$i]['complementoVitima'] = utf8_encode($detalheApuracao[$i]['complementoVitima']);
-			$detalheApuracao[$i]['ruaResponsavel'] = utf8_encode($detalheApuracao[$i]['ruaResponsavel']);
-			$detalheApuracao[$i]['bairroResponsavel'] = utf8_encode($detalheApuracao[$i]['bairroResponsavel']);
-			$detalheApuracao[$i]['cidadeResponsavel'] = utf8_encode($detalheApuracao[$i]['cidadeResponsavel']);
-			$detalheApuracao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoResponsavel']));
-			$detalheApuracao[$i]['complementoResponsavel'] = utf8_encode($detalheApuracao[$i]['complementoResponsavel']);
-			$detalheApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfVitima']));
-			$detalheApuracao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularVitima']));
-			$detalheApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfResponsavel']));
-			$detalheApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularResponsavel']));
-			$detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepVitima']));
-			$detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepResponsavel']));
-			$detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataRegistro']));
-			$detalheApuracao[$i]['dataCriacao'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataCriacao']));
-			$detalheApuracao[$i]['quemCriouApuracao'] = utf8_encode($detalheApuracao[$i]['quemCriouApuracao']);
+			$detalheApuracao[$i]['descricao'] = $detalheApuracao[$i]['descricao'];
+			$detalheApuracao[$i]['tipoApuracao'] = $detalheApuracao[$i]['tipoApuracao'];
+			$detalheApuracao[$i]['qualFamilia'] = $detalheApuracao[$i]['qualFamilia'];
+			$detalheApuracao[$i]['nomeVitima'] = $detalheApuracao[$i]['nomeVitima'];
+			$detalheApuracao[$i]['nomeResponsavel'] = $detalheApuracao[$i]['nomeResponsavel'];
+			$detalheApuracao[$i]['ruaVitima'] = $detalheApuracao[$i]['ruaVitima'];
+			$detalheApuracao[$i]['bairroVitima'] = $detalheApuracao[$i]['bairroVitima'];
+			$detalheApuracao[$i]['cidadeVitima'] = $detalheApuracao[$i]['cidadeVitima'];
+			$detalheApuracao[$i]['estadoVitima'] = strtoupper($detalheApuracao[$i]['estadoVitima']);
+			$detalheApuracao[$i]['complementoVitima'] = $detalheApuracao[$i]['complementoVitima'];
+			$detalheApuracao[$i]['ruaResponsavel'] = $detalheApuracao[$i]['ruaResponsavel'];
+			$detalheApuracao[$i]['bairroResponsavel'] = $detalheApuracao[$i]['bairroResponsavel'];
+			$detalheApuracao[$i]['cidadeResponsavel'] = $detalheApuracao[$i]['cidadeResponsavel'];
+			$detalheApuracao[$i]['estadoResponsavel'] = strtoupper($detalheApuracao[$i]['estadoResponsavel']);
+			$detalheApuracao[$i]['complementoResponsavel'] = $detalheApuracao[$i]['complementoResponsavel'];
+			$detalheApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView($detalheApuracao[$i]['cpfVitima']);
+			$detalheApuracao[$i]['celularVitima'] = $validacao->replaceCelularView($detalheApuracao[$i]['celularVitima']);
+			$detalheApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView($detalheApuracao[$i]['cpfResponsavel']);
+			$detalheApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView($detalheApuracao[$i]['celularResponsavel']);
+			$detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView($detalheApuracao[$i]['cepVitima']);
+			$detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView($detalheApuracao[$i]['cepResponsavel']);
+			$detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView($detalheApuracao[$i]['dataRegistro']);
+			$detalheApuracao[$i]['dataCriacao'] = $validacao->replaceDataView($detalheApuracao[$i]['dataCriacao']);
+			$detalheApuracao[$i]['quemCriouApuracao'] = $detalheApuracao[$i]['quemCriouApuracao'];
 		}
 		
 		return $detalheApuracao;
@@ -119,29 +119,29 @@ class CListaApuracao {
 		for ($i = 0; $i < $tamanhoArray; $i++) {
 			//Verifica se a posicao existe no array porque excluimos algumas repetidas anteriormente
 			if (isset($listaApuracao[$i])) {
-				$listaApuracao[$i]['descricao'] = utf8_encode($listaApuracao[$i]['descricao']);
-				$listaApuracao[$i]['tipoApuracao'] = utf8_encode($listaApuracao[$i]['tipoApuracao']);
-				$listaApuracao[$i]['qualFamilia'] = utf8_encode($listaApuracao[$i]['qualFamilia']);
-				$listaApuracao[$i]['nomeVitima'] = utf8_encode($listaApuracao[$i]['nomeVitima']);
-				$listaApuracao[$i]['nomeResponsavel'] = utf8_encode($listaApuracao[$i]['nomeResponsavel']);
-				$listaApuracao[$i]['ruaVitima'] = utf8_encode($listaApuracao[$i]['ruaVitima']);
-				$listaApuracao[$i]['bairroVitima'] = utf8_encode($listaApuracao[$i]['bairroVitima']);
-				$listaApuracao[$i]['cidadeVitima'] = utf8_encode($listaApuracao[$i]['cidadeVitima']);
-				$listaApuracao[$i]['estadoVitima'] = strtoupper(utf8_encode($listaApuracao[$i]['estadoVitima']));
-				$listaApuracao[$i]['complementoVitima'] = utf8_encode($listaApuracao[$i]['complementoVitima']);
-				$listaApuracao[$i]['ruaResponsavel'] = utf8_encode($listaApuracao[$i]['ruaResponsavel']);
-				$listaApuracao[$i]['bairroResponsavel'] = utf8_encode($listaApuracao[$i]['bairroResponsavel']);
-				$listaApuracao[$i]['cidadeResponsavel'] = utf8_encode($listaApuracao[$i]['cidadeResponsavel']);
-				$listaApuracao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($listaApuracao[$i]['estadoResponsavel']));
-				$listaApuracao[$i]['complementoResponsavel'] = utf8_encode($listaApuracao[$i]['complementoResponsavel']);
-				$listaApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($listaApuracao[$i]['cpfVitima']));
-				$listaApuracao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($listaApuracao[$i]['celularVitima']));
-				$listaApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($listaApuracao[$i]['cpfResponsavel']));
-				$listaApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($listaApuracao[$i]['celularResponsavel']));
-				$listaApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($listaApuracao[$i]['cepVitima']));
-				$listaApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($listaApuracao[$i]['cepResponsavel']));
-				$listaApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($listaApuracao[$i]['dataRegistro']));
-				$listaApuracao[$i]['dataCriacao'] = $validacao->replaceDataView(utf8_encode($listaApuracao[$i]['dataCriacao']));
+				$listaApuracao[$i]['descricao'] = $listaApuracao[$i]['descricao'];
+				$listaApuracao[$i]['tipoApuracao'] = $listaApuracao[$i]['tipoApuracao'];
+				$listaApuracao[$i]['qualFamilia'] = $listaApuracao[$i]['qualFamilia'];
+				$listaApuracao[$i]['nomeVitima'] = $listaApuracao[$i]['nomeVitima'];
+				$listaApuracao[$i]['nomeResponsavel'] = $listaApuracao[$i]['nomeResponsavel'];
+				$listaApuracao[$i]['ruaVitima'] = $listaApuracao[$i]['ruaVitima'];
+				$listaApuracao[$i]['bairroVitima'] = $listaApuracao[$i]['bairroVitima'];
+				$listaApuracao[$i]['cidadeVitima'] = $listaApuracao[$i]['cidadeVitima'];
+				$listaApuracao[$i]['estadoVitima'] = strtoupper($listaApuracao[$i]['estadoVitima']);
+				$listaApuracao[$i]['complementoVitima'] = $listaApuracao[$i]['complementoVitima'];
+				$listaApuracao[$i]['ruaResponsavel'] = $listaApuracao[$i]['ruaResponsavel'];
+				$listaApuracao[$i]['bairroResponsavel'] = $listaApuracao[$i]['bairroResponsavel'];
+				$listaApuracao[$i]['cidadeResponsavel'] = $listaApuracao[$i]['cidadeResponsavel'];
+				$listaApuracao[$i]['estadoResponsavel'] = strtoupper($listaApuracao[$i]['estadoResponsavel']);
+				$listaApuracao[$i]['complementoResponsavel'] = $listaApuracao[$i]['complementoResponsavel'];
+				$listaApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView($listaApuracao[$i]['cpfVitima']);
+				$listaApuracao[$i]['celularVitima'] = $validacao->replaceCelularView($listaApuracao[$i]['celularVitima']);
+				$listaApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView($listaApuracao[$i]['cpfResponsavel']);
+				$listaApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView($listaApuracao[$i]['celularResponsavel']);
+				$listaApuracao[$i]['cepVitima'] = $validacao->replaceCepView($listaApuracao[$i]['cepVitima']);
+				$listaApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView($listaApuracao[$i]['cepResponsavel']);
+				$listaApuracao[$i]['dataRegistro'] = $validacao->replaceDataView($listaApuracao[$i]['dataRegistro']);
+				$listaApuracao[$i]['dataCriacao'] = $validacao->replaceDataView($listaApuracao[$i]['dataCriacao']);
 			}
 		}
 
@@ -168,29 +168,29 @@ class CListaApuracao {
 
 		//Validacao dos campos com acentos do banco de dados
 		for ($i = 0; $i < $tamanhoArray; $i++) {
-			$detalheApuracao[$i]['descricao'] = utf8_encode($detalheApuracao[$i]['descricao']);
-			$detalheApuracao[$i]['tipoApuracao'] = utf8_encode($detalheApuracao[$i]['tipoApuracao']);
-			$detalheApuracao[$i]['qualFamilia'] = utf8_encode($detalheApuracao[$i]['qualFamilia']);
-			$detalheApuracao[$i]['nomeVitima'] = utf8_encode($detalheApuracao[$i]['nomeVitima']);
-			$detalheApuracao[$i]['nomeResponsavel'] = utf8_encode($detalheApuracao[$i]['nomeResponsavel']);
-			$detalheApuracao[$i]['ruaVitima'] = utf8_encode($detalheApuracao[$i]['ruaVitima']);
-			$detalheApuracao[$i]['bairroVitima'] = utf8_encode($detalheApuracao[$i]['bairroVitima']);
-			$detalheApuracao[$i]['cidadeVitima'] = utf8_encode($detalheApuracao[$i]['cidadeVitima']);
-			$detalheApuracao[$i]['estadoVitima'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoVitima']));
-			$detalheApuracao[$i]['complementoVitima'] = utf8_encode($detalheApuracao[$i]['complementoVitima']);
-			$detalheApuracao[$i]['ruaResponsavel'] = utf8_encode($detalheApuracao[$i]['ruaResponsavel']);
-			$detalheApuracao[$i]['bairroResponsavel'] = utf8_encode($detalheApuracao[$i]['bairroResponsavel']);
-			$detalheApuracao[$i]['cidadeResponsavel'] = utf8_encode($detalheApuracao[$i]['cidadeResponsavel']);
-			$detalheApuracao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoResponsavel']));
-			$detalheApuracao[$i]['complementoResponsavel'] = utf8_encode($detalheApuracao[$i]['complementoResponsavel']);
-			$detalheApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfVitima']));
-			$detalheApuracao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularVitima']));
-			$detalheApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfResponsavel']));
-			$detalheApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularResponsavel']));
-			$detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepVitima']));
-			$detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepResponsavel']));
-			$detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataRegistro']));
-			$detalheApuracao[$i]['dataCriacao'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataCriacao']));
+			$detalheApuracao[$i]['descricao'] = $detalheApuracao[$i]['descricao'];
+			$detalheApuracao[$i]['tipoApuracao'] = $detalheApuracao[$i]['tipoApuracao'];
+			$detalheApuracao[$i]['qualFamilia'] = $detalheApuracao[$i]['qualFamilia'];
+			$detalheApuracao[$i]['nomeVitima'] = $detalheApuracao[$i]['nomeVitima'];
+			$detalheApuracao[$i]['nomeResponsavel'] = $detalheApuracao[$i]['nomeResponsavel'];
+			$detalheApuracao[$i]['ruaVitima'] = $detalheApuracao[$i]['ruaVitima'];
+			$detalheApuracao[$i]['bairroVitima'] = $detalheApuracao[$i]['bairroVitima'];
+			$detalheApuracao[$i]['cidadeVitima'] = $detalheApuracao[$i]['cidadeVitima'];
+			$detalheApuracao[$i]['estadoVitima'] = strtoupper($detalheApuracao[$i]['estadoVitima']);
+			$detalheApuracao[$i]['complementoVitima'] = $detalheApuracao[$i]['complementoVitima'];
+			$detalheApuracao[$i]['ruaResponsavel'] = $detalheApuracao[$i]['ruaResponsavel'];
+			$detalheApuracao[$i]['bairroResponsavel'] = $detalheApuracao[$i]['bairroResponsavel'];
+			$detalheApuracao[$i]['cidadeResponsavel'] = $detalheApuracao[$i]['cidadeResponsavel'];
+			$detalheApuracao[$i]['estadoResponsavel'] = strtoupper($detalheApuracao[$i]['estadoResponsavel']);
+			$detalheApuracao[$i]['complementoResponsavel'] = $detalheApuracao[$i]['complementoResponsavel'];
+			$detalheApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView($detalheApuracao[$i]['cpfVitima']);
+			$detalheApuracao[$i]['celularVitima'] = $validacao->replaceCelularView($detalheApuracao[$i]['celularVitima']);
+			$detalheApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView($detalheApuracao[$i]['cpfResponsavel']);
+			$detalheApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView($detalheApuracao[$i]['celularResponsavel']);
+			$detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView($detalheApuracao[$i]['cepVitima']);
+			$detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView($detalheApuracao[$i]['cepResponsavel']);
+			$detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView($detalheApuracao[$i]['dataRegistro']);
+			$detalheApuracao[$i]['dataCriacao'] = $validacao->replaceDataView($detalheApuracao[$i]['dataCriacao']);
 		}
 		
 		return $detalheApuracao;
@@ -239,30 +239,30 @@ class CListaApuracao {
 		for ($i = 0; $i < $tamanhoArray; $i++) {
 			//Verifica se a posicao existe no array porque excluimos algumas repetidas anteriormente
 			if (isset($listaConfirmacao[$i])) {
-				$listaConfirmacao[$i]['descricao'] = utf8_encode($listaConfirmacao[$i]['descricao']);
-				$listaConfirmacao[$i]['tipoApuracao'] = utf8_encode($listaConfirmacao[$i]['tipoApuracao']);
-				$listaConfirmacao[$i]['qualFamilia'] = utf8_encode($listaConfirmacao[$i]['qualFamilia']);
-				$listaConfirmacao[$i]['nomeVitima'] = utf8_encode($listaConfirmacao[$i]['nomeVitima']);
-				$listaConfirmacao[$i]['nomeResponsavel'] = utf8_encode($listaConfirmacao[$i]['nomeResponsavel']);
-				$listaConfirmacao[$i]['ruaVitima'] = utf8_encode($listaConfirmacao[$i]['ruaVitima']);
-				$listaConfirmacao[$i]['bairroVitima'] = utf8_encode($listaConfirmacao[$i]['bairroVitima']);
-				$listaConfirmacao[$i]['cidadeVitima'] = utf8_encode($listaConfirmacao[$i]['cidadeVitima']);
-				$listaConfirmacao[$i]['estadoVitima'] = strtoupper(utf8_encode($listaConfirmacao[$i]['estadoVitima']));
-				$listaConfirmacao[$i]['complementoVitima'] = utf8_encode($listaConfirmacao[$i]['complementoVitima']);
-				$listaConfirmacao[$i]['ruaResponsavel'] = utf8_encode($listaConfirmacao[$i]['ruaResponsavel']);
-				$listaConfirmacao[$i]['bairroResponsavel'] = utf8_encode($listaConfirmacao[$i]['bairroResponsavel']);
-				$listaConfirmacao[$i]['cidadeResponsavel'] = utf8_encode($listaConfirmacao[$i]['cidadeResponsavel']);
-				$listaConfirmacao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($listaConfirmacao[$i]['estadoResponsavel']));
-				$listaConfirmacao[$i]['complementoResponsavel'] = utf8_encode($listaConfirmacao[$i]['complementoResponsavel']);
-				$listaConfirmacao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($listaConfirmacao[$i]['cpfVitima']));
-				$listaConfirmacao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($listaConfirmacao[$i]['celularVitima']));
-				$listaConfirmacao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($listaConfirmacao[$i]['cpfResponsavel']));
-				$listaConfirmacao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($listaConfirmacao[$i]['celularResponsavel']));
-				$listaConfirmacao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($listaConfirmacao[$i]['cepVitima']));
-				$listaConfirmacao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($listaConfirmacao[$i]['cepResponsavel']));
-				$listaConfirmacao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($listaConfirmacao[$i]['dataRegistro']));
-				$listaConfirmacao[$i]['registroConfirmacao'] = $validacao->replaceDataView(utf8_encode($listaConfirmacao[$i]['registroConfirmacao']));
-				$listaConfirmacao[$i]['dataCriacao'] = $validacao->replaceDataView(utf8_encode($listaConfirmacao[$i]['dataCriacao']));
+				$listaConfirmacao[$i]['descricao'] = $listaConfirmacao[$i]['descricao'];
+				$listaConfirmacao[$i]['tipoApuracao'] = $listaConfirmacao[$i]['tipoApuracao'];
+				$listaConfirmacao[$i]['qualFamilia'] = $listaConfirmacao[$i]['qualFamilia'];
+				$listaConfirmacao[$i]['nomeVitima'] = $listaConfirmacao[$i]['nomeVitima'];
+				$listaConfirmacao[$i]['nomeResponsavel'] = $listaConfirmacao[$i]['nomeResponsavel'];
+				$listaConfirmacao[$i]['ruaVitima'] = $listaConfirmacao[$i]['ruaVitima'];
+				$listaConfirmacao[$i]['bairroVitima'] = $listaConfirmacao[$i]['bairroVitima'];
+				$listaConfirmacao[$i]['cidadeVitima'] = $listaConfirmacao[$i]['cidadeVitima'];
+				$listaConfirmacao[$i]['estadoVitima'] = strtoupper($listaConfirmacao[$i]['estadoVitima']);
+				$listaConfirmacao[$i]['complementoVitima'] = $listaConfirmacao[$i]['complementoVitima'];
+				$listaConfirmacao[$i]['ruaResponsavel'] = $listaConfirmacao[$i]['ruaResponsavel'];
+				$listaConfirmacao[$i]['bairroResponsavel'] = $listaConfirmacao[$i]['bairroResponsavel'];
+				$listaConfirmacao[$i]['cidadeResponsavel'] = $listaConfirmacao[$i]['cidadeResponsavel'];
+				$listaConfirmacao[$i]['estadoResponsavel'] = strtoupper($listaConfirmacao[$i]['estadoResponsavel']);
+				$listaConfirmacao[$i]['complementoResponsavel'] = $listaConfirmacao[$i]['complementoResponsavel'];
+				$listaConfirmacao[$i]['cpfVitima'] = $validacao->replaceCpfView($listaConfirmacao[$i]['cpfVitima']);
+				$listaConfirmacao[$i]['celularVitima'] = $validacao->replaceCelularView($listaConfirmacao[$i]['celularVitima']);
+				$listaConfirmacao[$i]['cpfResponsavel'] = $validacao->replaceCpfView($listaConfirmacao[$i]['cpfResponsavel']);
+				$listaConfirmacao[$i]['celularResponsavel'] = $validacao->replaceCelularView($listaConfirmacao[$i]['celularResponsavel']);
+				$listaConfirmacao[$i]['cepVitima'] = $validacao->replaceCepView($listaConfirmacao[$i]['cepVitima']);
+				$listaConfirmacao[$i]['cepResponsavel'] = $validacao->replaceCepView($listaConfirmacao[$i]['cepResponsavel']);
+				$listaConfirmacao[$i]['dataRegistro'] = $validacao->replaceDataView($listaConfirmacao[$i]['dataRegistro']);
+				$listaConfirmacao[$i]['registroConfirmacao'] = $validacao->replaceDataView($listaConfirmacao[$i]['registroConfirmacao']);
+				$listaConfirmacao[$i]['dataCriacao'] = $validacao->replaceDataView($listaConfirmacao[$i]['dataCriacao']);
 			}
 		}
 
@@ -311,29 +311,29 @@ class CListaApuracao {
 		for ($i = 0; $i < $tamanhoArray; $i++) {
 			//Verifica se a posicao existe no array porque excluimos algumas repetidas anteriormente
 			if (isset($listaApuracao[$i])) {
-				$listaApuracao[$i]['descricao'] = utf8_encode($listaApuracao[$i]['descricao']);
-				$listaApuracao[$i]['tipoApuracao'] = utf8_encode($listaApuracao[$i]['tipoApuracao']);
-				$listaApuracao[$i]['qualFamilia'] = utf8_encode($listaApuracao[$i]['qualFamilia']);
-				$listaApuracao[$i]['nomeVitima'] = utf8_encode($listaApuracao[$i]['nomeVitima']);
-				$listaApuracao[$i]['nomeResponsavel'] = utf8_encode($listaApuracao[$i]['nomeResponsavel']);
-				$listaApuracao[$i]['ruaVitima'] = utf8_encode($listaApuracao[$i]['ruaVitima']);
-				$listaApuracao[$i]['bairroVitima'] = utf8_encode($listaApuracao[$i]['bairroVitima']);
-				$listaApuracao[$i]['cidadeVitima'] = utf8_encode($listaApuracao[$i]['cidadeVitima']);
-				$listaApuracao[$i]['estadoVitima'] = strtoupper(utf8_encode($listaApuracao[$i]['estadoVitima']));
-				$listaApuracao[$i]['complementoVitima'] = utf8_encode($listaApuracao[$i]['complementoVitima']);
-				$listaApuracao[$i]['ruaResponsavel'] = utf8_encode($listaApuracao[$i]['ruaResponsavel']);
-				$listaApuracao[$i]['bairroResponsavel'] = utf8_encode($listaApuracao[$i]['bairroResponsavel']);
-				$listaApuracao[$i]['cidadeResponsavel'] = utf8_encode($listaApuracao[$i]['cidadeResponsavel']);
-				$listaApuracao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($listaApuracao[$i]['estadoResponsavel']));
-				$listaApuracao[$i]['complementoResponsavel'] = utf8_encode($listaApuracao[$i]['complementoResponsavel']);
-				$listaApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($listaApuracao[$i]['cpfVitima']));
-				$listaApuracao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($listaApuracao[$i]['celularVitima']));
-				$listaApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($listaApuracao[$i]['cpfResponsavel']));
-				$listaApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($listaApuracao[$i]['celularResponsavel']));
-				$listaApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($listaApuracao[$i]['cepVitima']));
-				$listaApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($listaApuracao[$i]['cepResponsavel']));
-				$listaApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($listaApuracao[$i]['dataRegistro']));
-				$listaApuracao[$i]['dataCriacao'] = $validacao->replaceDataView(utf8_encode($listaApuracao[$i]['dataCriacao']));
+				$listaApuracao[$i]['descricao'] = $listaApuracao[$i]['descricao'];
+				$listaApuracao[$i]['tipoApuracao'] = $listaApuracao[$i]['tipoApuracao'];
+				$listaApuracao[$i]['qualFamilia'] = $listaApuracao[$i]['qualFamilia'];
+				$listaApuracao[$i]['nomeVitima'] = $listaApuracao[$i]['nomeVitima'];
+				$listaApuracao[$i]['nomeResponsavel'] = $listaApuracao[$i]['nomeResponsavel'];
+				$listaApuracao[$i]['ruaVitima'] = $listaApuracao[$i]['ruaVitima'];
+				$listaApuracao[$i]['bairroVitima'] = $listaApuracao[$i]['bairroVitima'];
+				$listaApuracao[$i]['cidadeVitima'] = $listaApuracao[$i]['cidadeVitima'];
+				$listaApuracao[$i]['estadoVitima'] = strtoupper($listaApuracao[$i]['estadoVitima']);
+				$listaApuracao[$i]['complementoVitima'] = $listaApuracao[$i]['complementoVitima'];
+				$listaApuracao[$i]['ruaResponsavel'] = $listaApuracao[$i]['ruaResponsavel'];
+				$listaApuracao[$i]['bairroResponsavel'] = $listaApuracao[$i]['bairroResponsavel'];
+				$listaApuracao[$i]['cidadeResponsavel'] = $listaApuracao[$i]['cidadeResponsavel'];
+				$listaApuracao[$i]['estadoResponsavel'] = strtoupper($listaApuracao[$i]['estadoResponsavel']);
+				$listaApuracao[$i]['complementoResponsavel'] = $listaApuracao[$i]['complementoResponsavel'];
+				$listaApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView($listaApuracao[$i]['cpfVitima']);
+				$listaApuracao[$i]['celularVitima'] = $validacao->replaceCelularView($listaApuracao[$i]['celularVitima']);
+				$listaApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView($listaApuracao[$i]['cpfResponsavel']);
+				$listaApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView($listaApuracao[$i]['celularResponsavel']);
+				$listaApuracao[$i]['cepVitima'] = $validacao->replaceCepView($listaApuracao[$i]['cepVitima']);
+				$listaApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView($listaApuracao[$i]['cepResponsavel']);
+				$listaApuracao[$i]['dataRegistro'] = $validacao->replaceDataView($listaApuracao[$i]['dataRegistro']);
+				$listaApuracao[$i]['dataCriacao'] = $validacao->replaceDataView($listaApuracao[$i]['dataCriacao']);
 			}
 		}
 
@@ -354,31 +354,31 @@ class CListaApuracao {
 
 		//Validacao dos campos com acentos do banco de dados
 		for ($i = 0; $i < $tamanhoArray; $i++) {
-			$detalheApuracao[$i]['descricao'] = utf8_encode($detalheApuracao[$i]['descricao']);
-			$detalheApuracao[$i]['setor'] = utf8_encode($detalheApuracao[$i]['setor']);
-			$detalheApuracao[$i]['tipoApuracao'] = utf8_encode($detalheApuracao[$i]['tipoApuracao']);
-			$detalheApuracao[$i]['qualFamilia'] = utf8_encode($detalheApuracao[$i]['qualFamilia']);
-			$detalheApuracao[$i]['nomeVitima'] = utf8_encode($detalheApuracao[$i]['nomeVitima']);
-			$detalheApuracao[$i]['nomeResponsavel'] = utf8_encode($detalheApuracao[$i]['nomeResponsavel']);
-			$detalheApuracao[$i]['ruaVitima'] = utf8_encode($detalheApuracao[$i]['ruaVitima']);
-			$detalheApuracao[$i]['bairroVitima'] = utf8_encode($detalheApuracao[$i]['bairroVitima']);
-			$detalheApuracao[$i]['cidadeVitima'] = utf8_encode($detalheApuracao[$i]['cidadeVitima']);
-			$detalheApuracao[$i]['estadoVitima'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoVitima']));
-			$detalheApuracao[$i]['complementoVitima'] = utf8_encode($detalheApuracao[$i]['complementoVitima']);
-			$detalheApuracao[$i]['ruaResponsavel'] = utf8_encode($detalheApuracao[$i]['ruaResponsavel']);
-			$detalheApuracao[$i]['bairroResponsavel'] = utf8_encode($detalheApuracao[$i]['bairroResponsavel']);
-			$detalheApuracao[$i]['cidadeResponsavel'] = utf8_encode($detalheApuracao[$i]['cidadeResponsavel']);
-			$detalheApuracao[$i]['estadoResponsavel'] = strtoupper(utf8_encode($detalheApuracao[$i]['estadoResponsavel']));
-			$detalheApuracao[$i]['complementoResponsavel'] = utf8_encode($detalheApuracao[$i]['complementoResponsavel']);
-			$detalheApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfVitima']));
-			$detalheApuracao[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularVitima']));
-			$detalheApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($detalheApuracao[$i]['cpfResponsavel']));
-			$detalheApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($detalheApuracao[$i]['celularResponsavel']));
-			$detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepVitima']));
-			$detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($detalheApuracao[$i]['cepResponsavel']));
-			$detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataRegistro']));
-			$detalheApuracao[$i]['dataCriacao'] = $validacao->replaceDataView(utf8_encode($detalheApuracao[$i]['dataCriacao']));
-			$detalheApuracao[$i]['quemCriouApuracao'] = utf8_encode($detalheApuracao[$i]['quemCriouApuracao']);
+			$detalheApuracao[$i]['descricao'] = $detalheApuracao[$i]['descricao'];
+			$detalheApuracao[$i]['setor'] = $detalheApuracao[$i]['setor'];
+			$detalheApuracao[$i]['tipoApuracao'] = $detalheApuracao[$i]['tipoApuracao'];
+			$detalheApuracao[$i]['qualFamilia'] = $detalheApuracao[$i]['qualFamilia'];
+			$detalheApuracao[$i]['nomeVitima'] = $detalheApuracao[$i]['nomeVitima'];
+			$detalheApuracao[$i]['nomeResponsavel'] = $detalheApuracao[$i]['nomeResponsavel'];
+			$detalheApuracao[$i]['ruaVitima'] = $detalheApuracao[$i]['ruaVitima'];
+			$detalheApuracao[$i]['bairroVitima'] = $detalheApuracao[$i]['bairroVitima'];
+			$detalheApuracao[$i]['cidadeVitima'] = $detalheApuracao[$i]['cidadeVitima'];
+			$detalheApuracao[$i]['estadoVitima'] = strtoupper($detalheApuracao[$i]['estadoVitima']);
+			$detalheApuracao[$i]['complementoVitima'] = $detalheApuracao[$i]['complementoVitima'];
+			$detalheApuracao[$i]['ruaResponsavel'] = $detalheApuracao[$i]['ruaResponsavel'];
+			$detalheApuracao[$i]['bairroResponsavel'] = $detalheApuracao[$i]['bairroResponsavel'];
+			$detalheApuracao[$i]['cidadeResponsavel'] = $detalheApuracao[$i]['cidadeResponsavel'];
+			$detalheApuracao[$i]['estadoResponsavel'] = strtoupper($detalheApuracao[$i]['estadoResponsavel']);
+			$detalheApuracao[$i]['complementoResponsavel'] = $detalheApuracao[$i]['complementoResponsavel'];
+			$detalheApuracao[$i]['cpfVitima'] = $validacao->replaceCpfView($detalheApuracao[$i]['cpfVitima']);
+			$detalheApuracao[$i]['celularVitima'] = $validacao->replaceCelularView($detalheApuracao[$i]['celularVitima']);
+			$detalheApuracao[$i]['cpfResponsavel'] = $validacao->replaceCpfView($detalheApuracao[$i]['cpfResponsavel']);
+			$detalheApuracao[$i]['celularResponsavel'] = $validacao->replaceCelularView($detalheApuracao[$i]['celularResponsavel']);
+			$detalheApuracao[$i]['cepVitima'] = $validacao->replaceCepView($detalheApuracao[$i]['cepVitima']);
+			$detalheApuracao[$i]['cepResponsavel'] = $validacao->replaceCepView($detalheApuracao[$i]['cepResponsavel']);
+			$detalheApuracao[$i]['dataRegistro'] = $validacao->replaceDataView($detalheApuracao[$i]['dataRegistro']);
+			$detalheApuracao[$i]['dataCriacao'] = $validacao->replaceDataView($detalheApuracao[$i]['dataCriacao']);
+			$detalheApuracao[$i]['quemCriouApuracao'] = $detalheApuracao[$i]['quemCriouApuracao'];
 		}
 		
 		return $detalheApuracao;

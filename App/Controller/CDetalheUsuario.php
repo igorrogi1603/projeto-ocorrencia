@@ -23,12 +23,12 @@ class CDetalheUsuario {
 		$dadosInstituicao = $musuario->detalheUsuarioInstituicao($idUsuario);
 
 		if (count($dados) != 0 || count($dados) != "" || count($dados) != null) {
-			$dados[0]['nome'] = utf8_encode($dados[0]['nome']);
-			$dados[0]['rua'] = utf8_encode($dados[0]['rua']);
-			$dados[0]['bairro'] = utf8_encode($dados[0]['bairro']);
-			$dados[0]['cidade'] = utf8_encode($dados[0]['cidade']);
-			$dados[0]['setor'] = utf8_encode($dados[0]['setor']);
-			$dados[0]['funcao'] = utf8_encode($dados[0]['funcao']);
+			$dados[0]['nome'] = $dados[0]['nome'];
+			$dados[0]['rua'] = $dados[0]['rua'];
+			$dados[0]['bairro'] = $dados[0]['bairro'];
+			$dados[0]['cidade'] = $dados[0]['cidade'];
+			$dados[0]['setor'] = $dados[0]['setor'];
+			$dados[0]['funcao'] = $dados[0]['funcao'];
 			$dados[0]['qtdAnos'] = $pessoa->qtdAnos($dados[0]['dataNasc']);
 			$dados[0]['dataNasc'] = $validacao->replaceDataView($dados[0]['dataNasc']);
 			$dados[0]['cpf'] = $validacao->replaceCpfView($dados[0]['cpf']);
@@ -51,11 +51,11 @@ class CDetalheUsuario {
 		}
 
 		if (count($dadosInstituicao) != 0 || count($dadosInstituicao) != "" || count($dadosInstituicao) != null) {
-			$dadosInstituicao[0]['nome'] = utf8_encode($dadosInstituicao[0]['nome']);
-			$dadosInstituicao[0]['subnome'] = utf8_encode($dadosInstituicao[0]['subnome']);
-			$dadosInstituicao[0]['rua'] = utf8_encode($dadosInstituicao[0]['rua']);
-			$dadosInstituicao[0]['bairro'] = utf8_encode($dadosInstituicao[0]['bairro']);
-			$dadosInstituicao[0]['cidade'] = utf8_encode($dadosInstituicao[0]['cidade']);
+			$dadosInstituicao[0]['nome'] = $dadosInstituicao[0]['nome'];
+			$dadosInstituicao[0]['subnome'] = $dadosInstituicao[0]['subnome'];
+			$dadosInstituicao[0]['rua'] = $dadosInstituicao[0]['rua'];
+			$dadosInstituicao[0]['bairro'] = $dadosInstituicao[0]['bairro'];
+			$dadosInstituicao[0]['cidade'] = $dadosInstituicao[0]['cidade'];
 			$dadosInstituicao[0]['cnpj'] = $validacao->replaceCnpjView($dadosInstituicao[0]['cnpj']);
 			$dadosInstituicao[0]['celular'] = $validacao->replaceCelularView($dadosInstituicao[0]['celular']);
 			$dadosInstituicao[0]['fixo'] = $validacao->replaceTelefoneFixoView($dadosInstituicao[0]['fixo']);

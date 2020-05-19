@@ -22,8 +22,8 @@ class MAveriguacao {
 			INSERT INTO tb_criaraveriguacao (titulo, mensagem, status) 
 			VALUES(:titulo, :mensagem, :status)
 		", [
-			":titulo" => utf8_decode($averiguacao->gettituloAveriguacao()),
-			":mensagem" => utf8_decode($averiguacao->getmensagemAveriguacao()),
+			":titulo" => $averiguacao->gettituloAveriguacao(),
+			":mensagem" => $averiguacao->getmensagemAveriguacao(),
 			":status" => 0
 		]);
 	}

@@ -2,6 +2,8 @@
 
 session_start();
 
+ini_set('default_charset', 'UTF-8');
+
 date_default_timezone_set('America/Sao_Paulo');
 
 require_once("vendor/autoload.php");

@@ -46,7 +46,7 @@ class MResponsavel {
 					":idPessoa" => (int)$idPessoa[0]["MAX(idPessoa)"],
 					":isPais" => $responsavel->getresponsavelRadio(),
 					":isAindaResponsavel" => 1,
-					":outro" => utf8_decode($responsavel->getresponsavelOutro())
+					":outro" => $responsavel->getresponsavelOutro()
 				]);
 				break;
 			
@@ -103,7 +103,7 @@ class MResponsavel {
 			WHERE idPessoa = :idPessoa
 		", [
 			":isPais" => $responsavel->getresponsavelRadio(),
-			":outro" => utf8_decode($responsavel->getresponsavelOutro()),
+			":outro" => $responsavel->getresponsavelOutro(),
 			":idPessoa" => $idPessoaResponsavel
 		]);
 	}

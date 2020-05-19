@@ -29,28 +29,28 @@ class CCriarApuracao {
 
 		//Validacao dos campos com acentos do banco de dados
 		for ($i = 0; $i < $tamanhoArray; $i++) {
-			$apuracaoCompleta[$i]['descricao'] = utf8_encode($apuracaoCompleta[$i]['descricao']);
-			$apuracaoCompleta[$i]['tipoApuracao'] = utf8_encode($apuracaoCompleta[$i]['tipoApuracao']);
-			$apuracaoCompleta[$i]['qualFamilia'] = utf8_encode($apuracaoCompleta[$i]['qualFamilia']);
-			$apuracaoCompleta[$i]['nomeVitima'] = utf8_encode($apuracaoCompleta[$i]['nomeVitima']);
-			$apuracaoCompleta[$i]['nomeResponsavel'] = utf8_encode($apuracaoCompleta[$i]['nomeResponsavel']);
-			$apuracaoCompleta[$i]['ruaVitima'] = utf8_encode($apuracaoCompleta[$i]['ruaVitima']);
-			$apuracaoCompleta[$i]['bairroVitima'] = utf8_encode($apuracaoCompleta[$i]['bairroVitima']);
-			$apuracaoCompleta[$i]['cidadeVitima'] = utf8_encode($apuracaoCompleta[$i]['cidadeVitima']);
-			$apuracaoCompleta[$i]['estadoVitima'] = strtoupper(utf8_encode($apuracaoCompleta[$i]['estadoVitima']));
-			$apuracaoCompleta[$i]['complementoVitima'] = utf8_encode($apuracaoCompleta[$i]['complementoVitima']);
-			$apuracaoCompleta[$i]['ruaResponsavel'] = utf8_encode($apuracaoCompleta[$i]['ruaResponsavel']);
-			$apuracaoCompleta[$i]['bairroResponsavel'] = utf8_encode($apuracaoCompleta[$i]['bairroResponsavel']);
-			$apuracaoCompleta[$i]['cidadeResponsavel'] = utf8_encode($apuracaoCompleta[$i]['cidadeResponsavel']);
-			$apuracaoCompleta[$i]['estadoResponsavel'] = strtoupper(utf8_encode($apuracaoCompleta[$i]['estadoResponsavel']));
-			$apuracaoCompleta[$i]['complementoResponsavel'] = utf8_encode($apuracaoCompleta[$i]['complementoResponsavel']);
-			$apuracaoCompleta[$i]['cpfVitima'] = $validacao->replaceCpfView(utf8_encode($apuracaoCompleta[$i]['cpfVitima']));
-			$apuracaoCompleta[$i]['celularVitima'] = $validacao->replaceCelularView(utf8_encode($apuracaoCompleta[$i]['celularVitima']));
-			$apuracaoCompleta[$i]['cpfResponsavel'] = $validacao->replaceCpfView(utf8_encode($apuracaoCompleta[$i]['cpfResponsavel']));
-			$apuracaoCompleta[$i]['celularResponsavel'] = $validacao->replaceCelularView(utf8_encode($apuracaoCompleta[$i]['celularResponsavel']));
-			$apuracaoCompleta[$i]['cepVitima'] = $validacao->replaceCepView(utf8_encode($apuracaoCompleta[$i]['cepVitima']));
-			$apuracaoCompleta[$i]['cepResponsavel'] = $validacao->replaceCepView(utf8_encode($apuracaoCompleta[$i]['cepResponsavel']));
-			$apuracaoCompleta[$i]['dataRegistro'] = $validacao->replaceDataView(utf8_encode($apuracaoCompleta[$i]['dataRegistro']));
+			$apuracaoCompleta[$i]['descricao'] = $apuracaoCompleta[$i]['descricao'];
+			$apuracaoCompleta[$i]['tipoApuracao'] = $apuracaoCompleta[$i]['tipoApuracao'];
+			$apuracaoCompleta[$i]['qualFamilia'] = $apuracaoCompleta[$i]['qualFamilia'];
+			$apuracaoCompleta[$i]['nomeVitima'] = $apuracaoCompleta[$i]['nomeVitima'];
+			$apuracaoCompleta[$i]['nomeResponsavel'] = $apuracaoCompleta[$i]['nomeResponsavel'];
+			$apuracaoCompleta[$i]['ruaVitima'] = $apuracaoCompleta[$i]['ruaVitima'];
+			$apuracaoCompleta[$i]['bairroVitima'] = $apuracaoCompleta[$i]['bairroVitima'];
+			$apuracaoCompleta[$i]['cidadeVitima'] = $apuracaoCompleta[$i]['cidadeVitima'];
+			$apuracaoCompleta[$i]['estadoVitima'] = strtoupper($apuracaoCompleta[$i]['estadoVitima']);
+			$apuracaoCompleta[$i]['complementoVitima'] = $apuracaoCompleta[$i]['complementoVitima'];
+			$apuracaoCompleta[$i]['ruaResponsavel'] = $apuracaoCompleta[$i]['ruaResponsavel'];
+			$apuracaoCompleta[$i]['bairroResponsavel'] = $apuracaoCompleta[$i]['bairroResponsavel'];
+			$apuracaoCompleta[$i]['cidadeResponsavel'] = $apuracaoCompleta[$i]['cidadeResponsavel'];
+			$apuracaoCompleta[$i]['estadoResponsavel'] = strtoupper($apuracaoCompleta[$i]['estadoResponsavel']);
+			$apuracaoCompleta[$i]['complementoResponsavel'] = $apuracaoCompleta[$i]['complementoResponsavel'];
+			$apuracaoCompleta[$i]['cpfVitima'] = $validacao->replaceCpfView($apuracaoCompleta[$i]['cpfVitima']);
+			$apuracaoCompleta[$i]['celularVitima'] = $validacao->replaceCelularView($apuracaoCompleta[$i]['celularVitima']);
+			$apuracaoCompleta[$i]['cpfResponsavel'] = $validacao->replaceCpfView($apuracaoCompleta[$i]['cpfResponsavel']);
+			$apuracaoCompleta[$i]['celularResponsavel'] = $validacao->replaceCelularView($apuracaoCompleta[$i]['celularResponsavel']);
+			$apuracaoCompleta[$i]['cepVitima'] = $validacao->replaceCepView($apuracaoCompleta[$i]['cepVitima']);
+			$apuracaoCompleta[$i]['cepResponsavel'] = $validacao->replaceCepView($apuracaoCompleta[$i]['cepResponsavel']);
+			$apuracaoCompleta[$i]['dataRegistro'] = $validacao->replaceDataView($apuracaoCompleta[$i]['dataRegistro']);
 		}
 
 		return $apuracaoCompleta;

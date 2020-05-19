@@ -16,7 +16,7 @@ class MArquivo {
 			INSERT INTO tb_arquivo (tipo, url, status) 
 			VALUES(:tipo, :url, :status)
 		", [
-			":tipo" => utf8_decode($tipo),
+			":tipo" => $tipo,
 			":url" => $url,
 			":status" => 0
 		]);
@@ -32,7 +32,7 @@ class MArquivo {
 			VALUES(:idPessoa, :tipo, :url, :status)
 		", [
 			":idPessoa" => $idPessoa,
-			":tipo" => utf8_decode($tipo),
+			":tipo" => $tipo,
 			":url" => $url,
 			":status" => 0
 		]);
@@ -48,7 +48,7 @@ class MArquivo {
 			VALUES(:idInstituicao, :tipo, :url, :status)
 		", [
 			":idInstituicao" => $idInstituicao,
-			":tipo" => utf8_decode($tipo),
+			":tipo" => $tipo,
 			":url" => $url,
 			":status" => 0
 		]);

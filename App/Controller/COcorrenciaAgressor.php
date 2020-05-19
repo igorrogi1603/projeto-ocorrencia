@@ -326,26 +326,26 @@ class COcorrenciaAgressor {
 				$agressorExcluido = $magressor->selecionaMotivoAgressorExcluido($listaAgressor[$i]['idAgressor'], $idOcorrencia);
 				
 				foreach ($agressorExcluido as $value) {
-					$listaAgressor[$i]['motivoExcluido'] = utf8_encode($value['motivo']);	
+					$listaAgressor[$i]['motivoExcluido'] = $value['motivo'];	
 				}
 			}
 
 			//validacao
-			$listaAgressor[$i]['nome'] = utf8_encode($listaAgressor[$i]['nome']);
-			$listaAgressor[$i]['rua'] = utf8_encode($listaAgressor[$i]['rua']);
-			$listaAgressor[$i]['bairro'] = utf8_encode($listaAgressor[$i]['bairro']);
-			$listaAgressor[$i]['cidade'] = utf8_encode($listaAgressor[$i]['cidade']);
-			$listaAgressor[$i]['complemento'] = utf8_encode($listaAgressor[$i]['complemento']);
-			$listaAgressor[$i]['celular'] = $validacao->replaceCelularView(utf8_encode($listaAgressor[$i]['celular']));
-			$listaAgressor[$i]['fixo'] = $validacao->replaceTelefoneFixoView(utf8_encode($listaAgressor[$i]['fixo']));
-			$listaAgressor[$i]['cpf'] = $validacao->replaceCpfView(utf8_encode($listaAgressor[$i]['cpf']));
+			$listaAgressor[$i]['nome'] = $listaAgressor[$i]['nome'];
+			$listaAgressor[$i]['rua'] = $listaAgressor[$i]['rua'];
+			$listaAgressor[$i]['bairro'] = $listaAgressor[$i]['bairro'];
+			$listaAgressor[$i]['cidade'] = $listaAgressor[$i]['cidade'];
+			$listaAgressor[$i]['complemento'] = $listaAgressor[$i]['complemento'];
+			$listaAgressor[$i]['celular'] = $validacao->replaceCelularView($listaAgressor[$i]['celular']);
+			$listaAgressor[$i]['fixo'] = $validacao->replaceTelefoneFixoView($listaAgressor[$i]['fixo']);
+			$listaAgressor[$i]['cpf'] = $validacao->replaceCpfView($listaAgressor[$i]['cpf']);
 			$listaAgressor[$i]['rg'] = $validacao->replaceSemDigitoRg($listaAgressor[$i]['rg']);
 			$listaAgressor[$i]['rgDigito'] = $validacao->replaceDigitoRg($listaAgressor[$i]['rg']);
 
 			if ($listaAgressor[$i]['dataNasc'] == null) {
 				//mostra nada
 			} else {
-				$listaAgressor[$i]['dataNasc'] = $validacao->replaceDataView(utf8_encode($listaAgressor[$i]['dataNasc']));
+				$listaAgressor[$i]['dataNasc'] = $validacao->replaceDataView($listaAgressor[$i]['dataNasc']);
 			}
 		}
 
@@ -376,19 +376,19 @@ class COcorrenciaAgressor {
 				$agressorExcluido = $magressor->selecionaMotivoAgressorExcluido($listaInstituicao[$i]['idAgressor'], $idOcorrencia);
 				
 				foreach ($agressorExcluido as $value) {
-					$listaInstituicao[$i]['motivoExcluido'] = utf8_encode($value['motivo']);
+					$listaInstituicao[$i]['motivoExcluido'] = $value['motivo'];
 				}
 			}
 
 			//validacao
-			$listaInstituicao[$i]['nome'] = utf8_encode($listaInstituicao[$i]['nome']);
-			$listaInstituicao[$i]['rua'] = utf8_encode($listaInstituicao[$i]['rua']);
-			$listaInstituicao[$i]['bairro'] = utf8_encode($listaInstituicao[$i]['bairro']);
-			$listaInstituicao[$i]['cidade'] = utf8_encode($listaInstituicao[$i]['cidade']);
-			$listaInstituicao[$i]['complemento'] = utf8_encode($listaInstituicao[$i]['complemento']);
-			$listaInstituicao[$i]['celular'] = $validacao->replaceCelularView(utf8_encode($listaInstituicao[$i]['celular']));
-			$listaInstituicao[$i]['fixo'] = $validacao->replaceTelefoneFixoView(utf8_encode($listaInstituicao[$i]['fixo']));
-			$listaInstituicao[$i]['cnpj'] = $validacao->replaceCnpjView(utf8_encode($listaInstituicao[$i]['cnpj']));
+			$listaInstituicao[$i]['nome'] = $listaInstituicao[$i]['nome'];
+			$listaInstituicao[$i]['rua'] = $listaInstituicao[$i]['rua'];
+			$listaInstituicao[$i]['bairro'] = $listaInstituicao[$i]['bairro'];
+			$listaInstituicao[$i]['cidade'] = $listaInstituicao[$i]['cidade'];
+			$listaInstituicao[$i]['complemento'] = $listaInstituicao[$i]['complemento'];
+			$listaInstituicao[$i]['celular'] = $validacao->replaceCelularView($listaInstituicao[$i]['celular']);
+			$listaInstituicao[$i]['fixo'] = $validacao->replaceTelefoneFixoView($listaInstituicao[$i]['fixo']);
+			$listaInstituicao[$i]['cnpj'] = $validacao->replaceCnpjView($listaInstituicao[$i]['cnpj']);
 		}
 
 		return $listaInstituicao;
